@@ -1,0 +1,2296 @@
+{
+  "instrument": "scripts/tier1_probe.py",
+  "mode": "analyse",
+  "provenance": {
+    "git_commit": "0d5e86b47447bdabe83bba2d2f83df1760d2dddb",
+    "tree_sha256": "31d56060e0e1e72da54d2d1620d51e4f2a80cee19462bc285a63554251f76b31",
+    "tree_dirty": false
+  },
+  "corpus": {
+    "id": "prose-c",
+    "path": "eval/corpora/prose-c",
+    "gold_key": true,
+    "surfaces": true,
+    "documents": [
+      {
+        "doc_id": "4921c923f4c50904",
+        "kind": "md",
+        "chars": 928,
+        "text_sha256": "4921c923f4c5090412c0bb02130ae08e1497bf17bf8e55bdb725beb3f4143b3c"
+      },
+      {
+        "doc_id": "1250e639cf0c44ff",
+        "kind": "pdf",
+        "chars": 756,
+        "text_sha256": "e3837ae76e0eb33b81bf72c3be3c782181e0930b716d425ff969ddd1e8dfb1a9"
+      },
+      {
+        "doc_id": "3178f70f9d932454",
+        "kind": "xlsx",
+        "chars": 401,
+        "text_sha256": "24c6636446f55a4d4c2dbaeeb08b6d90c86a8f521f70d8759e97c4dae8360bfe"
+      },
+      {
+        "doc_id": "73087ca00458509e",
+        "kind": "docx",
+        "chars": 929,
+        "text_sha256": "a05dcabba83e0fb55ef40ec9d6d63ef11e88d963128b43a2cba511ce41a61a3d"
+      }
+    ]
+  },
+  "extraction_files": 4,
+  "extractions": [
+    {
+      "index": 0,
+      "sha256": "ab1b8fd8c9901c565cf319186736e454be5a7314612abd3f9ef602e9261ae1d3",
+      "files": [
+        "eval/runs/prose-c__r5/extractions.json"
+      ]
+    },
+    {
+      "index": 1,
+      "sha256": "837de4874f6b10f96075294d6148a56eecc15d79046b68e0829f22445fadf152",
+      "files": [
+        "eval/probe/extractions/prose-c/extraction_1.json"
+      ]
+    },
+    {
+      "index": 2,
+      "sha256": "6fc0a11eda25c55cf08016200e8074a649843ee5a06bad25ccb4173570718213",
+      "files": [
+        "eval/probe/extractions/prose-c/extraction_2.json"
+      ]
+    },
+    {
+      "index": 3,
+      "sha256": "eba78decb326a38794b1934d12bf22e5dc50fe15f3cd8f395e2bd7518f5147b1",
+      "files": [
+        "eval/probe/extractions/prose-c/extraction_3.json"
+      ]
+    }
+  ],
+  "refused_files": [],
+  "variance": {
+    "distinct_extractions": 4,
+    "pairs": [
+      {
+        "a": 0,
+        "b": 1,
+        "entity_jaccard": 0.975,
+        "relation_jaccard": 0.3333333333333333,
+        "per_document_entity_jaccard_mean": 0.75
+      },
+      {
+        "a": 0,
+        "b": 2,
+        "entity_jaccard": 0.95,
+        "relation_jaccard": 0.3,
+        "per_document_entity_jaccard_mean": 0.7222222222222222
+      },
+      {
+        "a": 0,
+        "b": 3,
+        "entity_jaccard": 0.9285714285714286,
+        "relation_jaccard": 0.3,
+        "per_document_entity_jaccard_mean": 0.7236842105263158
+      },
+      {
+        "a": 1,
+        "b": 2,
+        "entity_jaccard": 0.975,
+        "relation_jaccard": 0.25925925925925924,
+        "per_document_entity_jaccard_mean": 0.9722222222222222
+      },
+      {
+        "a": 1,
+        "b": 3,
+        "entity_jaccard": 0.9523809523809523,
+        "relation_jaccard": 0.3728813559322034,
+        "per_document_entity_jaccard_mean": 0.9736842105263158
+      },
+      {
+        "a": 2,
+        "b": 3,
+        "entity_jaccard": 0.9285714285714286,
+        "relation_jaccard": 0.12307692307692308,
+        "per_document_entity_jaccard_mean": 0.945906432748538
+      }
+    ],
+    "entity_jaccard": {
+      "min": 0.9285714285714286,
+      "mean": 0.9515873015873016,
+      "max": 0.975
+    },
+    "relation_jaccard": {
+      "min": 0.12307692307692308,
+      "mean": 0.28142514526695317,
+      "max": 0.3728813559322034
+    },
+    "note": null
+  },
+  "per_extraction": [
+    {
+      "index": 0,
+      "entities": 67,
+      "relations": 34,
+      "recall": {
+        "referents": {
+          "n": 5,
+          "exact": 5,
+          "covered": 5,
+          "missed": [],
+          "items": [
+            {
+              "item": "COBALT",
+              "surfaces_in_corpus": [
+                "Project Cobalt",
+                "Cobalt"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Project Cobalt",
+                "Cobalt"
+              ]
+            },
+            {
+              "item": "FENWICK",
+              "surfaces_in_corpus": [
+                "Scheme Fenwick",
+                "Fenwick"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Scheme Fenwick",
+                "Fenwick"
+              ]
+            },
+            {
+              "item": "LARKSPUR",
+              "surfaces_in_corpus": [
+                "Project Larkspur",
+                "Larkspur"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Project Larkspur",
+                "Larkspur"
+              ]
+            },
+            {
+              "item": "ORG",
+              "surfaces_in_corpus": [
+                "Pellingham Water Trust",
+                "Pellingham"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Pellingham Water Trust",
+                "Pellingham"
+              ]
+            },
+            {
+              "item": "VENDOR",
+              "surfaces_in_corpus": [
+                "Holloway Pumpworks",
+                "Holloway"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Holloway Pumpworks",
+                "Holloway"
+              ]
+            }
+          ]
+        },
+        "string_facts": {
+          "n": 9,
+          "exact": 9,
+          "covered": 9,
+          "missed": [],
+          "items": [
+            {
+              "item": "LARKSPUR.OWNER",
+              "surfaces_in_corpus": [
+                "Miriam Achterberg"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Miriam Achterberg"
+              ]
+            },
+            {
+              "item": "LARKSPUR.SITE",
+              "surfaces_in_corpus": [
+                "Truro"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Truro"
+              ]
+            },
+            {
+              "item": "LARKSPUR.CONTRACT",
+              "surfaces_in_corpus": [
+                "PW-2026-0452"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "PW-2026-0452"
+              ]
+            },
+            {
+              "item": "COBALT.OWNER",
+              "surfaces_in_corpus": [
+                "Declan Oyelaran"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Declan Oyelaran"
+              ]
+            },
+            {
+              "item": "COBALT.SITE",
+              "surfaces_in_corpus": [
+                "Hereford"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Hereford"
+              ]
+            },
+            {
+              "item": "COBALT.CONTRACT",
+              "surfaces_in_corpus": [
+                "PW-2026-0619"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "PW-2026-0619"
+              ]
+            },
+            {
+              "item": "FENWICK.OWNER",
+              "surfaces_in_corpus": [
+                "Harriet Quennell"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Harriet Quennell"
+              ]
+            },
+            {
+              "item": "FENWICK.SITE",
+              "surfaces_in_corpus": [
+                "Lincoln"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Lincoln"
+              ]
+            },
+            {
+              "item": "FENWICK.CONTRACT",
+              "surfaces_in_corpus": [
+                "PW-2026-0833"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "PW-2026-0833"
+              ]
+            }
+          ]
+        },
+        "generator_surfaces": {
+          "n": 49,
+          "covered": 41,
+          "by_group": {
+            "amounts": {
+              "n": 14,
+              "covered": 12
+            },
+            "dates": {
+              "n": 8,
+              "covered": 7
+            },
+            "identifiers": {
+              "n": 3,
+              "covered": 3
+            },
+            "labels": {
+              "n": 2,
+              "covered": 0
+            },
+            "people": {
+              "n": 3,
+              "covered": 3
+            },
+            "percentages": {
+              "n": 1,
+              "covered": 1
+            },
+            "quantities": {
+              "n": 2,
+              "covered": 2
+            },
+            "referents": {
+              "n": 10,
+              "covered": 10
+            },
+            "risk_text": {
+              "n": 3,
+              "covered": 0
+            },
+            "sites": {
+              "n": 3,
+              "covered": 3
+            }
+          },
+          "missed": [
+            "Holloway Pumpworks delivered 128 units short of the August order",
+            "Hereford intake failure; tariff revenue fell fifteen percent",
+            "Scheme spend running ahead of its authority",
+            "21 September 2026",
+            "7,590.00",
+            "Medium",
+            "7,590",
+            "High"
+          ]
+        },
+        "surfaces_in_relations": {
+          "hits": [],
+          "labels_group_hits": []
+        }
+      },
+      "predicates": {
+        "n_predicates": 34,
+        "echo_2_4gram": 6,
+        "echo_share": 0.17647058823529413,
+        "whole_match": 18,
+        "whole_match_share": 0.5294117647058824,
+        "echoing": [
+          "supplied from",
+          "holds contract",
+          "under contract",
+          "delivered short of",
+          "will bring",
+          "has spent"
+        ],
+        "whole_matches": [
+          "failed",
+          "supplied from",
+          "holds contract",
+          "authorised",
+          "spent",
+          "under contract",
+          "spent",
+          "booked",
+          "authorised",
+          "spent",
+          "will bring",
+          "on",
+          "holds",
+          "spent",
+          "fell",
+          "spent",
+          "has spent",
+          "delivered"
+        ],
+        "length_tokens": {
+          "1": 14,
+          "2": 18,
+          "3": 2
+        },
+        "length_whitespace_words": {
+          "1": 14,
+          "2": 18,
+          "3": 2
+        },
+        "max_tokens": 3
+      },
+      "r5_residue": {
+        "referents_total": 38,
+        "referents_with_residue": 2,
+        "by_category": {
+          "DATE": 1,
+          "QUANTITY": 1
+        },
+        "pairs": {
+          "DATE": [
+            [
+              "2026-08",
+              "2026-08-12"
+            ],
+            [
+              "2026-08",
+              "2026-08-24"
+            ]
+          ],
+          "QUANTITY": [
+            [
+              "128",
+              "128 units"
+            ]
+          ]
+        }
+      },
+      "masked_exposure": {
+        "filter": {
+          "n_min": 5,
+          "n_max": 8,
+          "hit_threshold": 1,
+          "salt": "fixed analysis salt",
+          "fp_est": 5.4056486675210276e-08,
+          "keying": "r5"
+        },
+        "refused_any": true,
+        "refused_documents": 4,
+        "masked_5gram_hit_share": 0.3326923076923077,
+        "corpus_5grams_distinct": 453,
+        "corpus_5grams_surviving_share": 0.37527593818984545,
+        "documents": [
+          {
+            "doc_id": "4921c923f4c50904",
+            "refused": true,
+            "shingle_hits_5_8": 1,
+            "masked_5grams": 169,
+            "masked_5grams_hit": 12,
+            "placeholders": 30,
+            "unmatched_entities": 0,
+            "surfaces_surviving": 2
+          },
+          {
+            "doc_id": "1250e639cf0c44ff",
+            "refused": true,
+            "shingle_hits_5_8": 1,
+            "masked_5grams": 134,
+            "masked_5grams_hit": 8,
+            "placeholders": 27,
+            "unmatched_entities": 0,
+            "surfaces_surviving": 1
+          },
+          {
+            "doc_id": "3178f70f9d932454",
+            "refused": true,
+            "shingle_hits_5_8": 1,
+            "masked_5grams": 68,
+            "masked_5grams_hit": 4,
+            "placeholders": 17,
+            "unmatched_entities": 0,
+            "surfaces_surviving": 3
+          },
+          {
+            "doc_id": "73087ca00458509e",
+            "refused": true,
+            "shingle_hits_5_8": 1,
+            "masked_5grams": 149,
+            "masked_5grams_hit": 149,
+            "placeholders": 0,
+            "unmatched_entities": 0,
+            "surfaces_surviving": 26
+          }
+        ],
+        "generator_surfaces_surviving": {
+          "distinct": 23,
+          "occurrences": 32,
+          "surfaces": [
+            {
+              "surface": "127,094.70",
+              "group": "amounts",
+              "occurrences": 1,
+              "extractor_miss": false
+            },
+            {
+              "surface": "17 September 2026",
+              "group": "dates",
+              "occurrences": 1,
+              "extractor_miss": false
+            },
+            {
+              "surface": "21 September 2026",
+              "group": "dates",
+              "occurrences": 1,
+              "extractor_miss": true
+            },
+            {
+              "surface": "22 October 2026",
+              "group": "dates",
+              "occurrences": 1,
+              "extractor_miss": false
+            },
+            {
+              "surface": "33,750.00",
+              "group": "amounts",
+              "occurrences": 1,
+              "extractor_miss": false
+            },
+            {
+              "surface": "39,102.60",
+              "group": "amounts",
+              "occurrences": 1,
+              "extractor_miss": false
+            },
+            {
+              "surface": "540,000.00",
+              "group": "amounts",
+              "occurrences": 1,
+              "extractor_miss": false
+            },
+            {
+              "surface": "7,590.00",
+              "group": "amounts",
+              "occurrences": 1,
+              "extractor_miss": true
+            },
+            {
+              "surface": "Declan Oyelaran",
+              "group": "people",
+              "occurrences": 2,
+              "extractor_miss": false
+            },
+            {
+              "surface": "Harriet Quennell",
+              "group": "people",
+              "occurrences": 3,
+              "extractor_miss": false
+            },
+            {
+              "surface": "Hereford",
+              "group": "sites",
+              "occurrences": 1,
+              "extractor_miss": false
+            },
+            {
+              "surface": "High",
+              "group": "labels",
+              "occurrences": 2,
+              "extractor_miss": true
+            },
+            {
+              "surface": "Holloway Pumpworks",
+              "group": "referents",
+              "occurrences": 1,
+              "extractor_miss": false
+            },
+            {
+              "surface": "Medium",
+              "group": "labels",
+              "occurrences": 1,
+              "extractor_miss": true
+            },
+            {
+              "surface": "Miriam Achterberg",
+              "group": "people",
+              "occurrences": 2,
+              "extractor_miss": false
+            },
+            {
+              "surface": "PW-2026-0619",
+              "group": "identifiers",
+              "occurrences": 1,
+              "extractor_miss": false
+            },
+            {
+              "surface": "PW-2026-0833",
+              "group": "identifiers",
+              "occurrences": 1,
+              "extractor_miss": false
+            },
+            {
+              "surface": "Pellingham Water Trust",
+              "group": "referents",
+              "occurrences": 1,
+              "extractor_miss": false
+            },
+            {
+              "surface": "Project Cobalt",
+              "group": "referents",
+              "occurrences": 2,
+              "extractor_miss": false
+            },
+            {
+              "surface": "Project Larkspur",
+              "group": "referents",
+              "occurrences": 2,
+              "extractor_miss": false
+            },
+            {
+              "surface": "Scheme Fenwick",
+              "group": "referents",
+              "occurrences": 2,
+              "extractor_miss": false
+            },
+            {
+              "surface": "Truro",
+              "group": "sites",
+              "occurrences": 1,
+              "extractor_miss": false
+            },
+            {
+              "surface": "fifteen percent",
+              "group": "percentages",
+              "occurrences": 2,
+              "extractor_miss": false
+            }
+          ],
+          "extractor_misses": [
+            "21 September 2026",
+            "7,590.00",
+            "High",
+            "Medium"
+          ],
+          "extracted_elsewhere": [
+            "127,094.70",
+            "17 September 2026",
+            "22 October 2026",
+            "33,750.00",
+            "39,102.60",
+            "540,000.00",
+            "Declan Oyelaran",
+            "Harriet Quennell",
+            "Hereford",
+            "Holloway Pumpworks",
+            "Miriam Achterberg",
+            "PW-2026-0619",
+            "PW-2026-0833",
+            "Pellingham Water Trust",
+            "Project Cobalt",
+            "Project Larkspur",
+            "Scheme Fenwick",
+            "Truro",
+            "fifteen percent"
+          ],
+          "labels_group": [
+            "High",
+            "Medium"
+          ]
+        }
+      }
+    },
+    {
+      "index": 1,
+      "entities": 85,
+      "relations": 66,
+      "recall": {
+        "referents": {
+          "n": 5,
+          "exact": 5,
+          "covered": 5,
+          "missed": [],
+          "items": [
+            {
+              "item": "COBALT",
+              "surfaces_in_corpus": [
+                "Project Cobalt",
+                "Cobalt"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Project Cobalt",
+                "Cobalt"
+              ]
+            },
+            {
+              "item": "FENWICK",
+              "surfaces_in_corpus": [
+                "Scheme Fenwick",
+                "Fenwick"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Scheme Fenwick",
+                "Fenwick"
+              ]
+            },
+            {
+              "item": "LARKSPUR",
+              "surfaces_in_corpus": [
+                "Project Larkspur",
+                "Larkspur"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Project Larkspur",
+                "Larkspur"
+              ]
+            },
+            {
+              "item": "ORG",
+              "surfaces_in_corpus": [
+                "Pellingham Water Trust",
+                "Pellingham"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Pellingham Water Trust",
+                "Pellingham"
+              ]
+            },
+            {
+              "item": "VENDOR",
+              "surfaces_in_corpus": [
+                "Holloway Pumpworks",
+                "Holloway"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Holloway Pumpworks",
+                "Holloway"
+              ]
+            }
+          ]
+        },
+        "string_facts": {
+          "n": 9,
+          "exact": 9,
+          "covered": 9,
+          "missed": [],
+          "items": [
+            {
+              "item": "LARKSPUR.OWNER",
+              "surfaces_in_corpus": [
+                "Miriam Achterberg"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Miriam Achterberg"
+              ]
+            },
+            {
+              "item": "LARKSPUR.SITE",
+              "surfaces_in_corpus": [
+                "Truro"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Truro"
+              ]
+            },
+            {
+              "item": "LARKSPUR.CONTRACT",
+              "surfaces_in_corpus": [
+                "PW-2026-0452"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "PW-2026-0452"
+              ]
+            },
+            {
+              "item": "COBALT.OWNER",
+              "surfaces_in_corpus": [
+                "Declan Oyelaran"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Declan Oyelaran"
+              ]
+            },
+            {
+              "item": "COBALT.SITE",
+              "surfaces_in_corpus": [
+                "Hereford"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Hereford"
+              ]
+            },
+            {
+              "item": "COBALT.CONTRACT",
+              "surfaces_in_corpus": [
+                "PW-2026-0619"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "PW-2026-0619"
+              ]
+            },
+            {
+              "item": "FENWICK.OWNER",
+              "surfaces_in_corpus": [
+                "Harriet Quennell"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Harriet Quennell"
+              ]
+            },
+            {
+              "item": "FENWICK.SITE",
+              "surfaces_in_corpus": [
+                "Lincoln"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Lincoln"
+              ]
+            },
+            {
+              "item": "FENWICK.CONTRACT",
+              "surfaces_in_corpus": [
+                "PW-2026-0833"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "PW-2026-0833"
+              ]
+            }
+          ]
+        },
+        "generator_surfaces": {
+          "n": 49,
+          "covered": 43,
+          "by_group": {
+            "amounts": {
+              "n": 14,
+              "covered": 14
+            },
+            "dates": {
+              "n": 8,
+              "covered": 7
+            },
+            "identifiers": {
+              "n": 3,
+              "covered": 3
+            },
+            "labels": {
+              "n": 2,
+              "covered": 0
+            },
+            "people": {
+              "n": 3,
+              "covered": 3
+            },
+            "percentages": {
+              "n": 1,
+              "covered": 1
+            },
+            "quantities": {
+              "n": 2,
+              "covered": 2
+            },
+            "referents": {
+              "n": 10,
+              "covered": 10
+            },
+            "risk_text": {
+              "n": 3,
+              "covered": 0
+            },
+            "sites": {
+              "n": 3,
+              "covered": 3
+            }
+          },
+          "missed": [
+            "Holloway Pumpworks delivered 128 units short of the August order",
+            "Hereford intake failure; tariff revenue fell fifteen percent",
+            "Scheme spend running ahead of its authority",
+            "21 September 2026",
+            "Medium",
+            "High"
+          ]
+        },
+        "surfaces_in_relations": {
+          "hits": [],
+          "labels_group_hits": []
+        }
+      },
+      "predicates": {
+        "n_predicates": 66,
+        "echo_2_4gram": 9,
+        "echo_share": 0.13636363636363635,
+        "whole_match": 27,
+        "whole_match_share": 0.4090909090909091,
+        "echoing": [
+          "supplied from",
+          "holds contract",
+          "under contract",
+          "delivered short of",
+          "will bring",
+          "prepared by",
+          "has spent",
+          "has spent",
+          "has spent"
+        ],
+        "whole_matches": [
+          "failed",
+          "supplied from",
+          "holds contract",
+          "authorised",
+          "spent",
+          "under contract",
+          "spent",
+          "booked",
+          "authorised",
+          "spent",
+          "will bring",
+          "prepared by",
+          "has spent",
+          "has spent",
+          "has spent",
+          "has",
+          "has",
+          "has",
+          "has",
+          "has",
+          "has",
+          "has",
+          "has",
+          "has",
+          "has",
+          "has",
+          "has"
+        ],
+        "length_tokens": {
+          "1": 29,
+          "2": 33,
+          "3": 4
+        },
+        "length_whitespace_words": {
+          "1": 29,
+          "2": 33,
+          "3": 4
+        },
+        "max_tokens": 3
+      },
+      "r5_residue": {
+        "referents_total": 39,
+        "referents_with_residue": 2,
+        "by_category": {
+          "DATE": 1,
+          "QUANTITY": 1
+        },
+        "pairs": {
+          "DATE": [
+            [
+              "2026-08",
+              "2026-08-12"
+            ],
+            [
+              "2026-08",
+              "2026-08-24"
+            ]
+          ],
+          "QUANTITY": [
+            [
+              "128",
+              "128 units"
+            ]
+          ]
+        }
+      },
+      "masked_exposure": {
+        "filter": {
+          "n_min": 5,
+          "n_max": 8,
+          "hit_threshold": 1,
+          "salt": "fixed analysis salt",
+          "fp_est": 5.4056486675210276e-08,
+          "keying": "r5"
+        },
+        "refused_any": true,
+        "refused_documents": 4,
+        "masked_5gram_hit_share": 0.1050656660412758,
+        "corpus_5grams_distinct": 453,
+        "corpus_5grams_surviving_share": 0.11699779249448124,
+        "documents": [
+          {
+            "doc_id": "4921c923f4c50904",
+            "refused": true,
+            "shingle_hits_5_8": 1,
+            "masked_5grams": 169,
+            "masked_5grams_hit": 12,
+            "placeholders": 30,
+            "unmatched_entities": 0,
+            "surfaces_surviving": 2
+          },
+          {
+            "doc_id": "1250e639cf0c44ff",
+            "refused": true,
+            "shingle_hits_5_8": 1,
+            "masked_5grams": 134,
+            "masked_5grams_hit": 8,
+            "placeholders": 27,
+            "unmatched_entities": 0,
+            "surfaces_surviving": 1
+          },
+          {
+            "doc_id": "3178f70f9d932454",
+            "refused": true,
+            "shingle_hits_5_8": 1,
+            "masked_5grams": 68,
+            "masked_5grams_hit": 4,
+            "placeholders": 17,
+            "unmatched_entities": 0,
+            "surfaces_surviving": 3
+          },
+          {
+            "doc_id": "73087ca00458509e",
+            "refused": true,
+            "shingle_hits_5_8": 1,
+            "masked_5grams": 162,
+            "masked_5grams_hit": 32,
+            "placeholders": 25,
+            "unmatched_entities": 0,
+            "surfaces_surviving": 1
+          }
+        ],
+        "generator_surfaces_surviving": {
+          "distinct": 5,
+          "occurrences": 7,
+          "surfaces": [
+            {
+              "surface": "17 September 2026",
+              "group": "dates",
+              "occurrences": 1,
+              "extractor_miss": false
+            },
+            {
+              "surface": "21 September 2026",
+              "group": "dates",
+              "occurrences": 1,
+              "extractor_miss": true
+            },
+            {
+              "surface": "High",
+              "group": "labels",
+              "occurrences": 2,
+              "extractor_miss": true
+            },
+            {
+              "surface": "Medium",
+              "group": "labels",
+              "occurrences": 1,
+              "extractor_miss": true
+            },
+            {
+              "surface": "fifteen percent",
+              "group": "percentages",
+              "occurrences": 2,
+              "extractor_miss": false
+            }
+          ],
+          "extractor_misses": [
+            "21 September 2026",
+            "High",
+            "Medium"
+          ],
+          "extracted_elsewhere": [
+            "17 September 2026",
+            "fifteen percent"
+          ],
+          "labels_group": [
+            "High",
+            "Medium"
+          ]
+        }
+      }
+    },
+    {
+      "index": 2,
+      "entities": 84,
+      "relations": 47,
+      "recall": {
+        "referents": {
+          "n": 5,
+          "exact": 5,
+          "covered": 5,
+          "missed": [],
+          "items": [
+            {
+              "item": "COBALT",
+              "surfaces_in_corpus": [
+                "Project Cobalt",
+                "Cobalt"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Project Cobalt",
+                "Cobalt"
+              ]
+            },
+            {
+              "item": "FENWICK",
+              "surfaces_in_corpus": [
+                "Scheme Fenwick",
+                "Fenwick"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Scheme Fenwick",
+                "Fenwick"
+              ]
+            },
+            {
+              "item": "LARKSPUR",
+              "surfaces_in_corpus": [
+                "Project Larkspur",
+                "Larkspur"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Project Larkspur",
+                "Larkspur"
+              ]
+            },
+            {
+              "item": "ORG",
+              "surfaces_in_corpus": [
+                "Pellingham Water Trust",
+                "Pellingham"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Pellingham Water Trust",
+                "Pellingham"
+              ]
+            },
+            {
+              "item": "VENDOR",
+              "surfaces_in_corpus": [
+                "Holloway Pumpworks",
+                "Holloway"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Holloway Pumpworks",
+                "Holloway"
+              ]
+            }
+          ]
+        },
+        "string_facts": {
+          "n": 9,
+          "exact": 9,
+          "covered": 9,
+          "missed": [],
+          "items": [
+            {
+              "item": "LARKSPUR.OWNER",
+              "surfaces_in_corpus": [
+                "Miriam Achterberg"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Miriam Achterberg"
+              ]
+            },
+            {
+              "item": "LARKSPUR.SITE",
+              "surfaces_in_corpus": [
+                "Truro"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Truro"
+              ]
+            },
+            {
+              "item": "LARKSPUR.CONTRACT",
+              "surfaces_in_corpus": [
+                "PW-2026-0452"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "PW-2026-0452"
+              ]
+            },
+            {
+              "item": "COBALT.OWNER",
+              "surfaces_in_corpus": [
+                "Declan Oyelaran"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Declan Oyelaran"
+              ]
+            },
+            {
+              "item": "COBALT.SITE",
+              "surfaces_in_corpus": [
+                "Hereford"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Hereford"
+              ]
+            },
+            {
+              "item": "COBALT.CONTRACT",
+              "surfaces_in_corpus": [
+                "PW-2026-0619"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "PW-2026-0619"
+              ]
+            },
+            {
+              "item": "FENWICK.OWNER",
+              "surfaces_in_corpus": [
+                "Harriet Quennell"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Harriet Quennell"
+              ]
+            },
+            {
+              "item": "FENWICK.SITE",
+              "surfaces_in_corpus": [
+                "Lincoln"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Lincoln"
+              ]
+            },
+            {
+              "item": "FENWICK.CONTRACT",
+              "surfaces_in_corpus": [
+                "PW-2026-0833"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "PW-2026-0833"
+              ]
+            }
+          ]
+        },
+        "generator_surfaces": {
+          "n": 49,
+          "covered": 43,
+          "by_group": {
+            "amounts": {
+              "n": 14,
+              "covered": 14
+            },
+            "dates": {
+              "n": 8,
+              "covered": 7
+            },
+            "identifiers": {
+              "n": 3,
+              "covered": 3
+            },
+            "labels": {
+              "n": 2,
+              "covered": 0
+            },
+            "people": {
+              "n": 3,
+              "covered": 3
+            },
+            "percentages": {
+              "n": 1,
+              "covered": 1
+            },
+            "quantities": {
+              "n": 2,
+              "covered": 2
+            },
+            "referents": {
+              "n": 10,
+              "covered": 10
+            },
+            "risk_text": {
+              "n": 3,
+              "covered": 0
+            },
+            "sites": {
+              "n": 3,
+              "covered": 3
+            }
+          },
+          "missed": [
+            "Holloway Pumpworks delivered 128 units short of the August order",
+            "Hereford intake failure; tariff revenue fell fifteen percent",
+            "Scheme spend running ahead of its authority",
+            "21 September 2026",
+            "Medium",
+            "High"
+          ]
+        },
+        "surfaces_in_relations": {
+          "hits": [],
+          "labels_group_hits": []
+        }
+      },
+      "predicates": {
+        "n_predicates": 47,
+        "echo_2_4gram": 5,
+        "echo_share": 0.10638297872340426,
+        "whole_match": 20,
+        "whole_match_share": 0.425531914893617,
+        "echoing": [
+          "holds contract",
+          "delivered short of order",
+          "will bring revised scope",
+          "has spent",
+          "delivered short of order"
+        ],
+        "whole_matches": [
+          "failed",
+          "holds contract",
+          "holds",
+          "spent",
+          "fell",
+          "spent",
+          "has spent",
+          "delivered",
+          "has",
+          "has",
+          "has",
+          "has",
+          "has",
+          "has",
+          "has",
+          "has",
+          "has",
+          "has",
+          "has",
+          "has"
+        ],
+        "length_tokens": {
+          "1": 21,
+          "2": 19,
+          "3": 4,
+          "4": 3
+        },
+        "length_whitespace_words": {
+          "1": 21,
+          "2": 19,
+          "3": 4,
+          "4": 3
+        },
+        "max_tokens": 4
+      },
+      "r5_residue": {
+        "referents_total": 38,
+        "referents_with_residue": 2,
+        "by_category": {
+          "DATE": 1,
+          "QUANTITY": 1
+        },
+        "pairs": {
+          "DATE": [
+            [
+              "2026-08",
+              "2026-08-12"
+            ],
+            [
+              "2026-08",
+              "2026-08-24"
+            ]
+          ],
+          "QUANTITY": [
+            [
+              "128",
+              "128 units"
+            ]
+          ]
+        }
+      },
+      "masked_exposure": {
+        "filter": {
+          "n_min": 5,
+          "n_max": 8,
+          "hit_threshold": 1,
+          "salt": "fixed analysis salt",
+          "fp_est": 5.4056486675210276e-08,
+          "keying": "r5"
+        },
+        "refused_any": true,
+        "refused_documents": 4,
+        "masked_5gram_hit_share": 0.11069418386491557,
+        "corpus_5grams_distinct": 453,
+        "corpus_5grams_surviving_share": 0.12362030905077263,
+        "documents": [
+          {
+            "doc_id": "4921c923f4c50904",
+            "refused": true,
+            "shingle_hits_5_8": 1,
+            "masked_5grams": 169,
+            "masked_5grams_hit": 15,
+            "placeholders": 29,
+            "unmatched_entities": 0,
+            "surfaces_surviving": 2
+          },
+          {
+            "doc_id": "1250e639cf0c44ff",
+            "refused": true,
+            "shingle_hits_5_8": 1,
+            "masked_5grams": 134,
+            "masked_5grams_hit": 8,
+            "placeholders": 27,
+            "unmatched_entities": 0,
+            "surfaces_surviving": 1
+          },
+          {
+            "doc_id": "3178f70f9d932454",
+            "refused": true,
+            "shingle_hits_5_8": 1,
+            "masked_5grams": 68,
+            "masked_5grams_hit": 4,
+            "placeholders": 17,
+            "unmatched_entities": 0,
+            "surfaces_surviving": 3
+          },
+          {
+            "doc_id": "73087ca00458509e",
+            "refused": true,
+            "shingle_hits_5_8": 1,
+            "masked_5grams": 162,
+            "masked_5grams_hit": 32,
+            "placeholders": 25,
+            "unmatched_entities": 0,
+            "surfaces_surviving": 1
+          }
+        ],
+        "generator_surfaces_surviving": {
+          "distinct": 5,
+          "occurrences": 7,
+          "surfaces": [
+            {
+              "surface": "17 September 2026",
+              "group": "dates",
+              "occurrences": 1,
+              "extractor_miss": false
+            },
+            {
+              "surface": "21 September 2026",
+              "group": "dates",
+              "occurrences": 1,
+              "extractor_miss": true
+            },
+            {
+              "surface": "High",
+              "group": "labels",
+              "occurrences": 2,
+              "extractor_miss": true
+            },
+            {
+              "surface": "Medium",
+              "group": "labels",
+              "occurrences": 1,
+              "extractor_miss": true
+            },
+            {
+              "surface": "fifteen percent",
+              "group": "percentages",
+              "occurrences": 2,
+              "extractor_miss": false
+            }
+          ],
+          "extractor_misses": [
+            "21 September 2026",
+            "High",
+            "Medium"
+          ],
+          "extracted_elsewhere": [
+            "17 September 2026",
+            "fifteen percent"
+          ],
+          "labels_group": [
+            "High",
+            "Medium"
+          ]
+        }
+      }
+    },
+    {
+      "index": 3,
+      "entities": 87,
+      "relations": 62,
+      "recall": {
+        "referents": {
+          "n": 5,
+          "exact": 5,
+          "covered": 5,
+          "missed": [],
+          "items": [
+            {
+              "item": "COBALT",
+              "surfaces_in_corpus": [
+                "Project Cobalt",
+                "Cobalt"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Project Cobalt",
+                "Cobalt"
+              ]
+            },
+            {
+              "item": "FENWICK",
+              "surfaces_in_corpus": [
+                "Scheme Fenwick",
+                "Fenwick"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Scheme Fenwick",
+                "Fenwick"
+              ]
+            },
+            {
+              "item": "LARKSPUR",
+              "surfaces_in_corpus": [
+                "Project Larkspur",
+                "Larkspur"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Project Larkspur",
+                "Larkspur"
+              ]
+            },
+            {
+              "item": "ORG",
+              "surfaces_in_corpus": [
+                "Pellingham Water Trust",
+                "Pellingham"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Pellingham Water Trust",
+                "Pellingham"
+              ]
+            },
+            {
+              "item": "VENDOR",
+              "surfaces_in_corpus": [
+                "Holloway Pumpworks",
+                "Holloway"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Holloway Pumpworks",
+                "Holloway"
+              ]
+            }
+          ]
+        },
+        "string_facts": {
+          "n": 9,
+          "exact": 9,
+          "covered": 9,
+          "missed": [],
+          "items": [
+            {
+              "item": "LARKSPUR.OWNER",
+              "surfaces_in_corpus": [
+                "Miriam Achterberg"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Miriam Achterberg"
+              ]
+            },
+            {
+              "item": "LARKSPUR.SITE",
+              "surfaces_in_corpus": [
+                "Truro"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Truro"
+              ]
+            },
+            {
+              "item": "LARKSPUR.CONTRACT",
+              "surfaces_in_corpus": [
+                "PW-2026-0452"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "PW-2026-0452"
+              ]
+            },
+            {
+              "item": "COBALT.OWNER",
+              "surfaces_in_corpus": [
+                "Declan Oyelaran"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Declan Oyelaran"
+              ]
+            },
+            {
+              "item": "COBALT.SITE",
+              "surfaces_in_corpus": [
+                "Hereford"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Hereford"
+              ]
+            },
+            {
+              "item": "COBALT.CONTRACT",
+              "surfaces_in_corpus": [
+                "PW-2026-0619"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "PW-2026-0619"
+              ]
+            },
+            {
+              "item": "FENWICK.OWNER",
+              "surfaces_in_corpus": [
+                "Harriet Quennell"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Harriet Quennell"
+              ]
+            },
+            {
+              "item": "FENWICK.SITE",
+              "surfaces_in_corpus": [
+                "Lincoln"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Lincoln"
+              ]
+            },
+            {
+              "item": "FENWICK.CONTRACT",
+              "surfaces_in_corpus": [
+                "PW-2026-0833"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "PW-2026-0833"
+              ]
+            }
+          ]
+        },
+        "generator_surfaces": {
+          "n": 49,
+          "covered": 45,
+          "by_group": {
+            "amounts": {
+              "n": 14,
+              "covered": 14
+            },
+            "dates": {
+              "n": 8,
+              "covered": 7
+            },
+            "identifiers": {
+              "n": 3,
+              "covered": 3
+            },
+            "labels": {
+              "n": 2,
+              "covered": 2
+            },
+            "people": {
+              "n": 3,
+              "covered": 3
+            },
+            "percentages": {
+              "n": 1,
+              "covered": 1
+            },
+            "quantities": {
+              "n": 2,
+              "covered": 2
+            },
+            "referents": {
+              "n": 10,
+              "covered": 10
+            },
+            "risk_text": {
+              "n": 3,
+              "covered": 0
+            },
+            "sites": {
+              "n": 3,
+              "covered": 3
+            }
+          },
+          "missed": [
+            "Holloway Pumpworks delivered 128 units short of the August order",
+            "Hereford intake failure; tariff revenue fell fifteen percent",
+            "Scheme spend running ahead of its authority",
+            "21 September 2026"
+          ]
+        },
+        "surfaces_in_relations": {
+          "hits": [],
+          "labels_group_hits": []
+        }
+      },
+      "predicates": {
+        "n_predicates": 62,
+        "echo_2_4gram": 9,
+        "echo_share": 0.14516129032258066,
+        "whole_match": 15,
+        "whole_match_share": 0.24193548387096775,
+        "echoing": [
+          "supplied from",
+          "holds contract",
+          "under contract",
+          "delivered short of",
+          "will bring",
+          "prepared by",
+          "has spent",
+          "has spent",
+          "has spent"
+        ],
+        "whole_matches": [
+          "failed",
+          "supplied from",
+          "holds contract",
+          "authorised",
+          "spent",
+          "under contract",
+          "spent",
+          "booked",
+          "authorised",
+          "spent",
+          "will bring",
+          "prepared by",
+          "has spent",
+          "has spent",
+          "has spent"
+        ],
+        "length_tokens": {
+          "1": 9,
+          "2": 46,
+          "3": 7
+        },
+        "length_whitespace_words": {
+          "1": 19,
+          "2": 39,
+          "3": 4
+        },
+        "max_tokens": 3
+      },
+      "r5_residue": {
+        "referents_total": 41,
+        "referents_with_residue": 2,
+        "by_category": {
+          "DATE": 1,
+          "QUANTITY": 1
+        },
+        "pairs": {
+          "DATE": [
+            [
+              "2026-08",
+              "2026-08-12"
+            ],
+            [
+              "2026-08",
+              "2026-08-24"
+            ]
+          ],
+          "QUANTITY": [
+            [
+              "128",
+              "128 units"
+            ]
+          ]
+        }
+      },
+      "masked_exposure": {
+        "filter": {
+          "n_min": 5,
+          "n_max": 8,
+          "hit_threshold": 1,
+          "salt": "fixed analysis salt",
+          "fp_est": 5.4056486675210276e-08,
+          "keying": "r5"
+        },
+        "refused_any": true,
+        "refused_documents": 4,
+        "masked_5gram_hit_share": 0.1038961038961039,
+        "corpus_5grams_distinct": 453,
+        "corpus_5grams_surviving_share": 0.11699779249448124,
+        "documents": [
+          {
+            "doc_id": "4921c923f4c50904",
+            "refused": true,
+            "shingle_hits_5_8": 1,
+            "masked_5grams": 169,
+            "masked_5grams_hit": 12,
+            "placeholders": 30,
+            "unmatched_entities": 0,
+            "surfaces_surviving": 2
+          },
+          {
+            "doc_id": "1250e639cf0c44ff",
+            "refused": true,
+            "shingle_hits_5_8": 1,
+            "masked_5grams": 134,
+            "masked_5grams_hit": 8,
+            "placeholders": 27,
+            "unmatched_entities": 0,
+            "surfaces_surviving": 1
+          },
+          {
+            "doc_id": "3178f70f9d932454",
+            "refused": true,
+            "shingle_hits_5_8": 1,
+            "masked_5grams": 74,
+            "masked_5grams_hit": 4,
+            "placeholders": 20,
+            "unmatched_entities": 0,
+            "surfaces_surviving": 0
+          },
+          {
+            "doc_id": "73087ca00458509e",
+            "refused": true,
+            "shingle_hits_5_8": 1,
+            "masked_5grams": 162,
+            "masked_5grams_hit": 32,
+            "placeholders": 25,
+            "unmatched_entities": 0,
+            "surfaces_surviving": 1
+          }
+        ],
+        "generator_surfaces_surviving": {
+          "distinct": 3,
+          "occurrences": 4,
+          "surfaces": [
+            {
+              "surface": "17 September 2026",
+              "group": "dates",
+              "occurrences": 1,
+              "extractor_miss": false
+            },
+            {
+              "surface": "21 September 2026",
+              "group": "dates",
+              "occurrences": 1,
+              "extractor_miss": true
+            },
+            {
+              "surface": "fifteen percent",
+              "group": "percentages",
+              "occurrences": 2,
+              "extractor_miss": false
+            }
+          ],
+          "extractor_misses": [
+            "21 September 2026"
+          ],
+          "extracted_elsewhere": [
+            "17 September 2026",
+            "fifteen percent"
+          ],
+          "labels_group": []
+        }
+      }
+    }
+  ],
+  "predicate_control": {
+    "stratum": "english_prose",
+    "seed": 20260906,
+    "payloads": 100,
+    "per_length": {
+      "1": {
+        "windows": 6431,
+        "echo_share": 0.0,
+        "whole_share": 0.30430726170113515
+      },
+      "2": {
+        "windows": 6331,
+        "echo_share": 0.020691833833517612,
+        "whole_share": 0.020691833833517612
+      },
+      "3": {
+        "windows": 6231,
+        "echo_share": 0.03643074947841438,
+        "whole_share": 0.002888781896966779
+      },
+      "4": {
+        "windows": 6131,
+        "echo_share": 0.05154134725167183,
+        "whole_share": 0.0014679497634969825
+      }
+    },
+    "expected_echo_share": 0.01518755745251724,
+    "expected_whole_share": 0.11802964579143461,
+    "note": "windows of the stratum's text at each predicate length; the expected shares average the per-length shares over the predicates' own lengths"
+  },
+  "g1": {
+    "where_disclosed": {
+      "document_stats": "planner prompt",
+      "slot_counts": "planner prompt and drafter prompts",
+      "relation_multiset": "planner prompt and drafter prompts",
+      "attribute_schema": "planner and drafter prompts (r1 only)",
+      "documents": "payload JSON only"
+    },
+    "corpora": [
+      {
+        "label": "prose-c:saved",
+        "corpus": "prose-c",
+        "extraction": "saved",
+        "source": "eval/runs/prose-c__r5/extractions.json",
+        "arms": {
+          "r5": {
+            "document_stats": "DOCUMENT STATS: 20 cells, 15 blocks, about 3000 characters (to the nearest 1000).",
+            "slot_counts": {
+              "DATE": 8,
+              "IDENTIFIER": 3,
+              "LOCATION": 3,
+              "MONEY": 10,
+              "ORG": 3,
+              "PERSON": 3,
+              "PROJECT": 4,
+              "QUANTITY": 4
+            },
+            "relation_multiset": {
+              "n": 22,
+              "distinct": 22,
+              "sha256": "3284ddcd25121d206e7c088b64568be9a44f64a3d99f2aa138643d141fc55a26"
+            },
+            "attribute_schema": null,
+            "documents": 4
+          },
+          "baseline": {
+            "document_stats": "DOCUMENT STATS: 20 cells, 15 blocks, about 3000 characters (to the nearest 1000).",
+            "slot_counts": {
+              "DATE": 8,
+              "IDENTIFIER": 3,
+              "LOCATION": 3,
+              "MONEY": 11,
+              "ORG": 3,
+              "PERSON": 3,
+              "PROJECT": 4,
+              "QUANTITY": 4
+            },
+            "relation_multiset": {
+              "n": 22,
+              "distinct": 22,
+              "sha256": "3284ddcd25121d206e7c088b64568be9a44f64a3d99f2aa138643d141fc55a26"
+            },
+            "attribute_schema": null,
+            "documents": 4
+          },
+          "r1": {
+            "document_stats": "DOCUMENT STATS: 20 cells, 15 blocks, about 3000 characters (to the nearest 1000).",
+            "slot_counts": {
+              "LOCATION": 3,
+              "ORG": 3,
+              "PERSON": 3,
+              "PROJECT": 4
+            },
+            "relation_multiset": {
+              "n": 22,
+              "distinct": 22,
+              "sha256": "3284ddcd25121d206e7c088b64568be9a44f64a3d99f2aa138643d141fc55a26"
+            },
+            "attribute_schema": "3b8aa1fca935cffc22bb1ded177571c984b7e9e18eca62bb41f9068b0773b7ed",
+            "documents": 4
+          }
+        }
+      },
+      {
+        "label": "smoke-q3:saved",
+        "corpus": "smoke-q3",
+        "extraction": "saved",
+        "source": "eval/runs/smoke-q3__r5/extractions.json",
+        "arms": {
+          "r5": {
+            "document_stats": "DOCUMENT STATS: 60 cells, 15 blocks, about 3000 characters (to the nearest 1000).",
+            "slot_counts": {
+              "DATE": 13,
+              "IDENTIFIER": 5,
+              "LOCATION": 3,
+              "MONEY": 8,
+              "ORG": 2,
+              "PERSON": 3,
+              "PROJECT": 3,
+              "QUANTITY": 7
+            },
+            "relation_multiset": {
+              "n": 45,
+              "distinct": 45,
+              "sha256": "33188b239b940bdda5716224a4ed555621956d8eb926c9fc8a6c1745db58d028"
+            },
+            "attribute_schema": null,
+            "documents": 4
+          },
+          "baseline": {
+            "document_stats": "DOCUMENT STATS: 60 cells, 15 blocks, about 3000 characters (to the nearest 1000).",
+            "slot_counts": {
+              "DATE": 15,
+              "IDENTIFIER": 6,
+              "LOCATION": 3,
+              "MONEY": 19,
+              "ORG": 2,
+              "PERSON": 3,
+              "PROJECT": 3,
+              "QUANTITY": 7
+            },
+            "relation_multiset": {
+              "n": 45,
+              "distinct": 45,
+              "sha256": "33188b239b940bdda5716224a4ed555621956d8eb926c9fc8a6c1745db58d028"
+            },
+            "attribute_schema": null,
+            "documents": 4
+          },
+          "r1": {
+            "document_stats": "DOCUMENT STATS: 60 cells, 15 blocks, about 3000 characters (to the nearest 1000).",
+            "slot_counts": {
+              "LOCATION": 3,
+              "ORG": 2,
+              "PERSON": 3,
+              "PROJECT": 3
+            },
+            "relation_multiset": {
+              "n": 45,
+              "distinct": 45,
+              "sha256": "33188b239b940bdda5716224a4ed555621956d8eb926c9fc8a6c1745db58d028"
+            },
+            "attribute_schema": "3b8aa1fca935cffc22bb1ded177571c984b7e9e18eca62bb41f9068b0773b7ed",
+            "documents": 4
+          }
+        }
+      },
+      {
+        "label": "portfolio-b:saved",
+        "corpus": "portfolio-b",
+        "extraction": "saved",
+        "source": "eval/runs/portfolio-b__r5/extractions.json",
+        "arms": {
+          "r5": {
+            "document_stats": "DOCUMENT STATS: 75 cells, 15 blocks, about 4000 characters (to the nearest 1000).",
+            "slot_counts": {
+              "DATE": 13,
+              "IDENTIFIER": 6,
+              "LOCATION": 5,
+              "MONEY": 12,
+              "ORG": 2,
+              "PERSON": 4,
+              "PROJECT": 5,
+              "QUANTITY": 9
+            },
+            "relation_multiset": {
+              "n": 32,
+              "distinct": 32,
+              "sha256": "dbbf61b1eb6ff42ec45d9d566d31a478136c23d08b5fa0df89269fdc5e65e956"
+            },
+            "attribute_schema": null,
+            "documents": 4
+          },
+          "baseline": {
+            "document_stats": "DOCUMENT STATS: 75 cells, 15 blocks, about 4000 characters (to the nearest 1000).",
+            "slot_counts": {
+              "DATE": 14,
+              "IDENTIFIER": 6,
+              "LOCATION": 5,
+              "MONEY": 28,
+              "ORG": 2,
+              "PERSON": 4,
+              "PROJECT": 5,
+              "QUANTITY": 9
+            },
+            "relation_multiset": {
+              "n": 32,
+              "distinct": 32,
+              "sha256": "dbbf61b1eb6ff42ec45d9d566d31a478136c23d08b5fa0df89269fdc5e65e956"
+            },
+            "attribute_schema": null,
+            "documents": 4
+          },
+          "r1": {
+            "document_stats": "DOCUMENT STATS: 75 cells, 15 blocks, about 4000 characters (to the nearest 1000).",
+            "slot_counts": {
+              "LOCATION": 5,
+              "ORG": 2,
+              "PERSON": 4,
+              "PROJECT": 5
+            },
+            "relation_multiset": {
+              "n": 32,
+              "distinct": 32,
+              "sha256": "dbbf61b1eb6ff42ec45d9d566d31a478136c23d08b5fa0df89269fdc5e65e956"
+            },
+            "attribute_schema": "3b8aa1fca935cffc22bb1ded177571c984b7e9e18eca62bb41f9068b0773b7ed",
+            "documents": 4
+          }
+        }
+      },
+      {
+        "label": "offlex-d:saved",
+        "corpus": "offlex-d",
+        "extraction": "saved",
+        "source": "eval/runs/offlex-d__r5/extractions.json",
+        "arms": {
+          "r5": {
+            "document_stats": "DOCUMENT STATS: 82 cells, 15 blocks, about 4000 characters (to the nearest 1000).",
+            "slot_counts": {
+              "DATE": 13,
+              "IDENTIFIER": 5,
+              "LOCATION": 5,
+              "MONEY": 12,
+              "ORG": 2,
+              "PERSON": 4,
+              "PROJECT": 6,
+              "QUANTITY": 6
+            },
+            "relation_multiset": {
+              "n": 47,
+              "distinct": 47,
+              "sha256": "edf934328f2b108e0dae8c363bc61a56330c4a42d8a279bad9a3708915cdd824"
+            },
+            "attribute_schema": null,
+            "documents": 4
+          },
+          "baseline": {
+            "document_stats": "DOCUMENT STATS: 82 cells, 15 blocks, about 4000 characters (to the nearest 1000).",
+            "slot_counts": {
+              "DATE": 13,
+              "IDENTIFIER": 5,
+              "LOCATION": 5,
+              "MONEY": 32,
+              "ORG": 2,
+              "PERSON": 4,
+              "PROJECT": 6,
+              "QUANTITY": 6
+            },
+            "relation_multiset": {
+              "n": 47,
+              "distinct": 47,
+              "sha256": "edf934328f2b108e0dae8c363bc61a56330c4a42d8a279bad9a3708915cdd824"
+            },
+            "attribute_schema": null,
+            "documents": 4
+          },
+          "r1": {
+            "document_stats": "DOCUMENT STATS: 82 cells, 15 blocks, about 4000 characters (to the nearest 1000).",
+            "slot_counts": {
+              "LOCATION": 5,
+              "ORG": 2,
+              "PERSON": 4,
+              "PROJECT": 6
+            },
+            "relation_multiset": {
+              "n": 47,
+              "distinct": 47,
+              "sha256": "edf934328f2b108e0dae8c363bc61a56330c4a42d8a279bad9a3708915cdd824"
+            },
+            "attribute_schema": "3b8aa1fca935cffc22bb1ded177571c984b7e9e18eca62bb41f9068b0773b7ed",
+            "documents": 4
+          }
+        }
+      }
+    ],
+    "comparisons": [
+      {
+        "name": "all corpora under their saved extractions",
+        "extraction": "saved",
+        "stub_corpora": [],
+        "corpora": [
+          "prose-c:saved",
+          "smoke-q3:saved",
+          "portfolio-b:saved",
+          "offlex-d:saved"
+        ],
+        "by_arm": {
+          "r5": {
+            "differs": [
+              "document_stats",
+              "slot_counts",
+              "relation_multiset"
+            ],
+            "same": [
+              "attribute_schema",
+              "documents"
+            ]
+          },
+          "baseline": {
+            "differs": [
+              "document_stats",
+              "slot_counts",
+              "relation_multiset"
+            ],
+            "same": [
+              "attribute_schema",
+              "documents"
+            ]
+          },
+          "r1": {
+            "differs": [
+              "document_stats",
+              "slot_counts",
+              "relation_multiset"
+            ],
+            "same": [
+              "attribute_schema",
+              "documents"
+            ]
+          }
+        }
+      }
+    ],
+    "stub_corpora": [],
+    "note": "A row marked 'saved' is built from an extraction file read through load_extractions (its 'source'), as the pipeline builds the payload from it. A row marked 'stub' uses a deterministic stub extraction built from the corpus's surfaces.json, not an extractor run: its slot counts are the generator's and its relation multiset is empty. Stub rows exist only under --g1-stub; a comparison that includes one names it in 'stub_corpora'."
+  }
+}

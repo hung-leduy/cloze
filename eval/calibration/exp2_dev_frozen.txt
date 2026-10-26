@@ -1,0 +1,172 @@
+key     make_smoke_corpus.fact_key()  sha256 dcda133acba9478d
+
+report  eval/calibration/blind/smoke-q3__r1.report.md
+labels  eval/calibration/blind/smoke-q3__r1.report.csv  (21 occurrences)
+
+cap = 80
+  overall verdict agreement    18/21  (86%)
+  referent axis agreement      18/21  (86%)
+  attribute axis, gold-valued occurrences (headline)
+    agreement                  20/21  (95%)
+    Cohen kappa                0.644
+  attribute axis, all rows (includes 0 outside the key, where agreement is trivial)
+    agreement                  20/21  (95%)
+    Cohen kappa                0.644
+
+--- metric output ---
+  counts                       {'CORRECT': 20, 'MISBOUND': 1, 'PARTIAL': 0, 'UNBOUND': 0, 'AMBIGUOUS': 0, 'FABRICATED': 0}
+  denominators                 {'full': 21, 'attribute': 21, 'referent': 21, 'gold_shaped': 21, 'scanned': 21}
+  rba                          0.9523809523809523
+  attribute_accuracy           0.9523809523809523
+  referent_accuracy            1.0
+  resolution_rate              1.0
+  misbinding_rate              0.047619047619047616
+  unbound_rate                 0.0
+  numerals_outside_key         0.0
+  coverage                     0.8571428571428571
+  coverage_stated              0.75
+  coverage_correct             0.8571428571428571
+  faithfulness_f1              0.9022556390977443
+  faithfulness_f1_attribute    0.9022556390977443
+
+--- hand labelling, for comparison ---
+  counts                       {'CORRECT': 17, 'MISBOUND': 4}
+  attribute_accuracy           0.905  (n=21)
+  referent_accuracy            0.900  (n=20)
+
+--- disagreements ---
+[16] '45,000.00'  metric=CORRECT    hand=MISBOUND
+     axes metric ref=MATCH/KESTREL attr=MATCH/AUTHORISED (sentence/clause)
+     axes hand   ref=MISMATCH attr=MATCH
+[17] '120,000.00'  metric=CORRECT    hand=MISBOUND
+     axes metric ref=MATCH/AURORA attr=MATCH/AUTHORISED (sentence/clause)
+     axes hand   ref=MATCH attr=MISMATCH
+[21] '120,000.00'  metric=CORRECT    hand=MISBOUND
+     axes metric ref=MATCH/AURORA attr=MATCH/AUTHORISED (sentence/sentence)
+     axes hand   ref=MISMATCH attr=MATCH
+
+--- attribute-axis disagreements ---
+[17] '120,000.00'  metric=MATCH/AUTHORISED (clause)  hand=MISMATCH (labelled SPENT)
+     Project Aurora carries a contract identified by reference NB-2026-1044, with authorised spend recorded at 120,000.00 USD against which 98,210.00 USD has been dr
+
+report  eval/calibration/blind/smoke-q3__r1.oracle_report.md
+labels  eval/calibration/blind/smoke-q3__r1.oracle_report.csv  (42 occurrences)
+
+cap = 80
+  overall verdict agreement    25/42  (60%)
+  referent axis agreement      29/42  (69%)
+  attribute axis, gold-valued occurrences (headline)
+    agreement                  34/40  (85%)
+    Cohen kappa                0.091
+  attribute axis, all rows (includes 2 outside the key, where agreement is trivial)
+    agreement                  36/42  (86%)
+    Cohen kappa                0.400
+
+--- metric output ---
+  counts                       {'CORRECT': 25, 'MISBOUND': 3, 'PARTIAL': 1, 'UNBOUND': 0, 'AMBIGUOUS': 11, 'FABRICATED': 2}
+  denominators                 {'full': 27, 'attribute': 38, 'referent': 28, 'gold_shaped': 40, 'scanned': 42}
+  rba                          0.9259259259259259
+  attribute_accuracy           0.9210526315789473
+  referent_accuracy            1.0
+  resolution_rate              0.675
+  misbinding_rate              0.075
+  unbound_rate                 0.0
+  numerals_outside_key         0.047619047619047616
+  coverage                     0.7857142857142857
+  coverage_stated              1.0
+  coverage_correct             0.7142857142857143
+  faithfulness_f1              0.8500772797527049
+  faithfulness_f1_attribute    0.8480176211453744
+
+--- hand labelling, for comparison ---
+  counts                       {'CORRECT': 35, 'MISBOUND': 4, 'FABRICATED': 2, 'AMBIGUOUS': 1}
+  attribute_accuracy           0.950  (n=40)
+  referent_accuracy            0.949  (n=39)
+
+--- disagreements ---
+[ 5] '120,000.00'  metric=AMBIGUOUS  hand=CORRECT
+     axes metric ref=AMBIGUOUS/None attr=MATCH/AUTHORISED (none/clause)
+     axes hand   ref=MATCH attr=MATCH
+[ 6] '98,210.00'  metric=MISBOUND   hand=CORRECT
+     axes metric ref=AMBIGUOUS/None attr=MISMATCH/AUTHORISED (none/clause)
+     axes hand   ref=MATCH attr=MATCH
+[ 7] '340'  metric=AMBIGUOUS  hand=CORRECT
+     axes metric ref=AMBIGUOUS/None attr=MATCH/UNITS_SHORT (none/clause)
+     axes hand   ref=MATCH attr=MATCH
+[ 8] '45,000.00'  metric=CORRECT    hand=MISBOUND
+     axes metric ref=MATCH/KESTREL attr=MATCH/AUTHORISED (sentence/clause)
+     axes hand   ref=MATCH attr=MISMATCH
+[ 9] '6,237.75'  metric=MISBOUND   hand=CORRECT
+     axes metric ref=MATCH/KESTREL attr=MISMATCH/AUTHORISED (sentence/clause)
+     axes hand   ref=MATCH attr=MATCH
+[24] '98,210.00'  metric=AMBIGUOUS  hand=CORRECT
+     axes metric ref=AMBIGUOUS/None attr=MATCH/SPENT (none/clause)
+     axes hand   ref=MATCH attr=MATCH
+[25] '120,000.00'  metric=AMBIGUOUS  hand=CORRECT
+     axes metric ref=AMBIGUOUS/None attr=MATCH/AUTHORISED (none/clause)
+     axes hand   ref=MATCH attr=MATCH
+[26] '21,790.00'  metric=AMBIGUOUS  hand=CORRECT
+     axes metric ref=AMBIGUOUS/None attr=MATCH/UNSPENT (none/clause)
+     axes hand   ref=MATCH attr=MATCH
+[27] '340'  metric=AMBIGUOUS  hand=CORRECT
+     axes metric ref=AMBIGUOUS/None attr=MATCH/UNITS_SHORT (none/clause)
+     axes hand   ref=MATCH attr=MATCH
+[29] '45,000.00'  metric=MISBOUND   hand=CORRECT
+     axes metric ref=MATCH/KESTREL attr=MISMATCH/OVERRUN (sentence/clause)
+     axes hand   ref=MATCH attr=MATCH
+[31] 'twelve percent'  metric=PARTIAL    hand=MISBOUND
+     axes metric ref=MATCH/ZEPHYR attr=UNRESOLVED/None (sentence/none)
+     axes hand   ref=MATCH attr=MISMATCH
+[32] '340'  metric=AMBIGUOUS  hand=CORRECT
+     axes metric ref=AMBIGUOUS/None attr=MATCH/UNITS_SHORT (none/clause)
+     axes hand   ref=MATCH attr=MATCH
+[34] '340'  metric=AMBIGUOUS  hand=CORRECT
+     axes metric ref=AMBIGUOUS/None attr=MATCH/UNITS_SHORT (none/clause)
+     axes hand   ref=MATCH attr=MATCH
+[39] '340'  metric=AMBIGUOUS  hand=CORRECT
+     axes metric ref=AMBIGUOUS/None attr=UNRESOLVED/None (none/none)
+     axes hand   ref=MATCH attr=MATCH
+[40] '98,210'  metric=AMBIGUOUS  hand=MISBOUND
+     axes metric ref=AMBIGUOUS/None attr=MATCH/SPENT (none/clause)
+     axes hand   ref=MISMATCH attr=MATCH
+[41] '120,000'  metric=AMBIGUOUS  hand=MISBOUND
+     axes metric ref=AMBIGUOUS/None attr=MATCH/AUTHORISED (none/clause)
+     axes hand   ref=MISMATCH attr=MATCH
+[42] 'twelve percent'  metric=CORRECT    hand=AMBIGUOUS
+     axes metric ref=MATCH/ZEPHYR attr=MATCH/REVENUE_FALL_PCT (sentence/clause)
+     axes hand   ref=AMBIGUOUS attr=MATCH
+
+--- attribute-axis disagreements ---
+[6] '98,210.00'  metric=MISMATCH/AUTHORISED (clause)  hand=MATCH (labelled SPENT)
+     Project Aurora, under contract NB-2026-1044, sits comfortably within its 120,000.00 USD authority (98,210.00 USD spent) but faces a supplier-driven schedule ris
+[8] '45,000.00'  metric=MATCH/AUTHORISED (clause)  hand=MISMATCH (labelled SPENT)
+     Pilot Kestrel presents the clearest budget concern, having overspent its 45,000.00 USD authority by 6,237.75 USD, a high-severity issue requiring immediate reme
+[9] '6,237.75'  metric=MISMATCH/AUTHORISED (clause)  hand=MATCH (labelled OVERRUN)
+     Pilot Kestrel presents the clearest budget concern, having overspent its 45,000.00 USD authority by 6,237.75 USD, a high-severity issue requiring immediate reme
+[29] '45,000.00'  metric=MISMATCH/OVERRUN (clause)  hand=MATCH (labelled AUTHORISED)
+     Pilot Kestrel presents a different constraint: spend of 51,237.75 USD already exceeds its 45,000.00 USD authority under contract NB-2026-1187, an overrun of 6,2
+[31] 'twelve percent'  metric=UNRESOLVED/None (none)  hand=MISMATCH (labelled PCT_SPENT)
+     First, the cancellation of the Leeds pilot in August 2026 has directly undermined Project Zephyr, with quarterly revenue falling twelve percent against plan.
+[39] '340'  metric=UNRESOLVED/None (none)  hand=MATCH (labelled UNITS_SHORT)
+     Third, Project Aurora's absorption of the 340-unit Calder Logistics shortfall without a change to NB-2026-1044 should be monitored closely over the next quarter
+
+=== pooled over 2 reports (63 occurrences) ===
+  overall verdict agreement    43/63  (68%)
+  referent axis agreement      47/63  (75%)
+  attribute axis, gold-valued occurrences (headline)
+    agreement                  54/61  (89%)
+    Cohen kappa                0.251
+  attribute axis, all rows (includes 2 outside the key, where agreement is trivial)
+    agreement                  56/63  (89%)
+    Cohen kappa                0.456
+
+--- sensitivity to MAX_BIND_DISTANCE ---
+     cap    overall  attr gold   attr all   attr acc   n(attr)
+      20    43/63      54/61      56/63        0.932        59
+      40    43/63      54/61      56/63        0.932        59
+      60    43/63      54/61      56/63        0.932        59
+      80    43/63      54/61      56/63        0.932        59
+     100    43/63      54/61      56/63        0.932        59
+     120    43/63      54/61      56/63        0.932        59
+     160    43/63      54/61      56/63        0.917        60
+   10000    43/63      54/61      56/63        0.917        60

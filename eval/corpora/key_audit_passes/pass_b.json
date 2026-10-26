@@ -1,0 +1,1434 @@
+{
+ "rows": [
+  {
+   "line": 56,
+   "fact": "HALCYON.AUTHORISED",
+   "verdict": "binds",
+   "reason": "'Of the 380,000 USD allocated to Project Halcyon' states Halcyon's allocation."
+  },
+  {
+   "line": 57,
+   "fact": "HALCYON.AUTHORISED",
+   "verdict": "binds",
+   "reason": "'Project Halcyon (...) has an allocation of 380,000.00 USD'."
+  },
+  {
+   "line": 58,
+   "fact": "HALCYON.AUTHORISED",
+   "verdict": "binds",
+   "reason": "Project Halcyon's row under column 'Allocation (USD)'."
+  },
+  {
+   "line": 59,
+   "fact": "HALCYON.AUTHORISED",
+   "verdict": "binds",
+   "reason": "Project Halcyon's row under 'Approved (USD)' in the approved-against-actuals table."
+  },
+  {
+   "line": 60,
+   "fact": "HALCYON.SPENT",
+   "verdict": "binds",
+   "reason": "'296,418.20 USD had been spent' of the 380,000 USD allocated to Project Halcyon."
+  },
+  {
+   "line": 61,
+   "fact": "HALCYON.SPENT",
+   "verdict": "binds",
+   "reason": "'Project Halcyon (...) has spent 296,418.20 USD'."
+  },
+  {
+   "line": 62,
+   "fact": "HALCYON.SPENT",
+   "verdict": "binds",
+   "reason": "Project Halcyon's row under 'Expenditure (USD)'."
+  },
+  {
+   "line": 63,
+   "fact": "HALCYON.SPENT",
+   "verdict": "binds",
+   "reason": "Project Halcyon's row under 'Actuals (USD)'."
+  },
+  {
+   "line": 64,
+   "fact": "HALCYON.UNSPENT",
+   "verdict": "binds",
+   "reason": "'leaving 83,581.80 USD' of Halcyon's allocation after its spend (380,000 - 296,418.20): its remaining balance."
+  },
+  {
+   "line": 65,
+   "fact": "MERIDIAN.AUTHORISED",
+   "verdict": "binds",
+   "reason": "'Project Meridian has spent ... of its 150,000 USD allocation'."
+  },
+  {
+   "line": 66,
+   "fact": "MERIDIAN.AUTHORISED",
+   "verdict": "binds",
+   "reason": "'Project Meridian (...) has spent ... against an allocation of 150,000.00 USD'."
+  },
+  {
+   "line": 67,
+   "fact": "MERIDIAN.AUTHORISED",
+   "verdict": "binds",
+   "reason": "Project Meridian's row under 'Allocation (USD)'."
+  },
+  {
+   "line": 68,
+   "fact": "MERIDIAN.AUTHORISED",
+   "verdict": "binds",
+   "reason": "Project Meridian's row under 'Approved (USD)'."
+  },
+  {
+   "line": 69,
+   "fact": "MERIDIAN.SPENT",
+   "verdict": "binds",
+   "reason": "'Project Meridian has spent only 62,310.40 USD'."
+  },
+  {
+   "line": 70,
+   "fact": "MERIDIAN.SPENT",
+   "verdict": "binds",
+   "reason": "'Project Meridian (...) has spent 62,310.40 USD'."
+  },
+  {
+   "line": 71,
+   "fact": "MERIDIAN.SPENT",
+   "verdict": "binds",
+   "reason": "Project Meridian's row under 'Expenditure (USD)'."
+  },
+  {
+   "line": 72,
+   "fact": "MERIDIAN.SPENT",
+   "verdict": "binds",
+   "reason": "Project Meridian's row under 'Actuals (USD)'."
+  },
+  {
+   "line": 73,
+   "fact": "MERIDIAN.UNSPENT",
+   "verdict": "binds",
+   "reason": "'87,689.60 USD remains undrawn' of Meridian's 150,000 USD allocation."
+  },
+  {
+   "line": 74,
+   "fact": "MERIDIAN.UNSPENT",
+   "verdict": "binds",
+   "reason": "In Project Meridian's risk row: '87,689.60 USD of the allocation is undrawn'."
+  },
+  {
+   "line": 75,
+   "fact": "TAMARIND.AUTHORISED",
+   "verdict": "binds",
+   "reason": "'Project Tamarind (...) has spent 203,118.90 USD of 210,000.00 USD': the amount it spends against is its allocation."
+  },
+  {
+   "line": 76,
+   "fact": "TAMARIND.AUTHORISED",
+   "verdict": "binds",
+   "reason": "Project Tamarind's row under 'Allocation (USD)'."
+  },
+  {
+   "line": 77,
+   "fact": "TAMARIND.AUTHORISED",
+   "verdict": "binds",
+   "reason": "Project Tamarind's row under 'Approved (USD)'."
+  },
+  {
+   "line": 78,
+   "fact": "TAMARIND.SPENT",
+   "verdict": "binds",
+   "reason": "'Project Tamarind (...) has spent 203,118.90 USD'."
+  },
+  {
+   "line": 79,
+   "fact": "TAMARIND.SPENT",
+   "verdict": "binds",
+   "reason": "Project Tamarind's row under 'Expenditure (USD)'."
+  },
+  {
+   "line": 80,
+   "fact": "TAMARIND.SPENT",
+   "verdict": "binds",
+   "reason": "Project Tamarind's row under 'Actuals (USD)'."
+  },
+  {
+   "line": 81,
+   "fact": "TAMARIND.UNSPENT",
+   "verdict": "binds",
+   "reason": "'6,881.10 USD of the Project Tamarind allocation is unspent'."
+  },
+  {
+   "line": 82,
+   "fact": "OSPREY.AUTHORISED",
+   "verdict": "binds",
+   "reason": "'Trial Osprey (...) has spent ... against an allocation of 72,500.00 USD'."
+  },
+  {
+   "line": 83,
+   "fact": "OSPREY.AUTHORISED",
+   "verdict": "binds",
+   "reason": "Trial Osprey's row under 'Allocation (USD)'."
+  },
+  {
+   "line": 84,
+   "fact": "OSPREY.AUTHORISED",
+   "verdict": "binds",
+   "reason": "Trial Osprey's row under 'Approved (USD)'."
+  },
+  {
+   "line": 85,
+   "fact": "OSPREY.SPENT",
+   "verdict": "binds",
+   "reason": "'Trial Osprey (...) has spent 80,944.35 USD'."
+  },
+  {
+   "line": 86,
+   "fact": "OSPREY.SPENT",
+   "verdict": "binds",
+   "reason": "Trial Osprey's row under 'Expenditure (USD)'."
+  },
+  {
+   "line": 87,
+   "fact": "OSPREY.SPENT",
+   "verdict": "binds",
+   "reason": "Trial Osprey's row under 'Actuals (USD)'."
+  },
+  {
+   "line": 88,
+   "fact": "OSPREY.OVERRUN",
+   "verdict": "binds",
+   "reason": "Trial Osprey's spend against its allocation is 'an overrun of 8,444.35 USD'."
+  },
+  {
+   "line": 89,
+   "fact": "OSPREY.OVERRUN",
+   "verdict": "binds",
+   "reason": "In Trial Osprey's risk row: 'Expenditure exceeds allocation by 8,444.35 USD'."
+  },
+  {
+   "line": 90,
+   "fact": "HALCYON.PCT_SPENT",
+   "verdict": "derived_ok",
+   "reason": "296,418.20 / 380,000 x 100 = 78.005, so 78.0; no document states 78 in any spelling (the only percentages are revenue falls)."
+  },
+  {
+   "line": 91,
+   "fact": "MERIDIAN.PCT_SPENT",
+   "verdict": "derived_ok",
+   "reason": "62,310.40 / 150,000 x 100 = 41.54, so 41.5; no document states 41.5 in any spelling."
+  },
+  {
+   "line": 92,
+   "fact": "TAMARIND.PCT_SPENT",
+   "verdict": "derived_ok",
+   "reason": "203,118.90 / 210,000 x 100 = 96.72, so 96.7; no document states 96.7 in any spelling."
+  },
+  {
+   "line": 93,
+   "fact": "OSPREY.PCT_SPENT",
+   "verdict": "derived_ok",
+   "reason": "80,944.35 / 72,500 x 100 = 111.65, so 111.6; no document states 111.6 in any spelling."
+  },
+  {
+   "line": 94,
+   "fact": "VENDOR.UNITS_SHORT (also TAMARIND)",
+   "verdict": "binds",
+   "reason": "In Project Tamarind's risk row: 'Brantley Fabrication delivered 215 units short of the September commitment'."
+  },
+  {
+   "line": 95,
+   "fact": "VENDOR.UNITS_SHORT (also TAMARIND)",
+   "verdict": "binds",
+   "reason": "'Brantley Fabrication delivered 215 units short of the September commitment', the shortfall recorded against Project Tamarind."
+  },
+  {
+   "line": 96,
+   "fact": "HALCYON.REVENUE_FALL_PCT",
+   "verdict": "binds",
+   "reason": "'Project Halcyon's ridership revenue fell nine percent'."
+  },
+  {
+   "line": 97,
+   "fact": "HALCYON.REVENUE_FALL_PCT",
+   "verdict": "binds",
+   "reason": "Continues Project Halcyon's paragraph right after its spend; the subjectless 'Ridership revenue fell nine percent' is Halcyon's."
+  },
+  {
+   "line": 98,
+   "fact": "HALCYON.REVENUE_FALL_PCT",
+   "verdict": "binds",
+   "reason": "In Project Halcyon's risk row: 'Ridership revenue fell nine percent after the Exeter depot closure'."
+  },
+  {
+   "line": 104,
+   "fact": "HALCYON.OWNER",
+   "verdict": "mention",
+   "reason": "She asks that the Project Meridian balance not be reallocated; says nothing of Halcyon or of ownership."
+  },
+  {
+   "line": 105,
+   "fact": "HALCYON.OWNER",
+   "verdict": "binds",
+   "reason": "Project Halcyon's row under column 'Lead': the project's lead."
+  },
+  {
+   "line": 106,
+   "fact": "HALCYON.OWNER",
+   "verdict": "mention",
+   "reason": "Column 'Raised by' records who raised the risk, not who owns the project."
+  },
+  {
+   "line": 107,
+   "fact": "HALCYON.OWNER",
+   "verdict": "mention",
+   "reason": "Attendance list ('chair'); no project or ownership stated."
+  },
+  {
+   "line": 108,
+   "fact": "HALCYON.OWNER",
+   "verdict": "mention",
+   "reason": "She will circulate the revised forecast; no project or ownership stated."
+  },
+  {
+   "line": 109,
+   "fact": "HALCYON.SITE",
+   "verdict": "binds",
+   "reason": "Follows Halcyon's revenue-fall sentence; 'the Carlisle works themselves, which remain on programme' are Halcyon's own works, placing it at Carlisle."
+  },
+  {
+   "line": 110,
+   "fact": "HALCYON.SITE",
+   "verdict": "binds",
+   "reason": "'the Carlisle works' are Project Halcyon's: the opening paragraph treats them as Halcyon's works and the next sentence gives Halcyon's allocation."
+  },
+  {
+   "line": 111,
+   "fact": "HALCYON.SITE",
+   "verdict": "binds",
+   "reason": "'Project Halcyon (Carlisle, agreement VC-2026-0311)'."
+  },
+  {
+   "line": 112,
+   "fact": "HALCYON.SITE",
+   "verdict": "binds",
+   "reason": "Project Halcyon's row under 'Location'."
+  },
+  {
+   "line": 113,
+   "fact": "HALCYON.CONTRACT",
+   "verdict": "binds",
+   "reason": "Agreement VC-2026-0311 is 'for the Carlisle works', which the memo identifies as Project Halcyon (next sentence, opening paragraph)."
+  },
+  {
+   "line": 114,
+   "fact": "HALCYON.CONTRACT",
+   "verdict": "binds",
+   "reason": "'Project Halcyon (Carlisle, agreement VC-2026-0311)'."
+  },
+  {
+   "line": 115,
+   "fact": "HALCYON.CONTRACT",
+   "verdict": "binds",
+   "reason": "Project Halcyon's row under 'Agreement'."
+  },
+  {
+   "line": 116,
+   "fact": "MERIDIAN.OWNER",
+   "verdict": "mention",
+   "reason": "He 'expects to return part of' Meridian's undrawn balance: implies a budget role but never states he owns or leads Meridian."
+  },
+  {
+   "line": 117,
+   "fact": "MERIDIAN.OWNER",
+   "verdict": "mention",
+   "reason": "He prepared the review for the board; preparer, not stated as Meridian's owner."
+  },
+  {
+   "line": 118,
+   "fact": "MERIDIAN.OWNER",
+   "verdict": "binds",
+   "reason": "Project Meridian's row under 'Lead'."
+  },
+  {
+   "line": 119,
+   "fact": "MERIDIAN.OWNER",
+   "verdict": "mention",
+   "reason": "Column 'Raised by' records who raised the risk, not ownership."
+  },
+  {
+   "line": 120,
+   "fact": "MERIDIAN.OWNER",
+   "verdict": "mention",
+   "reason": "Attendance list; no project or role."
+  },
+  {
+   "line": 121,
+   "fact": "MERIDIAN.SITE",
+   "verdict": "mention",
+   "reason": "Exeter is where the depot closure that hit Halcyon's revenue happened; Meridian is not involved."
+  },
+  {
+   "line": 122,
+   "fact": "MERIDIAN.SITE",
+   "verdict": "binds",
+   "reason": "'Project Meridian ... because procurement stalled in Exeter' places Meridian's own procurement, hence the project, in Exeter."
+  },
+  {
+   "line": 123,
+   "fact": "MERIDIAN.SITE",
+   "verdict": "mention",
+   "reason": "In Halcyon's paragraph, Exeter is the place of the depot closure behind Halcyon's revenue fall."
+  },
+  {
+   "line": 124,
+   "fact": "MERIDIAN.SITE",
+   "verdict": "binds",
+   "reason": "'Project Meridian (Exeter, agreement VC-2026-0486)'."
+  },
+  {
+   "line": 125,
+   "fact": "MERIDIAN.SITE",
+   "verdict": "binds",
+   "reason": "Project Meridian's row under 'Location'."
+  },
+  {
+   "line": 126,
+   "fact": "MERIDIAN.SITE",
+   "verdict": "mention",
+   "reason": "Project Halcyon's risk row; Exeter is the place of the depot closure."
+  },
+  {
+   "line": 127,
+   "fact": "MERIDIAN.CONTRACT",
+   "verdict": "binds",
+   "reason": "'Project Meridian (Exeter, agreement VC-2026-0486)'."
+  },
+  {
+   "line": 128,
+   "fact": "MERIDIAN.CONTRACT",
+   "verdict": "binds",
+   "reason": "Project Meridian's row under 'Agreement'."
+  },
+  {
+   "line": 129,
+   "fact": "TAMARIND.OWNER",
+   "verdict": "binds",
+   "reason": "Project Tamarind's row under 'Lead'."
+  },
+  {
+   "line": 130,
+   "fact": "TAMARIND.OWNER",
+   "verdict": "mention",
+   "reason": "Column 'Raised by' records who raised the risk, not ownership."
+  },
+  {
+   "line": 131,
+   "fact": "TAMARIND.OWNER",
+   "verdict": "mention",
+   "reason": "Attendance list; no project or role."
+  },
+  {
+   "line": 132,
+   "fact": "TAMARIND.OWNER",
+   "verdict": "mention",
+   "reason": "She reported the supplier shortfall and recorded it against Tamarind; an action, ownership not stated."
+  },
+  {
+   "line": 133,
+   "fact": "TAMARIND.SITE",
+   "verdict": "binds",
+   "reason": "'Project Tamarind (Norwich, agreement VC-2026-0529)'."
+  },
+  {
+   "line": 134,
+   "fact": "TAMARIND.SITE",
+   "verdict": "binds",
+   "reason": "Project Tamarind's row under 'Location'."
+  },
+  {
+   "line": 135,
+   "fact": "TAMARIND.SITE",
+   "verdict": "mention",
+   "reason": "Norwich is where the meeting was held, at Veltmoor's office; not Tamarind's site."
+  },
+  {
+   "line": 136,
+   "fact": "TAMARIND.CONTRACT",
+   "verdict": "binds",
+   "reason": "'Project Tamarind (Norwich, agreement VC-2026-0529)'."
+  },
+  {
+   "line": 137,
+   "fact": "TAMARIND.CONTRACT",
+   "verdict": "binds",
+   "reason": "Project Tamarind's row under 'Agreement'."
+  },
+  {
+   "line": 138,
+   "fact": "TAMARIND.CONTRACT",
+   "verdict": "binds",
+   "reason": "Paragraph on Tamarind; 'Agreement VC-2026-0529 is unchanged' is coordinated with 'the Project Tamarind allocation', so it is Tamarind's agreement."
+  },
+  {
+   "line": 139,
+   "fact": "OSPREY.OWNER",
+   "verdict": "mention",
+   "reason": "He will present a recovery plan for Trial Osprey; implies responsibility but does not state ownership."
+  },
+  {
+   "line": 140,
+   "fact": "OSPREY.OWNER",
+   "verdict": "binds",
+   "reason": "Trial Osprey's row under 'Lead'."
+  },
+  {
+   "line": 141,
+   "fact": "OSPREY.OWNER",
+   "verdict": "mention",
+   "reason": "Column 'Raised by' records who raised the risk, not ownership."
+  },
+  {
+   "line": 142,
+   "fact": "OSPREY.OWNER",
+   "verdict": "mention",
+   "reason": "Attendance list; no project or role."
+  },
+  {
+   "line": 143,
+   "fact": "OSPREY.OWNER",
+   "verdict": "mention",
+   "reason": "He confirmed Trial Osprey's overrun; reporting, ownership not stated."
+  },
+  {
+   "line": 144,
+   "fact": "OSPREY.SITE",
+   "verdict": "binds",
+   "reason": "'Trial Osprey (Swindon, agreement VC-2026-0774)'."
+  },
+  {
+   "line": 145,
+   "fact": "OSPREY.SITE",
+   "verdict": "binds",
+   "reason": "Trial Osprey's row under 'Location'."
+  },
+  {
+   "line": 146,
+   "fact": "OSPREY.CONTRACT",
+   "verdict": "binds",
+   "reason": "'Trial Osprey (Swindon, agreement VC-2026-0774)'."
+  },
+  {
+   "line": 147,
+   "fact": "OSPREY.CONTRACT",
+   "verdict": "binds",
+   "reason": "Trial Osprey's row under 'Agreement'."
+  },
+  {
+   "line": 148,
+   "fact": "OSPREY.CONTRACT",
+   "verdict": "binds",
+   "reason": "'Trial Osprey has run over its allocation and ... agreement VC-2026-0774 does not provide for the excess': Osprey's agreement."
+  },
+  {
+   "line": 167,
+   "fact": "LARKSPUR.AUTHORISED",
+   "verdict": "binds",
+   "reason": "'The trustees authorised 540,000.00 USD for Project Larkspur'."
+  },
+  {
+   "line": 168,
+   "fact": "LARKSPUR.AUTHORISED",
+   "verdict": "binds",
+   "reason": "'Project Larkspur (...) holds an authority of 540,000.00 USD'."
+  },
+  {
+   "line": 169,
+   "fact": "LARKSPUR.AUTHORISED",
+   "verdict": "binds",
+   "reason": "'Project Larkspur has 127,094.70 USD unspent of its 540,000.00 USD authority'."
+  },
+  {
+   "line": 170,
+   "fact": "LARKSPUR.SPENT",
+   "verdict": "binds",
+   "reason": "'it had spent 412,905.30 USD', where 'it' is Project Larkspur."
+  },
+  {
+   "line": 171,
+   "fact": "LARKSPUR.SPENT",
+   "verdict": "binds",
+   "reason": "Larkspur's authority, 'of which 412,905.30 USD has been spent'."
+  },
+  {
+   "line": 172,
+   "fact": "LARKSPUR.UNSPENT",
+   "verdict": "binds",
+   "reason": "'127,094.70 USD remains for commissioning' of Larkspur's 540,000.00 USD after spending 412,905.30."
+  },
+  {
+   "line": 173,
+   "fact": "LARKSPUR.UNSPENT",
+   "verdict": "binds",
+   "reason": "'Project Larkspur has 127,094.70 USD unspent'."
+  },
+  {
+   "line": 174,
+   "fact": "COBALT.AUTHORISED",
+   "verdict": "binds",
+   "reason": "'Project Cobalt, ... has an authority of 96,000 USD'."
+  },
+  {
+   "line": 175,
+   "fact": "COBALT.AUTHORISED",
+   "verdict": "binds",
+   "reason": "'Project Cobalt (...) has spent ... of its 96,000.00 USD authority'."
+  },
+  {
+   "line": 176,
+   "fact": "COBALT.SPENT",
+   "verdict": "binds",
+   "reason": "'Project Cobalt, ... has spent 88,410.00 USD'."
+  },
+  {
+   "line": 177,
+   "fact": "COBALT.SPENT",
+   "verdict": "binds",
+   "reason": "'Project Cobalt (...) has spent 88,410.00 USD'."
+  },
+  {
+   "line": 178,
+   "fact": "COBALT.UNSPENT",
+   "verdict": "binds",
+   "reason": "'Project Cobalt has 7,590.00 USD remaining under contract PW-2026-0619'."
+  },
+  {
+   "line": 179,
+   "fact": "FENWICK.AUTHORISED",
+   "verdict": "binds",
+   "reason": "'Scheme Fenwick at Lincoln was authorised 33,750.00 USD'."
+  },
+  {
+   "line": 180,
+   "fact": "FENWICK.AUTHORISED",
+   "verdict": "binds",
+   "reason": "'Scheme Fenwick (...) has spent ... against an authority of 33,750.00 USD'."
+  },
+  {
+   "line": 181,
+   "fact": "FENWICK.AUTHORISED",
+   "verdict": "binds",
+   "reason": "Scheme Fenwick's spend 'exceeds its authority of 33,750.00 USD'."
+  },
+  {
+   "line": 182,
+   "fact": "FENWICK.SPENT",
+   "verdict": "binds",
+   "reason": "'Scheme Fenwick ... has spent 39,102.60 USD'."
+  },
+  {
+   "line": 183,
+   "fact": "FENWICK.SPENT",
+   "verdict": "binds",
+   "reason": "'Scheme Fenwick (...) has spent 39,102.60 USD'."
+  },
+  {
+   "line": 184,
+   "fact": "FENWICK.SPENT",
+   "verdict": "binds",
+   "reason": "'Scheme Fenwick has spent 39,102.60 USD'."
+  },
+  {
+   "line": 185,
+   "fact": "FENWICK.OVERRUN",
+   "verdict": "binds",
+   "reason": "Scheme Fenwick 'has spent 39,102.60 USD, an overrun of 5,352.60 USD'."
+  },
+  {
+   "line": 186,
+   "fact": "FENWICK.OVERRUN",
+   "verdict": "binds",
+   "reason": "Scheme Fenwick's spend against its authority is 'an overrun of 5,352.60 USD'."
+  },
+  {
+   "line": 187,
+   "fact": "LARKSPUR.PCT_SPENT",
+   "verdict": "derived_ok",
+   "reason": "412,905.30 / 540,000 x 100 = 76.46, so 76.5; no document states 76.5 in any spelling."
+  },
+  {
+   "line": 188,
+   "fact": "COBALT.PCT_SPENT",
+   "verdict": "derived_ok",
+   "reason": "88,410 / 96,000 x 100 = 92.09, so 92.1; no document states 92.1 in any spelling."
+  },
+  {
+   "line": 189,
+   "fact": "FENWICK.PCT_SPENT",
+   "verdict": "derived_ok",
+   "reason": "39,102.60 / 33,750 x 100 = 115.86, so 115.9; no document states 115.9 in any spelling."
+  },
+  {
+   "line": 190,
+   "fact": "VENDOR.UNITS_SHORT (also COBALT)",
+   "verdict": "binds",
+   "reason": "'Holloway Pumpworks delivered 128 units short of the August order', the shortfall booked against Project Cobalt."
+  },
+  {
+   "line": 191,
+   "fact": "VENDOR.UNITS_SHORT (also COBALT)",
+   "verdict": "binds",
+   "reason": "'Holloway Pumpworks delivered 128 units fewer than the August order for Project Cobalt'."
+  },
+  {
+   "line": 192,
+   "fact": "VENDOR.UNITS_SHORT (also COBALT)",
+   "verdict": "binds",
+   "reason": "In Project Cobalt's risk row: 'Holloway Pumpworks delivered 128 units short of the August order'."
+  },
+  {
+   "line": 193,
+   "fact": "LARKSPUR.REVENUE_FALL_PCT",
+   "verdict": "binds",
+   "reason": "'Project Larkspur's tariff revenue fell fifteen percent'."
+  },
+  {
+   "line": 194,
+   "fact": "LARKSPUR.REVENUE_FALL_PCT",
+   "verdict": "binds",
+   "reason": "Continues Project Larkspur's paragraph right after its spend; the subjectless 'Tariff revenue fell fifteen percent' is Larkspur's."
+  },
+  {
+   "line": 195,
+   "fact": "LARKSPUR.REVENUE_FALL_PCT",
+   "verdict": "binds",
+   "reason": "In Project Larkspur's risk row: 'tariff revenue fell fifteen percent'."
+  },
+  {
+   "line": 201,
+   "fact": "LARKSPUR.OWNER",
+   "verdict": "binds",
+   "reason": "'Project Larkspur (Truro, contract PW-2026-0452, owner Miriam Achterberg)'."
+  },
+  {
+   "line": 202,
+   "fact": "LARKSPUR.OWNER",
+   "verdict": "mention",
+   "reason": "Column 'Raised by' records who raised the risk, not ownership."
+  },
+  {
+   "line": 203,
+   "fact": "LARKSPUR.OWNER",
+   "verdict": "binds",
+   "reason": "'Miriam Achterberg (chair; owner of Project Larkspur)'."
+  },
+  {
+   "line": 204,
+   "fact": "LARKSPUR.OWNER",
+   "verdict": "mention",
+   "reason": "She reported Larkspur's balance and revenue; reporting, ownership not stated in this sentence."
+  },
+  {
+   "line": 205,
+   "fact": "LARKSPUR.SITE",
+   "verdict": "binds",
+   "reason": "'the Truro treatment works' are Larkspur's: the next sentence gives Larkspur's authorisation and what 'remains for commissioning'."
+  },
+  {
+   "line": 206,
+   "fact": "LARKSPUR.SITE",
+   "verdict": "binds",
+   "reason": "'Project Larkspur (Truro, contract PW-2026-0452, ...)'."
+  },
+  {
+   "line": 207,
+   "fact": "LARKSPUR.SITE",
+   "verdict": "mention",
+   "reason": "Truro is where the meeting was held, at the Trust's office; not Larkspur's site."
+  },
+  {
+   "line": 208,
+   "fact": "LARKSPUR.CONTRACT",
+   "verdict": "binds",
+   "reason": "Contract PW-2026-0452 is 'for the Truro treatment works', which the next sentence identifies as Project Larkspur."
+  },
+  {
+   "line": 209,
+   "fact": "LARKSPUR.CONTRACT",
+   "verdict": "binds",
+   "reason": "'Project Larkspur (Truro, contract PW-2026-0452, ...)'."
+  },
+  {
+   "line": 210,
+   "fact": "COBALT.OWNER",
+   "verdict": "mention",
+   "reason": "He 'has booked the shortfall against Project Cobalt'; an action, ownership not stated."
+  },
+  {
+   "line": 211,
+   "fact": "COBALT.OWNER",
+   "verdict": "mention",
+   "reason": "He prepared the statement for the trustees; preparer, not stated as Cobalt's owner."
+  },
+  {
+   "line": 212,
+   "fact": "COBALT.OWNER",
+   "verdict": "binds",
+   "reason": "'Project Cobalt (Hereford, contract PW-2026-0619, owner Declan Oyelaran)'."
+  },
+  {
+   "line": 213,
+   "fact": "COBALT.OWNER",
+   "verdict": "mention",
+   "reason": "Column 'Raised by' records who raised the risk, not ownership."
+  },
+  {
+   "line": 214,
+   "fact": "COBALT.OWNER",
+   "verdict": "binds",
+   "reason": "'Declan Oyelaran (owner of Project Cobalt)'."
+  },
+  {
+   "line": 215,
+   "fact": "COBALT.OWNER",
+   "verdict": "mention",
+   "reason": "He confirmed Cobalt's remaining balance; reporting, ownership not stated in this sentence."
+  },
+  {
+   "line": 216,
+   "fact": "COBALT.SITE",
+   "verdict": "mention",
+   "reason": "Hereford is where the intake failure that cut Larkspur's revenue happened; Cobalt is not named."
+  },
+  {
+   "line": 217,
+   "fact": "COBALT.SITE",
+   "verdict": "binds",
+   "reason": "'Project Cobalt, under contract PW-2026-0619 at Hereford'."
+  },
+  {
+   "line": 218,
+   "fact": "COBALT.SITE",
+   "verdict": "mention",
+   "reason": "In Larkspur's paragraph, Hereford is the place of the intake failure behind Larkspur's revenue fall."
+  },
+  {
+   "line": 219,
+   "fact": "COBALT.SITE",
+   "verdict": "binds",
+   "reason": "'Project Cobalt (Hereford, contract PW-2026-0619, ...)'."
+  },
+  {
+   "line": 220,
+   "fact": "COBALT.SITE",
+   "verdict": "mention",
+   "reason": "Project Larkspur's risk row; Hereford is the place of the intake failure."
+  },
+  {
+   "line": 221,
+   "fact": "COBALT.SITE",
+   "verdict": "mention",
+   "reason": "Larkspur's revenue fall is 'confined to the Hereford customers'; not Cobalt's site."
+  },
+  {
+   "line": 222,
+   "fact": "COBALT.CONTRACT",
+   "verdict": "binds",
+   "reason": "'Project Cobalt, under contract PW-2026-0619 at Hereford'."
+  },
+  {
+   "line": 223,
+   "fact": "COBALT.CONTRACT",
+   "verdict": "binds",
+   "reason": "'Project Cobalt (Hereford, contract PW-2026-0619, ...)'."
+  },
+  {
+   "line": 224,
+   "fact": "COBALT.CONTRACT",
+   "verdict": "binds",
+   "reason": "'Project Cobalt has 7,590.00 USD remaining under contract PW-2026-0619'."
+  },
+  {
+   "line": 225,
+   "fact": "FENWICK.OWNER",
+   "verdict": "mention",
+   "reason": "She will bring a revised scope for Scheme Fenwick; implies responsibility but does not state ownership."
+  },
+  {
+   "line": 226,
+   "fact": "FENWICK.OWNER",
+   "verdict": "binds",
+   "reason": "'Scheme Fenwick (Lincoln, contract PW-2026-0833, owner Harriet Quennell)'."
+  },
+  {
+   "line": 227,
+   "fact": "FENWICK.OWNER",
+   "verdict": "mention",
+   "reason": "Column 'Raised by' records who raised the risk, not ownership."
+  },
+  {
+   "line": 228,
+   "fact": "FENWICK.OWNER",
+   "verdict": "binds",
+   "reason": "'Harriet Quennell (owner of Scheme Fenwick)'."
+  },
+  {
+   "line": 229,
+   "fact": "FENWICK.OWNER",
+   "verdict": "mention",
+   "reason": "She reported Fenwick's spend and overrun; reporting, ownership not stated in this sentence."
+  },
+  {
+   "line": 230,
+   "fact": "FENWICK.OWNER",
+   "verdict": "mention",
+   "reason": "The trustees asked her for a revised scope; no project or ownership in the sentence."
+  },
+  {
+   "line": 231,
+   "fact": "FENWICK.SITE",
+   "verdict": "binds",
+   "reason": "'Scheme Fenwick at Lincoln'."
+  },
+  {
+   "line": 232,
+   "fact": "FENWICK.SITE",
+   "verdict": "binds",
+   "reason": "'Scheme Fenwick (Lincoln, contract PW-2026-0833, ...)'."
+  },
+  {
+   "line": 233,
+   "fact": "FENWICK.CONTRACT",
+   "verdict": "binds",
+   "reason": "'Scheme Fenwick (Lincoln, contract PW-2026-0833, ...)'."
+  },
+  {
+   "line": 234,
+   "fact": "FENWICK.CONTRACT",
+   "verdict": "binds",
+   "reason": "Fenwick's spend exceeds its authority and 'contract PW-2026-0833 does not cover the excess': Fenwick's contract."
+  },
+  {
+   "line": 253,
+   "fact": "SALTMARSH.AUTHORISED",
+   "verdict": "binds",
+   "reason": "Project Saltmarsh's row under 'Approved (USD)'."
+  },
+  {
+   "line": 254,
+   "fact": "SALTMARSH.AUTHORISED",
+   "verdict": "binds",
+   "reason": "'Of the 460,000 USD allocated to Project Saltmarsh'."
+  },
+  {
+   "line": 255,
+   "fact": "SALTMARSH.AUTHORISED",
+   "verdict": "binds",
+   "reason": "'Project Saltmarsh (...) has an allocation of 460,000.00 USD'."
+  },
+  {
+   "line": 256,
+   "fact": "SALTMARSH.AUTHORISED",
+   "verdict": "binds",
+   "reason": "Project Saltmarsh's row under 'Authority (USD)'."
+  },
+  {
+   "line": 257,
+   "fact": "SALTMARSH.SPENT",
+   "verdict": "binds",
+   "reason": "Project Saltmarsh's row under 'Outlay to date (USD)'."
+  },
+  {
+   "line": 258,
+   "fact": "SALTMARSH.SPENT",
+   "verdict": "binds",
+   "reason": "'187,946.50 USD had been spent' of the 460,000 USD allocated to Project Saltmarsh."
+  },
+  {
+   "line": 259,
+   "fact": "SALTMARSH.SPENT",
+   "verdict": "binds",
+   "reason": "'Project Saltmarsh (...) has spent 187,946.50 USD'."
+  },
+  {
+   "line": 260,
+   "fact": "SALTMARSH.SPENT",
+   "verdict": "binds",
+   "reason": "Project Saltmarsh's row under 'Outlay to date (USD)'."
+  },
+  {
+   "line": 261,
+   "fact": "SALTMARSH.UNSPENT",
+   "verdict": "binds",
+   "reason": "'272,053.50 USD remains undrawn' of Saltmarsh's 460,000 USD allocation."
+  },
+  {
+   "line": 262,
+   "fact": "SALTMARSH.UNSPENT",
+   "verdict": "binds",
+   "reason": "In Project Saltmarsh's risk row: '272,053.50 USD of the allocation is undrawn'."
+  },
+  {
+   "line": 263,
+   "fact": "WEIRGATE.AUTHORISED",
+   "verdict": "binds",
+   "reason": "Project Weirgate's row under 'Approved (USD)'."
+  },
+  {
+   "line": 264,
+   "fact": "WEIRGATE.AUTHORISED",
+   "verdict": "binds",
+   "reason": "'Project Weirgate has spent ... of its 125,000 USD allocation'."
+  },
+  {
+   "line": 265,
+   "fact": "WEIRGATE.AUTHORISED",
+   "verdict": "binds",
+   "reason": "'Project Weirgate (...) has spent ... against an allocation of 125,000.00 USD'."
+  },
+  {
+   "line": 266,
+   "fact": "WEIRGATE.AUTHORISED",
+   "verdict": "binds",
+   "reason": "Project Weirgate's row under 'Authority (USD)'."
+  },
+  {
+   "line": 267,
+   "fact": "WEIRGATE.SPENT",
+   "verdict": "binds",
+   "reason": "Project Weirgate's row under 'Outlay to date (USD)'."
+  },
+  {
+   "line": 268,
+   "fact": "WEIRGATE.SPENT",
+   "verdict": "binds",
+   "reason": "'Project Weirgate has spent 98,340.75 USD'."
+  },
+  {
+   "line": 269,
+   "fact": "WEIRGATE.SPENT",
+   "verdict": "binds",
+   "reason": "'Project Weirgate (...) has spent 98,340.75 USD'."
+  },
+  {
+   "line": 270,
+   "fact": "WEIRGATE.SPENT",
+   "verdict": "binds",
+   "reason": "Project Weirgate's row under 'Outlay to date (USD)'."
+  },
+  {
+   "line": 271,
+   "fact": "WEIRGATE.UNSPENT",
+   "verdict": "binds",
+   "reason": "Of Weirgate's 125,000 USD allocation, '26,659.25 USD is unspent'."
+  },
+  {
+   "line": 272,
+   "fact": "FALLOWBECK.AUTHORISED",
+   "verdict": "binds",
+   "reason": "Scheme Fallowbeck's row under 'Approved (USD)'."
+  },
+  {
+   "line": 273,
+   "fact": "FALLOWBECK.AUTHORISED",
+   "verdict": "binds",
+   "reason": "'Scheme Fallowbeck (...) has spent 229,871.40 USD of 238,500.00 USD': the amount it spends against is its allocation."
+  },
+  {
+   "line": 274,
+   "fact": "FALLOWBECK.AUTHORISED",
+   "verdict": "binds",
+   "reason": "Scheme Fallowbeck's row under 'Envelope (USD)': its budget envelope."
+  },
+  {
+   "line": 275,
+   "fact": "FALLOWBECK.SPENT",
+   "verdict": "binds",
+   "reason": "Scheme Fallowbeck's row under 'Outlay to date (USD)'."
+  },
+  {
+   "line": 276,
+   "fact": "FALLOWBECK.SPENT",
+   "verdict": "binds",
+   "reason": "'Scheme Fallowbeck (...) has spent 229,871.40 USD'."
+  },
+  {
+   "line": 277,
+   "fact": "FALLOWBECK.SPENT",
+   "verdict": "binds",
+   "reason": "Scheme Fallowbeck's row under 'Actual spend (USD)'."
+  },
+  {
+   "line": 278,
+   "fact": "FALLOWBECK.UNSPENT",
+   "verdict": "binds",
+   "reason": "'8,628.60 USD of the Scheme Fallowbeck allocation is unspent'."
+  },
+  {
+   "line": 279,
+   "fact": "LODESTAR.AUTHORISED",
+   "verdict": "binds",
+   "reason": "Pilot Lodestar's row under 'Approved (USD)'."
+  },
+  {
+   "line": 280,
+   "fact": "LODESTAR.AUTHORISED",
+   "verdict": "binds",
+   "reason": "'Pilot Lodestar (...) has spent ... against an allocation of 58,000.00 USD'."
+  },
+  {
+   "line": 281,
+   "fact": "LODESTAR.AUTHORISED",
+   "verdict": "binds",
+   "reason": "Pilot Lodestar's row under 'Envelope (USD)': its budget envelope."
+  },
+  {
+   "line": 282,
+   "fact": "LODESTAR.SPENT",
+   "verdict": "binds",
+   "reason": "Pilot Lodestar's row under 'Outlay to date (USD)'."
+  },
+  {
+   "line": 283,
+   "fact": "LODESTAR.SPENT",
+   "verdict": "binds",
+   "reason": "'Pilot Lodestar (...) has spent 63,512.80 USD'."
+  },
+  {
+   "line": 284,
+   "fact": "LODESTAR.SPENT",
+   "verdict": "binds",
+   "reason": "Pilot Lodestar's row under 'Actual spend (USD)'."
+  },
+  {
+   "line": 285,
+   "fact": "LODESTAR.OVERRUN",
+   "verdict": "binds",
+   "reason": "Pilot Lodestar's spend against its allocation is 'an overrun of 5,512.80 USD'."
+  },
+  {
+   "line": 286,
+   "fact": "LODESTAR.OVERRUN",
+   "verdict": "binds",
+   "reason": "In Pilot Lodestar's risk row: 'Spend exceeds allocation by 5,512.80 USD'."
+  },
+  {
+   "line": 287,
+   "fact": "SALTMARSH.PCT_SPENT",
+   "verdict": "derived_ok",
+   "reason": "187,946.50 / 460,000 x 100 = 40.86, so 40.9; no document states 40.9 in any spelling."
+  },
+  {
+   "line": 288,
+   "fact": "WEIRGATE.PCT_SPENT",
+   "verdict": "derived_ok",
+   "reason": "98,340.75 / 125,000 x 100 = 78.67, so 78.7; no document states 78.7 in any spelling."
+  },
+  {
+   "line": 289,
+   "fact": "FALLOWBECK.PCT_SPENT",
+   "verdict": "derived_ok",
+   "reason": "229,871.40 / 238,500 x 100 = 96.38, so 96.4; no document states 96.4 in any spelling."
+  },
+  {
+   "line": 290,
+   "fact": "LODESTAR.PCT_SPENT",
+   "verdict": "derived_ok",
+   "reason": "63,512.80 / 58,000 x 100 = 109.50, so 109.5; no document states 109.5 in any spelling."
+  },
+  {
+   "line": 291,
+   "fact": "VENDOR.UNITS_SHORT (also FALLOWBECK)",
+   "verdict": "binds",
+   "reason": "'Tarrant Marine Supplies delivered 164 units short of the August commitment', the shortfall recorded against Scheme Fallowbeck."
+  },
+  {
+   "line": 292,
+   "fact": "VENDOR.UNITS_SHORT (also FALLOWBECK)",
+   "verdict": "binds",
+   "reason": "In Scheme Fallowbeck's risk row: 'Tarrant Marine Supplies delivered 164 units short of the August commitment'."
+  },
+  {
+   "line": 293,
+   "fact": "WEIRGATE.REVENUE_FALL_PCT",
+   "verdict": "binds",
+   "reason": "'Project Weirgate's berthing revenue fell seven percent'."
+  },
+  {
+   "line": 294,
+   "fact": "WEIRGATE.REVENUE_FALL_PCT",
+   "verdict": "binds",
+   "reason": "Own line, but inside Project Weirgate's paragraph block (no gap) right after its figures; the subjectless sentence is Weirgate's."
+  },
+  {
+   "line": 295,
+   "fact": "WEIRGATE.REVENUE_FALL_PCT",
+   "verdict": "binds",
+   "reason": "In Project Weirgate's risk row: 'Berthing revenue fell seven percent after the Grimsby quay closure'."
+  },
+  {
+   "line": 301,
+   "fact": "SALTMARSH.OWNER",
+   "verdict": "mention",
+   "reason": "Attendance list ('chair'); no project or ownership stated."
+  },
+  {
+   "line": 302,
+   "fact": "SALTMARSH.OWNER",
+   "verdict": "mention",
+   "reason": "She will circulate the revised forecast; no project or ownership stated."
+  },
+  {
+   "line": 303,
+   "fact": "SALTMARSH.OWNER",
+   "verdict": "mention",
+   "reason": "She asks that the Saltmarsh balance not be reallocated; an intervention, ownership not stated."
+  },
+  {
+   "line": 304,
+   "fact": "SALTMARSH.OWNER",
+   "verdict": "binds",
+   "reason": "Project Saltmarsh's row under 'Responsible officer'."
+  },
+  {
+   "line": 305,
+   "fact": "SALTMARSH.OWNER",
+   "verdict": "mention",
+   "reason": "Column 'Raised by' records who raised the risk, not ownership."
+  },
+  {
+   "line": 306,
+   "fact": "SALTMARSH.SITE",
+   "verdict": "binds",
+   "reason": "'the Whitby dredging works' are Saltmarsh's: the next sentence gives Saltmarsh's allocation, undrawn 'while the dredging consent is outstanding'."
+  },
+  {
+   "line": 307,
+   "fact": "SALTMARSH.SITE",
+   "verdict": "binds",
+   "reason": "'Project Saltmarsh (Whitby, contract WHB-0418-26)'."
+  },
+  {
+   "line": 308,
+   "fact": "SALTMARSH.SITE",
+   "verdict": "binds",
+   "reason": "Project Saltmarsh's row under 'Location'."
+  },
+  {
+   "line": 309,
+   "fact": "SALTMARSH.CONTRACT",
+   "verdict": "binds",
+   "reason": "Contract WHB-0418-26 is 'for the Whitby dredging works', which the next sentence identifies as Project Saltmarsh."
+  },
+  {
+   "line": 310,
+   "fact": "SALTMARSH.CONTRACT",
+   "verdict": "binds",
+   "reason": "'Project Saltmarsh (Whitby, contract WHB-0418-26)'."
+  },
+  {
+   "line": 311,
+   "fact": "SALTMARSH.CONTRACT",
+   "verdict": "binds",
+   "reason": "Project Saltmarsh's row under 'Contract'."
+  },
+  {
+   "line": 312,
+   "fact": "WEIRGATE.OWNER",
+   "verdict": "mention",
+   "reason": "Attendance list; no project or role."
+  },
+  {
+   "line": 313,
+   "fact": "WEIRGATE.OWNER",
+   "verdict": "mention",
+   "reason": "He prepared the review for the board; preparer, not stated as Weirgate's owner."
+  },
+  {
+   "line": 314,
+   "fact": "WEIRGATE.OWNER",
+   "verdict": "binds",
+   "reason": "Project Weirgate's row under 'Responsible officer'."
+  },
+  {
+   "line": 315,
+   "fact": "WEIRGATE.OWNER",
+   "verdict": "mention",
+   "reason": "Column 'Raised by' records who raised the risk, not ownership."
+  },
+  {
+   "line": 316,
+   "fact": "WEIRGATE.SITE",
+   "verdict": "binds",
+   "reason": "Follows Weirgate's revenue-fall sentence; 'the Falmouth works themselves, which remain on programme' are Weirgate's own works."
+  },
+  {
+   "line": 317,
+   "fact": "WEIRGATE.SITE",
+   "verdict": "binds",
+   "reason": "Weirgate's unspent balance is 'for the final quay phase at Falmouth': its works are at Falmouth."
+  },
+  {
+   "line": 318,
+   "fact": "WEIRGATE.SITE",
+   "verdict": "binds",
+   "reason": "'Project Weirgate (Falmouth, contract WHB-0562-26)'."
+  },
+  {
+   "line": 319,
+   "fact": "WEIRGATE.SITE",
+   "verdict": "binds",
+   "reason": "Project Weirgate's row under 'Location'."
+  },
+  {
+   "line": 320,
+   "fact": "WEIRGATE.CONTRACT",
+   "verdict": "binds",
+   "reason": "'Project Weirgate (Falmouth, contract WHB-0562-26)'."
+  },
+  {
+   "line": 321,
+   "fact": "WEIRGATE.CONTRACT",
+   "verdict": "binds",
+   "reason": "Project Weirgate's row under 'Contract'."
+  },
+  {
+   "line": 322,
+   "fact": "FALLOWBECK.OWNER",
+   "verdict": "mention",
+   "reason": "Attendance list; no project or role."
+  },
+  {
+   "line": 323,
+   "fact": "FALLOWBECK.OWNER",
+   "verdict": "mention",
+   "reason": "She reported the supplier shortfall and recorded it against Fallowbeck; an action, ownership not stated."
+  },
+  {
+   "line": 324,
+   "fact": "FALLOWBECK.OWNER",
+   "verdict": "binds",
+   "reason": "Scheme Fallowbeck's row under 'Owner'."
+  },
+  {
+   "line": 325,
+   "fact": "FALLOWBECK.OWNER",
+   "verdict": "mention",
+   "reason": "Column 'Raised by' records who raised the risk, not ownership."
+  },
+  {
+   "line": 326,
+   "fact": "FALLOWBECK.SITE",
+   "verdict": "mention",
+   "reason": "Grimsby is where the meeting was held, at the Board's office; not Fallowbeck's site."
+  },
+  {
+   "line": 327,
+   "fact": "FALLOWBECK.SITE",
+   "verdict": "mention",
+   "reason": "Grimsby is where the quay closure that cut Weirgate's revenue happened; Fallowbeck is not involved."
+  },
+  {
+   "line": 328,
+   "fact": "FALLOWBECK.SITE",
+   "verdict": "mention",
+   "reason": "In Weirgate's paragraph, Grimsby is the place of the quay closure behind the revenue fall."
+  },
+  {
+   "line": 329,
+   "fact": "FALLOWBECK.SITE",
+   "verdict": "binds",
+   "reason": "'Scheme Fallowbeck (Grimsby, order WHB-0691-26)'."
+  },
+  {
+   "line": 330,
+   "fact": "FALLOWBECK.SITE",
+   "verdict": "binds",
+   "reason": "Scheme Fallowbeck's row under 'Depot': the place the scheme is based."
+  },
+  {
+   "line": 331,
+   "fact": "FALLOWBECK.SITE",
+   "verdict": "mention",
+   "reason": "Project Weirgate's risk row; Grimsby is the place of the quay closure."
+  },
+  {
+   "line": 332,
+   "fact": "FALLOWBECK.CONTRACT",
+   "verdict": "binds",
+   "reason": "Paragraph on Fallowbeck; 'Order WHB-0691-26 is unchanged' is coordinated with 'the Scheme Fallowbeck allocation': Fallowbeck's order, D's word for contract."
+  },
+  {
+   "line": 333,
+   "fact": "FALLOWBECK.CONTRACT",
+   "verdict": "binds",
+   "reason": "'Scheme Fallowbeck (Grimsby, order WHB-0691-26)': its order reference, D's word for contract."
+  },
+  {
+   "line": 334,
+   "fact": "FALLOWBECK.CONTRACT",
+   "verdict": "binds",
+   "reason": "Scheme Fallowbeck's row under 'Order ref'."
+  },
+  {
+   "line": 335,
+   "fact": "LODESTAR.OWNER",
+   "verdict": "mention",
+   "reason": "Attendance list; no project or role."
+  },
+  {
+   "line": 336,
+   "fact": "LODESTAR.OWNER",
+   "verdict": "mention",
+   "reason": "He confirmed Pilot Lodestar's overrun; reporting, ownership not stated."
+  },
+  {
+   "line": 337,
+   "fact": "LODESTAR.OWNER",
+   "verdict": "mention",
+   "reason": "He will present a recovery plan for Pilot Lodestar; implies responsibility but does not state ownership."
+  },
+  {
+   "line": 338,
+   "fact": "LODESTAR.OWNER",
+   "verdict": "binds",
+   "reason": "Pilot Lodestar's row under 'Owner'."
+  },
+  {
+   "line": 339,
+   "fact": "LODESTAR.OWNER",
+   "verdict": "mention",
+   "reason": "Column 'Raised by' records who raised the risk, not ownership."
+  },
+  {
+   "line": 340,
+   "fact": "LODESTAR.SITE",
+   "verdict": "binds",
+   "reason": "'Pilot Lodestar (Harwich, order WHB-0837-26)'."
+  },
+  {
+   "line": 341,
+   "fact": "LODESTAR.SITE",
+   "verdict": "binds",
+   "reason": "Pilot Lodestar's row under 'Depot': the place the service is based."
+  },
+  {
+   "line": 342,
+   "fact": "LODESTAR.CONTRACT",
+   "verdict": "binds",
+   "reason": "'Pilot Lodestar has run over its allocation and ... order WHB-0837-26 does not provide for the excess': Lodestar's order."
+  },
+  {
+   "line": 343,
+   "fact": "LODESTAR.CONTRACT",
+   "verdict": "binds",
+   "reason": "'Pilot Lodestar (Harwich, order WHB-0837-26)': its order reference."
+  },
+  {
+   "line": 344,
+   "fact": "LODESTAR.CONTRACT",
+   "verdict": "binds",
+   "reason": "Pilot Lodestar's row under 'Order ref'."
+  }
+ ],
+ "facts_without_binding": [],
+ "notes": "No conflict found. Site traps (Exeter, Hereford, Grimsby as places of another project's event; meeting venues) are mentions. Bindings resting on context rather than a named subject: the memos' 'holds agreement/contract X for the Y works' (project named in the next sentence), 'the Carlisle/Falmouth works themselves', B's 'procurement stalled in Exeter', the minutes' 'Agreement/Order X is unchanged' after a supplier shortfall, and the subjectless PDF revenue sentences (D's sits on its own line under Weirgate's paragraph). D's 'order'/'Order ref' is read as CONTRACT, 'Depot' as SITE, 'Envelope' as AUTHORISED. OWNER is stated only by the Lead, Responsible officer and Owner columns (B, D) and C's 'owner' wording; prose implying a role (recovery plan, returning a balance, recording a shortfall, reporting) and 'Raised by' cells are mentions. facts_without_binding covers non-derived facts; all 11 PCT_SPENT values recompute and appear in no document. Line ids follow commit fab0d28."
+}

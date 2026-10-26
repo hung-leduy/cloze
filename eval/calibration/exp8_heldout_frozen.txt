@@ -1,0 +1,130 @@
+key     eval/corpora/portfolio-b/smoke_fact_key.json  sha256 998d6ee0e07dbb54
+
+report  eval/calibration/heldout/portfolio-b__r1.report.md
+labels  eval/calibration/heldout/portfolio-b__r1.report.csv  (27 occurrences)
+
+cap = 80
+  overall verdict agreement    11/27  (41%)
+  referent axis agreement      25/27  (93%)
+  attribute axis, gold-valued occurrences (headline)
+    agreement                  11/27  (41%)
+    Cohen kappa                -0.007
+  attribute axis, all rows (includes 0 outside the key, where agreement is trivial)
+    agreement                  11/27  (41%)
+    Cohen kappa                -0.007
+
+--- metric output ---
+  counts                       {'CORRECT': 11, 'MISBOUND': 12, 'PARTIAL': 4, 'UNBOUND': 0, 'AMBIGUOUS': 0, 'FABRICATED': 0}
+  denominators                 {'full': 23, 'attribute': 23, 'referent': 27, 'gold_shaped': 27, 'scanned': 27}
+  rba                          0.4782608695652174
+  attribute_accuracy           0.4782608695652174
+  referent_accuracy            0.9629629629629629
+  resolution_rate              0.8518518518518519
+  misbinding_rate              0.4444444444444444
+  unbound_rate                 0.0
+  numerals_outside_key         0.0
+  coverage                     0.8333333333333334
+  coverage_stated              0.8571428571428571
+  coverage_correct             0.5
+  faithfulness_f1              0.6077348066298343
+  faithfulness_f1_attribute    0.6077348066298343
+
+--- hand labelling, for comparison ---
+  counts                       {'CORRECT': 24, 'MISBOUND': 3}
+  attribute_accuracy           0.889  (n=27)
+  referent_accuracy            0.963  (n=27)
+
+--- disagreements ---
+[ 2] '203,118.90'  metric=MISBOUND   hand=CORRECT
+     axes metric ref=MATCH/TAMARIND attr=MISMATCH/UNSPENT (sentence/sentence)
+     axes hand   ref=MATCH attr=MATCH
+[ 4] '96.7%'  metric=MISBOUND   hand=CORRECT
+     axes metric ref=MATCH/TAMARIND attr=MISMATCH/SPENT (sentence/clause)
+     axes hand   ref=MATCH attr=MATCH
+[ 6] '62,310.40'  metric=MISBOUND   hand=CORRECT
+     axes metric ref=MATCH/MERIDIAN attr=MISMATCH/UNSPENT (sentence/clause)
+     axes hand   ref=MATCH attr=MATCH
+[ 9] '296,418.20'  metric=MISBOUND   hand=CORRECT
+     axes metric ref=MATCH/HALCYON attr=MISMATCH/AUTHORISED (sentence/clause)
+     axes hand   ref=MATCH attr=MATCH
+[14] '203,118.90'  metric=MISBOUND   hand=CORRECT
+     axes metric ref=MATCH/TAMARIND attr=MISMATCH/AUTHORISED (sentence/clause)
+     axes hand   ref=MATCH attr=MATCH
+[15] '6,881.10'  metric=MISBOUND   hand=CORRECT
+     axes metric ref=MATCH/TAMARIND attr=MISMATCH/AUTHORISED (sentence/clause)
+     axes hand   ref=MATCH attr=MATCH
+[17] '62,310.40'  metric=MISBOUND   hand=CORRECT
+     axes metric ref=MATCH/MERIDIAN attr=MISMATCH/AUTHORISED (sentence/clause)
+     axes hand   ref=MATCH attr=MATCH
+[18] '41.5%'  metric=MISBOUND   hand=CORRECT
+     axes metric ref=MATCH/MERIDIAN attr=MISMATCH/UNSPENT (paragraph/clause)
+     axes hand   ref=MATCH attr=MATCH
+[19] '380,000.00'  metric=PARTIAL    hand=MISBOUND
+     axes metric ref=MATCH/HALCYON attr=UNRESOLVED/None (sentence/none)
+     axes hand   ref=MATCH attr=MISMATCH
+[20] '296,418.20'  metric=PARTIAL    hand=CORRECT
+     axes metric ref=MATCH/HALCYON attr=UNRESOLVED/None (sentence/none)
+     axes hand   ref=MATCH attr=MATCH
+[21] '72,500.00'  metric=PARTIAL    hand=MISBOUND
+     axes metric ref=MATCH/OSPREY attr=UNRESOLVED/None (sentence/none)
+     axes hand   ref=MISMATCH attr=MISMATCH
+[22] '80,944.35'  metric=PARTIAL    hand=MISBOUND
+     axes metric ref=MATCH/OSPREY attr=UNRESOLVED/None (sentence/none)
+     axes hand   ref=MATCH attr=MISMATCH
+[23] '83,581.80'  metric=MISBOUND   hand=CORRECT
+     axes metric ref=MATCH/HALCYON attr=MISMATCH/AUTHORISED (sentence/clause)
+     axes hand   ref=MATCH attr=MATCH
+[24] '78.0%'  metric=MISBOUND   hand=CORRECT
+     axes metric ref=MATCH/HALCYON attr=MISMATCH/SPENT (sentence/clause)
+     axes hand   ref=MATCH attr=MATCH
+[26] '296,418.20'  metric=MISBOUND   hand=CORRECT
+     axes metric ref=MATCH/HALCYON attr=MISMATCH/AUTHORISED (paragraph/clause)
+     axes hand   ref=MATCH attr=MATCH
+[27] '80,944.35'  metric=MISBOUND   hand=CORRECT
+     axes metric ref=MISMATCH/HALCYON attr=MISMATCH/AUTHORISED (paragraph/sentence)
+     axes hand   ref=MATCH attr=MATCH
+
+--- attribute-axis disagreements ---
+[2] '203,118.90'  metric=MISMATCH/UNSPENT (sentence)  hand=MATCH (labelled SPENT)
+     Project Tamarind carries an authorised amount of 210,000.00 USD, against which spending stands at 203,118.90 USD, leaving an unspent balance of 6,881.10 USD and
+[4] '96.7%'  metric=MISMATCH/SPENT (clause)  hand=MATCH (labelled PCT_SPENT)
+     Project Tamarind carries an authorised amount of 210,000.00 USD, against which spending stands at 203,118.90 USD, leaving an unspent balance of 6,881.10 USD and
+[6] '62,310.40'  metric=MISMATCH/UNSPENT (clause)  hand=MATCH (labelled SPENT)
+     Project Meridian shows an authority of 150,000.00 USD, with expenditure recorded at 62,310.40 USD and a remaining balance of 87,689.60 USD; where spending has e
+[9] '296,418.20'  metric=MISMATCH/AUTHORISED (clause)  hand=MATCH (labelled SPENT)
+     Project Halcyon has an authorised amount of 380,000.00 USD against spending of 296,418.20 USD, leaving 83,581.80 USD unspent, while any excess beyond authority 
+[14] '203,118.90'  metric=MISMATCH/AUTHORISED (clause)  hand=MATCH (labelled SPENT)
+     Project Tamarind reflects a gap between its authorised amount and amount spent, with the resulting unspent balance pointing to either delayed activity or conser
+[15] '6,881.10'  metric=MISMATCH/AUTHORISED (clause)  hand=MATCH (labelled UNSPENT)
+     Project Tamarind reflects a gap between its authorised amount and amount spent, with the resulting unspent balance pointing to either delayed activity or conser
+[17] '62,310.40'  metric=MISMATCH/AUTHORISED (clause)  hand=MATCH (labelled SPENT)
+     By contrast, Project Meridian presents a different risk profile, with spending having moved beyond its authorised ceiling, generating an overrun that warrants c
+[18] '41.5%'  metric=MISMATCH/UNSPENT (clause)  hand=MATCH (labelled PCT_SPENT)
+     The share of authority already consumed by this project further underscores the pace at which its remaining headroom is eroding 41.5%.
+[19] '380,000.00'  metric=UNRESOLVED/None (none)  hand=MISMATCH (labelled UNITS_SHORT)
+     Project Halcyon exhibits a shortfall against its planned allocation, a pattern consistent with revenue decline feeding through into reduced capacity to execute 
+[20] '296,418.20'  metric=UNRESOLVED/None (none)  hand=MATCH (labelled SPENT)
+     Project Halcyon exhibits a shortfall against its planned allocation, a pattern consistent with revenue decline feeding through into reduced capacity to execute 
+[21] '72,500.00'  metric=UNRESOLVED/None (none)  hand=MISMATCH (labelled SPENT)
+     Trial Osprey similarly shows actuals diverging from allocation, with its committed quantity falling short of what was originally planned, a sign of either slipp
+[22] '80,944.35'  metric=UNRESOLVED/None (none)  hand=MISMATCH (labelled UNITS_SHORT)
+     Trial Osprey similarly shows actuals diverging from allocation, with its committed quantity falling short of what was originally planned, a sign of either slipp
+[23] '83,581.80'  metric=MISMATCH/AUTHORISED (clause)  hand=MATCH (labelled UNSPENT)
+     Nadia Brennock has indicated an expectation to return funds to Project Halcyon, which would partially offset the shortfall currently recorded against its alloca
+[24] '78.0%'  metric=MISMATCH/SPENT (clause)  hand=MATCH (labelled PCT_SPENT)
+     Nadia Brennock has indicated an expectation to return funds to Project Halcyon, which would partially offset the shortfall currently recorded against its alloca
+[26] '296,418.20'  metric=MISMATCH/AUTHORISED (clause)  hand=MATCH (labelled SPENT)
+     Until both projects confirm revised delivery dates and supplier commitments are restored, the portfolio should be treated as carrying elevated delivery risk, wi
+[27] '80,944.35'  metric=MISMATCH/AUTHORISED (sentence)  hand=MATCH (labelled SPENT)
+     Until both projects confirm revised delivery dates and supplier commitments are restored, the portfolio should be treated as carrying elevated delivery risk, wi
+
+--- sensitivity to MAX_BIND_DISTANCE ---
+     cap    overall  attr gold   attr all   attr acc   n(attr)
+      20    11/27      11/27      11/27        0.579        19
+      40    11/27      11/27      11/27        0.478        23
+      60    11/27      11/27      11/27        0.478        23
+      80    11/27      11/27      11/27        0.478        23
+     100    11/27      11/27      11/27        0.478        23
+     120    13/27      13/27      13/27        0.440        25
+     160    14/27      14/27      14/27        0.481        27
+   10000    14/27      14/27      14/27        0.481        27

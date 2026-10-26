@@ -1,0 +1,51 @@
+[project]
+name = "privdeep"
+version = "0.1.0"
+description = "Privacy-preserving deep research agent with a verifiable reference monitor"
+requires-python = ">=3.12"
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "S"]
+ignore = ["S101"]  # assert is fine in tests
+
+[tool.ruff.lint.isort]
+# paper/ (the manuscript build) is not in this release; its imports stay first-party.
+known-first-party = ["paper"]
+
+[tool.pytest.ini_options]
+testpaths = ["backend/tests", "gateway/tests"]
+pythonpath = ["backend/src", "gateway", "."]
+# Tests of the manuscript build (Word template, drafts, figure sources), which this
+# release does not include (README.md).
+addopts = [
+  "--deselect=backend/tests/unit/test_make_paper_tables.py::test_the_setup_draft_states_each_calibration_row_as_cal_rows_does",
+  "--deselect=backend/tests/unit/test_make_paper_tables.py::test_fill_inserts_fig3_and_its_caption_not_the_strip_plot",
+  "--deselect=backend/tests/unit/test_make_paper_tables.py::test_a_banner_keeps_the_running_head_that_later_sections_inherit",
+  "--deselect=backend/tests/unit/test_make_paper_tables.py::test_fill_inserts_fig1_once_at_its_marker_with_its_caption",
+  "--deselect=backend/tests/unit/test_make_paper_tables.py::test_fill_leaves_the_fig1_marker_until_the_figure_and_its_caption_exist",
+  "--deselect=backend/tests/unit/test_make_paper_tables.py::test_fig1_is_the_example_figure_at_600_dpi_and_the_text_width",
+  "--deselect=backend/tests/unit/test_make_paper_tables.py::test_the_drawn_fig1_and_its_caption_pass_the_numeral_check",
+  "--deselect=backend/tests/unit/test_make_paper_tables.py::test_fig1_follows_the_compose_file",
+  "--deselect=backend/tests/unit/test_make_paper_tables.py::test_every_word_of_fig1_has_a_source_that_exists",
+  "--deselect=backend/tests/unit/test_make_paper_tables.py::test_fill_marks_the_filled_document_do_not_compress_pictures",
+  "--deselect=backend/tests/unit/test_make_paper_tables.py::test_fig1_text_is_legible_inside_the_canvas_and_never_overlaps",
+  "--deselect=backend/tests/unit/test_make_paper_tables.py::test_the_fig1_source_regenerates_identical_bytes",
+  "--deselect=backend/tests/unit/test_make_paper_tables.py::test_fig1_draws_t_around_its_slm_and_core_and_every_label_in_its_box",
+  "--deselect=backend/tests/unit/test_paper_format.py::test_paginate_puts_the_running_head_and_page_numbers_on_every_page",
+  "--deselect=backend/tests/unit/test_paper_format.py::test_the_running_head_is_one_text_in_every_builder",
+  "--deselect=backend/tests/unit/test_paper_format.py::test_figure_one_gets_the_templates_caption_at_single_spacing",
+]
+markers = [
+  "security: invariant tests; these gate the architectural claims",
+  "needs_docker: requires a running compose stack",
+  "needs_slm: requires the local SLM to be up",
+  "costs_money: hits the cloud API",
+]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true

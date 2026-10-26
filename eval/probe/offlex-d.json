@@ -1,0 +1,2368 @@
+{
+  "instrument": "scripts/tier1_probe.py",
+  "mode": "analyse",
+  "provenance": {
+    "git_commit": "0d5e86b47447bdabe83bba2d2f83df1760d2dddb",
+    "tree_sha256": "31d56060e0e1e72da54d2d1620d51e4f2a80cee19462bc285a63554251f76b31",
+    "tree_dirty": false
+  },
+  "corpus": {
+    "id": "offlex-d",
+    "path": "eval/corpora/offlex-d",
+    "gold_key": true,
+    "surfaces": true,
+    "documents": [
+      {
+        "doc_id": "15523ec5889b9132",
+        "kind": "docx",
+        "chars": 931,
+        "text_sha256": "e084d6ab4239c4084fcf63cd978a00a05b3ca4413f9ab12926e00a96170402c2"
+      },
+      {
+        "doc_id": "190ee4eb201fc063",
+        "kind": "md",
+        "chars": 888,
+        "text_sha256": "190ee4eb201fc0635ed3e0dea7fd675f510a34945989c95b19dc5bc4ee977e38"
+      },
+      {
+        "doc_id": "71d817d2f19770b6",
+        "kind": "pdf",
+        "chars": 743,
+        "text_sha256": "9e7e3252da155276e240108c9defeb6aa52de60337f00ad49cd81ec520b78358"
+      },
+      {
+        "doc_id": "563a363faf76925d",
+        "kind": "xlsx",
+        "chars": 1131,
+        "text_sha256": "c48d9bb36c99fe3e3fb6238e7327bd9029cfdb7a9a39c6206e150b7e9e9c9b37"
+      }
+    ]
+  },
+  "extraction_files": 4,
+  "extractions": [
+    {
+      "index": 0,
+      "sha256": "67dff01c7d35db95ba6fd2653b069308848bf04e134b8b23e8d664e0b8bb141c",
+      "files": [
+        "eval/runs/offlex-d__r5/extractions.json"
+      ]
+    },
+    {
+      "index": 1,
+      "sha256": "9a5038d1c9d2922688d644d859af49c5ca903775b7a8376154e7d3ce099f905e",
+      "files": [
+        "eval/probe/extractions/offlex-d/extraction_1.json"
+      ]
+    },
+    {
+      "index": 2,
+      "sha256": "dcbb112e349b3fc2f20fad422aaeadad126694c5f3afeb2269e9cf6a681a9987",
+      "files": [
+        "eval/probe/extractions/offlex-d/extraction_2.json"
+      ]
+    },
+    {
+      "index": 3,
+      "sha256": "b06d8b6009a4325d330bac958b29af0f171d671c34c5f7ff47ebd7689a0571ae",
+      "files": [
+        "eval/probe/extractions/offlex-d/extraction_3.json"
+      ]
+    }
+  ],
+  "refused_files": [],
+  "variance": {
+    "distinct_extractions": 4,
+    "pairs": [
+      {
+        "a": 0,
+        "b": 1,
+        "entity_jaccard": 0.8987341772151899,
+        "relation_jaccard": 0.19736842105263158,
+        "per_document_entity_jaccard_mean": 0.8785919540229885
+      },
+      {
+        "a": 0,
+        "b": 2,
+        "entity_jaccard": 0.922077922077922,
+        "relation_jaccard": 0.18666666666666668,
+        "per_document_entity_jaccard_mean": 0.8915607985480943
+      },
+      {
+        "a": 0,
+        "b": 3,
+        "entity_jaccard": 0.8987341772151899,
+        "relation_jaccard": 0.21333333333333335,
+        "per_document_entity_jaccard_mean": 0.8715106732348111
+      },
+      {
+        "a": 1,
+        "b": 2,
+        "entity_jaccard": 0.9487179487179487,
+        "relation_jaccard": 0.5636363636363636,
+        "per_document_entity_jaccard_mean": 0.931896551724138
+      },
+      {
+        "a": 1,
+        "b": 3,
+        "entity_jaccard": 0.9493670886075949,
+        "relation_jaccard": 0.4915254237288136,
+        "per_document_entity_jaccard_mean": 0.9330870279146142
+      },
+      {
+        "a": 2,
+        "b": 3,
+        "entity_jaccard": 0.974025974025974,
+        "relation_jaccard": 0.5636363636363636,
+        "per_document_entity_jaccard_mean": 0.975
+      }
+    ],
+    "entity_jaccard": {
+      "min": 0.8987341772151899,
+      "mean": 0.9319428813099698,
+      "max": 0.974025974025974
+    },
+    "relation_jaccard": {
+      "min": 0.18666666666666668,
+      "mean": 0.36936109534236206,
+      "max": 0.5636363636363636
+    },
+    "note": null
+  },
+  "per_extraction": [
+    {
+      "index": 0,
+      "entities": 109,
+      "relations": 48,
+      "recall": {
+        "referents": {
+          "n": 6,
+          "exact": 6,
+          "covered": 6,
+          "missed": [],
+          "items": [
+            {
+              "item": "FALLOWBECK",
+              "surfaces_in_corpus": [
+                "Scheme Fallowbeck",
+                "Fallowbeck"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Scheme Fallowbeck",
+                "Fallowbeck"
+              ]
+            },
+            {
+              "item": "LODESTAR",
+              "surfaces_in_corpus": [
+                "Pilot Lodestar",
+                "Lodestar"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Pilot Lodestar",
+                "Lodestar"
+              ]
+            },
+            {
+              "item": "ORG",
+              "surfaces_in_corpus": [
+                "Wrenfield Harbour Board",
+                "Wrenfield"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Wrenfield Harbour Board",
+                "Wrenfield"
+              ]
+            },
+            {
+              "item": "SALTMARSH",
+              "surfaces_in_corpus": [
+                "Project Saltmarsh",
+                "Saltmarsh"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Project Saltmarsh",
+                "Saltmarsh"
+              ]
+            },
+            {
+              "item": "VENDOR",
+              "surfaces_in_corpus": [
+                "Tarrant Marine Supplies",
+                "Tarrant"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Tarrant Marine Supplies",
+                "Tarrant"
+              ]
+            },
+            {
+              "item": "WEIRGATE",
+              "surfaces_in_corpus": [
+                "Project Weirgate",
+                "Weirgate"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Project Weirgate",
+                "Weirgate"
+              ]
+            }
+          ]
+        },
+        "string_facts": {
+          "n": 12,
+          "exact": 12,
+          "covered": 12,
+          "missed": [],
+          "items": [
+            {
+              "item": "SALTMARSH.OWNER",
+              "surfaces_in_corpus": [
+                "Ottilie Farquhar"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Ottilie Farquhar"
+              ]
+            },
+            {
+              "item": "SALTMARSH.SITE",
+              "surfaces_in_corpus": [
+                "Whitby"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Whitby"
+              ]
+            },
+            {
+              "item": "SALTMARSH.CONTRACT",
+              "surfaces_in_corpus": [
+                "WHB-0418-26"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "WHB-0418-26"
+              ]
+            },
+            {
+              "item": "WEIRGATE.OWNER",
+              "surfaces_in_corpus": [
+                "Bastian Greenhalgh"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Bastian Greenhalgh"
+              ]
+            },
+            {
+              "item": "WEIRGATE.SITE",
+              "surfaces_in_corpus": [
+                "Falmouth"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Falmouth"
+              ]
+            },
+            {
+              "item": "WEIRGATE.CONTRACT",
+              "surfaces_in_corpus": [
+                "WHB-0562-26"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "WHB-0562-26"
+              ]
+            },
+            {
+              "item": "FALLOWBECK.OWNER",
+              "surfaces_in_corpus": [
+                "Leonie Radcliffe"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Leonie Radcliffe"
+              ]
+            },
+            {
+              "item": "FALLOWBECK.SITE",
+              "surfaces_in_corpus": [
+                "Grimsby"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Grimsby"
+              ]
+            },
+            {
+              "item": "FALLOWBECK.CONTRACT",
+              "surfaces_in_corpus": [
+                "WHB-0691-26"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "WHB-0691-26"
+              ]
+            },
+            {
+              "item": "LODESTAR.OWNER",
+              "surfaces_in_corpus": [
+                "Caspar Wetherby"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Caspar Wetherby"
+              ]
+            },
+            {
+              "item": "LODESTAR.SITE",
+              "surfaces_in_corpus": [
+                "Harwich"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Harwich"
+              ]
+            },
+            {
+              "item": "LODESTAR.CONTRACT",
+              "surfaces_in_corpus": [
+                "WHB-0837-26"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "WHB-0837-26"
+              ]
+            }
+          ]
+        },
+        "generator_surfaces": {
+          "n": 71,
+          "covered": 66,
+          "by_group": {
+            "amounts": {
+              "n": 24,
+              "covered": 24
+            },
+            "dates": {
+              "n": 13,
+              "covered": 12
+            },
+            "identifiers": {
+              "n": 4,
+              "covered": 4
+            },
+            "labels": {
+              "n": 3,
+              "covered": 3
+            },
+            "people": {
+              "n": 4,
+              "covered": 4
+            },
+            "percentages": {
+              "n": 1,
+              "covered": 1
+            },
+            "quantities": {
+              "n": 2,
+              "covered": 2
+            },
+            "referents": {
+              "n": 12,
+              "covered": 12
+            },
+            "risk_text": {
+              "n": 4,
+              "covered": 0
+            },
+            "sites": {
+              "n": 4,
+              "covered": 4
+            }
+          },
+          "missed": [
+            "Tarrant Marine Supplies delivered 164 units short of the August commitment",
+            "Dredging consent delayed; 272,053.50 USD of the allocation is undrawn",
+            "Berthing revenue fell seven percent after the Grimsby quay closure",
+            "Spend exceeds allocation by 5,512.80 USD",
+            "9 September 2026"
+          ]
+        },
+        "surfaces_in_relations": {
+          "hits": [],
+          "labels_group_hits": []
+        }
+      },
+      "predicates": {
+        "n_predicates": 48,
+        "echo_2_4gram": 10,
+        "echo_share": 0.20833333333333334,
+        "whole_match": 7,
+        "whole_match_share": 0.14583333333333334,
+        "echoing": [
+          "closed for repairs",
+          "will present recovery plan",
+          "requested not to reallocate",
+          "has spent",
+          "has_responsible_officer",
+          "has_outlay_to_date",
+          "has_kick_off_date",
+          "has_actual_spend",
+          "has_start_date",
+          "has_risk_raised_by"
+        ],
+        "whole_matches": [
+          "reported",
+          "allocated",
+          "delivered",
+          "allocated",
+          "spent",
+          "closed for repairs",
+          "has spent"
+        ],
+        "length_tokens": {
+          "1": 10,
+          "2": 15,
+          "3": 14,
+          "4": 9
+        },
+        "length_whitespace_words": {
+          "1": 31,
+          "2": 9,
+          "3": 6,
+          "4": 2
+        },
+        "max_tokens": 4
+      },
+      "r5_residue": {
+        "referents_total": 53,
+        "referents_with_residue": 3,
+        "by_category": {
+          "IDENTIFIER": 1,
+          "LOCATION": 1,
+          "QUANTITY": 1
+        },
+        "pairs": {
+          "IDENTIFIER": [
+            [
+              "whb069126",
+              "orderwhb069126"
+            ]
+          ],
+          "LOCATION": [
+            [
+              "grimsby",
+              "grimsby quay"
+            ]
+          ],
+          "QUANTITY": [
+            [
+              "164",
+              "164 units"
+            ]
+          ]
+        }
+      },
+      "masked_exposure": {
+        "filter": {
+          "n_min": 5,
+          "n_max": 8,
+          "hit_threshold": 1,
+          "salt": "fixed analysis salt",
+          "fp_est": 6.787937672061255e-08,
+          "keying": "r5"
+        },
+        "refused_any": true,
+        "refused_documents": 3,
+        "masked_5gram_hit_share": 0.1529051987767584,
+        "corpus_5grams_distinct": 570,
+        "corpus_5grams_surviving_share": 0.1736842105263158,
+        "documents": [
+          {
+            "doc_id": "15523ec5889b9132",
+            "refused": true,
+            "shingle_hits_5_8": 1,
+            "masked_5grams": 164,
+            "masked_5grams_hit": 33,
+            "placeholders": 31,
+            "unmatched_entities": 0,
+            "surfaces_surviving": 1
+          },
+          {
+            "doc_id": "190ee4eb201fc063",
+            "refused": true,
+            "shingle_hits_5_8": 1,
+            "masked_5grams": 150,
+            "masked_5grams_hit": 36,
+            "placeholders": 20,
+            "unmatched_entities": 0,
+            "surfaces_surviving": 3
+          },
+          {
+            "doc_id": "71d817d2f19770b6",
+            "refused": false,
+            "shingle_hits_5_8": 0,
+            "masked_5grams": 127,
+            "masked_5grams_hit": 0,
+            "placeholders": 28,
+            "unmatched_entities": 0,
+            "surfaces_surviving": 0
+          },
+          {
+            "doc_id": "563a363faf76925d",
+            "refused": true,
+            "shingle_hits_5_8": 1,
+            "masked_5grams": 213,
+            "masked_5grams_hit": 31,
+            "placeholders": 49,
+            "unmatched_entities": 0,
+            "surfaces_surviving": 1
+          }
+        ],
+        "generator_surfaces_surviving": {
+          "distinct": 5,
+          "occurrences": 5,
+          "surfaces": [
+            {
+              "surface": "16 September 2026",
+              "group": "dates",
+              "occurrences": 1,
+              "extractor_miss": false
+            },
+            {
+              "surface": "9 September 2026",
+              "group": "dates",
+              "occurrences": 1,
+              "extractor_miss": true
+            },
+            {
+              "surface": "Tarrant Marine Supplies",
+              "group": "referents",
+              "occurrences": 1,
+              "extractor_miss": false
+            },
+            {
+              "surface": "WHB-0837-26",
+              "group": "identifiers",
+              "occurrences": 1,
+              "extractor_miss": false
+            },
+            {
+              "surface": "seven percent",
+              "group": "percentages",
+              "occurrences": 1,
+              "extractor_miss": false
+            }
+          ],
+          "extractor_misses": [
+            "9 September 2026"
+          ],
+          "extracted_elsewhere": [
+            "16 September 2026",
+            "Tarrant Marine Supplies",
+            "WHB-0837-26",
+            "seven percent"
+          ],
+          "labels_group": []
+        }
+      }
+    },
+    {
+      "index": 1,
+      "entities": 113,
+      "relations": 44,
+      "recall": {
+        "referents": {
+          "n": 6,
+          "exact": 6,
+          "covered": 6,
+          "missed": [],
+          "items": [
+            {
+              "item": "FALLOWBECK",
+              "surfaces_in_corpus": [
+                "Scheme Fallowbeck",
+                "Fallowbeck"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Scheme Fallowbeck",
+                "Fallowbeck"
+              ]
+            },
+            {
+              "item": "LODESTAR",
+              "surfaces_in_corpus": [
+                "Pilot Lodestar",
+                "Lodestar"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Pilot Lodestar",
+                "Lodestar"
+              ]
+            },
+            {
+              "item": "ORG",
+              "surfaces_in_corpus": [
+                "Wrenfield Harbour Board",
+                "Wrenfield"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Wrenfield Harbour Board",
+                "Wrenfield"
+              ]
+            },
+            {
+              "item": "SALTMARSH",
+              "surfaces_in_corpus": [
+                "Project Saltmarsh",
+                "Saltmarsh"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Project Saltmarsh",
+                "Saltmarsh"
+              ]
+            },
+            {
+              "item": "VENDOR",
+              "surfaces_in_corpus": [
+                "Tarrant Marine Supplies",
+                "Tarrant"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Tarrant Marine Supplies",
+                "Tarrant"
+              ]
+            },
+            {
+              "item": "WEIRGATE",
+              "surfaces_in_corpus": [
+                "Project Weirgate",
+                "Weirgate"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Project Weirgate",
+                "Weirgate"
+              ]
+            }
+          ]
+        },
+        "string_facts": {
+          "n": 12,
+          "exact": 12,
+          "covered": 12,
+          "missed": [],
+          "items": [
+            {
+              "item": "SALTMARSH.OWNER",
+              "surfaces_in_corpus": [
+                "Ottilie Farquhar"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Ottilie Farquhar"
+              ]
+            },
+            {
+              "item": "SALTMARSH.SITE",
+              "surfaces_in_corpus": [
+                "Whitby"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Whitby"
+              ]
+            },
+            {
+              "item": "SALTMARSH.CONTRACT",
+              "surfaces_in_corpus": [
+                "WHB-0418-26"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "WHB-0418-26"
+              ]
+            },
+            {
+              "item": "WEIRGATE.OWNER",
+              "surfaces_in_corpus": [
+                "Bastian Greenhalgh"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Bastian Greenhalgh"
+              ]
+            },
+            {
+              "item": "WEIRGATE.SITE",
+              "surfaces_in_corpus": [
+                "Falmouth"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Falmouth"
+              ]
+            },
+            {
+              "item": "WEIRGATE.CONTRACT",
+              "surfaces_in_corpus": [
+                "WHB-0562-26"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "WHB-0562-26"
+              ]
+            },
+            {
+              "item": "FALLOWBECK.OWNER",
+              "surfaces_in_corpus": [
+                "Leonie Radcliffe"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Leonie Radcliffe"
+              ]
+            },
+            {
+              "item": "FALLOWBECK.SITE",
+              "surfaces_in_corpus": [
+                "Grimsby"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Grimsby"
+              ]
+            },
+            {
+              "item": "FALLOWBECK.CONTRACT",
+              "surfaces_in_corpus": [
+                "WHB-0691-26"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "WHB-0691-26"
+              ]
+            },
+            {
+              "item": "LODESTAR.OWNER",
+              "surfaces_in_corpus": [
+                "Caspar Wetherby"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Caspar Wetherby"
+              ]
+            },
+            {
+              "item": "LODESTAR.SITE",
+              "surfaces_in_corpus": [
+                "Harwich"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Harwich"
+              ]
+            },
+            {
+              "item": "LODESTAR.CONTRACT",
+              "surfaces_in_corpus": [
+                "WHB-0837-26"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "WHB-0837-26"
+              ]
+            }
+          ]
+        },
+        "generator_surfaces": {
+          "n": 71,
+          "covered": 67,
+          "by_group": {
+            "amounts": {
+              "n": 24,
+              "covered": 24
+            },
+            "dates": {
+              "n": 13,
+              "covered": 13
+            },
+            "identifiers": {
+              "n": 4,
+              "covered": 4
+            },
+            "labels": {
+              "n": 3,
+              "covered": 3
+            },
+            "people": {
+              "n": 4,
+              "covered": 4
+            },
+            "percentages": {
+              "n": 1,
+              "covered": 1
+            },
+            "quantities": {
+              "n": 2,
+              "covered": 2
+            },
+            "referents": {
+              "n": 12,
+              "covered": 12
+            },
+            "risk_text": {
+              "n": 4,
+              "covered": 0
+            },
+            "sites": {
+              "n": 4,
+              "covered": 4
+            }
+          },
+          "missed": [
+            "Tarrant Marine Supplies delivered 164 units short of the August commitment",
+            "Dredging consent delayed; 272,053.50 USD of the allocation is undrawn",
+            "Berthing revenue fell seven percent after the Grimsby quay closure",
+            "Spend exceeds allocation by 5,512.80 USD"
+          ]
+        },
+        "surfaces_in_relations": {
+          "hits": [],
+          "labels_group_hits": []
+        }
+      },
+      "predicates": {
+        "n_predicates": 44,
+        "echo_2_4gram": 17,
+        "echo_share": 0.38636363636363635,
+        "whole_match": 15,
+        "whole_match_share": 0.3409090909090909,
+        "echoing": [
+          "held at",
+          "has recorded",
+          "run over",
+          "does not provide for",
+          "outlay to date",
+          "will circulate",
+          "will present",
+          "has an allocation of",
+          "has spent",
+          "has an overrun of",
+          "has a principal supplier",
+          "has_responsible_officer",
+          "has_outlay_to_date",
+          "has_kick_off_date",
+          "has_actual_spend",
+          "has_start_date",
+          "has_raised_by"
+        ],
+        "whole_matches": [
+          "held at",
+          "delivered",
+          "has recorded",
+          "unchanged",
+          "run over",
+          "does not provide for",
+          "approved",
+          "outlay to date",
+          "will circulate",
+          "holds",
+          "spent",
+          "will present",
+          "has an allocation of",
+          "has spent",
+          "fell"
+        ],
+        "length_tokens": {
+          "1": 8,
+          "2": 19,
+          "3": 9,
+          "4": 7,
+          "5": 1
+        },
+        "length_whitespace_words": {
+          "1": 25,
+          "2": 10,
+          "3": 3,
+          "4": 5,
+          "5": 1
+        },
+        "max_tokens": 5
+      },
+      "r5_residue": {
+        "referents_total": 57,
+        "referents_with_residue": 3,
+        "by_category": {
+          "IDENTIFIER": 2,
+          "LOCATION": 1
+        },
+        "pairs": {
+          "IDENTIFIER": [
+            [
+              "whb041826",
+              "contractwhb041826"
+            ],
+            [
+              "whb069126",
+              "orderwhb069126"
+            ]
+          ],
+          "LOCATION": [
+            [
+              "grimsby",
+              "grimsby office"
+            ],
+            [
+              "grimsby",
+              "grimsby quay"
+            ]
+          ]
+        }
+      },
+      "masked_exposure": {
+        "filter": {
+          "n_min": 5,
+          "n_max": 8,
+          "hit_threshold": 1,
+          "salt": "fixed analysis salt",
+          "fp_est": 6.787937672061255e-08,
+          "keying": "r5"
+        },
+        "refused_any": true,
+        "refused_documents": 4,
+        "masked_5gram_hit_share": 0.13719512195121952,
+        "corpus_5grams_distinct": 570,
+        "corpus_5grams_surviving_share": 0.156140350877193,
+        "documents": [
+          {
+            "doc_id": "15523ec5889b9132",
+            "refused": true,
+            "shingle_hits_5_8": 1,
+            "masked_5grams": 162,
+            "masked_5grams_hit": 32,
+            "placeholders": 32,
+            "unmatched_entities": 0,
+            "surfaces_surviving": 1
+          },
+          {
+            "doc_id": "190ee4eb201fc063",
+            "refused": true,
+            "shingle_hits_5_8": 1,
+            "masked_5grams": 151,
+            "masked_5grams_hit": 25,
+            "placeholders": 23,
+            "unmatched_entities": 0,
+            "surfaces_surviving": 1
+          },
+          {
+            "doc_id": "71d817d2f19770b6",
+            "refused": true,
+            "shingle_hits_5_8": 1,
+            "masked_5grams": 130,
+            "masked_5grams_hit": 2,
+            "placeholders": 28,
+            "unmatched_entities": 0,
+            "surfaces_surviving": 0
+          },
+          {
+            "doc_id": "563a363faf76925d",
+            "refused": true,
+            "shingle_hits_5_8": 1,
+            "masked_5grams": 213,
+            "masked_5grams_hit": 31,
+            "placeholders": 49,
+            "unmatched_entities": 0,
+            "surfaces_surviving": 1
+          }
+        ],
+        "generator_surfaces_surviving": {
+          "distinct": 3,
+          "occurrences": 3,
+          "surfaces": [
+            {
+              "surface": "16 September 2026",
+              "group": "dates",
+              "occurrences": 1,
+              "extractor_miss": false
+            },
+            {
+              "surface": "Tarrant Marine Supplies",
+              "group": "referents",
+              "occurrences": 1,
+              "extractor_miss": false
+            },
+            {
+              "surface": "WHB-0837-26",
+              "group": "identifiers",
+              "occurrences": 1,
+              "extractor_miss": false
+            }
+          ],
+          "extractor_misses": [],
+          "extracted_elsewhere": [
+            "16 September 2026",
+            "Tarrant Marine Supplies",
+            "WHB-0837-26"
+          ],
+          "labels_group": []
+        }
+      }
+    },
+    {
+      "index": 2,
+      "entities": 112,
+      "relations": 51,
+      "recall": {
+        "referents": {
+          "n": 6,
+          "exact": 6,
+          "covered": 6,
+          "missed": [],
+          "items": [
+            {
+              "item": "FALLOWBECK",
+              "surfaces_in_corpus": [
+                "Scheme Fallowbeck",
+                "Fallowbeck"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Scheme Fallowbeck",
+                "Fallowbeck"
+              ]
+            },
+            {
+              "item": "LODESTAR",
+              "surfaces_in_corpus": [
+                "Pilot Lodestar",
+                "Lodestar"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Pilot Lodestar",
+                "Lodestar"
+              ]
+            },
+            {
+              "item": "ORG",
+              "surfaces_in_corpus": [
+                "Wrenfield Harbour Board",
+                "Wrenfield"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Wrenfield Harbour Board",
+                "Wrenfield"
+              ]
+            },
+            {
+              "item": "SALTMARSH",
+              "surfaces_in_corpus": [
+                "Project Saltmarsh",
+                "Saltmarsh"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Project Saltmarsh",
+                "Saltmarsh"
+              ]
+            },
+            {
+              "item": "VENDOR",
+              "surfaces_in_corpus": [
+                "Tarrant Marine Supplies",
+                "Tarrant"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Tarrant Marine Supplies",
+                "Tarrant"
+              ]
+            },
+            {
+              "item": "WEIRGATE",
+              "surfaces_in_corpus": [
+                "Project Weirgate",
+                "Weirgate"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Project Weirgate",
+                "Weirgate"
+              ]
+            }
+          ]
+        },
+        "string_facts": {
+          "n": 12,
+          "exact": 12,
+          "covered": 12,
+          "missed": [],
+          "items": [
+            {
+              "item": "SALTMARSH.OWNER",
+              "surfaces_in_corpus": [
+                "Ottilie Farquhar"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Ottilie Farquhar"
+              ]
+            },
+            {
+              "item": "SALTMARSH.SITE",
+              "surfaces_in_corpus": [
+                "Whitby"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Whitby"
+              ]
+            },
+            {
+              "item": "SALTMARSH.CONTRACT",
+              "surfaces_in_corpus": [
+                "WHB-0418-26"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "WHB-0418-26"
+              ]
+            },
+            {
+              "item": "WEIRGATE.OWNER",
+              "surfaces_in_corpus": [
+                "Bastian Greenhalgh"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Bastian Greenhalgh"
+              ]
+            },
+            {
+              "item": "WEIRGATE.SITE",
+              "surfaces_in_corpus": [
+                "Falmouth"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Falmouth"
+              ]
+            },
+            {
+              "item": "WEIRGATE.CONTRACT",
+              "surfaces_in_corpus": [
+                "WHB-0562-26"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "WHB-0562-26"
+              ]
+            },
+            {
+              "item": "FALLOWBECK.OWNER",
+              "surfaces_in_corpus": [
+                "Leonie Radcliffe"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Leonie Radcliffe"
+              ]
+            },
+            {
+              "item": "FALLOWBECK.SITE",
+              "surfaces_in_corpus": [
+                "Grimsby"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Grimsby"
+              ]
+            },
+            {
+              "item": "FALLOWBECK.CONTRACT",
+              "surfaces_in_corpus": [
+                "WHB-0691-26"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "WHB-0691-26"
+              ]
+            },
+            {
+              "item": "LODESTAR.OWNER",
+              "surfaces_in_corpus": [
+                "Caspar Wetherby"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Caspar Wetherby"
+              ]
+            },
+            {
+              "item": "LODESTAR.SITE",
+              "surfaces_in_corpus": [
+                "Harwich"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Harwich"
+              ]
+            },
+            {
+              "item": "LODESTAR.CONTRACT",
+              "surfaces_in_corpus": [
+                "WHB-0837-26"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "WHB-0837-26"
+              ]
+            }
+          ]
+        },
+        "generator_surfaces": {
+          "n": 71,
+          "covered": 66,
+          "by_group": {
+            "amounts": {
+              "n": 24,
+              "covered": 24
+            },
+            "dates": {
+              "n": 13,
+              "covered": 12
+            },
+            "identifiers": {
+              "n": 4,
+              "covered": 4
+            },
+            "labels": {
+              "n": 3,
+              "covered": 3
+            },
+            "people": {
+              "n": 4,
+              "covered": 4
+            },
+            "percentages": {
+              "n": 1,
+              "covered": 1
+            },
+            "quantities": {
+              "n": 2,
+              "covered": 2
+            },
+            "referents": {
+              "n": 12,
+              "covered": 12
+            },
+            "risk_text": {
+              "n": 4,
+              "covered": 0
+            },
+            "sites": {
+              "n": 4,
+              "covered": 4
+            }
+          },
+          "missed": [
+            "Tarrant Marine Supplies delivered 164 units short of the August commitment",
+            "Dredging consent delayed; 272,053.50 USD of the allocation is undrawn",
+            "Berthing revenue fell seven percent after the Grimsby quay closure",
+            "Spend exceeds allocation by 5,512.80 USD",
+            "9 September 2026"
+          ]
+        },
+        "surfaces_in_relations": {
+          "hits": [],
+          "labels_group_hits": []
+        }
+      },
+      "predicates": {
+        "n_predicates": 51,
+        "echo_2_4gram": 23,
+        "echo_share": 0.45098039215686275,
+        "whole_match": 19,
+        "whole_match_share": 0.37254901960784315,
+        "echoing": [
+          "held at",
+          "has recorded",
+          "has run over",
+          "does not provide for",
+          "has outlay to date",
+          "will circulate",
+          "will present",
+          "requested not to reallocate",
+          "has an allocation of",
+          "has spent",
+          "has an allocation of",
+          "has spent",
+          "has spent",
+          "has an allocation of",
+          "has an overrun of",
+          "has spent",
+          "has an allocation of",
+          "has a principal supplier",
+          "has_responsible_officer",
+          "has_start_date",
+          "has_raised_by",
+          "has_actual_spend",
+          "has_start_date"
+        ],
+        "whole_matches": [
+          "held at",
+          "delivered",
+          "has recorded",
+          "has run over",
+          "does not provide for",
+          "approved",
+          "will circulate",
+          "holds",
+          "spent",
+          "will present",
+          "has an allocation of",
+          "has spent",
+          "has an allocation of",
+          "has spent",
+          "fell",
+          "has spent",
+          "has an allocation of",
+          "has spent",
+          "has an allocation of"
+        ],
+        "length_tokens": {
+          "1": 6,
+          "2": 23,
+          "3": 10,
+          "4": 11,
+          "5": 1
+        },
+        "length_whitespace_words": {
+          "1": 23,
+          "2": 13,
+          "3": 3,
+          "4": 11,
+          "5": 1
+        },
+        "max_tokens": 5
+      },
+      "r5_residue": {
+        "referents_total": 55,
+        "referents_with_residue": 3,
+        "by_category": {
+          "IDENTIFIER": 1,
+          "LOCATION": 1,
+          "QUANTITY": 1
+        },
+        "pairs": {
+          "IDENTIFIER": [
+            [
+              "whb041826",
+              "contractwhb041826"
+            ]
+          ],
+          "LOCATION": [
+            [
+              "grimsby",
+              "grimsby office"
+            ],
+            [
+              "grimsby",
+              "grimsby quay"
+            ]
+          ],
+          "QUANTITY": [
+            [
+              "164",
+              "164 units"
+            ]
+          ]
+        }
+      },
+      "masked_exposure": {
+        "filter": {
+          "n_min": 5,
+          "n_max": 8,
+          "hit_threshold": 1,
+          "salt": "fixed analysis salt",
+          "fp_est": 6.787937672061255e-08,
+          "keying": "r5"
+        },
+        "refused_any": true,
+        "refused_documents": 4,
+        "masked_5gram_hit_share": 0.136986301369863,
+        "corpus_5grams_distinct": 570,
+        "corpus_5grams_surviving_share": 0.156140350877193,
+        "documents": [
+          {
+            "doc_id": "15523ec5889b9132",
+            "refused": true,
+            "shingle_hits_5_8": 1,
+            "masked_5grams": 164,
+            "masked_5grams_hit": 25,
+            "placeholders": 33,
+            "unmatched_entities": 0,
+            "surfaces_surviving": 0
+          },
+          {
+            "doc_id": "190ee4eb201fc063",
+            "refused": true,
+            "shingle_hits_5_8": 1,
+            "masked_5grams": 150,
+            "masked_5grams_hit": 32,
+            "placeholders": 21,
+            "unmatched_entities": 0,
+            "surfaces_surviving": 2
+          },
+          {
+            "doc_id": "71d817d2f19770b6",
+            "refused": true,
+            "shingle_hits_5_8": 1,
+            "masked_5grams": 130,
+            "masked_5grams_hit": 2,
+            "placeholders": 28,
+            "unmatched_entities": 0,
+            "surfaces_surviving": 0
+          },
+          {
+            "doc_id": "563a363faf76925d",
+            "refused": true,
+            "shingle_hits_5_8": 1,
+            "masked_5grams": 213,
+            "masked_5grams_hit": 31,
+            "placeholders": 49,
+            "unmatched_entities": 0,
+            "surfaces_surviving": 1
+          }
+        ],
+        "generator_surfaces_surviving": {
+          "distinct": 3,
+          "occurrences": 3,
+          "surfaces": [
+            {
+              "surface": "16 September 2026",
+              "group": "dates",
+              "occurrences": 1,
+              "extractor_miss": false
+            },
+            {
+              "surface": "9 September 2026",
+              "group": "dates",
+              "occurrences": 1,
+              "extractor_miss": true
+            },
+            {
+              "surface": "Tarrant Marine Supplies",
+              "group": "referents",
+              "occurrences": 1,
+              "extractor_miss": false
+            }
+          ],
+          "extractor_misses": [
+            "9 September 2026"
+          ],
+          "extracted_elsewhere": [
+            "16 September 2026",
+            "Tarrant Marine Supplies"
+          ],
+          "labels_group": []
+        }
+      }
+    },
+    {
+      "index": 3,
+      "entities": 114,
+      "relations": 56,
+      "recall": {
+        "referents": {
+          "n": 6,
+          "exact": 6,
+          "covered": 6,
+          "missed": [],
+          "items": [
+            {
+              "item": "FALLOWBECK",
+              "surfaces_in_corpus": [
+                "Scheme Fallowbeck",
+                "Fallowbeck"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Scheme Fallowbeck",
+                "Fallowbeck"
+              ]
+            },
+            {
+              "item": "LODESTAR",
+              "surfaces_in_corpus": [
+                "Pilot Lodestar",
+                "Lodestar"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Pilot Lodestar",
+                "Lodestar"
+              ]
+            },
+            {
+              "item": "ORG",
+              "surfaces_in_corpus": [
+                "Wrenfield Harbour Board",
+                "Wrenfield"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Wrenfield Harbour Board",
+                "Wrenfield"
+              ]
+            },
+            {
+              "item": "SALTMARSH",
+              "surfaces_in_corpus": [
+                "Project Saltmarsh",
+                "Saltmarsh"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Project Saltmarsh",
+                "Saltmarsh"
+              ]
+            },
+            {
+              "item": "VENDOR",
+              "surfaces_in_corpus": [
+                "Tarrant Marine Supplies",
+                "Tarrant"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Tarrant Marine Supplies",
+                "Tarrant"
+              ]
+            },
+            {
+              "item": "WEIRGATE",
+              "surfaces_in_corpus": [
+                "Project Weirgate",
+                "Weirgate"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Project Weirgate",
+                "Weirgate"
+              ]
+            }
+          ]
+        },
+        "string_facts": {
+          "n": 12,
+          "exact": 12,
+          "covered": 12,
+          "missed": [],
+          "items": [
+            {
+              "item": "SALTMARSH.OWNER",
+              "surfaces_in_corpus": [
+                "Ottilie Farquhar"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Ottilie Farquhar"
+              ]
+            },
+            {
+              "item": "SALTMARSH.SITE",
+              "surfaces_in_corpus": [
+                "Whitby"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Whitby"
+              ]
+            },
+            {
+              "item": "SALTMARSH.CONTRACT",
+              "surfaces_in_corpus": [
+                "WHB-0418-26"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "WHB-0418-26"
+              ]
+            },
+            {
+              "item": "WEIRGATE.OWNER",
+              "surfaces_in_corpus": [
+                "Bastian Greenhalgh"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Bastian Greenhalgh"
+              ]
+            },
+            {
+              "item": "WEIRGATE.SITE",
+              "surfaces_in_corpus": [
+                "Falmouth"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Falmouth"
+              ]
+            },
+            {
+              "item": "WEIRGATE.CONTRACT",
+              "surfaces_in_corpus": [
+                "WHB-0562-26"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "WHB-0562-26"
+              ]
+            },
+            {
+              "item": "FALLOWBECK.OWNER",
+              "surfaces_in_corpus": [
+                "Leonie Radcliffe"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Leonie Radcliffe"
+              ]
+            },
+            {
+              "item": "FALLOWBECK.SITE",
+              "surfaces_in_corpus": [
+                "Grimsby"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Grimsby"
+              ]
+            },
+            {
+              "item": "FALLOWBECK.CONTRACT",
+              "surfaces_in_corpus": [
+                "WHB-0691-26"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "WHB-0691-26"
+              ]
+            },
+            {
+              "item": "LODESTAR.OWNER",
+              "surfaces_in_corpus": [
+                "Caspar Wetherby"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Caspar Wetherby"
+              ]
+            },
+            {
+              "item": "LODESTAR.SITE",
+              "surfaces_in_corpus": [
+                "Harwich"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Harwich"
+              ]
+            },
+            {
+              "item": "LODESTAR.CONTRACT",
+              "surfaces_in_corpus": [
+                "WHB-0837-26"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "WHB-0837-26"
+              ]
+            }
+          ]
+        },
+        "generator_surfaces": {
+          "n": 71,
+          "covered": 67,
+          "by_group": {
+            "amounts": {
+              "n": 24,
+              "covered": 24
+            },
+            "dates": {
+              "n": 13,
+              "covered": 13
+            },
+            "identifiers": {
+              "n": 4,
+              "covered": 4
+            },
+            "labels": {
+              "n": 3,
+              "covered": 3
+            },
+            "people": {
+              "n": 4,
+              "covered": 4
+            },
+            "percentages": {
+              "n": 1,
+              "covered": 1
+            },
+            "quantities": {
+              "n": 2,
+              "covered": 2
+            },
+            "referents": {
+              "n": 12,
+              "covered": 12
+            },
+            "risk_text": {
+              "n": 4,
+              "covered": 0
+            },
+            "sites": {
+              "n": 4,
+              "covered": 4
+            }
+          },
+          "missed": [
+            "Tarrant Marine Supplies delivered 164 units short of the August commitment",
+            "Dredging consent delayed; 272,053.50 USD of the allocation is undrawn",
+            "Berthing revenue fell seven percent after the Grimsby quay closure",
+            "Spend exceeds allocation by 5,512.80 USD"
+          ]
+        },
+        "surfaces_in_relations": {
+          "hits": [],
+          "labels_group_hits": []
+        }
+      },
+      "predicates": {
+        "n_predicates": 56,
+        "echo_2_4gram": 26,
+        "echo_share": 0.4642857142857143,
+        "whole_match": 20,
+        "whole_match_share": 0.35714285714285715,
+        "echoing": [
+          "held at",
+          "has recorded",
+          "has run over",
+          "does not provide for",
+          "has outlay to date",
+          "will circulate",
+          "will present",
+          "has an allocation of",
+          "has spent",
+          "has an allocation of",
+          "has spent",
+          "has spent",
+          "has an allocation of",
+          "has an overrun of",
+          "has spent",
+          "has an allocation of",
+          "remains its principal supplier",
+          "has_responsible_officer",
+          "has_outlay_to_date",
+          "has_kick_off_date",
+          "has_actual_spend",
+          "has_start_date",
+          "has_raised_by",
+          "has_raised_by",
+          "has_raised_by",
+          "has_raised_by"
+        ],
+        "whole_matches": [
+          "held at",
+          "delivered",
+          "has recorded",
+          "has run over",
+          "does not provide for",
+          "approved",
+          "will circulate",
+          "holds",
+          "spent",
+          "will present",
+          "has an allocation of",
+          "has spent",
+          "has an allocation of",
+          "has spent",
+          "fell",
+          "has spent",
+          "has an allocation of",
+          "has spent",
+          "has an allocation of",
+          "remains its principal supplier"
+        ],
+        "length_tokens": {
+          "1": 7,
+          "2": 24,
+          "3": 12,
+          "4": 12,
+          "5": 1
+        },
+        "length_whitespace_words": {
+          "1": 34,
+          "2": 12,
+          "3": 1,
+          "4": 8,
+          "5": 1
+        },
+        "max_tokens": 5
+      },
+      "r5_residue": {
+        "referents_total": 57,
+        "referents_with_residue": 3,
+        "by_category": {
+          "IDENTIFIER": 1,
+          "LOCATION": 1,
+          "QUANTITY": 1
+        },
+        "pairs": {
+          "IDENTIFIER": [
+            [
+              "whb041826",
+              "contractwhb041826"
+            ]
+          ],
+          "LOCATION": [
+            [
+              "grimsby",
+              "grimsby office"
+            ],
+            [
+              "grimsby",
+              "grimsby quay"
+            ]
+          ],
+          "QUANTITY": [
+            [
+              "164",
+              "164 units"
+            ]
+          ]
+        }
+      },
+      "masked_exposure": {
+        "filter": {
+          "n_min": 5,
+          "n_max": 8,
+          "hit_threshold": 1,
+          "salt": "fixed analysis salt",
+          "fp_est": 6.787937672061255e-08,
+          "keying": "r5"
+        },
+        "refused_any": true,
+        "refused_documents": 4,
+        "masked_5gram_hit_share": 0.12613981762917933,
+        "corpus_5grams_distinct": 570,
+        "corpus_5grams_surviving_share": 0.14385964912280702,
+        "documents": [
+          {
+            "doc_id": "15523ec5889b9132",
+            "refused": true,
+            "shingle_hits_5_8": 1,
+            "masked_5grams": 164,
+            "masked_5grams_hit": 25,
+            "placeholders": 33,
+            "unmatched_entities": 0,
+            "surfaces_surviving": 0
+          },
+          {
+            "doc_id": "190ee4eb201fc063",
+            "refused": true,
+            "shingle_hits_5_8": 1,
+            "masked_5grams": 151,
+            "masked_5grams_hit": 25,
+            "placeholders": 23,
+            "unmatched_entities": 0,
+            "surfaces_surviving": 1
+          },
+          {
+            "doc_id": "71d817d2f19770b6",
+            "refused": true,
+            "shingle_hits_5_8": 1,
+            "masked_5grams": 130,
+            "masked_5grams_hit": 2,
+            "placeholders": 28,
+            "unmatched_entities": 0,
+            "surfaces_surviving": 0
+          },
+          {
+            "doc_id": "563a363faf76925d",
+            "refused": true,
+            "shingle_hits_5_8": 1,
+            "masked_5grams": 213,
+            "masked_5grams_hit": 31,
+            "placeholders": 49,
+            "unmatched_entities": 0,
+            "surfaces_surviving": 1
+          }
+        ],
+        "generator_surfaces_surviving": {
+          "distinct": 2,
+          "occurrences": 2,
+          "surfaces": [
+            {
+              "surface": "16 September 2026",
+              "group": "dates",
+              "occurrences": 1,
+              "extractor_miss": false
+            },
+            {
+              "surface": "Tarrant Marine Supplies",
+              "group": "referents",
+              "occurrences": 1,
+              "extractor_miss": false
+            }
+          ],
+          "extractor_misses": [],
+          "extracted_elsewhere": [
+            "16 September 2026",
+            "Tarrant Marine Supplies"
+          ],
+          "labels_group": []
+        }
+      }
+    }
+  ],
+  "predicate_control": {
+    "stratum": "english_prose",
+    "seed": 20260906,
+    "payloads": 100,
+    "per_length": {
+      "1": {
+        "windows": 6431,
+        "echo_share": 0.0,
+        "whole_share": 0.35188928626963145
+      },
+      "2": {
+        "windows": 6331,
+        "echo_share": 0.03395987995577318,
+        "whole_share": 0.03395987995577318
+      },
+      "3": {
+        "windows": 6231,
+        "echo_share": 0.065479056331247,
+        "whole_share": 0.0
+      },
+      "4": {
+        "windows": 6131,
+        "echo_share": 0.09639536780296852,
+        "whole_share": 0.0
+      },
+      "5": {
+        "windows": 6031,
+        "echo_share": 0.12535234621124192,
+        "whole_share": 0.0
+      }
+    },
+    "expected_echo_share": 0.0494109758506193,
+    "expected_whole_share": 0.06863978970239298,
+    "note": "windows of the stratum's text at each predicate length; the expected shares average the per-length shares over the predicates' own lengths"
+  },
+  "g1": {
+    "where_disclosed": {
+      "document_stats": "planner prompt",
+      "slot_counts": "planner prompt and drafter prompts",
+      "relation_multiset": "planner prompt and drafter prompts",
+      "attribute_schema": "planner and drafter prompts (r1 only)",
+      "documents": "payload JSON only"
+    },
+    "corpora": [
+      {
+        "label": "offlex-d:saved",
+        "corpus": "offlex-d",
+        "extraction": "saved",
+        "source": "eval/runs/offlex-d__r5/extractions.json",
+        "arms": {
+          "r5": {
+            "document_stats": "DOCUMENT STATS: 82 cells, 15 blocks, about 4000 characters (to the nearest 1000).",
+            "slot_counts": {
+              "DATE": 13,
+              "IDENTIFIER": 5,
+              "LOCATION": 5,
+              "MONEY": 12,
+              "ORG": 2,
+              "PERSON": 4,
+              "PROJECT": 6,
+              "QUANTITY": 6
+            },
+            "relation_multiset": {
+              "n": 47,
+              "distinct": 47,
+              "sha256": "edf934328f2b108e0dae8c363bc61a56330c4a42d8a279bad9a3708915cdd824"
+            },
+            "attribute_schema": null,
+            "documents": 4
+          },
+          "baseline": {
+            "document_stats": "DOCUMENT STATS: 82 cells, 15 blocks, about 4000 characters (to the nearest 1000).",
+            "slot_counts": {
+              "DATE": 13,
+              "IDENTIFIER": 5,
+              "LOCATION": 5,
+              "MONEY": 32,
+              "ORG": 2,
+              "PERSON": 4,
+              "PROJECT": 6,
+              "QUANTITY": 6
+            },
+            "relation_multiset": {
+              "n": 47,
+              "distinct": 47,
+              "sha256": "edf934328f2b108e0dae8c363bc61a56330c4a42d8a279bad9a3708915cdd824"
+            },
+            "attribute_schema": null,
+            "documents": 4
+          },
+          "r1": {
+            "document_stats": "DOCUMENT STATS: 82 cells, 15 blocks, about 4000 characters (to the nearest 1000).",
+            "slot_counts": {
+              "LOCATION": 5,
+              "ORG": 2,
+              "PERSON": 4,
+              "PROJECT": 6
+            },
+            "relation_multiset": {
+              "n": 47,
+              "distinct": 47,
+              "sha256": "edf934328f2b108e0dae8c363bc61a56330c4a42d8a279bad9a3708915cdd824"
+            },
+            "attribute_schema": "3b8aa1fca935cffc22bb1ded177571c984b7e9e18eca62bb41f9068b0773b7ed",
+            "documents": 4
+          }
+        }
+      },
+      {
+        "label": "smoke-q3:saved",
+        "corpus": "smoke-q3",
+        "extraction": "saved",
+        "source": "eval/runs/smoke-q3__r5/extractions.json",
+        "arms": {
+          "r5": {
+            "document_stats": "DOCUMENT STATS: 60 cells, 15 blocks, about 3000 characters (to the nearest 1000).",
+            "slot_counts": {
+              "DATE": 13,
+              "IDENTIFIER": 5,
+              "LOCATION": 3,
+              "MONEY": 8,
+              "ORG": 2,
+              "PERSON": 3,
+              "PROJECT": 3,
+              "QUANTITY": 7
+            },
+            "relation_multiset": {
+              "n": 45,
+              "distinct": 45,
+              "sha256": "33188b239b940bdda5716224a4ed555621956d8eb926c9fc8a6c1745db58d028"
+            },
+            "attribute_schema": null,
+            "documents": 4
+          },
+          "baseline": {
+            "document_stats": "DOCUMENT STATS: 60 cells, 15 blocks, about 3000 characters (to the nearest 1000).",
+            "slot_counts": {
+              "DATE": 15,
+              "IDENTIFIER": 6,
+              "LOCATION": 3,
+              "MONEY": 19,
+              "ORG": 2,
+              "PERSON": 3,
+              "PROJECT": 3,
+              "QUANTITY": 7
+            },
+            "relation_multiset": {
+              "n": 45,
+              "distinct": 45,
+              "sha256": "33188b239b940bdda5716224a4ed555621956d8eb926c9fc8a6c1745db58d028"
+            },
+            "attribute_schema": null,
+            "documents": 4
+          },
+          "r1": {
+            "document_stats": "DOCUMENT STATS: 60 cells, 15 blocks, about 3000 characters (to the nearest 1000).",
+            "slot_counts": {
+              "LOCATION": 3,
+              "ORG": 2,
+              "PERSON": 3,
+              "PROJECT": 3
+            },
+            "relation_multiset": {
+              "n": 45,
+              "distinct": 45,
+              "sha256": "33188b239b940bdda5716224a4ed555621956d8eb926c9fc8a6c1745db58d028"
+            },
+            "attribute_schema": "3b8aa1fca935cffc22bb1ded177571c984b7e9e18eca62bb41f9068b0773b7ed",
+            "documents": 4
+          }
+        }
+      },
+      {
+        "label": "portfolio-b:saved",
+        "corpus": "portfolio-b",
+        "extraction": "saved",
+        "source": "eval/runs/portfolio-b__r5/extractions.json",
+        "arms": {
+          "r5": {
+            "document_stats": "DOCUMENT STATS: 75 cells, 15 blocks, about 4000 characters (to the nearest 1000).",
+            "slot_counts": {
+              "DATE": 13,
+              "IDENTIFIER": 6,
+              "LOCATION": 5,
+              "MONEY": 12,
+              "ORG": 2,
+              "PERSON": 4,
+              "PROJECT": 5,
+              "QUANTITY": 9
+            },
+            "relation_multiset": {
+              "n": 32,
+              "distinct": 32,
+              "sha256": "dbbf61b1eb6ff42ec45d9d566d31a478136c23d08b5fa0df89269fdc5e65e956"
+            },
+            "attribute_schema": null,
+            "documents": 4
+          },
+          "baseline": {
+            "document_stats": "DOCUMENT STATS: 75 cells, 15 blocks, about 4000 characters (to the nearest 1000).",
+            "slot_counts": {
+              "DATE": 14,
+              "IDENTIFIER": 6,
+              "LOCATION": 5,
+              "MONEY": 28,
+              "ORG": 2,
+              "PERSON": 4,
+              "PROJECT": 5,
+              "QUANTITY": 9
+            },
+            "relation_multiset": {
+              "n": 32,
+              "distinct": 32,
+              "sha256": "dbbf61b1eb6ff42ec45d9d566d31a478136c23d08b5fa0df89269fdc5e65e956"
+            },
+            "attribute_schema": null,
+            "documents": 4
+          },
+          "r1": {
+            "document_stats": "DOCUMENT STATS: 75 cells, 15 blocks, about 4000 characters (to the nearest 1000).",
+            "slot_counts": {
+              "LOCATION": 5,
+              "ORG": 2,
+              "PERSON": 4,
+              "PROJECT": 5
+            },
+            "relation_multiset": {
+              "n": 32,
+              "distinct": 32,
+              "sha256": "dbbf61b1eb6ff42ec45d9d566d31a478136c23d08b5fa0df89269fdc5e65e956"
+            },
+            "attribute_schema": "3b8aa1fca935cffc22bb1ded177571c984b7e9e18eca62bb41f9068b0773b7ed",
+            "documents": 4
+          }
+        }
+      },
+      {
+        "label": "prose-c:saved",
+        "corpus": "prose-c",
+        "extraction": "saved",
+        "source": "eval/runs/prose-c__r5/extractions.json",
+        "arms": {
+          "r5": {
+            "document_stats": "DOCUMENT STATS: 20 cells, 15 blocks, about 3000 characters (to the nearest 1000).",
+            "slot_counts": {
+              "DATE": 8,
+              "IDENTIFIER": 3,
+              "LOCATION": 3,
+              "MONEY": 10,
+              "ORG": 3,
+              "PERSON": 3,
+              "PROJECT": 4,
+              "QUANTITY": 4
+            },
+            "relation_multiset": {
+              "n": 22,
+              "distinct": 22,
+              "sha256": "3284ddcd25121d206e7c088b64568be9a44f64a3d99f2aa138643d141fc55a26"
+            },
+            "attribute_schema": null,
+            "documents": 4
+          },
+          "baseline": {
+            "document_stats": "DOCUMENT STATS: 20 cells, 15 blocks, about 3000 characters (to the nearest 1000).",
+            "slot_counts": {
+              "DATE": 8,
+              "IDENTIFIER": 3,
+              "LOCATION": 3,
+              "MONEY": 11,
+              "ORG": 3,
+              "PERSON": 3,
+              "PROJECT": 4,
+              "QUANTITY": 4
+            },
+            "relation_multiset": {
+              "n": 22,
+              "distinct": 22,
+              "sha256": "3284ddcd25121d206e7c088b64568be9a44f64a3d99f2aa138643d141fc55a26"
+            },
+            "attribute_schema": null,
+            "documents": 4
+          },
+          "r1": {
+            "document_stats": "DOCUMENT STATS: 20 cells, 15 blocks, about 3000 characters (to the nearest 1000).",
+            "slot_counts": {
+              "LOCATION": 3,
+              "ORG": 3,
+              "PERSON": 3,
+              "PROJECT": 4
+            },
+            "relation_multiset": {
+              "n": 22,
+              "distinct": 22,
+              "sha256": "3284ddcd25121d206e7c088b64568be9a44f64a3d99f2aa138643d141fc55a26"
+            },
+            "attribute_schema": "3b8aa1fca935cffc22bb1ded177571c984b7e9e18eca62bb41f9068b0773b7ed",
+            "documents": 4
+          }
+        }
+      }
+    ],
+    "comparisons": [
+      {
+        "name": "all corpora under their saved extractions",
+        "extraction": "saved",
+        "stub_corpora": [],
+        "corpora": [
+          "offlex-d:saved",
+          "smoke-q3:saved",
+          "portfolio-b:saved",
+          "prose-c:saved"
+        ],
+        "by_arm": {
+          "r5": {
+            "differs": [
+              "document_stats",
+              "slot_counts",
+              "relation_multiset"
+            ],
+            "same": [
+              "attribute_schema",
+              "documents"
+            ]
+          },
+          "baseline": {
+            "differs": [
+              "document_stats",
+              "slot_counts",
+              "relation_multiset"
+            ],
+            "same": [
+              "attribute_schema",
+              "documents"
+            ]
+          },
+          "r1": {
+            "differs": [
+              "document_stats",
+              "slot_counts",
+              "relation_multiset"
+            ],
+            "same": [
+              "attribute_schema",
+              "documents"
+            ]
+          }
+        }
+      }
+    ],
+    "stub_corpora": [],
+    "note": "A row marked 'saved' is built from an extraction file read through load_extractions (its 'source'), as the pipeline builds the payload from it. A row marked 'stub' uses a deterministic stub extraction built from the corpus's surfaces.json, not an extractor run: its slot counts are the generator's and its relation multiset is empty. Stub rows exist only under --g1-stub; a comparison that includes one names it in 'stub_corpora'."
+  }
+}

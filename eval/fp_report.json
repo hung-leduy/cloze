@@ -1,0 +1,377 @@
+{
+  "instrument": "scripts/measure_false_positives.py",
+  "git": {
+    "commit": "0d5e86b47447bdabe83bba2d2f83df1760d2dddb",
+    "dirty": false
+  },
+  "seed": 20260906,
+  "n_per_stratum": 100,
+  "entropy_threshold": 4.85,
+  "corpus": {
+    "n_payloads": 500,
+    "strata": {
+      "english_prose": 100,
+      "abstract_json": 100,
+      "abstract_json_compact": 100,
+      "code_snippet": 100,
+      "vietnamese_prose": 100
+    },
+    "n_tokens": 41352,
+    "total_5grams": 39352,
+    "distinct_5grams": 21824,
+    "sha256": "3b0c7952338d8596cfcbb14aebf6e20217d50df33796ee215fd1a5c518ea71e4"
+  },
+  "private_doc": {
+    "n_words": 600,
+    "n_sentences": 33,
+    "rejected_fills": 0,
+    "n_shingles_indexed": 2378
+  },
+  "disjointness": {
+    "n": 5,
+    "shared": 0
+  },
+  "shingle_filter": {
+    "n_min": 5,
+    "n_max": 8,
+    "hit_threshold": 1,
+    "target_fp_rate": 1e-07,
+    "n_added": 2378,
+    "m_bits": 79777,
+    "k": 23,
+    "bits_set": 39212,
+    "estimated_fp_rate_per_shingle": 8.04358665303128e-08,
+    "mean_shingles_per_payload": 308.816,
+    "implied_fp_rate_per_payload": 2.483951826006847e-05,
+    "expected_refusals_on_corpus": 0.012419759130034236
+  },
+  "linters": {
+    "entropy": {
+      "name": "entropy",
+      "n": 500,
+      "refusals": 103,
+      "rate": 0.206,
+      "wilson95": [
+        0.17285664103036474,
+        0.24362647123121323
+      ],
+      "by_stratum": {
+        "english_prose": {
+          "n": 100,
+          "refusals": 0,
+          "rate": 0.0,
+          "wilson95": [
+            0.0,
+            0.03699349876899627
+          ]
+        },
+        "abstract_json": {
+          "n": 100,
+          "refusals": 0,
+          "rate": 0.0,
+          "wilson95": [
+            0.0,
+            0.03699349876899627
+          ]
+        },
+        "abstract_json_compact": {
+          "n": 100,
+          "refusals": 100,
+          "rate": 1.0,
+          "wilson95": [
+            0.9630065012310038,
+            1.0
+          ]
+        },
+        "code_snippet": {
+          "n": 100,
+          "refusals": 3,
+          "rate": 0.03,
+          "wilson95": [
+            0.010254523944281516,
+            0.08451936489857499
+          ]
+        },
+        "vietnamese_prose": {
+          "n": 100,
+          "refusals": 0,
+          "rate": 0.0,
+          "wilson95": [
+            0.0,
+            0.03699349876899627
+          ]
+        }
+      },
+      "rules_fired": {
+        "COVERT_CHANNEL_DETECTED": 103
+      }
+    },
+    "shingle": {
+      "name": "shingle",
+      "n": 500,
+      "refusals": 0,
+      "rate": 0.0,
+      "wilson95": [
+        0.0,
+        0.007624340580914839
+      ],
+      "by_stratum": {
+        "english_prose": {
+          "n": 100,
+          "refusals": 0,
+          "rate": 0.0,
+          "wilson95": [
+            0.0,
+            0.03699349876899627
+          ]
+        },
+        "abstract_json": {
+          "n": 100,
+          "refusals": 0,
+          "rate": 0.0,
+          "wilson95": [
+            0.0,
+            0.03699349876899627
+          ]
+        },
+        "abstract_json_compact": {
+          "n": 100,
+          "refusals": 0,
+          "rate": 0.0,
+          "wilson95": [
+            0.0,
+            0.03699349876899627
+          ]
+        },
+        "code_snippet": {
+          "n": 100,
+          "refusals": 0,
+          "rate": 0.0,
+          "wilson95": [
+            0.0,
+            0.03699349876899627
+          ]
+        },
+        "vietnamese_prose": {
+          "n": 100,
+          "refusals": 0,
+          "rate": 0.0,
+          "wilson95": [
+            0.0,
+            0.03699349876899627
+          ]
+        }
+      },
+      "rules_fired": {}
+    },
+    "regex": {
+      "name": "regex",
+      "n": 500,
+      "refusals": 19,
+      "rate": 0.038,
+      "wilson95": [
+        0.024460117971724295,
+        0.05858477272504103
+      ],
+      "by_stratum": {
+        "english_prose": {
+          "n": 100,
+          "refusals": 0,
+          "rate": 0.0,
+          "wilson95": [
+            0.0,
+            0.03699349876899627
+          ]
+        },
+        "abstract_json": {
+          "n": 100,
+          "refusals": 0,
+          "rate": 0.0,
+          "wilson95": [
+            0.0,
+            0.03699349876899627
+          ]
+        },
+        "abstract_json_compact": {
+          "n": 100,
+          "refusals": 0,
+          "rate": 0.0,
+          "wilson95": [
+            0.0,
+            0.03699349876899627
+          ]
+        },
+        "code_snippet": {
+          "n": 100,
+          "refusals": 19,
+          "rate": 0.19,
+          "wilson95": [
+            0.12514751467908536,
+            0.27778845455769235
+          ]
+        },
+        "vietnamese_prose": {
+          "n": 100,
+          "refusals": 0,
+          "rate": 0.0,
+          "wilson95": [
+            0.0,
+            0.03699349876899627
+          ]
+        }
+      },
+      "rules_fired": {
+        "SECRET_PATTERN": 19
+      }
+    }
+  },
+  "deployed_chain": {
+    "config": {
+      "entry": "gateway/main.py: _decoded_text -> _inspect_text(advance_carry=True)",
+      "entropy_threshold": 4.85,
+      "strict_fail_closed": true,
+      "extra_screens": [
+        "RegexScreen"
+      ],
+      "canaries_registered": 5,
+      "shingle": {
+        "n_min": 5,
+        "n_max": 8,
+        "hit_threshold": 1,
+        "n_added": 2378
+      },
+      "carry_max_paths": 64,
+      "envelope": {
+        "model": "claude-sonnet-5",
+        "max_tokens": 8192,
+        "fields": [
+          "model",
+          "max_tokens",
+          "messages",
+          "stream"
+        ],
+        "serialisation": "ensure_ascii=False, separators=(',', ':')"
+      }
+    },
+    "modes": {
+      "reset_per_payload": {
+        "mode": "reset_per_payload",
+        "n": 500,
+        "refusals": 122,
+        "rate": 0.244,
+        "wilson95": [
+          0.20839885519603008,
+          0.28350480718139837
+        ],
+        "by_stratum": {
+          "english_prose": {
+            "n": 100,
+            "refusals": 0,
+            "rate": 0.0,
+            "wilson95": [
+              0.0,
+              0.03699349876899627
+            ]
+          },
+          "abstract_json": {
+            "n": 100,
+            "refusals": 0,
+            "rate": 0.0,
+            "wilson95": [
+              0.0,
+              0.03699349876899627
+            ]
+          },
+          "abstract_json_compact": {
+            "n": 100,
+            "refusals": 100,
+            "rate": 1.0,
+            "wilson95": [
+              0.9630065012310038,
+              1.0
+            ]
+          },
+          "code_snippet": {
+            "n": 100,
+            "refusals": 22,
+            "rate": 0.22,
+            "wilson95": [
+              0.15001282338296418,
+              0.3107035359276738
+            ]
+          },
+          "vietnamese_prose": {
+            "n": 100,
+            "refusals": 0,
+            "rate": 0.0,
+            "wilson95": [
+              0.0,
+              0.03699349876899627
+            ]
+          }
+        },
+        "rules_fired": {
+          "COVERT_CHANNEL_DETECTED": 103,
+          "SECRET_PATTERN": 19
+        }
+      },
+      "session_per_stratum": {
+        "mode": "session_per_stratum",
+        "n": 500,
+        "refusals": 122,
+        "rate": 0.244,
+        "wilson95": null,
+        "by_stratum": {
+          "english_prose": {
+            "n": 100,
+            "refusals": 0,
+            "rate": 0.0,
+            "wilson95": null
+          },
+          "abstract_json": {
+            "n": 100,
+            "refusals": 0,
+            "rate": 0.0,
+            "wilson95": null
+          },
+          "abstract_json_compact": {
+            "n": 100,
+            "refusals": 100,
+            "rate": 1.0,
+            "wilson95": null
+          },
+          "code_snippet": {
+            "n": 100,
+            "refusals": 22,
+            "rate": 0.22,
+            "wilson95": null
+          },
+          "vietnamese_prose": {
+            "n": 100,
+            "refusals": 0,
+            "rate": 0.0,
+            "wilson95": null
+          }
+        },
+        "rules_fired": {
+          "COVERT_CHANNEL_DETECTED": 103,
+          "SECRET_PATTERN": 19
+        },
+        "note": "carry accumulated over each stratum as one session; payloads are not independent, so no binomial interval is reported"
+      }
+    },
+    "positive_control": {
+      "n_sentences": 33,
+      "caught": 33,
+      "catch_rate": 1.0,
+      "rules_fired": {
+        "RAW_CONTEXT_CONTAINMENT": 33
+      }
+    }
+  },
+  "positive_control": {
+    "n_sentences": 33,
+    "caught": 33,
+    "catch_rate": 1.0
+  }
+}

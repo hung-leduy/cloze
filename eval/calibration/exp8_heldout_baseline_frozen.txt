@@ -1,0 +1,123 @@
+key     eval/corpora/portfolio-b/smoke_fact_key.json  sha256 998d6ee0e07dbb54
+
+report  eval/calibration/heldout/portfolio-b__baseline.report.md
+labels  eval/calibration/heldout/portfolio-b__baseline.report.csv  (34 occurrences)
+
+cap = 80
+  overall verdict agreement    15/34  (44%)
+  referent axis agreement      1/34  (3%)
+  attribute axis, gold-valued occurrences (headline)
+    agreement                  26/34  (76%)
+    Cohen kappa                0.541
+  attribute axis, all rows (includes 0 outside the key, where agreement is trivial)
+    agreement                  26/34  (76%)
+    Cohen kappa                0.541
+
+--- metric output ---
+  counts                       {'CORRECT': 1, 'MISBOUND': 18, 'PARTIAL': 14, 'UNBOUND': 1, 'AMBIGUOUS': 0, 'FABRICATED': 0}
+  denominators                 {'full': 1, 'attribute': 33, 'referent': 1, 'gold_shaped': 34, 'scanned': 34}
+  rba                          1.0
+  attribute_accuracy           0.45454545454545453
+  referent_accuracy            1.0
+  resolution_rate              0.029411764705882353
+  misbinding_rate              0.5294117647058824
+  unbound_rate                 0.029411764705882353
+  numerals_outside_key         0.0
+  coverage                     0.7777777777777778
+  coverage_stated              1.0
+  coverage_correct             0.05555555555555555
+  faithfulness_f1              0.8750000000000001
+  faithfulness_f1_attribute    0.5737704918032788
+
+--- hand labelling, for comparison ---
+  counts                       {'AMBIGUOUS': 13, 'MISBOUND': 20, 'CORRECT': 1}
+  attribute_accuracy           0.471  (n=34)
+  referent_accuracy            0.333  (n=3)
+
+--- disagreements ---
+[ 1] '72500,'  metric=PARTIAL    hand=AMBIGUOUS
+     axes metric ref=UNRESOLVED/None attr=MATCH/AUTHORISED (none/sentence)
+     axes hand   ref=AMBIGUOUS attr=MATCH
+[ 5] '380000'  metric=PARTIAL    hand=AMBIGUOUS
+     axes metric ref=UNRESOLVED/None attr=MATCH/AUTHORISED (none/clause)
+     axes hand   ref=AMBIGUOUS attr=MATCH
+[ 7] '210,000.00'  metric=PARTIAL    hand=AMBIGUOUS
+     axes metric ref=UNRESOLVED/None attr=MATCH/AUTHORISED (none/sentence)
+     axes hand   ref=AMBIGUOUS attr=MATCH
+[ 8] '150,000.00'  metric=PARTIAL    hand=AMBIGUOUS
+     axes metric ref=UNRESOLVED/None attr=MATCH/AUTHORISED (none/sentence)
+     axes hand   ref=AMBIGUOUS attr=MATCH
+[ 9] '80944.35'  metric=UNBOUND    hand=MISBOUND
+     axes metric ref=UNRESOLVED/None attr=UNRESOLVED/None (none/none)
+     axes hand   ref=AMBIGUOUS attr=MISMATCH
+[10] '296,418.20'  metric=PARTIAL    hand=AMBIGUOUS
+     axes metric ref=UNRESOLVED/None attr=MATCH/SPENT (none/clause)
+     axes hand   ref=AMBIGUOUS attr=MATCH
+[13] '87,689.60'  metric=PARTIAL    hand=MISBOUND
+     axes metric ref=UNRESOLVED/None attr=MATCH/UNSPENT (none/sentence)
+     axes hand   ref=AMBIGUOUS attr=MISMATCH
+[18] '210000,'  metric=MISBOUND   hand=AMBIGUOUS
+     axes metric ref=UNRESOLVED/None attr=MISMATCH/SPENT (none/sentence)
+     axes hand   ref=AMBIGUOUS attr=MATCH
+[19] '62,310.40'  metric=PARTIAL    hand=MISBOUND
+     axes metric ref=UNRESOLVED/None attr=MATCH/SPENT (none/sentence)
+     axes hand   ref=AMBIGUOUS attr=MISMATCH
+[21] '72,500.00'  metric=PARTIAL    hand=AMBIGUOUS
+     axes metric ref=UNRESOLVED/None attr=MATCH/AUTHORISED (none/sentence)
+     axes hand   ref=AMBIGUOUS attr=MATCH
+[22] '380,000'  metric=PARTIAL    hand=AMBIGUOUS
+     axes metric ref=UNRESOLVED/None attr=MATCH/AUTHORISED (none/clause)
+     axes hand   ref=AMBIGUOUS attr=MATCH
+[24] '296418.2'  metric=PARTIAL    hand=AMBIGUOUS
+     axes metric ref=UNRESOLVED/None attr=MATCH/SPENT (none/sentence)
+     axes hand   ref=AMBIGUOUS attr=MATCH
+[27] '80,944.35'  metric=PARTIAL    hand=MISBOUND
+     axes metric ref=UNRESOLVED/None attr=MATCH/SPENT (none/sentence)
+     axes hand   ref=AMBIGUOUS attr=MISMATCH
+[28] '150,000'  metric=PARTIAL    hand=AMBIGUOUS
+     axes metric ref=UNRESOLVED/None attr=MATCH/AUTHORISED (none/clause)
+     axes hand   ref=AMBIGUOUS attr=MATCH
+[29] '8,444.35'  metric=MISBOUND   hand=AMBIGUOUS
+     axes metric ref=UNRESOLVED/None attr=MISMATCH/AUTHORISED (none/clause)
+     axes hand   ref=AMBIGUOUS attr=MATCH
+[30] 'nine percent'  metric=PARTIAL    hand=MISBOUND
+     axes metric ref=UNRESOLVED/None attr=MATCH/REVENUE_FALL_PCT (none/clause)
+     axes hand   ref=MISMATCH attr=MATCH
+[31] 'nine percent'  metric=PARTIAL    hand=MISBOUND
+     axes metric ref=UNRESOLVED/None attr=MATCH/REVENUE_FALL_PCT (none/sentence)
+     axes hand   ref=MISMATCH attr=MATCH
+[33] '87,689.60'  metric=MISBOUND   hand=AMBIGUOUS
+     axes metric ref=UNRESOLVED/None attr=MISMATCH/AUTHORISED (none/clause)
+     axes hand   ref=AMBIGUOUS attr=MATCH
+[34] '215,'  metric=MISBOUND   hand=AMBIGUOUS
+     axes metric ref=UNRESOLVED/None attr=MISMATCH/UNSPENT (none/sentence)
+     axes hand   ref=AMBIGUOUS attr=MATCH
+
+--- attribute-axis disagreements ---
+[9] '80944.35'  metric=UNRESOLVED/None (none)  hand=MISMATCH (labelled AUTHORISED)
+     Across the initiatives examined, allocations are recorded individually: amounts of 72500, 83,581.80 USD, 62310.4, 203,118.90 USD, and 380000 represent the alloc
+[13] '87,689.60'  metric=MATCH/UNSPENT (sentence)  hand=MISMATCH (labelled SPENT)
+     Corresponding expenditure to date is reflected in 296,418.20, 8,444.35 USD, 380,000.00 USD, and 87,689.60 USD, with remaining balances recorded as 296,418.20 US
+[18] '210000,'  metric=MISMATCH/SPENT (sentence)  hand=MATCH (labelled AUTHORISED)
+     A second group of initiatives shows a parallel structure of allocation, spend, and balance, captured in 210000, 62,310.40 USD, 80,944.35 USD, 72,500.00 USD, and
+[19] '62,310.40'  metric=MATCH/SPENT (sentence)  hand=MISMATCH (labelled AUTHORISED)
+     A second group of initiatives shows a parallel structure of allocation, spend, and balance, captured in 210000, 62,310.40 USD, 80,944.35 USD, 72,500.00 USD, and
+[27] '80,944.35'  metric=MATCH/SPENT (sentence)  hand=MISMATCH (labelled UNSPENT)
+     A second group of initiatives shows a parallel structure of allocation, spend, and balance, captured in 210000, 62,310.40 USD, 80,944.35 USD, 72,500.00 USD, and
+[29] '8,444.35'  metric=MISMATCH/AUTHORISED (clause)  hand=MATCH (labelled OVERRUN)
+     Multiple initiatives experienced revenue falls, with corresponding quantities recorded at Expenditure exceeds allocation by 8,444.35 USD, Ridership revenue fell
+[33] '87,689.60'  metric=MISMATCH/AUTHORISED (clause)  hand=MATCH (labelled UNSPENT)
+     Further quantities, captured at Procurement stalled; 87,689.60 USD of the allocation is undrawn, 215, and High, reinforce the breadth of the downward trend acro
+[34] '215,'  metric=MISMATCH/UNSPENT (sentence)  hand=MATCH (labelled UNITS_SHORT)
+     Further quantities, captured at Procurement stalled; 87,689.60 USD of the allocation is undrawn, 215, and High, reinforce the breadth of the downward trend acro
+
+--- sensitivity to MAX_BIND_DISTANCE ---
+     cap    overall  attr gold   attr all   attr acc   n(attr)
+      20     2/34       6/34       6/34        0.600        10
+      40    10/34      17/34      17/34        0.435        23
+      60    14/34      23/34      23/34        0.433        30
+      80    15/34      26/34      26/34        0.455        33
+     100    16/34      27/34      27/34        0.441        34
+     120    16/34      27/34      27/34        0.441        34
+     160    16/34      27/34      27/34        0.441        34
+   10000    16/34      27/34      27/34        0.441        34

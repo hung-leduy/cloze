@@ -1,0 +1,3884 @@
+{
+  "instrument": "scripts/observation_table.py",
+  "roots": [
+    "eval/runs"
+  ],
+  "attempt_roots": [
+    "eval/attempts"
+  ],
+  "task": null,
+  "summary": {
+    "runs": 36,
+    "frozen_runs": 36,
+    "archived_attempts": 0,
+    "egress_attempts": 313,
+    "refused_attempts": 0,
+    "runs_with_any_refusal": 0,
+    "refusals": {
+      "monitor": {
+        "count": 0,
+        "reasons": {}
+      },
+      "reintegrator": {
+        "count": 0,
+        "reasons": {}
+      },
+      "leak_gate_aborts": {
+        "count": 0,
+        "reasons": {}
+      },
+      "transport_failures": {
+        "count": 0,
+        "reasons": {},
+        "note": "CloudError/GatewayError on a draft; not a refusal"
+      }
+    },
+    "leak_gate_drops": {
+      "relations": 9,
+      "runs_with_drops": 9,
+      "runs_recorded": 36,
+      "note": "relations the W2 gate dropped at extraction and never sent; a count from manifest.extraction, None (not recorded) before 2026-09-27"
+    },
+    "audit_logs_read": 0,
+    "discrepancies": {},
+    "prices_usd_per_token": {
+      "input": 2e-06,
+      "output": 1e-05
+    },
+    "by_arm": {
+      "baseline": {
+        "runs": [
+          "offlex-d__baseline",
+          "offlex-d__baseline__rep2",
+          "offlex-d__baseline__rep3",
+          "portfolio-b__baseline",
+          "portfolio-b__baseline__rep2",
+          "portfolio-b__baseline__rep3",
+          "prose-c__baseline",
+          "prose-c__baseline__rep2",
+          "prose-c__baseline__rep3",
+          "smoke-q3__baseline",
+          "smoke-q3__baseline__rep2",
+          "smoke-q3__baseline__rep3"
+        ],
+        "egress_attempts": 101,
+        "request_bytes": {
+          "per_run": [
+            42968,
+            38776,
+            43169,
+            35633,
+            35232,
+            34902,
+            19208,
+            22632,
+            24920,
+            39299,
+            39370,
+            39378
+          ],
+          "min": 19208,
+          "max": 43169,
+          "mean": 34623.916666666664
+        },
+        "response_bytes": {
+          "per_run": [
+            23327,
+            20675,
+            23179,
+            21392,
+            18339,
+            16145,
+            10674,
+            12072,
+            12008,
+            21050,
+            17431,
+            18600
+          ],
+          "min": 10674,
+          "max": 23327,
+          "mean": 17907.666666666668
+        },
+        "slots_advertised_total": {
+          "per_run": [
+            73,
+            73,
+            73,
+            73,
+            73,
+            73,
+            39,
+            39,
+            39,
+            58,
+            58,
+            58
+          ],
+          "min": 39,
+          "max": 73,
+          "mean": 60.75
+        },
+        "slots_advertised_by_category": {
+          "DATE": {
+            "per_run": [
+              13,
+              13,
+              13,
+              14,
+              14,
+              14,
+              8,
+              8,
+              8,
+              15,
+              15,
+              15
+            ],
+            "min": 8,
+            "max": 15,
+            "mean": 12.5
+          },
+          "IDENTIFIER": {
+            "per_run": [
+              5,
+              5,
+              5,
+              6,
+              6,
+              6,
+              3,
+              3,
+              3,
+              6,
+              6,
+              6
+            ],
+            "min": 3,
+            "max": 6,
+            "mean": 5.0
+          },
+          "LOCATION": {
+            "per_run": [
+              5,
+              5,
+              5,
+              5,
+              5,
+              5,
+              3,
+              3,
+              3,
+              3,
+              3,
+              3
+            ],
+            "min": 3,
+            "max": 5,
+            "mean": 4.0
+          },
+          "MONEY": {
+            "per_run": [
+              32,
+              32,
+              32,
+              28,
+              28,
+              28,
+              11,
+              11,
+              11,
+              19,
+              19,
+              19
+            ],
+            "min": 11,
+            "max": 32,
+            "mean": 22.5
+          },
+          "ORG": {
+            "per_run": [
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              3,
+              3,
+              3,
+              2,
+              2,
+              2
+            ],
+            "min": 2,
+            "max": 3,
+            "mean": 2.25
+          },
+          "PERSON": {
+            "per_run": [
+              4,
+              4,
+              4,
+              4,
+              4,
+              4,
+              3,
+              3,
+              3,
+              3,
+              3,
+              3
+            ],
+            "min": 3,
+            "max": 4,
+            "mean": 3.5
+          },
+          "PROJECT": {
+            "per_run": [
+              6,
+              6,
+              6,
+              5,
+              5,
+              5,
+              4,
+              4,
+              4,
+              3,
+              3,
+              3
+            ],
+            "min": 3,
+            "max": 6,
+            "mean": 4.5
+          },
+          "QUANTITY": {
+            "per_run": [
+              6,
+              6,
+              6,
+              9,
+              9,
+              9,
+              4,
+              4,
+              4,
+              7,
+              7,
+              7
+            ],
+            "min": 4,
+            "max": 9,
+            "mean": 6.5
+          }
+        },
+        "slots_on_wire": {
+          "per_run": [
+            73,
+            73,
+            73,
+            73,
+            73,
+            73,
+            39,
+            39,
+            39,
+            58,
+            58,
+            58
+          ],
+          "min": 39,
+          "max": 73,
+          "mean": 60.75
+        },
+        "system_slots": {
+          "per_run": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "min": 0,
+          "max": 0,
+          "mean": 0.0
+        },
+        "relations": {
+          "per_run": [
+            47,
+            47,
+            47,
+            32,
+            32,
+            32,
+            22,
+            22,
+            22,
+            45,
+            45,
+            45
+          ],
+          "min": 22,
+          "max": 47,
+          "mean": 36.5
+        },
+        "fact_refs_returned": {
+          "per_run": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "min": 0,
+          "max": 0,
+          "mean": 0.0
+        },
+        "sentences_pruned": {
+          "per_run": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "min": 0,
+          "max": 0,
+          "mean": 0.0
+        },
+        "tokens": {
+          "plan": {
+            "input_tokens": {
+              "per_run": [
+                4686,
+                4679,
+                4670,
+                4217,
+                4222,
+                4236,
+                2862,
+                2857,
+                2865,
+                4053,
+                4051,
+                4050
+              ],
+              "min": 2857,
+              "max": 4686,
+              "mean": 3954.0
+            },
+            "output_tokens": {
+              "per_run": [
+                1776,
+                1588,
+                1756,
+                1671,
+                1598,
+                1894,
+                1115,
+                1059,
+                965,
+                1728,
+                1353,
+                1682
+              ],
+              "min": 965,
+              "max": 1894,
+              "mean": 1515.4166666666667
+            }
+          },
+          "draft": {
+            "input_tokens": {
+              "per_run": [
+                18698,
+                16654,
+                18791,
+                14725,
+                14719,
+                14445,
+                7384,
+                9000,
+                9864,
+                16724,
+                16755,
+                16737
+              ],
+              "min": 7384,
+              "max": 18791,
+              "mean": 14541.333333333334
+            },
+            "output_tokens": {
+              "per_run": [
+                6927,
+                6375,
+                6767,
+                6363,
+                5748,
+                4634,
+                3123,
+                3556,
+                3345,
+                6111,
+                5216,
+                5352
+              ],
+              "min": 3123,
+              "max": 6927,
+              "mean": 5293.083333333333
+            }
+          },
+          "adversary": {
+            "input_tokens": {
+              "per_run": [
+                31873,
+                29090,
+                31830,
+                26756,
+                26114,
+                25000,
+                14159,
+                16201,
+                16785,
+                28427,
+                27176,
+                27537
+              ],
+              "min": 14159,
+              "max": 31873,
+              "mean": 25079.0
+            },
+            "output_tokens": {
+              "per_run": [
+                1605,
+                5012,
+                7743,
+                3302,
+                1507,
+                5076,
+                1347,
+                2572,
+                3383,
+                2931,
+                3666,
+                1851
+              ],
+              "min": 1347,
+              "max": 7743,
+              "mean": 3332.9166666666665
+            }
+          }
+        },
+        "adversary_tokens_recorded": 12,
+        "usd_total": {
+          "per_run": [
+            0.41267159999999997,
+            0.4322226,
+            0.46629180000000003,
+            0.4061715,
+            0.3648415,
+            0.3840441,
+            0.2443787,
+            0.256784,
+            0.2813523,
+            0.380919,
+            0.372788,
+            0.3584452
+          ],
+          "mean": 0.3634091916666667
+        },
+        "cost_complete_runs": 12
+      },
+      "r1": {
+        "runs": [
+          "offlex-d__r1",
+          "offlex-d__r1__rep2",
+          "offlex-d__r1__rep3",
+          "portfolio-b__r1",
+          "portfolio-b__r1__rep2",
+          "portfolio-b__r1__rep3",
+          "prose-c__r1",
+          "prose-c__r1__rep2",
+          "prose-c__r1__rep3",
+          "smoke-q3__r1",
+          "smoke-q3__r1__rep2",
+          "smoke-q3__r1__rep3"
+        ],
+        "egress_attempts": 108,
+        "request_bytes": {
+          "per_run": [
+            51170,
+            50920,
+            52231,
+            44306,
+            44157,
+            42979,
+            39659,
+            39363,
+            38994,
+            48986,
+            48109,
+            48211
+          ],
+          "min": 38994,
+          "max": 52231,
+          "mean": 45757.083333333336
+        },
+        "response_bytes": {
+          "per_run": [
+            21036,
+            24361,
+            23802,
+            20132,
+            19306,
+            19993,
+            17596,
+            19502,
+            15726,
+            18920,
+            17651,
+            15744
+          ],
+          "min": 15726,
+          "max": 24361,
+          "mean": 19480.75
+        },
+        "slots_advertised_total": {
+          "per_run": [
+            17,
+            17,
+            17,
+            16,
+            16,
+            16,
+            13,
+            13,
+            13,
+            11,
+            11,
+            11
+          ],
+          "min": 11,
+          "max": 17,
+          "mean": 14.25
+        },
+        "slots_advertised_by_category": {
+          "LOCATION": {
+            "per_run": [
+              5,
+              5,
+              5,
+              5,
+              5,
+              5,
+              3,
+              3,
+              3,
+              3,
+              3,
+              3
+            ],
+            "min": 3,
+            "max": 5,
+            "mean": 4.0
+          },
+          "ORG": {
+            "per_run": [
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              3,
+              3,
+              3,
+              2,
+              2,
+              2
+            ],
+            "min": 2,
+            "max": 3,
+            "mean": 2.25
+          },
+          "PERSON": {
+            "per_run": [
+              4,
+              4,
+              4,
+              4,
+              4,
+              4,
+              3,
+              3,
+              3,
+              3,
+              3,
+              3
+            ],
+            "min": 3,
+            "max": 4,
+            "mean": 3.5
+          },
+          "PROJECT": {
+            "per_run": [
+              6,
+              6,
+              6,
+              5,
+              5,
+              5,
+              4,
+              4,
+              4,
+              3,
+              3,
+              3
+            ],
+            "min": 3,
+            "max": 6,
+            "mean": 4.5
+          }
+        },
+        "slots_on_wire": {
+          "per_run": [
+            17,
+            17,
+            17,
+            16,
+            16,
+            16,
+            13,
+            13,
+            13,
+            11,
+            11,
+            11
+          ],
+          "min": 11,
+          "max": 17,
+          "mean": 14.25
+        },
+        "system_slots": {
+          "per_run": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "min": 0,
+          "max": 0,
+          "mean": 0.0
+        },
+        "relations": {
+          "per_run": [
+            47,
+            47,
+            47,
+            32,
+            32,
+            32,
+            22,
+            22,
+            22,
+            45,
+            45,
+            45
+          ],
+          "min": 22,
+          "max": 47,
+          "mean": 36.5
+        },
+        "fact_refs_returned": {
+          "per_run": [
+            78,
+            87,
+            107,
+            77,
+            85,
+            55,
+            64,
+            70,
+            51,
+            59,
+            60,
+            65
+          ],
+          "min": 51,
+          "max": 107,
+          "mean": 71.5
+        },
+        "sentences_pruned": {
+          "per_run": [
+            22,
+            20,
+            16,
+            13,
+            15,
+            6,
+            29,
+            37,
+            20,
+            8,
+            11,
+            10
+          ],
+          "min": 6,
+          "max": 37,
+          "mean": 17.25
+        },
+        "tokens": {
+          "plan": {
+            "input_tokens": {
+              "per_run": [
+                3056,
+                3044,
+                3044,
+                2526,
+                2541,
+                2522,
+                2183,
+                2185,
+                2187,
+                2687,
+                2685,
+                2686
+              ],
+              "min": 2183,
+              "max": 3056,
+              "mean": 2612.1666666666665
+            },
+            "output_tokens": {
+              "per_run": [
+                1314,
+                1241,
+                1323,
+                1133,
+                1263,
+                1369,
+                1370,
+                1203,
+                1238,
+                1661,
+                1606,
+                1134
+              ],
+              "min": 1133,
+              "max": 1661,
+              "mean": 1321.25
+            }
+          },
+          "draft": {
+            "input_tokens": {
+              "per_run": [
+                22371,
+                22092,
+                22951,
+                18826,
+                18813,
+                17850,
+                16679,
+                16338,
+                16101,
+                21197,
+                20765,
+                20805
+              ],
+              "min": 16101,
+              "max": 22951,
+              "mean": 19565.666666666668
+            },
+            "output_tokens": {
+              "per_run": [
+                7155,
+                8073,
+                8543,
+                6940,
+                7048,
+                6338,
+                5857,
+                6570,
+                5028,
+                6393,
+                5875,
+                5494
+              ],
+              "min": 5028,
+              "max": 8543,
+              "mean": 6609.5
+            }
+          },
+          "adversary": {
+            "input_tokens": {
+              "per_run": [
+                33624,
+                34213,
+                35666,
+                29198,
+                29452,
+                27840,
+                25889,
+                26074,
+                24345,
+                31684,
+                30693,
+                29882
+              ],
+              "min": 24345,
+              "max": 35666,
+              "mean": 29880.0
+            },
+            "output_tokens": {
+              "per_run": [
+                4138,
+                4614,
+                2236,
+                2023,
+                4295,
+                4587,
+                2203,
+                4113,
+                5290,
+                3337,
+                5156,
+                1634
+              ],
+              "min": 1634,
+              "max": 5290,
+              "mean": 3635.5
+            }
+          }
+        },
+        "adversary_tokens_recorded": 12,
+        "usd_total": {
+          "per_run": [
+            0.4266024,
+            0.42414450000000004,
+            0.4155415,
+            0.374753,
+            0.3992215,
+            0.390036,
+            0.3098645,
+            0.337575,
+            0.3299165,
+            0.3905323,
+            0.38372,
+            0.3384785
+          ],
+          "mean": 0.37669880833333336
+        },
+        "cost_complete_runs": 12
+      },
+      "r5": {
+        "runs": [
+          "offlex-d__r5",
+          "offlex-d__r5__rep2",
+          "offlex-d__r5__rep3",
+          "portfolio-b__r5",
+          "portfolio-b__r5__rep2",
+          "portfolio-b__r5__rep3",
+          "prose-c__r5",
+          "prose-c__r5__rep2",
+          "prose-c__r5__rep3",
+          "smoke-q3__r5",
+          "smoke-q3__r5__rep2",
+          "smoke-q3__r5__rep3"
+        ],
+        "egress_attempts": 104,
+        "request_bytes": {
+          "per_run": [
+            41236,
+            41630,
+            41074,
+            27006,
+            33932,
+            30061,
+            28519,
+            29395,
+            29832,
+            38585,
+            34166,
+            38374
+          ],
+          "min": 27006,
+          "max": 41630,
+          "mean": 34484.166666666664
+        },
+        "response_bytes": {
+          "per_run": [
+            22747,
+            24748,
+            21492,
+            18974,
+            20332,
+            16893,
+            15830,
+            19007,
+            16729,
+            18352,
+            15675,
+            16796
+          ],
+          "min": 15675,
+          "max": 24748,
+          "mean": 18964.583333333332
+        },
+        "slots_advertised_total": {
+          "per_run": [
+            53,
+            53,
+            53,
+            56,
+            56,
+            56,
+            38,
+            38,
+            38,
+            44,
+            44,
+            44
+          ],
+          "min": 38,
+          "max": 56,
+          "mean": 47.75
+        },
+        "slots_advertised_by_category": {
+          "DATE": {
+            "per_run": [
+              13,
+              13,
+              13,
+              13,
+              13,
+              13,
+              8,
+              8,
+              8,
+              13,
+              13,
+              13
+            ],
+            "min": 8,
+            "max": 13,
+            "mean": 11.75
+          },
+          "IDENTIFIER": {
+            "per_run": [
+              5,
+              5,
+              5,
+              6,
+              6,
+              6,
+              3,
+              3,
+              3,
+              5,
+              5,
+              5
+            ],
+            "min": 3,
+            "max": 6,
+            "mean": 4.75
+          },
+          "LOCATION": {
+            "per_run": [
+              5,
+              5,
+              5,
+              5,
+              5,
+              5,
+              3,
+              3,
+              3,
+              3,
+              3,
+              3
+            ],
+            "min": 3,
+            "max": 5,
+            "mean": 4.0
+          },
+          "MONEY": {
+            "per_run": [
+              12,
+              12,
+              12,
+              12,
+              12,
+              12,
+              10,
+              10,
+              10,
+              8,
+              8,
+              8
+            ],
+            "min": 8,
+            "max": 12,
+            "mean": 10.5
+          },
+          "ORG": {
+            "per_run": [
+              2,
+              2,
+              2,
+              2,
+              2,
+              2,
+              3,
+              3,
+              3,
+              2,
+              2,
+              2
+            ],
+            "min": 2,
+            "max": 3,
+            "mean": 2.25
+          },
+          "PERSON": {
+            "per_run": [
+              4,
+              4,
+              4,
+              4,
+              4,
+              4,
+              3,
+              3,
+              3,
+              3,
+              3,
+              3
+            ],
+            "min": 3,
+            "max": 4,
+            "mean": 3.5
+          },
+          "PROJECT": {
+            "per_run": [
+              6,
+              6,
+              6,
+              5,
+              5,
+              5,
+              4,
+              4,
+              4,
+              3,
+              3,
+              3
+            ],
+            "min": 3,
+            "max": 6,
+            "mean": 4.5
+          },
+          "QUANTITY": {
+            "per_run": [
+              6,
+              6,
+              6,
+              9,
+              9,
+              9,
+              4,
+              4,
+              4,
+              7,
+              7,
+              7
+            ],
+            "min": 4,
+            "max": 9,
+            "mean": 6.5
+          }
+        },
+        "slots_on_wire": {
+          "per_run": [
+            53,
+            53,
+            53,
+            56,
+            56,
+            56,
+            38,
+            38,
+            38,
+            44,
+            44,
+            44
+          ],
+          "min": 38,
+          "max": 56,
+          "mean": 47.75
+        },
+        "system_slots": {
+          "per_run": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "min": 0,
+          "max": 0,
+          "mean": 0.0
+        },
+        "relations": {
+          "per_run": [
+            47,
+            47,
+            47,
+            32,
+            32,
+            32,
+            22,
+            22,
+            22,
+            45,
+            45,
+            45
+          ],
+          "min": 22,
+          "max": 47,
+          "mean": 36.5
+        },
+        "fact_refs_returned": {
+          "per_run": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "min": 0,
+          "max": 0,
+          "mean": 0.0
+        },
+        "sentences_pruned": {
+          "per_run": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "min": 0,
+          "max": 0,
+          "mean": 0.0
+        },
+        "tokens": {
+          "plan": {
+            "input_tokens": {
+              "per_run": [
+                4052,
+                4039,
+                4058,
+                3700,
+                3678,
+                3704,
+                2839,
+                2833,
+                2834,
+                3610,
+                3597,
+                3593
+              ],
+              "min": 2833,
+              "max": 4058,
+              "mean": 3544.75
+            },
+            "output_tokens": {
+              "per_run": [
+                1587,
+                1480,
+                1306,
+                1182,
+                1559,
+                1520,
+                1365,
+                1743,
+                1534,
+                1413,
+                1199,
+                1396
+              ],
+              "min": 1182,
+              "max": 1743,
+              "mean": 1440.3333333333333
+            }
+          },
+          "draft": {
+            "input_tokens": {
+              "per_run": [
+                18005,
+                18299,
+                17799,
+                10837,
+                13932,
+                12261,
+                11650,
+                12193,
+                12674,
+                16583,
+                14471,
+                16425
+              ],
+              "min": 10837,
+              "max": 18299,
+              "mean": 14594.083333333334
+            },
+            "output_tokens": {
+              "per_run": [
+                6619,
+                7440,
+                6152,
+                5665,
+                5704,
+                4912,
+                4418,
+                5770,
+                5205,
+                5318,
+                4766,
+                5034
+              ],
+              "min": 4418,
+              "max": 7440,
+              "mean": 5583.583333333333
+            }
+          },
+          "adversary": {
+            "input_tokens": {
+              "per_run": [
+                30019,
+                31032,
+                29114,
+                21117,
+                24665,
+                22136,
+                20036,
+                22295,
+                22078,
+                26738,
+                23799,
+                26164
+              ],
+              "min": 20036,
+              "max": 31032,
+              "mean": 24932.75
+            },
+            "output_tokens": {
+              "per_run": [
+                5340,
+                7340,
+                7403,
+                3076,
+                4159,
+                8192,
+                3956,
+                3970,
+                3002,
+                3273,
+                1911,
+                4590
+              ],
+              "min": 1911,
+              "max": 8192,
+              "mean": 4684.333333333333
+            }
+          }
+        },
+        "adversary_tokens_recorded": 12,
+        "usd_total": {
+          "per_run": [
+            0.42877350000000003,
+            0.472304,
+            0.45254340000000004,
+            0.346757,
+            0.39025750000000003,
+            0.3949935,
+            0.31824,
+            0.3585435,
+            0.33550040000000003,
+            0.3718772,
+            0.3178165,
+            0.37489530000000004
+          ],
+          "mean": 0.3802084833333334
+        },
+        "cost_complete_runs": 12
+      }
+    },
+    "attempts": {
+      "runs": [],
+      "usd_total": 0,
+      "cost_complete_runs": 0,
+      "by_arm": {},
+      "note": "archived attempts: counted in the refusals, egress attempts and k/N above, not in by_arm"
+    }
+  },
+  "runs": [
+    {
+      "run": "offlex-d__baseline",
+      "source": "runs",
+      "attempt": false,
+      "arm": "baseline",
+      "has_manifest": true,
+      "egress_attempts": 9,
+      "monitor_refusals": [],
+      "reintegrator_refusals": [],
+      "transport_failures": [],
+      "leak_gate_aborts": [],
+      "relations_dropped_leak": 0,
+      "refused_any": false,
+      "audit": null,
+      "discrepancies": [],
+      "request_bytes": 42968,
+      "response_bytes": 23327,
+      "slots_advertised": {
+        "DATE": 13,
+        "IDENTIFIER": 5,
+        "LOCATION": 5,
+        "MONEY": 32,
+        "ORG": 2,
+        "PERSON": 4,
+        "PROJECT": 6,
+        "QUANTITY": 6
+      },
+      "slots_advertised_total": 73,
+      "slots_on_wire": 73,
+      "system_slots": 0,
+      "relations": 47,
+      "fact_refs_returned": 0,
+      "fact_refs_returned_distinct": 0,
+      "facts_resolved": 0,
+      "facts_unavailable": 0,
+      "sentences_pruned": 0,
+      "usage": {
+        "plan": {
+          "input_tokens": 4686,
+          "output_tokens": 1776
+        },
+        "draft": {
+          "input_tokens": 18698,
+          "output_tokens": 6927
+        },
+        "oracle": {
+          "input_tokens": 595,
+          "output_tokens": 4027,
+          "cache_read_tokens": 12918,
+          "cache_write_tokens": 4840
+        },
+        "judge": {
+          "input_tokens": 62562,
+          "output_tokens": 1781
+        },
+        "adversary": {
+          "input_tokens": 31873,
+          "output_tokens": 1605
+        }
+      },
+      "usd": {
+        "plan": 0.027132000000000003,
+        "draft": 0.10666600000000001,
+        "oracle": 0.056143599999999995,
+        "judge": 0.14293399999999998,
+        "adversary": 0.079796
+      },
+      "usd_total": 0.41267159999999997,
+      "cost_complete": true,
+      "cost_missing": []
+    },
+    {
+      "run": "offlex-d__baseline__rep2",
+      "source": "runs",
+      "attempt": false,
+      "arm": "baseline",
+      "has_manifest": true,
+      "egress_attempts": 8,
+      "monitor_refusals": [],
+      "reintegrator_refusals": [],
+      "transport_failures": [],
+      "leak_gate_aborts": [],
+      "relations_dropped_leak": 0,
+      "refused_any": false,
+      "audit": null,
+      "discrepancies": [],
+      "request_bytes": 38776,
+      "response_bytes": 20675,
+      "slots_advertised": {
+        "DATE": 13,
+        "IDENTIFIER": 5,
+        "LOCATION": 5,
+        "MONEY": 32,
+        "ORG": 2,
+        "PERSON": 4,
+        "PROJECT": 6,
+        "QUANTITY": 6
+      },
+      "slots_advertised_total": 73,
+      "slots_on_wire": 73,
+      "system_slots": 0,
+      "relations": 47,
+      "fact_refs_returned": 0,
+      "fact_refs_returned_distinct": 0,
+      "facts_resolved": 0,
+      "facts_unavailable": 0,
+      "sentences_pruned": 0,
+      "usage": {
+        "plan": {
+          "input_tokens": 4679,
+          "output_tokens": 1588
+        },
+        "draft": {
+          "input_tokens": 16654,
+          "output_tokens": 6375
+        },
+        "oracle": {
+          "input_tokens": 611,
+          "output_tokens": 4376,
+          "cache_read_tokens": 12978,
+          "cache_write_tokens": 4850
+        },
+        "judge": {
+          "input_tokens": 61722,
+          "output_tokens": 1848
+        },
+        "adversary": {
+          "input_tokens": 29090,
+          "output_tokens": 5012
+        }
+      },
+      "usd": {
+        "plan": 0.025238000000000003,
+        "draft": 0.097058,
+        "oracle": 0.05970260000000001,
+        "judge": 0.141924,
+        "adversary": 0.10830000000000001
+      },
+      "usd_total": 0.4322226,
+      "cost_complete": true,
+      "cost_missing": []
+    },
+    {
+      "run": "offlex-d__baseline__rep3",
+      "source": "runs",
+      "attempt": false,
+      "arm": "baseline",
+      "has_manifest": true,
+      "egress_attempts": 9,
+      "monitor_refusals": [],
+      "reintegrator_refusals": [],
+      "transport_failures": [],
+      "leak_gate_aborts": [],
+      "relations_dropped_leak": 0,
+      "refused_any": false,
+      "audit": null,
+      "discrepancies": [],
+      "request_bytes": 43169,
+      "response_bytes": 23179,
+      "slots_advertised": {
+        "DATE": 13,
+        "IDENTIFIER": 5,
+        "LOCATION": 5,
+        "MONEY": 32,
+        "ORG": 2,
+        "PERSON": 4,
+        "PROJECT": 6,
+        "QUANTITY": 6
+      },
+      "slots_advertised_total": 73,
+      "slots_on_wire": 73,
+      "system_slots": 0,
+      "relations": 47,
+      "fact_refs_returned": 0,
+      "fact_refs_returned_distinct": 0,
+      "facts_resolved": 0,
+      "facts_unavailable": 0,
+      "sentences_pruned": 0,
+      "usage": {
+        "plan": {
+          "input_tokens": 4670,
+          "output_tokens": 1756
+        },
+        "draft": {
+          "input_tokens": 18791,
+          "output_tokens": 6767
+        },
+        "oracle": {
+          "input_tokens": 581,
+          "output_tokens": 3845,
+          "cache_read_tokens": 12954,
+          "cache_write_tokens": 4846
+        },
+        "judge": {
+          "input_tokens": 60966,
+          "output_tokens": 1680
+        },
+        "adversary": {
+          "input_tokens": 31830,
+          "output_tokens": 7743
+        }
+      },
+      "usd": {
+        "plan": 0.0269,
+        "draft": 0.10525200000000001,
+        "oracle": 0.054317800000000006,
+        "judge": 0.138732,
+        "adversary": 0.14109
+      },
+      "usd_total": 0.46629180000000003,
+      "cost_complete": true,
+      "cost_missing": []
+    },
+    {
+      "run": "offlex-d__r1",
+      "source": "runs",
+      "attempt": false,
+      "arm": "r1",
+      "has_manifest": true,
+      "egress_attempts": 9,
+      "monitor_refusals": [],
+      "reintegrator_refusals": [],
+      "transport_failures": [],
+      "leak_gate_aborts": [],
+      "relations_dropped_leak": 0,
+      "refused_any": false,
+      "audit": null,
+      "discrepancies": [],
+      "request_bytes": 51170,
+      "response_bytes": 21036,
+      "slots_advertised": {
+        "LOCATION": 5,
+        "ORG": 2,
+        "PERSON": 4,
+        "PROJECT": 6
+      },
+      "slots_advertised_total": 17,
+      "slots_on_wire": 17,
+      "system_slots": 0,
+      "relations": 47,
+      "fact_refs_returned": 78,
+      "fact_refs_returned_distinct": 54,
+      "facts_resolved": 19,
+      "facts_unavailable": 13,
+      "sentences_pruned": 22,
+      "usage": {
+        "plan": {
+          "input_tokens": 3056,
+          "output_tokens": 1314
+        },
+        "draft": {
+          "input_tokens": 22371,
+          "output_tokens": 7155
+        },
+        "oracle": {
+          "input_tokens": 707,
+          "output_tokens": 4427,
+          "cache_read_tokens": 15197,
+          "cache_write_tokens": 4858
+        },
+        "judge": {
+          "input_tokens": 52806,
+          "output_tokens": 1595
+        },
+        "adversary": {
+          "input_tokens": 33624,
+          "output_tokens": 4138
+        }
+      },
+      "usd": {
+        "plan": 0.019252,
+        "draft": 0.116292,
+        "oracle": 0.0608684,
+        "judge": 0.121562,
+        "adversary": 0.108628
+      },
+      "usd_total": 0.4266024,
+      "cost_complete": true,
+      "cost_missing": []
+    },
+    {
+      "run": "offlex-d__r1__rep2",
+      "source": "runs",
+      "attempt": false,
+      "arm": "r1",
+      "has_manifest": true,
+      "egress_attempts": 9,
+      "monitor_refusals": [],
+      "reintegrator_refusals": [],
+      "transport_failures": [],
+      "leak_gate_aborts": [],
+      "relations_dropped_leak": 0,
+      "refused_any": false,
+      "audit": null,
+      "discrepancies": [],
+      "request_bytes": 50920,
+      "response_bytes": 24361,
+      "slots_advertised": {
+        "LOCATION": 5,
+        "ORG": 2,
+        "PERSON": 4,
+        "PROJECT": 6
+      },
+      "slots_advertised_total": 17,
+      "slots_on_wire": 17,
+      "system_slots": 0,
+      "relations": 47,
+      "fact_refs_returned": 87,
+      "fact_refs_returned_distinct": 66,
+      "facts_resolved": 28,
+      "facts_unavailable": 14,
+      "sentences_pruned": 20,
+      "usage": {
+        "plan": {
+          "input_tokens": 3044,
+          "output_tokens": 1241
+        },
+        "draft": {
+          "input_tokens": 22092,
+          "output_tokens": 8073
+        },
+        "oracle": {
+          "input_tokens": 515,
+          "output_tokens": 3165,
+          "cache_read_tokens": 10750,
+          "cache_write_tokens": 4837
+        },
+        "judge": {
+          "input_tokens": 51762,
+          "output_tokens": 1572
+        },
+        "adversary": {
+          "input_tokens": 34213,
+          "output_tokens": 4614
+        }
+      },
+      "usd": {
+        "plan": 0.018498,
+        "draft": 0.12491400000000001,
+        "oracle": 0.046922500000000006,
+        "judge": 0.11924399999999999,
+        "adversary": 0.114566
+      },
+      "usd_total": 0.42414450000000004,
+      "cost_complete": true,
+      "cost_missing": []
+    },
+    {
+      "run": "offlex-d__r1__rep3",
+      "source": "runs",
+      "attempt": false,
+      "arm": "r1",
+      "has_manifest": true,
+      "egress_attempts": 9,
+      "monitor_refusals": [],
+      "reintegrator_refusals": [],
+      "transport_failures": [],
+      "leak_gate_aborts": [],
+      "relations_dropped_leak": 0,
+      "refused_any": false,
+      "audit": null,
+      "discrepancies": [],
+      "request_bytes": 52231,
+      "response_bytes": 23802,
+      "slots_advertised": {
+        "LOCATION": 5,
+        "ORG": 2,
+        "PERSON": 4,
+        "PROJECT": 6
+      },
+      "slots_advertised_total": 17,
+      "slots_on_wire": 17,
+      "system_slots": 0,
+      "relations": 47,
+      "fact_refs_returned": 107,
+      "fact_refs_returned_distinct": 77,
+      "facts_resolved": 31,
+      "facts_unavailable": 25,
+      "sentences_pruned": 16,
+      "usage": {
+        "plan": {
+          "input_tokens": 3044,
+          "output_tokens": 1323
+        },
+        "draft": {
+          "input_tokens": 22951,
+          "output_tokens": 8543
+        },
+        "oracle": {
+          "input_tokens": 514,
+          "output_tokens": 3372,
+          "cache_read_tokens": 10700,
+          "cache_write_tokens": 4827
+        },
+        "judge": {
+          "input_tokens": 53172,
+          "output_tokens": 1590
+        },
+        "adversary": {
+          "input_tokens": 35666,
+          "output_tokens": 2236
+        }
+      },
+      "usd": {
+        "plan": 0.019318000000000002,
+        "draft": 0.131332,
+        "oracle": 0.048955500000000006,
+        "judge": 0.12224399999999999,
+        "adversary": 0.093692
+      },
+      "usd_total": 0.4155415,
+      "cost_complete": true,
+      "cost_missing": []
+    },
+    {
+      "run": "offlex-d__r5",
+      "source": "runs",
+      "attempt": false,
+      "arm": "r5",
+      "has_manifest": true,
+      "egress_attempts": 9,
+      "monitor_refusals": [],
+      "reintegrator_refusals": [],
+      "transport_failures": [],
+      "leak_gate_aborts": [],
+      "relations_dropped_leak": 0,
+      "refused_any": false,
+      "audit": null,
+      "discrepancies": [],
+      "request_bytes": 41236,
+      "response_bytes": 22747,
+      "slots_advertised": {
+        "DATE": 13,
+        "IDENTIFIER": 5,
+        "LOCATION": 5,
+        "MONEY": 12,
+        "ORG": 2,
+        "PERSON": 4,
+        "PROJECT": 6,
+        "QUANTITY": 6
+      },
+      "slots_advertised_total": 53,
+      "slots_on_wire": 53,
+      "system_slots": 0,
+      "relations": 47,
+      "fact_refs_returned": 0,
+      "fact_refs_returned_distinct": 0,
+      "facts_resolved": 0,
+      "facts_unavailable": 0,
+      "sentences_pruned": 0,
+      "usage": {
+        "plan": {
+          "input_tokens": 4052,
+          "output_tokens": 1587
+        },
+        "draft": {
+          "input_tokens": 18005,
+          "output_tokens": 6619
+        },
+        "oracle": {
+          "input_tokens": 530,
+          "output_tokens": 3541,
+          "cache_read_tokens": 10760,
+          "cache_write_tokens": 4839
+        },
+        "judge": {
+          "input_tokens": 60006,
+          "output_tokens": 1843
+        },
+        "adversary": {
+          "input_tokens": 30019,
+          "output_tokens": 5340
+        }
+      },
+      "usd": {
+        "plan": 0.023974000000000002,
+        "draft": 0.1022,
+        "oracle": 0.0507195,
+        "judge": 0.138442,
+        "adversary": 0.113438
+      },
+      "usd_total": 0.42877350000000003,
+      "cost_complete": true,
+      "cost_missing": []
+    },
+    {
+      "run": "offlex-d__r5__rep2",
+      "source": "runs",
+      "attempt": false,
+      "arm": "r5",
+      "has_manifest": true,
+      "egress_attempts": 9,
+      "monitor_refusals": [],
+      "reintegrator_refusals": [],
+      "transport_failures": [],
+      "leak_gate_aborts": [],
+      "relations_dropped_leak": 0,
+      "refused_any": false,
+      "audit": null,
+      "discrepancies": [],
+      "request_bytes": 41630,
+      "response_bytes": 24748,
+      "slots_advertised": {
+        "DATE": 13,
+        "IDENTIFIER": 5,
+        "LOCATION": 5,
+        "MONEY": 12,
+        "ORG": 2,
+        "PERSON": 4,
+        "PROJECT": 6,
+        "QUANTITY": 6
+      },
+      "slots_advertised_total": 53,
+      "slots_on_wire": 53,
+      "system_slots": 0,
+      "relations": 47,
+      "fact_refs_returned": 0,
+      "fact_refs_returned_distinct": 0,
+      "facts_resolved": 0,
+      "facts_unavailable": 0,
+      "sentences_pruned": 0,
+      "usage": {
+        "plan": {
+          "input_tokens": 4039,
+          "output_tokens": 1480
+        },
+        "draft": {
+          "input_tokens": 18299,
+          "output_tokens": 7440
+        },
+        "oracle": {
+          "input_tokens": 633,
+          "output_tokens": 3762,
+          "cache_read_tokens": 12990,
+          "cache_write_tokens": 4852
+        },
+        "judge": {
+          "input_tokens": 65160,
+          "output_tokens": 1903
+        },
+        "adversary": {
+          "input_tokens": 31032,
+          "output_tokens": 7340
+        }
+      },
+      "usd": {
+        "plan": 0.022878000000000003,
+        "draft": 0.11099800000000001,
+        "oracle": 0.05361400000000001,
+        "judge": 0.14934999999999998,
+        "adversary": 0.135464
+      },
+      "usd_total": 0.472304,
+      "cost_complete": true,
+      "cost_missing": []
+    },
+    {
+      "run": "offlex-d__r5__rep3",
+      "source": "runs",
+      "attempt": false,
+      "arm": "r5",
+      "has_manifest": true,
+      "egress_attempts": 9,
+      "monitor_refusals": [],
+      "reintegrator_refusals": [],
+      "transport_failures": [],
+      "leak_gate_aborts": [],
+      "relations_dropped_leak": 0,
+      "refused_any": false,
+      "audit": null,
+      "discrepancies": [],
+      "request_bytes": 41074,
+      "response_bytes": 21492,
+      "slots_advertised": {
+        "DATE": 13,
+        "IDENTIFIER": 5,
+        "LOCATION": 5,
+        "MONEY": 12,
+        "ORG": 2,
+        "PERSON": 4,
+        "PROJECT": 6,
+        "QUANTITY": 6
+      },
+      "slots_advertised_total": 53,
+      "slots_on_wire": 53,
+      "system_slots": 0,
+      "relations": 47,
+      "fact_refs_returned": 0,
+      "fact_refs_returned_distinct": 0,
+      "facts_resolved": 0,
+      "facts_unavailable": 0,
+      "sentences_pruned": 0,
+      "usage": {
+        "plan": {
+          "input_tokens": 4058,
+          "output_tokens": 1306
+        },
+        "draft": {
+          "input_tokens": 17799,
+          "output_tokens": 6152
+        },
+        "oracle": {
+          "input_tokens": 567,
+          "output_tokens": 4310,
+          "cache_read_tokens": 12882,
+          "cache_write_tokens": 4834
+        },
+        "judge": {
+          "input_tokens": 63168,
+          "output_tokens": 1676
+        },
+        "adversary": {
+          "input_tokens": 29114,
+          "output_tokens": 7403
+        }
+      },
+      "usd": {
+        "plan": 0.021176,
+        "draft": 0.09711800000000001,
+        "oracle": 0.05889540000000001,
+        "judge": 0.143096,
+        "adversary": 0.13225800000000001
+      },
+      "usd_total": 0.45254340000000004,
+      "cost_complete": true,
+      "cost_missing": []
+    },
+    {
+      "run": "portfolio-b__baseline",
+      "source": "runs",
+      "attempt": false,
+      "arm": "baseline",
+      "has_manifest": true,
+      "egress_attempts": 9,
+      "monitor_refusals": [],
+      "reintegrator_refusals": [],
+      "transport_failures": [],
+      "leak_gate_aborts": [],
+      "relations_dropped_leak": 0,
+      "refused_any": false,
+      "audit": null,
+      "discrepancies": [],
+      "request_bytes": 35633,
+      "response_bytes": 21392,
+      "slots_advertised": {
+        "DATE": 14,
+        "IDENTIFIER": 6,
+        "LOCATION": 5,
+        "MONEY": 28,
+        "ORG": 2,
+        "PERSON": 4,
+        "PROJECT": 5,
+        "QUANTITY": 9
+      },
+      "slots_advertised_total": 73,
+      "slots_on_wire": 73,
+      "system_slots": 0,
+      "relations": 32,
+      "fact_refs_returned": 0,
+      "fact_refs_returned_distinct": 0,
+      "facts_resolved": 0,
+      "facts_unavailable": 0,
+      "sentences_pruned": 0,
+      "usage": {
+        "plan": {
+          "input_tokens": 4217,
+          "output_tokens": 1671
+        },
+        "draft": {
+          "input_tokens": 14725,
+          "output_tokens": 6363
+        },
+        "oracle": {
+          "input_tokens": 602,
+          "output_tokens": 4402,
+          "cache_read_tokens": 12270,
+          "cache_write_tokens": 4623
+        },
+        "judge": {
+          "input_tokens": 62820,
+          "output_tokens": 1654
+        },
+        "adversary": {
+          "input_tokens": 26756,
+          "output_tokens": 3302
+        }
+      },
+      "usd": {
+        "plan": 0.025144,
+        "draft": 0.09308,
+        "oracle": 0.059235499999999996,
+        "judge": 0.14218,
+        "adversary": 0.086532
+      },
+      "usd_total": 0.4061715,
+      "cost_complete": true,
+      "cost_missing": []
+    },
+    {
+      "run": "portfolio-b__baseline__rep2",
+      "source": "runs",
+      "attempt": false,
+      "arm": "baseline",
+      "has_manifest": true,
+      "egress_attempts": 9,
+      "monitor_refusals": [],
+      "reintegrator_refusals": [],
+      "transport_failures": [],
+      "leak_gate_aborts": [],
+      "relations_dropped_leak": 0,
+      "refused_any": false,
+      "audit": null,
+      "discrepancies": [],
+      "request_bytes": 35232,
+      "response_bytes": 18339,
+      "slots_advertised": {
+        "DATE": 14,
+        "IDENTIFIER": 6,
+        "LOCATION": 5,
+        "MONEY": 28,
+        "ORG": 2,
+        "PERSON": 4,
+        "PROJECT": 5,
+        "QUANTITY": 9
+      },
+      "slots_advertised_total": 73,
+      "slots_on_wire": 73,
+      "system_slots": 0,
+      "relations": 32,
+      "fact_refs_returned": 0,
+      "fact_refs_returned_distinct": 0,
+      "facts_resolved": 0,
+      "facts_unavailable": 0,
+      "sentences_pruned": 0,
+      "usage": {
+        "plan": {
+          "input_tokens": 4222,
+          "output_tokens": 1598
+        },
+        "draft": {
+          "input_tokens": 14719,
+          "output_tokens": 5748
+        },
+        "oracle": {
+          "input_tokens": 604,
+          "output_tokens": 4148,
+          "cache_read_tokens": 12270,
+          "cache_write_tokens": 4623
+        },
+        "judge": {
+          "input_tokens": 56346,
+          "output_tokens": 1681
+        },
+        "adversary": {
+          "input_tokens": 26114,
+          "output_tokens": 1507
+        }
+      },
+      "usd": {
+        "plan": 0.024424,
+        "draft": 0.086918,
+        "oracle": 0.0566995,
+        "judge": 0.129502,
+        "adversary": 0.067298
+      },
+      "usd_total": 0.3648415,
+      "cost_complete": true,
+      "cost_missing": []
+    },
+    {
+      "run": "portfolio-b__baseline__rep3",
+      "source": "runs",
+      "attempt": false,
+      "arm": "baseline",
+      "has_manifest": true,
+      "egress_attempts": 9,
+      "monitor_refusals": [],
+      "reintegrator_refusals": [],
+      "transport_failures": [],
+      "leak_gate_aborts": [],
+      "relations_dropped_leak": 0,
+      "refused_any": false,
+      "audit": null,
+      "discrepancies": [],
+      "request_bytes": 34902,
+      "response_bytes": 16145,
+      "slots_advertised": {
+        "DATE": 14,
+        "IDENTIFIER": 6,
+        "LOCATION": 5,
+        "MONEY": 28,
+        "ORG": 2,
+        "PERSON": 4,
+        "PROJECT": 5,
+        "QUANTITY": 9
+      },
+      "slots_advertised_total": 73,
+      "slots_on_wire": 73,
+      "system_slots": 0,
+      "relations": 32,
+      "fact_refs_returned": 0,
+      "fact_refs_returned_distinct": 0,
+      "facts_resolved": 0,
+      "facts_unavailable": 0,
+      "sentences_pruned": 0,
+      "usage": {
+        "plan": {
+          "input_tokens": 4236,
+          "output_tokens": 1894
+        },
+        "draft": {
+          "input_tokens": 14445,
+          "output_tokens": 4634
+        },
+        "oracle": {
+          "input_tokens": 561,
+          "output_tokens": 4280,
+          "cache_read_tokens": 12258,
+          "cache_write_tokens": 4621
+        },
+        "judge": {
+          "input_tokens": 52878,
+          "output_tokens": 1696
+        },
+        "adversary": {
+          "input_tokens": 25000,
+          "output_tokens": 5076
+        }
+      },
+      "usd": {
+        "plan": 0.027412000000000002,
+        "draft": 0.07523,
+        "oracle": 0.0579261,
+        "judge": 0.12271599999999999,
+        "adversary": 0.10076
+      },
+      "usd_total": 0.3840441,
+      "cost_complete": true,
+      "cost_missing": []
+    },
+    {
+      "run": "portfolio-b__r1",
+      "source": "runs",
+      "attempt": false,
+      "arm": "r1",
+      "has_manifest": true,
+      "egress_attempts": 9,
+      "monitor_refusals": [],
+      "reintegrator_refusals": [],
+      "transport_failures": [],
+      "leak_gate_aborts": [],
+      "relations_dropped_leak": 0,
+      "refused_any": false,
+      "audit": null,
+      "discrepancies": [],
+      "request_bytes": 44306,
+      "response_bytes": 20132,
+      "slots_advertised": {
+        "LOCATION": 5,
+        "ORG": 2,
+        "PERSON": 4,
+        "PROJECT": 5
+      },
+      "slots_advertised_total": 16,
+      "slots_on_wire": 16,
+      "system_slots": 0,
+      "relations": 32,
+      "fact_refs_returned": 77,
+      "fact_refs_returned_distinct": 53,
+      "facts_resolved": 39,
+      "facts_unavailable": 12,
+      "sentences_pruned": 13,
+      "usage": {
+        "plan": {
+          "input_tokens": 2526,
+          "output_tokens": 1133
+        },
+        "draft": {
+          "input_tokens": 18826,
+          "output_tokens": 6940
+        },
+        "oracle": {
+          "input_tokens": 539,
+          "output_tokens": 3841,
+          "cache_read_tokens": 10140,
+          "cache_write_tokens": 4606
+        },
+        "judge": {
+          "input_tokens": 52116,
+          "output_tokens": 1543
+        },
+        "adversary": {
+          "input_tokens": 29198,
+          "output_tokens": 2023
+        }
+      },
+      "usd": {
+        "plan": 0.016382,
+        "draft": 0.10705200000000001,
+        "oracle": 0.05303100000000001,
+        "judge": 0.11966199999999999,
+        "adversary": 0.078626
+      },
+      "usd_total": 0.374753,
+      "cost_complete": true,
+      "cost_missing": []
+    },
+    {
+      "run": "portfolio-b__r1__rep2",
+      "source": "runs",
+      "attempt": false,
+      "arm": "r1",
+      "has_manifest": true,
+      "egress_attempts": 9,
+      "monitor_refusals": [],
+      "reintegrator_refusals": [],
+      "transport_failures": [],
+      "leak_gate_aborts": [],
+      "relations_dropped_leak": 0,
+      "refused_any": false,
+      "audit": null,
+      "discrepancies": [],
+      "request_bytes": 44157,
+      "response_bytes": 19306,
+      "slots_advertised": {
+        "LOCATION": 5,
+        "ORG": 2,
+        "PERSON": 4,
+        "PROJECT": 5
+      },
+      "slots_advertised_total": 16,
+      "slots_on_wire": 16,
+      "system_slots": 0,
+      "relations": 32,
+      "fact_refs_returned": 85,
+      "fact_refs_returned_distinct": 46,
+      "facts_resolved": 45,
+      "facts_unavailable": 7,
+      "sentences_pruned": 15,
+      "usage": {
+        "plan": {
+          "input_tokens": 2541,
+          "output_tokens": 1263
+        },
+        "draft": {
+          "input_tokens": 18813,
+          "output_tokens": 7048
+        },
+        "oracle": {
+          "input_tokens": 530,
+          "output_tokens": 3993,
+          "cache_read_tokens": 10135,
+          "cache_write_tokens": 4605
+        },
+        "judge": {
+          "input_tokens": 50220,
+          "output_tokens": 1658
+        },
+        "adversary": {
+          "input_tokens": 29452,
+          "output_tokens": 4295
+        }
+      },
+      "usd": {
+        "plan": 0.017712,
+        "draft": 0.10810600000000001,
+        "oracle": 0.0545295,
+        "judge": 0.11702,
+        "adversary": 0.101854
+      },
+      "usd_total": 0.3992215,
+      "cost_complete": true,
+      "cost_missing": []
+    },
+    {
+      "run": "portfolio-b__r1__rep3",
+      "source": "runs",
+      "attempt": false,
+      "arm": "r1",
+      "has_manifest": true,
+      "egress_attempts": 9,
+      "monitor_refusals": [],
+      "reintegrator_refusals": [],
+      "transport_failures": [],
+      "leak_gate_aborts": [],
+      "relations_dropped_leak": 0,
+      "refused_any": false,
+      "audit": null,
+      "discrepancies": [],
+      "request_bytes": 42979,
+      "response_bytes": 19993,
+      "slots_advertised": {
+        "LOCATION": 5,
+        "ORG": 2,
+        "PERSON": 4,
+        "PROJECT": 5
+      },
+      "slots_advertised_total": 16,
+      "slots_on_wire": 16,
+      "system_slots": 0,
+      "relations": 32,
+      "fact_refs_returned": 55,
+      "fact_refs_returned_distinct": 34,
+      "facts_resolved": 35,
+      "facts_unavailable": 8,
+      "sentences_pruned": 6,
+      "usage": {
+        "plan": {
+          "input_tokens": 2522,
+          "output_tokens": 1369
+        },
+        "draft": {
+          "input_tokens": 17850,
+          "output_tokens": 6338
+        },
+        "oracle": {
+          "input_tokens": 519,
+          "output_tokens": 3512,
+          "cache_read_tokens": 10130,
+          "cache_write_tokens": 4604
+        },
+        "judge": {
+          "input_tokens": 52584,
+          "output_tokens": 1581
+        },
+        "adversary": {
+          "input_tokens": 27840,
+          "output_tokens": 4587
+        }
+      },
+      "usd": {
+        "plan": 0.018734,
+        "draft": 0.09908,
+        "oracle": 0.049694,
+        "judge": 0.120978,
+        "adversary": 0.10155
+      },
+      "usd_total": 0.390036,
+      "cost_complete": true,
+      "cost_missing": []
+    },
+    {
+      "run": "portfolio-b__r5",
+      "source": "runs",
+      "attempt": false,
+      "arm": "r5",
+      "has_manifest": true,
+      "egress_attempts": 7,
+      "monitor_refusals": [],
+      "reintegrator_refusals": [],
+      "transport_failures": [],
+      "leak_gate_aborts": [],
+      "relations_dropped_leak": 0,
+      "refused_any": false,
+      "audit": null,
+      "discrepancies": [],
+      "request_bytes": 27006,
+      "response_bytes": 18974,
+      "slots_advertised": {
+        "DATE": 13,
+        "IDENTIFIER": 6,
+        "LOCATION": 5,
+        "MONEY": 12,
+        "ORG": 2,
+        "PERSON": 4,
+        "PROJECT": 5,
+        "QUANTITY": 9
+      },
+      "slots_advertised_total": 56,
+      "slots_on_wire": 56,
+      "system_slots": 0,
+      "relations": 32,
+      "fact_refs_returned": 0,
+      "fact_refs_returned_distinct": 0,
+      "facts_resolved": 0,
+      "facts_unavailable": 0,
+      "sentences_pruned": 0,
+      "usage": {
+        "plan": {
+          "input_tokens": 3700,
+          "output_tokens": 1182
+        },
+        "draft": {
+          "input_tokens": 10837,
+          "output_tokens": 5665
+        },
+        "oracle": {
+          "input_tokens": 519,
+          "output_tokens": 3496,
+          "cache_read_tokens": 10140,
+          "cache_write_tokens": 4606
+        },
+        "judge": {
+          "input_tokens": 55404,
+          "output_tokens": 1587
+        },
+        "adversary": {
+          "input_tokens": 21117,
+          "output_tokens": 3076
+        }
+      },
+      "usd": {
+        "plan": 0.01922,
+        "draft": 0.078324,
+        "oracle": 0.049541,
+        "judge": 0.12667799999999999,
+        "adversary": 0.072994
+      },
+      "usd_total": 0.346757,
+      "cost_complete": true,
+      "cost_missing": []
+    },
+    {
+      "run": "portfolio-b__r5__rep2",
+      "source": "runs",
+      "attempt": false,
+      "arm": "r5",
+      "has_manifest": true,
+      "egress_attempts": 9,
+      "monitor_refusals": [],
+      "reintegrator_refusals": [],
+      "transport_failures": [],
+      "leak_gate_aborts": [],
+      "relations_dropped_leak": 0,
+      "refused_any": false,
+      "audit": null,
+      "discrepancies": [],
+      "request_bytes": 33932,
+      "response_bytes": 20332,
+      "slots_advertised": {
+        "DATE": 13,
+        "IDENTIFIER": 6,
+        "LOCATION": 5,
+        "MONEY": 12,
+        "ORG": 2,
+        "PERSON": 4,
+        "PROJECT": 5,
+        "QUANTITY": 9
+      },
+      "slots_advertised_total": 56,
+      "slots_on_wire": 56,
+      "system_slots": 0,
+      "relations": 32,
+      "fact_refs_returned": 0,
+      "fact_refs_returned_distinct": 0,
+      "facts_resolved": 0,
+      "facts_unavailable": 0,
+      "sentences_pruned": 0,
+      "usage": {
+        "plan": {
+          "input_tokens": 3678,
+          "output_tokens": 1559
+        },
+        "draft": {
+          "input_tokens": 13932,
+          "output_tokens": 5704
+        },
+        "oracle": {
+          "input_tokens": 522,
+          "output_tokens": 4034,
+          "cache_read_tokens": 10135,
+          "cache_write_tokens": 4605
+        },
+        "judge": {
+          "input_tokens": 59352,
+          "output_tokens": 1786
+        },
+        "adversary": {
+          "input_tokens": 24665,
+          "output_tokens": 4159
+        }
+      },
+      "usd": {
+        "plan": 0.022946,
+        "draft": 0.08490400000000001,
+        "oracle": 0.05492350000000001,
+        "judge": 0.136564,
+        "adversary": 0.09092
+      },
+      "usd_total": 0.39025750000000003,
+      "cost_complete": true,
+      "cost_missing": []
+    },
+    {
+      "run": "portfolio-b__r5__rep3",
+      "source": "runs",
+      "attempt": false,
+      "arm": "r5",
+      "has_manifest": true,
+      "egress_attempts": 8,
+      "monitor_refusals": [],
+      "reintegrator_refusals": [],
+      "transport_failures": [],
+      "leak_gate_aborts": [],
+      "relations_dropped_leak": 0,
+      "refused_any": false,
+      "audit": null,
+      "discrepancies": [],
+      "request_bytes": 30061,
+      "response_bytes": 16893,
+      "slots_advertised": {
+        "DATE": 13,
+        "IDENTIFIER": 6,
+        "LOCATION": 5,
+        "MONEY": 12,
+        "ORG": 2,
+        "PERSON": 4,
+        "PROJECT": 5,
+        "QUANTITY": 9
+      },
+      "slots_advertised_total": 56,
+      "slots_on_wire": 56,
+      "system_slots": 0,
+      "relations": 32,
+      "fact_refs_returned": 0,
+      "fact_refs_returned_distinct": 0,
+      "facts_resolved": 0,
+      "facts_unavailable": 0,
+      "sentences_pruned": 0,
+      "usage": {
+        "plan": {
+          "input_tokens": 3704,
+          "output_tokens": 1520
+        },
+        "draft": {
+          "input_tokens": 12261,
+          "output_tokens": 4912
+        },
+        "oracle": {
+          "input_tokens": 500,
+          "output_tokens": 3619,
+          "cache_read_tokens": 10135,
+          "cache_write_tokens": 4605
+        },
+        "judge": {
+          "input_tokens": 51966,
+          "output_tokens": 1789
+        },
+        "adversary": {
+          "input_tokens": 22136,
+          "output_tokens": 8192
+        }
+      },
+      "usd": {
+        "plan": 0.022608000000000003,
+        "draft": 0.073642,
+        "oracle": 0.050729500000000004,
+        "judge": 0.121822,
+        "adversary": 0.126192
+      },
+      "usd_total": 0.3949935,
+      "cost_complete": true,
+      "cost_missing": []
+    },
+    {
+      "run": "prose-c__baseline",
+      "source": "runs",
+      "attempt": false,
+      "arm": "baseline",
+      "has_manifest": true,
+      "egress_attempts": 6,
+      "monitor_refusals": [],
+      "reintegrator_refusals": [],
+      "transport_failures": [],
+      "leak_gate_aborts": [],
+      "relations_dropped_leak": 1,
+      "refused_any": false,
+      "audit": null,
+      "discrepancies": [],
+      "request_bytes": 19208,
+      "response_bytes": 10674,
+      "slots_advertised": {
+        "DATE": 8,
+        "IDENTIFIER": 3,
+        "LOCATION": 3,
+        "MONEY": 11,
+        "ORG": 3,
+        "PERSON": 3,
+        "PROJECT": 4,
+        "QUANTITY": 4
+      },
+      "slots_advertised_total": 39,
+      "slots_on_wire": 39,
+      "system_slots": 0,
+      "relations": 22,
+      "fact_refs_returned": 0,
+      "fact_refs_returned_distinct": 0,
+      "facts_resolved": 0,
+      "facts_unavailable": 0,
+      "sentences_pruned": 0,
+      "usage": {
+        "plan": {
+          "input_tokens": 2862,
+          "output_tokens": 1115
+        },
+        "draft": {
+          "input_tokens": 7384,
+          "output_tokens": 3123
+        },
+        "oracle": {
+          "input_tokens": 580,
+          "output_tokens": 3202,
+          "cache_read_tokens": 10356,
+          "cache_write_tokens": 3983
+        },
+        "judge": {
+          "input_tokens": 39210,
+          "output_tokens": 1609
+        },
+        "adversary": {
+          "input_tokens": 14159,
+          "output_tokens": 1347
+        }
+      },
+      "usd": {
+        "plan": 0.016874,
+        "draft": 0.045998000000000004,
+        "oracle": 0.045208700000000004,
+        "judge": 0.09450999999999998,
+        "adversary": 0.041788
+      },
+      "usd_total": 0.2443787,
+      "cost_complete": true,
+      "cost_missing": []
+    },
+    {
+      "run": "prose-c__baseline__rep2",
+      "source": "runs",
+      "attempt": false,
+      "arm": "baseline",
+      "has_manifest": true,
+      "egress_attempts": 7,
+      "monitor_refusals": [],
+      "reintegrator_refusals": [],
+      "transport_failures": [],
+      "leak_gate_aborts": [],
+      "relations_dropped_leak": 1,
+      "refused_any": false,
+      "audit": null,
+      "discrepancies": [],
+      "request_bytes": 22632,
+      "response_bytes": 12072,
+      "slots_advertised": {
+        "DATE": 8,
+        "IDENTIFIER": 3,
+        "LOCATION": 3,
+        "MONEY": 11,
+        "ORG": 3,
+        "PERSON": 3,
+        "PROJECT": 4,
+        "QUANTITY": 4
+      },
+      "slots_advertised_total": 39,
+      "slots_on_wire": 39,
+      "system_slots": 0,
+      "relations": 22,
+      "fact_refs_returned": 0,
+      "fact_refs_returned_distinct": 0,
+      "facts_resolved": 0,
+      "facts_unavailable": 0,
+      "sentences_pruned": 0,
+      "usage": {
+        "plan": {
+          "input_tokens": 2857,
+          "output_tokens": 1059
+        },
+        "draft": {
+          "input_tokens": 9000,
+          "output_tokens": 3556
+        },
+        "oracle": {
+          "input_tokens": 429,
+          "output_tokens": 2552,
+          "cache_read_tokens": 6780,
+          "cache_write_tokens": 3952
+        },
+        "judge": {
+          "input_tokens": 37542,
+          "output_tokens": 1610
+        },
+        "adversary": {
+          "input_tokens": 16201,
+          "output_tokens": 2572
+        }
+      },
+      "usd": {
+        "plan": 0.016304,
+        "draft": 0.053559999999999997,
+        "oracle": 0.037614,
+        "judge": 0.091184,
+        "adversary": 0.05812200000000001
+      },
+      "usd_total": 0.256784,
+      "cost_complete": true,
+      "cost_missing": []
+    },
+    {
+      "run": "prose-c__baseline__rep3",
+      "source": "runs",
+      "attempt": false,
+      "arm": "baseline",
+      "has_manifest": true,
+      "egress_attempts": 8,
+      "monitor_refusals": [],
+      "reintegrator_refusals": [],
+      "transport_failures": [],
+      "leak_gate_aborts": [],
+      "relations_dropped_leak": 1,
+      "refused_any": false,
+      "audit": null,
+      "discrepancies": [],
+      "request_bytes": 24920,
+      "response_bytes": 12008,
+      "slots_advertised": {
+        "DATE": 8,
+        "IDENTIFIER": 3,
+        "LOCATION": 3,
+        "MONEY": 11,
+        "ORG": 3,
+        "PERSON": 3,
+        "PROJECT": 4,
+        "QUANTITY": 4
+      },
+      "slots_advertised_total": 39,
+      "slots_on_wire": 39,
+      "system_slots": 0,
+      "relations": 22,
+      "fact_refs_returned": 0,
+      "fact_refs_returned_distinct": 0,
+      "facts_resolved": 0,
+      "facts_unavailable": 0,
+      "sentences_pruned": 0,
+      "usage": {
+        "plan": {
+          "input_tokens": 2865,
+          "output_tokens": 965
+        },
+        "draft": {
+          "input_tokens": 9864,
+          "output_tokens": 3345
+        },
+        "oracle": {
+          "input_tokens": 584,
+          "output_tokens": 3282,
+          "cache_read_tokens": 10284,
+          "cache_write_tokens": 3971
+        },
+        "judge": {
+          "input_tokens": 41256,
+          "output_tokens": 1691
+        },
+        "adversary": {
+          "input_tokens": 16785,
+          "output_tokens": 3383
+        }
+      },
+      "usd": {
+        "plan": 0.015380000000000001,
+        "draft": 0.053178,
+        "oracle": 0.0459723,
+        "judge": 0.09942200000000001,
+        "adversary": 0.0674
+      },
+      "usd_total": 0.2813523,
+      "cost_complete": true,
+      "cost_missing": []
+    },
+    {
+      "run": "prose-c__r1",
+      "source": "runs",
+      "attempt": false,
+      "arm": "r1",
+      "has_manifest": true,
+      "egress_attempts": 9,
+      "monitor_refusals": [],
+      "reintegrator_refusals": [],
+      "transport_failures": [],
+      "leak_gate_aborts": [],
+      "relations_dropped_leak": 1,
+      "refused_any": false,
+      "audit": null,
+      "discrepancies": [],
+      "request_bytes": 39659,
+      "response_bytes": 17596,
+      "slots_advertised": {
+        "LOCATION": 3,
+        "ORG": 3,
+        "PERSON": 3,
+        "PROJECT": 4
+      },
+      "slots_advertised_total": 13,
+      "slots_on_wire": 13,
+      "system_slots": 0,
+      "relations": 22,
+      "fact_refs_returned": 64,
+      "fact_refs_returned_distinct": 44,
+      "facts_resolved": 0,
+      "facts_unavailable": 0,
+      "sentences_pruned": 29,
+      "usage": {
+        "plan": {
+          "input_tokens": 2183,
+          "output_tokens": 1370
+        },
+        "draft": {
+          "input_tokens": 16679,
+          "output_tokens": 5857
+        },
+        "oracle": {
+          "input_tokens": 501,
+          "output_tokens": 2793,
+          "cache_read_tokens": 8560,
+          "cache_write_tokens": 3969
+        },
+        "judge": {
+          "input_tokens": 34938,
+          "output_tokens": 1562
+        },
+        "adversary": {
+          "input_tokens": 25889,
+          "output_tokens": 2203
+        }
+      },
+      "usd": {
+        "plan": 0.018066,
+        "draft": 0.09192800000000001,
+        "oracle": 0.040566500000000005,
+        "judge": 0.08549599999999999,
+        "adversary": 0.073808
+      },
+      "usd_total": 0.3098645,
+      "cost_complete": true,
+      "cost_missing": []
+    },
+    {
+      "run": "prose-c__r1__rep2",
+      "source": "runs",
+      "attempt": false,
+      "arm": "r1",
+      "has_manifest": true,
+      "egress_attempts": 9,
+      "monitor_refusals": [],
+      "reintegrator_refusals": [],
+      "transport_failures": [],
+      "leak_gate_aborts": [],
+      "relations_dropped_leak": 1,
+      "refused_any": false,
+      "audit": null,
+      "discrepancies": [],
+      "request_bytes": 39363,
+      "response_bytes": 19502,
+      "slots_advertised": {
+        "LOCATION": 3,
+        "ORG": 3,
+        "PERSON": 3,
+        "PROJECT": 4
+      },
+      "slots_advertised_total": 13,
+      "slots_on_wire": 13,
+      "system_slots": 0,
+      "relations": 22,
+      "fact_refs_returned": 70,
+      "fact_refs_returned_distinct": 42,
+      "facts_resolved": 0,
+      "facts_unavailable": 0,
+      "sentences_pruned": 37,
+      "usage": {
+        "plan": {
+          "input_tokens": 2185,
+          "output_tokens": 1203
+        },
+        "draft": {
+          "input_tokens": 16338,
+          "output_tokens": 6570
+        },
+        "oracle": {
+          "input_tokens": 510,
+          "output_tokens": 2949,
+          "cache_read_tokens": 8555,
+          "cache_write_tokens": 3968
+        },
+        "judge": {
+          "input_tokens": 36060,
+          "output_tokens": 1526
+        },
+        "adversary": {
+          "input_tokens": 26074,
+          "output_tokens": 4113
+        }
+      },
+      "usd": {
+        "plan": 0.0164,
+        "draft": 0.098376,
+        "oracle": 0.042141,
+        "judge": 0.08738,
+        "adversary": 0.093278
+      },
+      "usd_total": 0.337575,
+      "cost_complete": true,
+      "cost_missing": []
+    },
+    {
+      "run": "prose-c__r1__rep3",
+      "source": "runs",
+      "attempt": false,
+      "arm": "r1",
+      "has_manifest": true,
+      "egress_attempts": 9,
+      "monitor_refusals": [],
+      "reintegrator_refusals": [],
+      "transport_failures": [],
+      "leak_gate_aborts": [],
+      "relations_dropped_leak": 1,
+      "refused_any": false,
+      "audit": null,
+      "discrepancies": [],
+      "request_bytes": 38994,
+      "response_bytes": 15726,
+      "slots_advertised": {
+        "LOCATION": 3,
+        "ORG": 3,
+        "PERSON": 3,
+        "PROJECT": 4
+      },
+      "slots_advertised_total": 13,
+      "slots_on_wire": 13,
+      "system_slots": 0,
+      "relations": 22,
+      "fact_refs_returned": 51,
+      "fact_refs_returned_distinct": 37,
+      "facts_resolved": 0,
+      "facts_unavailable": 0,
+      "sentences_pruned": 20,
+      "usage": {
+        "plan": {
+          "input_tokens": 2187,
+          "output_tokens": 1238
+        },
+        "draft": {
+          "input_tokens": 16101,
+          "output_tokens": 5028
+        },
+        "oracle": {
+          "input_tokens": 518,
+          "output_tokens": 2949,
+          "cache_read_tokens": 8540,
+          "cache_write_tokens": 3965
+        },
+        "judge": {
+          "input_tokens": 36312,
+          "output_tokens": 1432
+        },
+        "adversary": {
+          "input_tokens": 24345,
+          "output_tokens": 5290
+        }
+      },
+      "usd": {
+        "plan": 0.016753999999999998,
+        "draft": 0.082482,
+        "oracle": 0.0421465,
+        "judge": 0.086944,
+        "adversary": 0.10159
+      },
+      "usd_total": 0.3299165,
+      "cost_complete": true,
+      "cost_missing": []
+    },
+    {
+      "run": "prose-c__r5",
+      "source": "runs",
+      "attempt": false,
+      "arm": "r5",
+      "has_manifest": true,
+      "egress_attempts": 9,
+      "monitor_refusals": [],
+      "reintegrator_refusals": [],
+      "transport_failures": [],
+      "leak_gate_aborts": [],
+      "relations_dropped_leak": 1,
+      "refused_any": false,
+      "audit": null,
+      "discrepancies": [],
+      "request_bytes": 28519,
+      "response_bytes": 15830,
+      "slots_advertised": {
+        "DATE": 8,
+        "IDENTIFIER": 3,
+        "LOCATION": 3,
+        "MONEY": 10,
+        "ORG": 3,
+        "PERSON": 3,
+        "PROJECT": 4,
+        "QUANTITY": 4
+      },
+      "slots_advertised_total": 38,
+      "slots_on_wire": 38,
+      "system_slots": 0,
+      "relations": 22,
+      "fact_refs_returned": 0,
+      "fact_refs_returned_distinct": 0,
+      "facts_resolved": 0,
+      "facts_unavailable": 0,
+      "sentences_pruned": 0,
+      "usage": {
+        "plan": {
+          "input_tokens": 2839,
+          "output_tokens": 1365
+        },
+        "draft": {
+          "input_tokens": 11650,
+          "output_tokens": 4418
+        },
+        "oracle": {
+          "input_tokens": 476,
+          "output_tokens": 3069,
+          "cache_read_tokens": 8505,
+          "cache_write_tokens": 3958
+        },
+        "judge": {
+          "input_tokens": 45996,
+          "output_tokens": 1657
+        },
+        "adversary": {
+          "input_tokens": 20036,
+          "output_tokens": 3956
+        }
+      },
+      "usd": {
+        "plan": 0.019328,
+        "draft": 0.06748,
+        "oracle": 0.043238000000000006,
+        "judge": 0.10856199999999999,
+        "adversary": 0.07963200000000001
+      },
+      "usd_total": 0.31824,
+      "cost_complete": true,
+      "cost_missing": []
+    },
+    {
+      "run": "prose-c__r5__rep2",
+      "source": "runs",
+      "attempt": false,
+      "arm": "r5",
+      "has_manifest": true,
+      "egress_attempts": 9,
+      "monitor_refusals": [],
+      "reintegrator_refusals": [],
+      "transport_failures": [],
+      "leak_gate_aborts": [],
+      "relations_dropped_leak": 1,
+      "refused_any": false,
+      "audit": null,
+      "discrepancies": [],
+      "request_bytes": 29395,
+      "response_bytes": 19007,
+      "slots_advertised": {
+        "DATE": 8,
+        "IDENTIFIER": 3,
+        "LOCATION": 3,
+        "MONEY": 10,
+        "ORG": 3,
+        "PERSON": 3,
+        "PROJECT": 4,
+        "QUANTITY": 4
+      },
+      "slots_advertised_total": 38,
+      "slots_on_wire": 38,
+      "system_slots": 0,
+      "relations": 22,
+      "fact_refs_returned": 0,
+      "fact_refs_returned_distinct": 0,
+      "facts_resolved": 0,
+      "facts_unavailable": 0,
+      "sentences_pruned": 0,
+      "usage": {
+        "plan": {
+          "input_tokens": 2833,
+          "output_tokens": 1743
+        },
+        "draft": {
+          "input_tokens": 12193,
+          "output_tokens": 5770
+        },
+        "oracle": {
+          "input_tokens": 502,
+          "output_tokens": 3378,
+          "cache_read_tokens": 8530,
+          "cache_write_tokens": 3963
+        },
+        "judge": {
+          "input_tokens": 52452,
+          "output_tokens": 1777
+        },
+        "adversary": {
+          "input_tokens": 22295,
+          "output_tokens": 3970
+        }
+      },
+      "usd": {
+        "plan": 0.023096000000000002,
+        "draft": 0.08208599999999999,
+        "oracle": 0.0463975,
+        "judge": 0.122674,
+        "adversary": 0.08429
+      },
+      "usd_total": 0.3585435,
+      "cost_complete": true,
+      "cost_missing": []
+    },
+    {
+      "run": "prose-c__r5__rep3",
+      "source": "runs",
+      "attempt": false,
+      "arm": "r5",
+      "has_manifest": true,
+      "egress_attempts": 9,
+      "monitor_refusals": [],
+      "reintegrator_refusals": [],
+      "transport_failures": [],
+      "leak_gate_aborts": [],
+      "relations_dropped_leak": 1,
+      "refused_any": false,
+      "audit": null,
+      "discrepancies": [],
+      "request_bytes": 29832,
+      "response_bytes": 16729,
+      "slots_advertised": {
+        "DATE": 8,
+        "IDENTIFIER": 3,
+        "LOCATION": 3,
+        "MONEY": 10,
+        "ORG": 3,
+        "PERSON": 3,
+        "PROJECT": 4,
+        "QUANTITY": 4
+      },
+      "slots_advertised_total": 38,
+      "slots_on_wire": 38,
+      "system_slots": 0,
+      "relations": 22,
+      "fact_refs_returned": 0,
+      "fact_refs_returned_distinct": 0,
+      "facts_resolved": 0,
+      "facts_unavailable": 0,
+      "sentences_pruned": 0,
+      "usage": {
+        "plan": {
+          "input_tokens": 2834,
+          "output_tokens": 1534
+        },
+        "draft": {
+          "input_tokens": 12674,
+          "output_tokens": 5205
+        },
+        "oracle": {
+          "input_tokens": 607,
+          "output_tokens": 3423,
+          "cache_read_tokens": 10362,
+          "cache_write_tokens": 3984
+        },
+        "judge": {
+          "input_tokens": 48906,
+          "output_tokens": 1763
+        },
+        "adversary": {
+          "input_tokens": 22078,
+          "output_tokens": 3002
+        }
+      },
+      "usd": {
+        "plan": 0.021008,
+        "draft": 0.07739800000000001,
+        "oracle": 0.0474764,
+        "judge": 0.11544199999999999,
+        "adversary": 0.074176
+      },
+      "usd_total": 0.33550040000000003,
+      "cost_complete": true,
+      "cost_missing": []
+    },
+    {
+      "run": "smoke-q3__baseline",
+      "source": "runs",
+      "attempt": false,
+      "arm": "baseline",
+      "has_manifest": true,
+      "egress_attempts": 9,
+      "monitor_refusals": [],
+      "reintegrator_refusals": [],
+      "transport_failures": [],
+      "leak_gate_aborts": [],
+      "relations_dropped_leak": 0,
+      "refused_any": false,
+      "audit": null,
+      "discrepancies": [],
+      "request_bytes": 39299,
+      "response_bytes": 21050,
+      "slots_advertised": {
+        "DATE": 15,
+        "IDENTIFIER": 6,
+        "LOCATION": 3,
+        "MONEY": 19,
+        "ORG": 2,
+        "PERSON": 3,
+        "PROJECT": 3,
+        "QUANTITY": 7
+      },
+      "slots_advertised_total": 58,
+      "slots_on_wire": 58,
+      "system_slots": 0,
+      "relations": 45,
+      "fact_refs_returned": 0,
+      "fact_refs_returned_distinct": 0,
+      "facts_resolved": 0,
+      "facts_unavailable": 0,
+      "sentences_pruned": 0,
+      "usage": {
+        "plan": {
+          "input_tokens": 4053,
+          "output_tokens": 1728
+        },
+        "draft": {
+          "input_tokens": 16724,
+          "output_tokens": 6111
+        },
+        "oracle": {
+          "input_tokens": 529,
+          "output_tokens": 3301,
+          "cache_read_tokens": 9585,
+          "cache_write_tokens": 4372
+        },
+        "judge": {
+          "input_tokens": 55488,
+          "output_tokens": 1692
+        },
+        "adversary": {
+          "input_tokens": 28427,
+          "output_tokens": 2931
+        }
+      },
+      "usd": {
+        "plan": 0.025386,
+        "draft": 0.094558,
+        "oracle": 0.046915000000000005,
+        "judge": 0.12789599999999998,
+        "adversary": 0.08616399999999999
+      },
+      "usd_total": 0.380919,
+      "cost_complete": true,
+      "cost_missing": []
+    },
+    {
+      "run": "smoke-q3__baseline__rep2",
+      "source": "runs",
+      "attempt": false,
+      "arm": "baseline",
+      "has_manifest": true,
+      "egress_attempts": 9,
+      "monitor_refusals": [],
+      "reintegrator_refusals": [],
+      "transport_failures": [],
+      "leak_gate_aborts": [],
+      "relations_dropped_leak": 0,
+      "refused_any": false,
+      "audit": null,
+      "discrepancies": [],
+      "request_bytes": 39370,
+      "response_bytes": 17431,
+      "slots_advertised": {
+        "DATE": 15,
+        "IDENTIFIER": 6,
+        "LOCATION": 3,
+        "MONEY": 19,
+        "ORG": 2,
+        "PERSON": 3,
+        "PROJECT": 3,
+        "QUANTITY": 7
+      },
+      "slots_advertised_total": 58,
+      "slots_on_wire": 58,
+      "system_slots": 0,
+      "relations": 45,
+      "fact_refs_returned": 0,
+      "fact_refs_returned_distinct": 0,
+      "facts_resolved": 0,
+      "facts_unavailable": 0,
+      "sentences_pruned": 0,
+      "usage": {
+        "plan": {
+          "input_tokens": 4051,
+          "output_tokens": 1353
+        },
+        "draft": {
+          "input_tokens": 16755,
+          "output_tokens": 5216
+        },
+        "oracle": {
+          "input_tokens": 602,
+          "output_tokens": 3642,
+          "cache_read_tokens": 11550,
+          "cache_write_tokens": 4380
+        },
+        "judge": {
+          "input_tokens": 52620,
+          "output_tokens": 1835
+        },
+        "adversary": {
+          "input_tokens": 27176,
+          "output_tokens": 3666
+        }
+      },
+      "usd": {
+        "plan": 0.021632,
+        "draft": 0.08567,
+        "oracle": 0.050884,
+        "judge": 0.12359,
+        "adversary": 0.09101200000000001
+      },
+      "usd_total": 0.372788,
+      "cost_complete": true,
+      "cost_missing": []
+    },
+    {
+      "run": "smoke-q3__baseline__rep3",
+      "source": "runs",
+      "attempt": false,
+      "arm": "baseline",
+      "has_manifest": true,
+      "egress_attempts": 9,
+      "monitor_refusals": [],
+      "reintegrator_refusals": [],
+      "transport_failures": [],
+      "leak_gate_aborts": [],
+      "relations_dropped_leak": 0,
+      "refused_any": false,
+      "audit": null,
+      "discrepancies": [],
+      "request_bytes": 39378,
+      "response_bytes": 18600,
+      "slots_advertised": {
+        "DATE": 15,
+        "IDENTIFIER": 6,
+        "LOCATION": 3,
+        "MONEY": 19,
+        "ORG": 2,
+        "PERSON": 3,
+        "PROJECT": 3,
+        "QUANTITY": 7
+      },
+      "slots_advertised_total": 58,
+      "slots_on_wire": 58,
+      "system_slots": 0,
+      "relations": 45,
+      "fact_refs_returned": 0,
+      "fact_refs_returned_distinct": 0,
+      "facts_resolved": 0,
+      "facts_unavailable": 0,
+      "sentences_pruned": 0,
+      "usage": {
+        "plan": {
+          "input_tokens": 4050,
+          "output_tokens": 1682
+        },
+        "draft": {
+          "input_tokens": 16737,
+          "output_tokens": 5352
+        },
+        "oracle": {
+          "input_tokens": 586,
+          "output_tokens": 3398,
+          "cache_read_tokens": 11526,
+          "cache_write_tokens": 4376
+        },
+        "judge": {
+          "input_tokens": 52890,
+          "output_tokens": 1877
+        },
+        "adversary": {
+          "input_tokens": 27537,
+          "output_tokens": 1851
+        }
+      },
+      "usd": {
+        "plan": 0.02492,
+        "draft": 0.086994,
+        "oracle": 0.0483972,
+        "judge": 0.12455,
+        "adversary": 0.073584
+      },
+      "usd_total": 0.3584452,
+      "cost_complete": true,
+      "cost_missing": []
+    },
+    {
+      "run": "smoke-q3__r1",
+      "source": "runs",
+      "attempt": false,
+      "arm": "r1",
+      "has_manifest": true,
+      "egress_attempts": 9,
+      "monitor_refusals": [],
+      "reintegrator_refusals": [],
+      "transport_failures": [],
+      "leak_gate_aborts": [],
+      "relations_dropped_leak": 0,
+      "refused_any": false,
+      "audit": null,
+      "discrepancies": [],
+      "request_bytes": 48986,
+      "response_bytes": 18920,
+      "slots_advertised": {
+        "LOCATION": 3,
+        "ORG": 2,
+        "PERSON": 3,
+        "PROJECT": 3
+      },
+      "slots_advertised_total": 11,
+      "slots_on_wire": 11,
+      "system_slots": 0,
+      "relations": 45,
+      "fact_refs_returned": 59,
+      "fact_refs_returned_distinct": 35,
+      "facts_resolved": 35,
+      "facts_unavailable": 9,
+      "sentences_pruned": 8,
+      "usage": {
+        "plan": {
+          "input_tokens": 2687,
+          "output_tokens": 1661
+        },
+        "draft": {
+          "input_tokens": 21197,
+          "output_tokens": 6393
+        },
+        "oracle": {
+          "input_tokens": 580,
+          "output_tokens": 3500,
+          "cache_read_tokens": 11544,
+          "cache_write_tokens": 4379
+        },
+        "judge": {
+          "input_tokens": 49590,
+          "output_tokens": 1689
+        },
+        "adversary": {
+          "input_tokens": 31684,
+          "output_tokens": 3337
+        }
+      },
+      "usd": {
+        "plan": 0.021984,
+        "draft": 0.106324,
+        "oracle": 0.0494163,
+        "judge": 0.11606999999999999,
+        "adversary": 0.09673799999999999
+      },
+      "usd_total": 0.3905323,
+      "cost_complete": true,
+      "cost_missing": []
+    },
+    {
+      "run": "smoke-q3__r1__rep2",
+      "source": "runs",
+      "attempt": false,
+      "arm": "r1",
+      "has_manifest": true,
+      "egress_attempts": 9,
+      "monitor_refusals": [],
+      "reintegrator_refusals": [],
+      "transport_failures": [],
+      "leak_gate_aborts": [],
+      "relations_dropped_leak": 0,
+      "refused_any": false,
+      "audit": null,
+      "discrepancies": [],
+      "request_bytes": 48109,
+      "response_bytes": 17651,
+      "slots_advertised": {
+        "LOCATION": 3,
+        "ORG": 2,
+        "PERSON": 3,
+        "PROJECT": 3
+      },
+      "slots_advertised_total": 11,
+      "slots_on_wire": 11,
+      "system_slots": 0,
+      "relations": 45,
+      "fact_refs_returned": 60,
+      "fact_refs_returned_distinct": 38,
+      "facts_resolved": 34,
+      "facts_unavailable": 8,
+      "sentences_pruned": 11,
+      "usage": {
+        "plan": {
+          "input_tokens": 2685,
+          "output_tokens": 1606
+        },
+        "draft": {
+          "input_tokens": 20765,
+          "output_tokens": 5875
+        },
+        "oracle": {
+          "input_tokens": 514,
+          "output_tokens": 3126,
+          "cache_read_tokens": 9535,
+          "cache_write_tokens": 4362
+        },
+        "judge": {
+          "input_tokens": 43572,
+          "output_tokens": 1682
+        },
+        "adversary": {
+          "input_tokens": 30693,
+          "output_tokens": 5156
+        }
+      },
+      "usd": {
+        "plan": 0.02143,
+        "draft": 0.10028000000000001,
+        "oracle": 0.0451,
+        "judge": 0.103964,
+        "adversary": 0.11294599999999999
+      },
+      "usd_total": 0.38372,
+      "cost_complete": true,
+      "cost_missing": []
+    },
+    {
+      "run": "smoke-q3__r1__rep3",
+      "source": "runs",
+      "attempt": false,
+      "arm": "r1",
+      "has_manifest": true,
+      "egress_attempts": 9,
+      "monitor_refusals": [],
+      "reintegrator_refusals": [],
+      "transport_failures": [],
+      "leak_gate_aborts": [],
+      "relations_dropped_leak": 0,
+      "refused_any": false,
+      "audit": null,
+      "discrepancies": [],
+      "request_bytes": 48211,
+      "response_bytes": 15744,
+      "slots_advertised": {
+        "LOCATION": 3,
+        "ORG": 2,
+        "PERSON": 3,
+        "PROJECT": 3
+      },
+      "slots_advertised_total": 11,
+      "slots_on_wire": 11,
+      "system_slots": 0,
+      "relations": 45,
+      "fact_refs_returned": 65,
+      "fact_refs_returned_distinct": 31,
+      "facts_resolved": 39,
+      "facts_unavailable": 11,
+      "sentences_pruned": 10,
+      "usage": {
+        "plan": {
+          "input_tokens": 2686,
+          "output_tokens": 1134
+        },
+        "draft": {
+          "input_tokens": 20805,
+          "output_tokens": 5494
+        },
+        "oracle": {
+          "input_tokens": 546,
+          "output_tokens": 3227,
+          "cache_read_tokens": 9530,
+          "cache_write_tokens": 4361
+        },
+        "judge": {
+          "input_tokens": 43116,
+          "output_tokens": 1671
+        },
+        "adversary": {
+          "input_tokens": 29882,
+          "output_tokens": 1634
+        }
+      },
+      "usd": {
+        "plan": 0.016712,
+        "draft": 0.09655,
+        "oracle": 0.0461705,
+        "judge": 0.10294199999999999,
+        "adversary": 0.076104
+      },
+      "usd_total": 0.3384785,
+      "cost_complete": true,
+      "cost_missing": []
+    },
+    {
+      "run": "smoke-q3__r5",
+      "source": "runs",
+      "attempt": false,
+      "arm": "r5",
+      "has_manifest": true,
+      "egress_attempts": 9,
+      "monitor_refusals": [],
+      "reintegrator_refusals": [],
+      "transport_failures": [],
+      "leak_gate_aborts": [],
+      "relations_dropped_leak": 0,
+      "refused_any": false,
+      "audit": null,
+      "discrepancies": [],
+      "request_bytes": 38585,
+      "response_bytes": 18352,
+      "slots_advertised": {
+        "DATE": 13,
+        "IDENTIFIER": 5,
+        "LOCATION": 3,
+        "MONEY": 8,
+        "ORG": 2,
+        "PERSON": 3,
+        "PROJECT": 3,
+        "QUANTITY": 7
+      },
+      "slots_advertised_total": 44,
+      "slots_on_wire": 44,
+      "system_slots": 0,
+      "relations": 45,
+      "fact_refs_returned": 0,
+      "fact_refs_returned_distinct": 0,
+      "facts_resolved": 0,
+      "facts_unavailable": 0,
+      "sentences_pruned": 0,
+      "usage": {
+        "plan": {
+          "input_tokens": 3610,
+          "output_tokens": 1413
+        },
+        "draft": {
+          "input_tokens": 16583,
+          "output_tokens": 5318
+        },
+        "oracle": {
+          "input_tokens": 592,
+          "output_tokens": 3724,
+          "cache_read_tokens": 11526,
+          "cache_write_tokens": 4376
+        },
+        "judge": {
+          "input_tokens": 53958,
+          "output_tokens": 1839
+        },
+        "adversary": {
+          "input_tokens": 26738,
+          "output_tokens": 3273
+        }
+      },
+      "usd": {
+        "plan": 0.02135,
+        "draft": 0.086346,
+        "oracle": 0.0516692,
+        "judge": 0.126306,
+        "adversary": 0.086206
+      },
+      "usd_total": 0.3718772,
+      "cost_complete": true,
+      "cost_missing": []
+    },
+    {
+      "run": "smoke-q3__r5__rep2",
+      "source": "runs",
+      "attempt": false,
+      "arm": "r5",
+      "has_manifest": true,
+      "egress_attempts": 8,
+      "monitor_refusals": [],
+      "reintegrator_refusals": [],
+      "transport_failures": [],
+      "leak_gate_aborts": [],
+      "relations_dropped_leak": 0,
+      "refused_any": false,
+      "audit": null,
+      "discrepancies": [],
+      "request_bytes": 34166,
+      "response_bytes": 15675,
+      "slots_advertised": {
+        "DATE": 13,
+        "IDENTIFIER": 5,
+        "LOCATION": 3,
+        "MONEY": 8,
+        "ORG": 2,
+        "PERSON": 3,
+        "PROJECT": 3,
+        "QUANTITY": 7
+      },
+      "slots_advertised_total": 44,
+      "slots_on_wire": 44,
+      "system_slots": 0,
+      "relations": 45,
+      "fact_refs_returned": 0,
+      "fact_refs_returned_distinct": 0,
+      "facts_resolved": 0,
+      "facts_unavailable": 0,
+      "sentences_pruned": 0,
+      "usage": {
+        "plan": {
+          "input_tokens": 3597,
+          "output_tokens": 1199
+        },
+        "draft": {
+          "input_tokens": 14471,
+          "output_tokens": 4766
+        },
+        "oracle": {
+          "input_tokens": 523,
+          "output_tokens": 3092,
+          "cache_read_tokens": 9550,
+          "cache_write_tokens": 4365
+        },
+        "judge": {
+          "input_tokens": 47022,
+          "output_tokens": 1649
+        },
+        "adversary": {
+          "input_tokens": 23799,
+          "output_tokens": 1911
+        }
+      },
+      "usd": {
+        "plan": 0.019184,
+        "draft": 0.076602,
+        "oracle": 0.0447885,
+        "judge": 0.11053400000000001,
+        "adversary": 0.06670799999999999
+      },
+      "usd_total": 0.3178165,
+      "cost_complete": true,
+      "cost_missing": []
+    },
+    {
+      "run": "smoke-q3__r5__rep3",
+      "source": "runs",
+      "attempt": false,
+      "arm": "r5",
+      "has_manifest": true,
+      "egress_attempts": 9,
+      "monitor_refusals": [],
+      "reintegrator_refusals": [],
+      "transport_failures": [],
+      "leak_gate_aborts": [],
+      "relations_dropped_leak": 0,
+      "refused_any": false,
+      "audit": null,
+      "discrepancies": [],
+      "request_bytes": 38374,
+      "response_bytes": 16796,
+      "slots_advertised": {
+        "DATE": 13,
+        "IDENTIFIER": 5,
+        "LOCATION": 3,
+        "MONEY": 8,
+        "ORG": 2,
+        "PERSON": 3,
+        "PROJECT": 3,
+        "QUANTITY": 7
+      },
+      "slots_advertised_total": 44,
+      "slots_on_wire": 44,
+      "system_slots": 0,
+      "relations": 45,
+      "fact_refs_returned": 0,
+      "fact_refs_returned_distinct": 0,
+      "facts_resolved": 0,
+      "facts_unavailable": 0,
+      "sentences_pruned": 0,
+      "usage": {
+        "plan": {
+          "input_tokens": 3593,
+          "output_tokens": 1396
+        },
+        "draft": {
+          "input_tokens": 16425,
+          "output_tokens": 5034
+        },
+        "oracle": {
+          "input_tokens": 620,
+          "output_tokens": 3654,
+          "cache_read_tokens": 11604,
+          "cache_write_tokens": 4389
+        },
+        "judge": {
+          "input_tokens": 51834,
+          "output_tokens": 1759
+        },
+        "adversary": {
+          "input_tokens": 26164,
+          "output_tokens": 4590
+        }
+      },
+      "usd": {
+        "plan": 0.021146,
+        "draft": 0.08319,
+        "oracle": 0.0510733,
+        "judge": 0.121258,
+        "adversary": 0.09822800000000001
+      },
+      "usd_total": 0.37489530000000004,
+      "cost_complete": true,
+      "cost_missing": []
+    }
+  ]
+}

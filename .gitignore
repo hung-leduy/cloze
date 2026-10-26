@@ -1,0 +1,26 @@
+.env
+corpus/
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+*.duckdb
+eval_runs/
+data/
+build/
+.coverage
+eval/runs/
+eval/evaluation.json
+eval/attempts/
+eval/pilot/
+# Track L (scope §12): TAB-derived collections and everything run on them hold
+# judgment text; only the builder, the tasks files and manifest_l.json are committed.
+eval/real/corpora/
+eval/real/runs/
+eval/real/attempts/
+eval/real/out/
+# Raw extractions behind eval/probe/*.json (tier1_probe extract); regenerable.
+eval/probe/extractions/

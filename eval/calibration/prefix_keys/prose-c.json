@@ -1,0 +1,428 @@
+{
+  "attributes": {
+    "AUTHORISED": {
+      "label": "authorised budget",
+      "lexicon": [
+        "authorised budget",
+        "authorized budget",
+        "authorised spend",
+        "authorized spend",
+        "budget authority",
+        "an authority of",
+        "authority of",
+        "allocation",
+        "authorised",
+        "authorized",
+        "allocated",
+        "authority",
+        "approved",
+        "budget"
+      ]
+    },
+    "OVERRUN": {
+      "label": "overspend against authority",
+      "lexicon": [
+        "exceeds the budget by",
+        "exceeds budget by",
+        "over budget by",
+        "an overrun of",
+        "in excess of",
+        "overspend",
+        "exceeds",
+        "overrun"
+      ]
+    },
+    "PCT_SPENT": {
+      "label": "share of authority spent",
+      "lexicon": [
+        "share of authority utilised",
+        "share of authority spent",
+        "percentage of authority",
+        "share of authority used",
+        "share of authority",
+        "percentage spent",
+        "percent spent",
+        "spend share",
+        "utilised"
+      ]
+    },
+    "REVENUE_FALL_PCT": {
+      "label": "revenue decline",
+      "lexicon": [
+        "revenue for the quarter fell",
+        "revenue declined",
+        "revenue fell",
+        "declined",
+        "decline",
+        "fell"
+      ]
+    },
+    "SPENT": {
+      "label": "amount spent",
+      "lexicon": [
+        "had been spent",
+        "has been spent",
+        "were committed",
+        "was committed",
+        "expenditure",
+        "have spent",
+        "committed",
+        "disbursed",
+        "has spent",
+        "outlay",
+        "spend",
+        "spent"
+      ]
+    },
+    "UNITS_SHORT": {
+      "label": "units short of the commitment",
+      "lexicon": [
+        "units fewer than",
+        "units short of",
+        "units against",
+        "units fewer",
+        "units short",
+        "units"
+      ]
+    },
+    "UNSPENT": {
+      "label": "unspent balance",
+      "lexicon": [
+        "remaining balance",
+        "unspent balance",
+        "held against",
+        "uncommitted",
+        "is unspent",
+        "remaining",
+        "undrawn",
+        "unspent",
+        "unused"
+      ]
+    }
+  },
+  "facts": [
+    {
+      "attribute": "AUTHORISED",
+      "derived": false,
+      "fact_id": "LARKSPUR.AUTHORISED",
+      "match": "numeric",
+      "subject": "LARKSPUR",
+      "subjects": [
+        "LARKSPUR"
+      ],
+      "surfaces": [
+        "540,000",
+        "540,000.00",
+        "540000",
+        "540000.00"
+      ],
+      "value": 540000.0
+    },
+    {
+      "attribute": "SPENT",
+      "derived": false,
+      "fact_id": "LARKSPUR.SPENT",
+      "match": "numeric",
+      "subject": "LARKSPUR",
+      "subjects": [
+        "LARKSPUR"
+      ],
+      "surfaces": [
+        "412,905.3",
+        "412,905.30",
+        "412905.3",
+        "412905.30"
+      ],
+      "value": 412905.3
+    },
+    {
+      "attribute": "UNSPENT",
+      "derived": false,
+      "fact_id": "LARKSPUR.UNSPENT",
+      "match": "numeric",
+      "subject": "LARKSPUR",
+      "subjects": [
+        "LARKSPUR"
+      ],
+      "surfaces": [
+        "127,094.7",
+        "127,094.70",
+        "127094.7",
+        "127094.70"
+      ],
+      "value": 127094.7
+    },
+    {
+      "attribute": "AUTHORISED",
+      "derived": false,
+      "fact_id": "COBALT.AUTHORISED",
+      "match": "numeric",
+      "subject": "COBALT",
+      "subjects": [
+        "COBALT"
+      ],
+      "surfaces": [
+        "96,000",
+        "96,000.00",
+        "96000",
+        "96000.00"
+      ],
+      "value": 96000.0
+    },
+    {
+      "attribute": "SPENT",
+      "derived": false,
+      "fact_id": "COBALT.SPENT",
+      "match": "numeric",
+      "subject": "COBALT",
+      "subjects": [
+        "COBALT"
+      ],
+      "surfaces": [
+        "88,410",
+        "88,410.00",
+        "88410",
+        "88410.00"
+      ],
+      "value": 88410.0
+    },
+    {
+      "attribute": "UNSPENT",
+      "derived": false,
+      "fact_id": "COBALT.UNSPENT",
+      "match": "numeric",
+      "subject": "COBALT",
+      "subjects": [
+        "COBALT"
+      ],
+      "surfaces": [
+        "7,590",
+        "7,590.00",
+        "7590",
+        "7590.00"
+      ],
+      "value": 7590.0
+    },
+    {
+      "attribute": "AUTHORISED",
+      "derived": false,
+      "fact_id": "FENWICK.AUTHORISED",
+      "match": "numeric",
+      "subject": "FENWICK",
+      "subjects": [
+        "FENWICK"
+      ],
+      "surfaces": [
+        "33,750",
+        "33,750.00",
+        "33750",
+        "33750.00"
+      ],
+      "value": 33750.0
+    },
+    {
+      "attribute": "SPENT",
+      "derived": false,
+      "fact_id": "FENWICK.SPENT",
+      "match": "numeric",
+      "subject": "FENWICK",
+      "subjects": [
+        "FENWICK"
+      ],
+      "surfaces": [
+        "39,102.6",
+        "39,102.60",
+        "39102.6",
+        "39102.60"
+      ],
+      "value": 39102.6
+    },
+    {
+      "attribute": "OVERRUN",
+      "derived": false,
+      "fact_id": "FENWICK.OVERRUN",
+      "match": "numeric",
+      "subject": "FENWICK",
+      "subjects": [
+        "FENWICK"
+      ],
+      "surfaces": [
+        "5,352.6",
+        "5,352.60",
+        "5352.6",
+        "5352.60"
+      ],
+      "value": 5352.6
+    },
+    {
+      "attribute": "PCT_SPENT",
+      "derived": true,
+      "fact_id": "LARKSPUR.PCT_SPENT",
+      "match": "numeric",
+      "subject": "LARKSPUR",
+      "subjects": [
+        "LARKSPUR"
+      ],
+      "surfaces": [
+        "76.5",
+        "76.50"
+      ],
+      "value": 76.5
+    },
+    {
+      "attribute": "PCT_SPENT",
+      "derived": true,
+      "fact_id": "COBALT.PCT_SPENT",
+      "match": "numeric",
+      "subject": "COBALT",
+      "subjects": [
+        "COBALT"
+      ],
+      "surfaces": [
+        "92.1",
+        "92.10"
+      ],
+      "value": 92.1
+    },
+    {
+      "attribute": "PCT_SPENT",
+      "derived": true,
+      "fact_id": "FENWICK.PCT_SPENT",
+      "match": "numeric",
+      "subject": "FENWICK",
+      "subjects": [
+        "FENWICK"
+      ],
+      "surfaces": [
+        "115.9",
+        "115.90"
+      ],
+      "value": 115.9
+    },
+    {
+      "attribute": "UNITS_SHORT",
+      "derived": false,
+      "fact_id": "VENDOR.UNITS_SHORT",
+      "match": "numeric",
+      "subject": "VENDOR",
+      "subjects": [
+        "VENDOR",
+        "COBALT"
+      ],
+      "surfaces": [
+        "128",
+        "128.00"
+      ],
+      "value": 128
+    },
+    {
+      "attribute": "REVENUE_FALL_PCT",
+      "derived": false,
+      "fact_id": "LARKSPUR.REVENUE_FALL_PCT",
+      "match": "surface",
+      "narrative": true,
+      "subject": "LARKSPUR",
+      "subjects": [
+        "LARKSPUR"
+      ],
+      "surfaces": [
+        "fifteen percent",
+        "15 per cent",
+        "15 percent",
+        "15%"
+      ],
+      "value": "15 percent"
+    }
+  ],
+  "generated_by": "scripts/corpora/prose_c.py",
+  "mask_patterns": [
+    "PW-\\d{4}-\\d{4}",
+    "\\d{4}-\\d{2}-\\d{2}(?:[T ][\\d:]+)?",
+    "\\b\\d{1,2}\\s+(?:January|February|March|April|May|June|July|August|September|October|November|December)\\s+\\d{4}\\b",
+    "\\b(?:January|February|March|April|May|June|July|August|September|October|November|December)\\s+\\d{4}\\b",
+    "\\bQ[1-4]\\b",
+    "\\b\\d{1,2}\\s*(?:[-\\u2013\\u2014]|to)\\s*\\d{1,2}\\s+(?:January|February|March|April|May|June|July|August|September|October|November|December)\\b",
+    "\\b\\d{1,2}(?:st|nd|rd|th)?\\s+(?:January|February|March|April|May|June|July|August|September|October|November|December)\\b",
+    "\\(\\d{1,2}\\)"
+  ],
+  "provisional": "not yet audited; see eval/corpora/KEY_AUDIT.md",
+  "referents": {
+    "COBALT": [
+      "Project Cobalt",
+      "Cobalt"
+    ],
+    "FENWICK": [
+      "Scheme Fenwick",
+      "Fenwick"
+    ],
+    "LARKSPUR": [
+      "Project Larkspur",
+      "Larkspur"
+    ],
+    "ORG": [
+      "Pellingham Water Trust",
+      "Pellingham"
+    ],
+    "VENDOR": [
+      "Holloway Pumpworks",
+      "Holloway"
+    ]
+  },
+  "scenario": "prose-c",
+  "string_facts": [
+    {
+      "attribute": "OWNER",
+      "fact_id": "LARKSPUR.OWNER",
+      "subject": "LARKSPUR",
+      "value": "Miriam Achterberg"
+    },
+    {
+      "attribute": "SITE",
+      "fact_id": "LARKSPUR.SITE",
+      "subject": "LARKSPUR",
+      "value": "Truro"
+    },
+    {
+      "attribute": "CONTRACT",
+      "fact_id": "LARKSPUR.CONTRACT",
+      "subject": "LARKSPUR",
+      "value": "PW-2026-0452"
+    },
+    {
+      "attribute": "OWNER",
+      "fact_id": "COBALT.OWNER",
+      "subject": "COBALT",
+      "value": "Declan Oyelaran"
+    },
+    {
+      "attribute": "SITE",
+      "fact_id": "COBALT.SITE",
+      "subject": "COBALT",
+      "value": "Hereford"
+    },
+    {
+      "attribute": "CONTRACT",
+      "fact_id": "COBALT.CONTRACT",
+      "subject": "COBALT",
+      "value": "PW-2026-0619"
+    },
+    {
+      "attribute": "OWNER",
+      "fact_id": "FENWICK.OWNER",
+      "subject": "FENWICK",
+      "value": "Harriet Quennell"
+    },
+    {
+      "attribute": "SITE",
+      "fact_id": "FENWICK.SITE",
+      "subject": "FENWICK",
+      "value": "Lincoln"
+    },
+    {
+      "attribute": "CONTRACT",
+      "fact_id": "FENWICK.CONTRACT",
+      "subject": "FENWICK",
+      "value": "PW-2026-0833"
+    }
+  ]
+}

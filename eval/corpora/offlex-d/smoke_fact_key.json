@@ -1,0 +1,520 @@
+{
+  "attributes": {
+    "AUTHORISED": {
+      "label": "authorised budget",
+      "lexicon": [
+        "authorised budget",
+        "authorized budget",
+        "authorised spend",
+        "authorized spend",
+        "budget authority",
+        "an authority of",
+        "authority of",
+        "allocation",
+        "authorised",
+        "authorized",
+        "allocated",
+        "authority",
+        "approved",
+        "budget"
+      ]
+    },
+    "OVERRUN": {
+      "label": "overspend against authority",
+      "lexicon": [
+        "exceeded authorised budget by",
+        "exceeds the budget by",
+        "exceeds budget by",
+        "over budget by",
+        "an overrun of",
+        "in excess of",
+        "overspend",
+        "exceeds",
+        "overrun"
+      ]
+    },
+    "PCT_SPENT": {
+      "label": "share of authority spent",
+      "lexicon": [
+        "share of authority utilised",
+        "share of authority spent",
+        "percentage of authority",
+        "share of authority used",
+        "of authorised funds",
+        "share of authority",
+        "consumption rate",
+        "percentage spent",
+        "percent spent",
+        "share spent",
+        "spend share",
+        "utilised"
+      ]
+    },
+    "REVENUE_FALL_PCT": {
+      "label": "revenue decline",
+      "lexicon": [
+        "revenue for the quarter fell",
+        "revenue shortfall",
+        "revenue declined",
+        "revenue fell",
+        "declined",
+        "decline",
+        "fell"
+      ]
+    },
+    "SPENT": {
+      "label": "amount spent",
+      "lexicon": [
+        "had been spent",
+        "has been drawn",
+        "has been spent",
+        "were committed",
+        "was committed",
+        "expenditure",
+        "have spent",
+        "committed",
+        "disbursed",
+        "has spent",
+        "outlay",
+        "drawn",
+        "spend",
+        "spent"
+      ]
+    },
+    "UNITS_SHORT": {
+      "label": "units short of the commitment",
+      "lexicon": [
+        "units fewer than",
+        "units short of",
+        "units against",
+        "units fewer",
+        "units short",
+        "units"
+      ]
+    },
+    "UNSPENT": {
+      "label": "unspent balance",
+      "lexicon": [
+        "remaining balance",
+        "unspent balance",
+        "held against",
+        "uncommitted",
+        "is unspent",
+        "remaining",
+        "headroom",
+        "undrawn",
+        "unspent",
+        "unused"
+      ]
+    }
+  },
+  "facts": [
+    {
+      "attribute": "AUTHORISED",
+      "derived": false,
+      "fact_id": "SALTMARSH.AUTHORISED",
+      "match": "numeric",
+      "subject": "SALTMARSH",
+      "subjects": [
+        "SALTMARSH"
+      ],
+      "surfaces": [
+        "460,000",
+        "460,000.00",
+        "460000",
+        "460000.00"
+      ],
+      "value": 460000.0
+    },
+    {
+      "attribute": "SPENT",
+      "derived": false,
+      "fact_id": "SALTMARSH.SPENT",
+      "match": "numeric",
+      "subject": "SALTMARSH",
+      "subjects": [
+        "SALTMARSH"
+      ],
+      "surfaces": [
+        "187,946.5",
+        "187,946.50",
+        "187946.5",
+        "187946.50"
+      ],
+      "value": 187946.5
+    },
+    {
+      "attribute": "UNSPENT",
+      "derived": false,
+      "fact_id": "SALTMARSH.UNSPENT",
+      "match": "numeric",
+      "subject": "SALTMARSH",
+      "subjects": [
+        "SALTMARSH"
+      ],
+      "surfaces": [
+        "272,053.5",
+        "272,053.50",
+        "272053.5",
+        "272053.50"
+      ],
+      "value": 272053.5
+    },
+    {
+      "attribute": "AUTHORISED",
+      "derived": false,
+      "fact_id": "WEIRGATE.AUTHORISED",
+      "match": "numeric",
+      "subject": "WEIRGATE",
+      "subjects": [
+        "WEIRGATE"
+      ],
+      "surfaces": [
+        "125,000",
+        "125,000.00",
+        "125000",
+        "125000.00"
+      ],
+      "value": 125000.0
+    },
+    {
+      "attribute": "SPENT",
+      "derived": false,
+      "fact_id": "WEIRGATE.SPENT",
+      "match": "numeric",
+      "subject": "WEIRGATE",
+      "subjects": [
+        "WEIRGATE"
+      ],
+      "surfaces": [
+        "98,340.75",
+        "98340.75"
+      ],
+      "value": 98340.75
+    },
+    {
+      "attribute": "UNSPENT",
+      "derived": false,
+      "fact_id": "WEIRGATE.UNSPENT",
+      "match": "numeric",
+      "subject": "WEIRGATE",
+      "subjects": [
+        "WEIRGATE"
+      ],
+      "surfaces": [
+        "26,659.25",
+        "26659.25"
+      ],
+      "value": 26659.25
+    },
+    {
+      "attribute": "AUTHORISED",
+      "derived": false,
+      "fact_id": "FALLOWBECK.AUTHORISED",
+      "match": "numeric",
+      "subject": "FALLOWBECK",
+      "subjects": [
+        "FALLOWBECK"
+      ],
+      "surfaces": [
+        "238,500",
+        "238,500.00",
+        "238500",
+        "238500.00"
+      ],
+      "value": 238500.0
+    },
+    {
+      "attribute": "SPENT",
+      "derived": false,
+      "fact_id": "FALLOWBECK.SPENT",
+      "match": "numeric",
+      "subject": "FALLOWBECK",
+      "subjects": [
+        "FALLOWBECK"
+      ],
+      "surfaces": [
+        "229,871.4",
+        "229,871.40",
+        "229871.4",
+        "229871.40"
+      ],
+      "value": 229871.4
+    },
+    {
+      "attribute": "UNSPENT",
+      "derived": false,
+      "fact_id": "FALLOWBECK.UNSPENT",
+      "match": "numeric",
+      "subject": "FALLOWBECK",
+      "subjects": [
+        "FALLOWBECK"
+      ],
+      "surfaces": [
+        "8,628.6",
+        "8,628.60",
+        "8628.6",
+        "8628.60"
+      ],
+      "value": 8628.6
+    },
+    {
+      "attribute": "AUTHORISED",
+      "derived": false,
+      "fact_id": "LODESTAR.AUTHORISED",
+      "match": "numeric",
+      "subject": "LODESTAR",
+      "subjects": [
+        "LODESTAR"
+      ],
+      "surfaces": [
+        "58,000",
+        "58,000.00",
+        "58000",
+        "58000.00"
+      ],
+      "value": 58000.0
+    },
+    {
+      "attribute": "SPENT",
+      "derived": false,
+      "fact_id": "LODESTAR.SPENT",
+      "match": "numeric",
+      "subject": "LODESTAR",
+      "subjects": [
+        "LODESTAR"
+      ],
+      "surfaces": [
+        "63,512.8",
+        "63,512.80",
+        "63512.8",
+        "63512.80"
+      ],
+      "value": 63512.8
+    },
+    {
+      "attribute": "OVERRUN",
+      "derived": false,
+      "fact_id": "LODESTAR.OVERRUN",
+      "match": "numeric",
+      "subject": "LODESTAR",
+      "subjects": [
+        "LODESTAR"
+      ],
+      "surfaces": [
+        "5,512.8",
+        "5,512.80",
+        "5512.8",
+        "5512.80"
+      ],
+      "value": 5512.8
+    },
+    {
+      "attribute": "PCT_SPENT",
+      "derived": true,
+      "fact_id": "SALTMARSH.PCT_SPENT",
+      "match": "numeric",
+      "subject": "SALTMARSH",
+      "subjects": [
+        "SALTMARSH"
+      ],
+      "surfaces": [
+        "40.9",
+        "40.90"
+      ],
+      "value": 40.9
+    },
+    {
+      "attribute": "PCT_SPENT",
+      "derived": true,
+      "fact_id": "WEIRGATE.PCT_SPENT",
+      "match": "numeric",
+      "subject": "WEIRGATE",
+      "subjects": [
+        "WEIRGATE"
+      ],
+      "surfaces": [
+        "78.7",
+        "78.70"
+      ],
+      "value": 78.7
+    },
+    {
+      "attribute": "PCT_SPENT",
+      "derived": true,
+      "fact_id": "FALLOWBECK.PCT_SPENT",
+      "match": "numeric",
+      "subject": "FALLOWBECK",
+      "subjects": [
+        "FALLOWBECK"
+      ],
+      "surfaces": [
+        "96.4",
+        "96.40"
+      ],
+      "value": 96.4
+    },
+    {
+      "attribute": "PCT_SPENT",
+      "derived": true,
+      "fact_id": "LODESTAR.PCT_SPENT",
+      "match": "numeric",
+      "subject": "LODESTAR",
+      "subjects": [
+        "LODESTAR"
+      ],
+      "surfaces": [
+        "109.5",
+        "109.50"
+      ],
+      "value": 109.5
+    },
+    {
+      "attribute": "UNITS_SHORT",
+      "derived": false,
+      "fact_id": "VENDOR.UNITS_SHORT",
+      "match": "numeric",
+      "subject": "VENDOR",
+      "subjects": [
+        "VENDOR",
+        "FALLOWBECK"
+      ],
+      "surfaces": [
+        "164",
+        "164.00"
+      ],
+      "value": 164
+    },
+    {
+      "attribute": "REVENUE_FALL_PCT",
+      "derived": false,
+      "fact_id": "WEIRGATE.REVENUE_FALL_PCT",
+      "match": "surface",
+      "narrative": true,
+      "subject": "WEIRGATE",
+      "subjects": [
+        "WEIRGATE"
+      ],
+      "surfaces": [
+        "seven percent",
+        "7 per cent",
+        "7 percent",
+        "7%"
+      ],
+      "value": "7 percent"
+    }
+  ],
+  "generated_by": "scripts/corpora/offlex_d.py",
+  "mask_patterns": [
+    "WHB-\\d{4}-\\d{2}",
+    "\\d{4}-\\d{2}-\\d{2}(?:[T ][\\d:]+)?",
+    "\\b\\d{1,2}\\s+(?:January|February|March|April|May|June|July|August|September|October|November|December)\\s+\\d{4}\\b",
+    "\\b(?:January|February|March|April|May|June|July|August|September|October|November|December)\\s+\\d{4}\\b",
+    "\\bQ[1-4]\\b",
+    "\\b\\d{1,2}\\s*(?:[-\\u2013\\u2014]|to)\\s*\\d{1,2}\\s+(?:January|February|March|April|May|June|July|August|September|October|November|December)\\b",
+    "\\b\\d{1,2}(?:st|nd|rd|th)?\\s+(?:January|February|March|April|May|June|July|August|September|October|November|December)\\b",
+    "\\(\\d{1,2}\\)"
+  ],
+  "provisional": "audited under scope \u00a711 (two AI passes); see eval/corpora/KEY_AUDIT.md",
+  "referents": {
+    "FALLOWBECK": [
+      "Scheme Fallowbeck",
+      "Fallowbeck"
+    ],
+    "LODESTAR": [
+      "Pilot Lodestar",
+      "Lodestar"
+    ],
+    "ORG": [
+      "Wrenfield Harbour Board",
+      "Wrenfield"
+    ],
+    "SALTMARSH": [
+      "Project Saltmarsh",
+      "Saltmarsh"
+    ],
+    "VENDOR": [
+      "Tarrant Marine Supplies",
+      "Tarrant"
+    ],
+    "WEIRGATE": [
+      "Project Weirgate",
+      "Weirgate"
+    ]
+  },
+  "scenario": "offlex-d",
+  "string_facts": [
+    {
+      "attribute": "OWNER",
+      "fact_id": "SALTMARSH.OWNER",
+      "subject": "SALTMARSH",
+      "value": "Ottilie Farquhar"
+    },
+    {
+      "attribute": "SITE",
+      "fact_id": "SALTMARSH.SITE",
+      "subject": "SALTMARSH",
+      "value": "Whitby"
+    },
+    {
+      "attribute": "CONTRACT",
+      "fact_id": "SALTMARSH.CONTRACT",
+      "subject": "SALTMARSH",
+      "value": "WHB-0418-26"
+    },
+    {
+      "attribute": "OWNER",
+      "fact_id": "WEIRGATE.OWNER",
+      "subject": "WEIRGATE",
+      "value": "Bastian Greenhalgh"
+    },
+    {
+      "attribute": "SITE",
+      "fact_id": "WEIRGATE.SITE",
+      "subject": "WEIRGATE",
+      "value": "Falmouth"
+    },
+    {
+      "attribute": "CONTRACT",
+      "fact_id": "WEIRGATE.CONTRACT",
+      "subject": "WEIRGATE",
+      "value": "WHB-0562-26"
+    },
+    {
+      "attribute": "OWNER",
+      "fact_id": "FALLOWBECK.OWNER",
+      "subject": "FALLOWBECK",
+      "value": "Leonie Radcliffe"
+    },
+    {
+      "attribute": "SITE",
+      "fact_id": "FALLOWBECK.SITE",
+      "subject": "FALLOWBECK",
+      "value": "Grimsby"
+    },
+    {
+      "attribute": "CONTRACT",
+      "fact_id": "FALLOWBECK.CONTRACT",
+      "subject": "FALLOWBECK",
+      "value": "WHB-0691-26"
+    },
+    {
+      "attribute": "OWNER",
+      "fact_id": "LODESTAR.OWNER",
+      "subject": "LODESTAR",
+      "value": "Caspar Wetherby"
+    },
+    {
+      "attribute": "SITE",
+      "fact_id": "LODESTAR.SITE",
+      "subject": "LODESTAR",
+      "value": "Harwich"
+    },
+    {
+      "attribute": "CONTRACT",
+      "fact_id": "LODESTAR.CONTRACT",
+      "subject": "LODESTAR",
+      "value": "WHB-0837-26"
+    }
+  ]
+}

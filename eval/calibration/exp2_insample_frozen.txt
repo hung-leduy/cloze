@@ -1,0 +1,59 @@
+key     make_smoke_corpus.fact_key()  sha256 dcda133acba9478d
+
+report  eval/runs/smoke-q3/report.md
+labels  eval/calibration/smoke-q3_hand_labels.json  (24 occurrences)
+
+cap = 80
+  overall verdict agreement    24/24  (100%)
+  referent axis agreement      24/24  (100%)
+  attribute axis, gold-valued occurrences (headline)
+    agreement                  19/22  (86%)
+    Cohen kappa                0.784
+  attribute axis, all rows (includes 2 outside the key, where agreement is trivial)
+    agreement                  21/24  (88%)
+    Cohen kappa                0.810
+
+--- metric output ---
+  counts                       {'CORRECT': 3, 'MISBOUND': 11, 'PARTIAL': 4, 'UNBOUND': 3, 'AMBIGUOUS': 1, 'FABRICATED': 2}
+  denominators                 {'full': 9, 'attribute': 19, 'referent': 9, 'gold_shaped': 22, 'scanned': 24}
+  rba                          0.3333333333333333
+  attribute_accuracy           0.5789473684210527
+  referent_accuracy            0.4444444444444444
+  resolution_rate              0.4090909090909091
+  misbinding_rate              0.5
+  unbound_rate                 0.13636363636363635
+  numerals_outside_key         0.08333333333333333
+  coverage                     0.7142857142857143
+  coverage_stated              1.0
+  coverage_correct             0.14285714285714285
+  faithfulness_f1              0.4545454545454545
+  faithfulness_f1_attribute    0.6395348837209303
+
+--- hand labelling, for comparison ---
+  counts                       {'UNBOUND': 3, 'PARTIAL': 4, 'MISBOUND': 11, 'FABRICATED': 2, 'CORRECT': 3, 'AMBIGUOUS': 1}
+  attribute_accuracy           0.529  (n=17)
+  referent_accuracy            0.444  (n=9)
+
+--- disagreements ---
+
+--- attribute-axis disagreements ---
+[8] '250,000.00'  metric=MATCH/AUTHORISED (clause)  hand=MISMATCH
+     Pilot Kestrel shows a budget position where authorised spend of 98210 is tracked against actuals of 250,000.00, leaving a variance that has implications for dow
+     note: 250000 is ZEPHYR.AUTHORISED, presented as Kestrel's actuals. 'actuals' reads as SPENT; not in the lexicon, so the rule will see AUTHORISED and score the attribute MATCH. Recorded as a known rule error.
+[11] '250,000.00'  metric=MATCH/AUTHORISED (sentence)  hand=UNRESOLVED
+     Project Aurora has recorded spend against its allocated budget that, when set against 250,000.00 USD, indicates a position of overrun relative to the amount ori
+     note: Sentence names both Aurora and Zephyr.
+[14] 'twelve percent'  metric=MISMATCH/UNITS_SHORT (sentence)  hand=UNRESOLVED
+     Separately, Northbridge Analytics delivered fewer units than planned, with the gap quantified at twelve percent, and further shortfalls were recorded at Spend e
+     note: The 12% revenue fall is ZEPHYR's, attributed here to Northbridge Analytics and to units delivered.
+
+--- sensitivity to MAX_BIND_DISTANCE ---
+     cap    overall  attr gold   attr all   attr acc   n(attr)
+      20    20/24      17/22      19/24        0.667        12
+      40    24/24      20/22      22/24        0.611        18
+      60    24/24      19/22      21/24        0.579        19
+      80    24/24      19/22      21/24        0.579        19
+     100    24/24      19/22      21/24        0.579        19
+     120    24/24      19/22      21/24        0.579        19
+     160    24/24      19/22      21/24        0.579        19
+   10000    23/24      18/22      20/24        0.600        20

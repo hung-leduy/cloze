@@ -1,0 +1,32 @@
+[
+  {
+    "id": "tab-L1",
+    "corpus": "eval/real/corpora/tab-L1",
+    "goal": "Compare the applicants' situations, their complaints and the domestic proceedings described in these case files."
+  },
+  {
+    "id": "tab-L2",
+    "corpus": "eval/real/corpora/tab-L2",
+    "goal": "Compare the applicants' situations, their complaints and the domestic proceedings described in these case files."
+  },
+  {
+    "id": "tab-L3",
+    "corpus": "eval/real/corpora/tab-L3",
+    "goal": "Compare the applicants' situations, their complaints and the domestic proceedings described in these case files."
+  },
+  {
+    "id": "tab-L4",
+    "corpus": "eval/real/corpora/tab-L4",
+    "goal": "Compare the applicants' situations, their complaints and the domestic proceedings described in these case files."
+  },
+  {
+    "id": "tab-L5",
+    "corpus": "eval/real/corpora/tab-L5",
+    "goal": "Compare the applicants' situations, their complaints and the domestic proceedings described in these case files."
+  },
+  {
+    "id": "tab-L6",
+    "corpus": "eval/real/corpora/tab-L6",
+    "goal": "Compare the applicants' situations, their complaints and the domestic proceedings described in these case files."
+  }
+]

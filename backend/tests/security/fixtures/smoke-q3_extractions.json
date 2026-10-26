@@ -1,0 +1,652 @@
+{
+  "format": "privdeep.extractions/1",
+  "documents": [
+    {
+      "doc_id": "3ce9713b72f4225d",
+      "text_sha256": "66a72e052db9e70192bb259f3e9f5d13f64cc35bad7b6d2e21e73e9551983b75",
+      "entities": [
+        {
+          "text": "28 August 2026",
+          "category": "DATE"
+        },
+        {
+          "text": "Manchester",
+          "category": "LOCATION"
+        },
+        {
+          "text": "Northbridge Analytics",
+          "category": "ORG"
+        },
+        {
+          "text": "Sarah Whitfield",
+          "category": "PERSON"
+        },
+        {
+          "text": "Daniel Okoye",
+          "category": "PERSON"
+        },
+        {
+          "text": "Priya Ramanathan",
+          "category": "PERSON"
+        },
+        {
+          "text": "Project Zephyr",
+          "category": "PROJECT"
+        },
+        {
+          "text": "Leeds",
+          "category": "LOCATION"
+        },
+        {
+          "text": "contract NB-2026-0917",
+          "category": "IDENTIFIER"
+        },
+        {
+          "text": "62,567.45 USD",
+          "category": "MONEY"
+        },
+        {
+          "text": "Calder Logistics",
+          "category": "ORG"
+        },
+        {
+          "text": "July",
+          "category": "DATE"
+        },
+        {
+          "text": "340 units",
+          "category": "QUANTITY"
+        },
+        {
+          "text": "Project Aurora",
+          "category": "PROJECT"
+        },
+        {
+          "text": "contract NB-2026-1044",
+          "category": "IDENTIFIER"
+        },
+        {
+          "text": "250,000.00",
+          "category": "MONEY"
+        },
+        {
+          "text": "187,432.55",
+          "category": "MONEY"
+        },
+        {
+          "text": "120,000.00",
+          "category": "MONEY"
+        },
+        {
+          "text": "98,210.00",
+          "category": "MONEY"
+        },
+        {
+          "text": "Pilot Kestrel",
+          "category": "PROJECT"
+        },
+        {
+          "text": "45,000.00",
+          "category": "MONEY"
+        },
+        {
+          "text": "51,237.75",
+          "category": "MONEY"
+        },
+        {
+          "text": "2027",
+          "category": "DATE"
+        },
+        {
+          "text": "30 September 2026",
+          "category": "DATE"
+        }
+      ],
+      "relations": [
+        [
+          "ORGANISATION",
+          "held meeting at",
+          "LOCATION"
+        ],
+        [
+          "PERSON",
+          "confirmed",
+          "FINANCIAL_METRIC"
+        ],
+        [
+          "ORGANISATION",
+          "missed commitment by",
+          "QUANTITY"
+        ],
+        [
+          "PROJECT",
+          "absorb delay",
+          "INITIATIVE"
+        ],
+        [
+          "PERSON",
+          "moved to defer",
+          "TIME_PERIOD"
+        ],
+        [
+          "PERSON",
+          "moved to table",
+          "INITIATIVE"
+        ]
+      ],
+      "dropped_not_in_text": 0,
+      "dropped_bad_category": 0,
+      "dropped_malformed": 0,
+      "dropped_category_conflict": 0,
+      "chunks": 1
+    },
+    {
+      "doc_id": "ea67494b39c02d45",
+      "text_sha256": "07ffdf1516c44237bb454aa83ee6074f393c563979b49f1440d282ebd08eb6bd",
+      "entities": [
+        {
+          "text": "Project Zephyr",
+          "category": "PROJECT"
+        },
+        {
+          "text": "Sarah Whitfield",
+          "category": "PERSON"
+        },
+        {
+          "text": "Manchester",
+          "category": "LOCATION"
+        },
+        {
+          "text": "2026-06-01T00:00:00",
+          "category": "DATE"
+        },
+        {
+          "text": "250000",
+          "category": "MONEY"
+        },
+        {
+          "text": "187432.55",
+          "category": "MONEY"
+        },
+        {
+          "text": "NB-2026-0917",
+          "category": "IDENTIFIER"
+        },
+        {
+          "text": "Project Aurora",
+          "category": "PROJECT"
+        },
+        {
+          "text": "Daniel Okoye",
+          "category": "PERSON"
+        },
+        {
+          "text": "Leeds",
+          "category": "LOCATION"
+        },
+        {
+          "text": "2026-07-15T00:00:00",
+          "category": "DATE"
+        },
+        {
+          "text": "120000",
+          "category": "MONEY"
+        },
+        {
+          "text": "98210",
+          "category": "MONEY"
+        },
+        {
+          "text": "NB-2026-1044",
+          "category": "IDENTIFIER"
+        },
+        {
+          "text": "Pilot Kestrel",
+          "category": "PROJECT"
+        },
+        {
+          "text": "Priya Ramanathan",
+          "category": "PERSON"
+        },
+        {
+          "text": "Bristol",
+          "category": "LOCATION"
+        },
+        {
+          "text": "2026-08-03T00:00:00",
+          "category": "DATE"
+        },
+        {
+          "text": "45000",
+          "category": "MONEY"
+        },
+        {
+          "text": "51237.75",
+          "category": "MONEY"
+        },
+        {
+          "text": "NB-2026-1187",
+          "category": "IDENTIFIER"
+        },
+        {
+          "text": "Leeds pilot cancelled; revenue fell twelve percent",
+          "category": "QUANTITY"
+        },
+        {
+          "text": "2026-08-20T00:00:00",
+          "category": "DATE"
+        },
+        {
+          "text": "High",
+          "category": "QUANTITY"
+        },
+        {
+          "text": "Calder Logistics missed 340 units against the July commitment",
+          "category": "QUANTITY"
+        },
+        {
+          "text": "2026-08-04T00:00:00",
+          "category": "DATE"
+        },
+        {
+          "text": "Medium",
+          "category": "QUANTITY"
+        },
+        {
+          "text": "Spend exceeds budget by 6,237.75 USD",
+          "category": "QUANTITY"
+        },
+        {
+          "text": "2026-08-28T00:00:00",
+          "category": "DATE"
+        }
+      ],
+      "relations": [
+        [
+          "INITIATIVE",
+          "has_owner",
+          "PERSON"
+        ],
+        [
+          "INITIATIVE",
+          "located_at",
+          "PLACE"
+        ],
+        [
+          "INITIATIVE",
+          "started_on",
+          "TIME_PERIOD"
+        ],
+        [
+          "INITIATIVE",
+          "has_budget",
+          "FINANCIAL_METRIC"
+        ],
+        [
+          "INITIATIVE",
+          "has_spent",
+          "FINANCIAL_METRIC"
+        ],
+        [
+          "INITIATIVE",
+          "has_contract",
+          "IDENTIFIER"
+        ],
+        [
+          "INITIATIVE",
+          "has_risk",
+          "RISK"
+        ],
+        [
+          "RISK",
+          "raised_by",
+          "PERSON"
+        ],
+        [
+          "RISK",
+          "occurred_on",
+          "TIME_PERIOD"
+        ],
+        [
+          "RISK",
+          "has_severity",
+          "RISK_LEVEL"
+        ]
+      ],
+      "dropped_not_in_text": 0,
+      "dropped_bad_category": 0,
+      "dropped_malformed": 0,
+      "dropped_category_conflict": 1,
+      "chunks": 1
+    },
+    {
+      "doc_id": "08dcf85ad1218a0e",
+      "text_sha256": "df2e199f5be5bcc0451476aad58d637550a0c3a8859ea314021f42feb1246948",
+      "entities": [
+        {
+          "text": "Project Zephyr",
+          "category": "PROJECT"
+        },
+        {
+          "text": "Sarah Whitfield",
+          "category": "PERSON"
+        },
+        {
+          "text": "Northbridge Analytics",
+          "category": "ORG"
+        },
+        {
+          "text": "25 August 2026",
+          "category": "DATE"
+        },
+        {
+          "text": "twelve percent",
+          "category": "QUANTITY"
+        },
+        {
+          "text": "Leeds",
+          "category": "LOCATION"
+        },
+        {
+          "text": "August 2026",
+          "category": "DATE"
+        },
+        {
+          "text": "Bristol",
+          "category": "LOCATION"
+        },
+        {
+          "text": "Contract NB-2026-0917",
+          "category": "IDENTIFIER"
+        },
+        {
+          "text": "Manchester",
+          "category": "LOCATION"
+        },
+        {
+          "text": "250,000.00 USD",
+          "category": "MONEY"
+        },
+        {
+          "text": "187,432.55 USD",
+          "category": "MONEY"
+        },
+        {
+          "text": "20 August 2026",
+          "category": "DATE"
+        },
+        {
+          "text": "62,567.45 USD",
+          "category": "MONEY"
+        },
+        {
+          "text": "30 September 2026",
+          "category": "DATE"
+        },
+        {
+          "text": "Calder Logistics",
+          "category": "ORG"
+        },
+        {
+          "text": "340 units",
+          "category": "QUANTITY"
+        },
+        {
+          "text": "July",
+          "category": "DATE"
+        },
+        {
+          "text": "Daniel Okoye",
+          "category": "PERSON"
+        },
+        {
+          "text": "Project Aurora",
+          "category": "PROJECT"
+        },
+        {
+          "text": "Pilot Kestrel",
+          "category": "PROJECT"
+        },
+        {
+          "text": "51,237.75 USD",
+          "category": "MONEY"
+        },
+        {
+          "text": "45,000.00 USD",
+          "category": "MONEY"
+        },
+        {
+          "text": "6,237.75 USD",
+          "category": "MONEY"
+        },
+        {
+          "text": "Priya Ramanathan",
+          "category": "PERSON"
+        }
+      ],
+      "relations": [
+        [
+          "INITIATIVE",
+          "fell against plan",
+          "FINANCIAL_METRIC"
+        ],
+        [
+          "INITIATIVE",
+          "was cancelled",
+          "TIME_PERIOD"
+        ],
+        [
+          "INITIATIVE",
+          "slipped past",
+          "TIME_PERIOD"
+        ],
+        [
+          "INITIATIVE",
+          "covers",
+          "LOCATION"
+        ],
+        [
+          "INITIATIVE",
+          "has authorised spend",
+          "FINANCIAL_METRIC"
+        ],
+        [
+          "INITIATIVE",
+          "has committed",
+          "FINANCIAL_METRIC"
+        ],
+        [
+          "INITIATIVE",
+          "has unspent balance",
+          "FINANCIAL_METRIC"
+        ],
+        [
+          "INITIATIVE",
+          "is held against",
+          "MILESTONE"
+        ],
+        [
+          "INITIATIVE",
+          "is not released before",
+          "TIME_PERIOD"
+        ],
+        [
+          "INITIATIVE",
+          "delivered fewer than",
+          "QUANTITY"
+        ],
+        [
+          "INITIATIVE",
+          "recorded the shortfall against",
+          "INITIATIVE"
+        ],
+        [
+          "INITIATIVE",
+          "carries",
+          "CONTRACT"
+        ],
+        [
+          "INITIATIVE",
+          "is unaffected by",
+          "DECISION"
+        ],
+        [
+          "INITIATIVE",
+          "has spent",
+          "FINANCIAL_METRIC"
+        ],
+        [
+          "INITIATIVE",
+          "has authority",
+          "FINANCIAL_METRIC"
+        ],
+        [
+          "INITIATIVE",
+          "has overrun",
+          "FINANCIAL_METRIC"
+        ],
+        [
+          "INITIATIVE",
+          "has asked for",
+          "PLAN"
+        ]
+      ],
+      "dropped_not_in_text": 1,
+      "dropped_bad_category": 0,
+      "dropped_malformed": 0,
+      "dropped_category_conflict": 1,
+      "chunks": 1
+    },
+    {
+      "doc_id": "cfcbe635c6f3becf",
+      "text_sha256": "cfcbe635c6f3becfba660e36dbff3c030a80b55d6be51bc814c7b3ec2997b342",
+      "entities": [
+        {
+          "text": "Project Zephyr",
+          "category": "PROJECT"
+        },
+        {
+          "text": "Leeds pilot",
+          "category": "PROJECT"
+        },
+        {
+          "text": "August",
+          "category": "DATE"
+        },
+        {
+          "text": "Bristol fulfilment centre",
+          "category": "LOCATION"
+        },
+        {
+          "text": "Northbridge Analytics",
+          "category": "ORG"
+        },
+        {
+          "text": "Manchester site",
+          "category": "LOCATION"
+        },
+        {
+          "text": "250,000 USD",
+          "category": "MONEY"
+        },
+        {
+          "text": "187,432.55 USD",
+          "category": "MONEY"
+        },
+        {
+          "text": "Calder Logistics",
+          "category": "ORG"
+        },
+        {
+          "text": "340 units",
+          "category": "QUANTITY"
+        },
+        {
+          "text": "July",
+          "category": "DATE"
+        },
+        {
+          "text": "Daniel Okoye",
+          "category": "PERSON"
+        },
+        {
+          "text": "Project Aurora",
+          "category": "PROJECT"
+        },
+        {
+          "text": "Sarah Whitfield",
+          "category": "PERSON"
+        },
+        {
+          "text": "June",
+          "category": "DATE"
+        },
+        {
+          "text": "Priya Ramanathan",
+          "category": "PERSON"
+        },
+        {
+          "text": "30 September 2026",
+          "category": "DATE"
+        }
+      ],
+      "relations": [
+        [
+          "INITIATIVE",
+          "experienced revenue shortfall",
+          "FINANCIAL_METRIC"
+        ],
+        [
+          "INITIATIVE",
+          "attributed to",
+          "INITIATIVE"
+        ],
+        [
+          "ORGANISATION",
+          "holds contract",
+          "INITIATIVE"
+        ],
+        [
+          "INITIATIVE",
+          "allocated budget",
+          "FINANCIAL_METRIC"
+        ],
+        [
+          "INITIATIVE",
+          "spent",
+          "FINANCIAL_METRIC"
+        ],
+        [
+          "ORGANISATION",
+          "delivered fewer units",
+          "QUANTITY"
+        ],
+        [
+          "PERSON",
+          "recorded shortfall",
+          "INITIATIVE"
+        ],
+        [
+          "PERSON",
+          "raised risk",
+          "INITIATIVE"
+        ],
+        [
+          "PERSON",
+          "recommended deferring",
+          "INITIATIVE"
+        ],
+        [
+          "PERSON",
+          "requested revised plan",
+          "INITIATIVE"
+        ]
+      ],
+      "dropped_not_in_text": 1,
+      "dropped_bad_category": 0,
+      "dropped_malformed": 0,
+      "dropped_category_conflict": 0,
+      "chunks": 1
+    }
+  ]
+}

@@ -1,0 +1,132 @@
+# PrivDeep network partition.
+#
+# This file IS the Network Partitioning Invariant. Read it as the security
+# artifact it is, not as deployment plumbing:
+#
+#   privdeep-internal   internal: true, so Docker installs no default route.
+#                       Nothing on it can reach the internet, by construction
+#                       rather than by policy. The core orchestrator, the local
+#                       SLM and the databases live here, because they all touch
+#                       raw C_user.
+#
+#   privdeep-external   an ordinary bridge with egress.
+#
+#   reference-monitor   the ONLY service attached to both. Every packet leaving
+#                       the trusted zone passes through it. If a second service
+#                       ever appears on both networks, the invariant is void and
+#                       backend/tests/security/test_partition.py must fail.
+#
+# The invariant is verified, not asserted: `make verify-partition`.
+
+networks:
+  privdeep-internal:
+    name: privdeep-internal
+    internal: true
+  privdeep-external:
+    name: privdeep-external
+    driver: bridge
+
+# One named volume per side of the partition, never one shared across it.
+# privdeep-data is the core's: the run directories (report.md, entities.json,
+# the extractions), the DuckDB state and the attempts archive. privdeep-audit
+# is the monitor's, and holds only what the gateway writes: its append-only
+# egress log (AUDIT_LOG_PATH). The containment filter is held in memory and
+# never written. Until REC3 the monitor mounted privdeep-data read-write, so
+# the one service holding the API key and a route out could read every report
+# the core had written (F06). backend/tests/security/test_volume_partition.py
+# fails if the two sides share a named volume again.
+volumes:
+  privdeep-data:
+  privdeep-audit:
+
+services:
+  # Local SLM. Ollama already serves the OpenAI-compatible /v1 API that
+  # AsyncSLMClient targets, and qwen3:14b is already on this host, so the model
+  # store is mounted read-only rather than re-downloaded. Read-only also means a
+  # container compromise cannot corrupt the host's 88 GB of models.
+  local-slm:
+    image: ollama/ollama:latest
+    container_name: privdeep-local-slm
+    networks: [privdeep-internal]
+    volumes:
+      - ${OLLAMA_MODELS_HOST:-/usr/share/ollama/.ollama}:/root/.ollama:ro
+    environment:
+      OLLAMA_HOST: 0.0.0.0:11434
+      OLLAMA_KEEP_ALIVE: ${OLLAMA_KEEP_ALIVE:-10m}
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    healthcheck:
+      test: ["CMD-SHELL", "ollama list >/dev/null 2>&1 || exit 1"]
+      interval: 15s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    restart: unless-stopped
+
+  # Trusted orchestrator. Holds raw C_user, the LocalMappingTable and the
+  # witness/audit artifacts. Deliberately has no route off the host.
+  privdeep-core:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: privdeep-core
+    networks: [privdeep-internal]
+    volumes:
+      - privdeep-data:/data
+      - ./backend/src:/app/src:ro
+      - ./shared:/opt/privdeep/shared:ro
+      - ${PRIVDEEP_CORPUS_DIR:-./corpus}:/corpus:ro
+    environment:
+      LOCAL_SLM_URL: http://local-slm:11434/v1
+      LOCAL_SLM_MODEL: ${LOCAL_SLM_MODEL:-qwen3:14b}
+      EMBEDDING_MODEL: ${EMBEDDING_MODEL:-nomic-embed-text}
+      GATEWAY_URL: http://reference-monitor:5050
+      PYTHONPATH: /app/src:/opt/privdeep
+      SHINGLE_HMAC_SALT: ${SHINGLE_HMAC_SALT:?SHINGLE_HMAC_SALT must be set (python3 -c "import secrets;print(secrets.token_hex(32))")}
+      SHINGLE_N_MIN: ${SHINGLE_N_MIN:-5}
+      SHINGLE_N_MAX: ${SHINGLE_N_MAX:-8}
+      SHINGLE_HIT_THRESHOLD: ${SHINGLE_HIT_THRESHOLD:-1}
+      DUCKDB_PATH: /data/privdeep_state.duckdb
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+    depends_on:
+      local-slm:
+        condition: service_healthy
+    restart: unless-stopped
+
+  # The reference monitor. The one dual-homed service, and therefore the entire
+  # attack surface for egress. It holds no plaintext corpus and mounts none of
+  # the core's data. It does hold the shingle filter (a Bloom filter of salted
+  # HMACs of C_user's n-grams) and SHINGLE_HMAC_SALT, so whoever compromises it
+  # can test guessed shingles for membership in C_user; see
+  # shared/shingle_filter.py.
+  reference-monitor:
+    build:
+      context: ./gateway
+      dockerfile: Dockerfile
+    container_name: privdeep-reference-monitor
+    networks: [privdeep-internal, privdeep-external]
+    volumes:
+      - privdeep-audit:/data
+      - ./gateway:/app:ro
+      - ./shared:/opt/privdeep/shared:ro
+    environment:
+      GATEWAY_PORT: ${GATEWAY_PORT:-5050}
+      PYTHONPATH: /app:/opt/privdeep
+      CLOUD_PROVIDER: ${CLOUD_PROVIDER:-anthropic}
+      CLOUD_MODEL: ${CLOUD_MODEL:-claude-sonnet-5}
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:?ANTHROPIC_API_KEY must be set}
+      SHANNON_ENTROPY_THRESHOLD: ${SHANNON_ENTROPY_THRESHOLD:-4.85}
+      CANARY_PREFIX: ${CANARY_PREFIX:-CANARY_PRIVDEEP_}
+      SHINGLE_N_MIN: ${SHINGLE_N_MIN:-5}
+      SHINGLE_N_MAX: ${SHINGLE_N_MAX:-8}
+      SHINGLE_HIT_THRESHOLD: ${SHINGLE_HIT_THRESHOLD:-1}
+      SHINGLE_HMAC_SALT: ${SHINGLE_HMAC_SALT:?SHINGLE_HMAC_SALT must be set}
+      STRICT_FAIL_CLOSED: ${STRICT_FAIL_CLOSED:-true}
+      AUDIT_LOG_PATH: /data/audit_eventlog.jsonl
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+    restart: unless-stopped

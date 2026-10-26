@@ -1,0 +1,419 @@
+{
+  "attributes": {
+    "AUTHORISED": {
+      "label": "authorised budget",
+      "lexicon": [
+        "authorised budget",
+        "authorized budget",
+        "authorised spend",
+        "authorized spend",
+        "budget authority",
+        "an authority of",
+        "authority of",
+        "allocation",
+        "authorised",
+        "authorized",
+        "allocated",
+        "authority",
+        "approved",
+        "budget"
+      ]
+    },
+    "OVERRUN": {
+      "label": "overspend against authority",
+      "lexicon": [
+        "exceeds the budget by",
+        "exceeds budget by",
+        "over budget by",
+        "an overrun of",
+        "in excess of",
+        "overspend",
+        "exceeds",
+        "overrun"
+      ]
+    },
+    "PCT_SPENT": {
+      "label": "share of authority spent",
+      "lexicon": [
+        "share of authority utilised",
+        "share of authority spent",
+        "percentage of authority",
+        "share of authority used",
+        "share of authority",
+        "percentage spent",
+        "percent spent",
+        "spend share",
+        "utilised"
+      ]
+    },
+    "REVENUE_FALL_PCT": {
+      "label": "revenue decline",
+      "lexicon": [
+        "revenue for the quarter fell",
+        "revenue declined",
+        "revenue fell",
+        "declined",
+        "decline",
+        "fell"
+      ]
+    },
+    "SPENT": {
+      "label": "amount spent",
+      "lexicon": [
+        "had been spent",
+        "has been spent",
+        "were committed",
+        "was committed",
+        "expenditure",
+        "have spent",
+        "committed",
+        "disbursed",
+        "has spent",
+        "outlay",
+        "spend",
+        "spent"
+      ]
+    },
+    "UNITS_SHORT": {
+      "label": "units short of the commitment",
+      "lexicon": [
+        "units fewer than",
+        "units short of",
+        "units against",
+        "units fewer",
+        "units short",
+        "units"
+      ]
+    },
+    "UNSPENT": {
+      "label": "unspent balance",
+      "lexicon": [
+        "remaining balance",
+        "unspent balance",
+        "held against",
+        "uncommitted",
+        "is unspent",
+        "remaining",
+        "undrawn",
+        "unspent",
+        "unused"
+      ]
+    }
+  },
+  "facts": [
+    {
+      "attribute": "AUTHORISED",
+      "derived": false,
+      "fact_id": "ZEPHYR.AUTHORISED",
+      "match": "numeric",
+      "subject": "ZEPHYR",
+      "subjects": [
+        "ZEPHYR"
+      ],
+      "surfaces": [
+        "250,000",
+        "250,000.00",
+        "250000",
+        "250000.00"
+      ],
+      "value": 250000.0
+    },
+    {
+      "attribute": "SPENT",
+      "derived": false,
+      "fact_id": "ZEPHYR.SPENT",
+      "match": "numeric",
+      "subject": "ZEPHYR",
+      "subjects": [
+        "ZEPHYR"
+      ],
+      "surfaces": [
+        "187,432.55",
+        "187432.55"
+      ],
+      "value": 187432.55
+    },
+    {
+      "attribute": "UNSPENT",
+      "derived": true,
+      "fact_id": "ZEPHYR.UNSPENT",
+      "match": "numeric",
+      "subject": "ZEPHYR",
+      "subjects": [
+        "ZEPHYR"
+      ],
+      "surfaces": [
+        "62,567.45",
+        "62567.45"
+      ],
+      "value": 62567.45
+    },
+    {
+      "attribute": "AUTHORISED",
+      "derived": false,
+      "fact_id": "AURORA.AUTHORISED",
+      "match": "numeric",
+      "subject": "AURORA",
+      "subjects": [
+        "AURORA"
+      ],
+      "surfaces": [
+        "120,000",
+        "120,000.00",
+        "120000",
+        "120000.00"
+      ],
+      "value": 120000.0
+    },
+    {
+      "attribute": "SPENT",
+      "derived": false,
+      "fact_id": "AURORA.SPENT",
+      "match": "numeric",
+      "subject": "AURORA",
+      "subjects": [
+        "AURORA"
+      ],
+      "surfaces": [
+        "98,210",
+        "98,210.00",
+        "98210",
+        "98210.00"
+      ],
+      "value": 98210.0
+    },
+    {
+      "attribute": "UNSPENT",
+      "derived": true,
+      "fact_id": "AURORA.UNSPENT",
+      "match": "numeric",
+      "subject": "AURORA",
+      "subjects": [
+        "AURORA"
+      ],
+      "surfaces": [
+        "21,790",
+        "21,790.00",
+        "21790",
+        "21790.00"
+      ],
+      "value": 21790.0
+    },
+    {
+      "attribute": "AUTHORISED",
+      "derived": false,
+      "fact_id": "KESTREL.AUTHORISED",
+      "match": "numeric",
+      "subject": "KESTREL",
+      "subjects": [
+        "KESTREL"
+      ],
+      "surfaces": [
+        "45,000",
+        "45,000.00",
+        "45000",
+        "45000.00"
+      ],
+      "value": 45000.0
+    },
+    {
+      "attribute": "SPENT",
+      "derived": false,
+      "fact_id": "KESTREL.SPENT",
+      "match": "numeric",
+      "subject": "KESTREL",
+      "subjects": [
+        "KESTREL"
+      ],
+      "surfaces": [
+        "51,237.75",
+        "51237.75"
+      ],
+      "value": 51237.75
+    },
+    {
+      "attribute": "OVERRUN",
+      "derived": true,
+      "fact_id": "KESTREL.OVERRUN",
+      "match": "numeric",
+      "subject": "KESTREL",
+      "subjects": [
+        "KESTREL"
+      ],
+      "surfaces": [
+        "6,237.75",
+        "6237.75"
+      ],
+      "value": 6237.75
+    },
+    {
+      "attribute": "PCT_SPENT",
+      "derived": true,
+      "fact_id": "ZEPHYR.PCT_SPENT",
+      "match": "numeric",
+      "subject": "ZEPHYR",
+      "subjects": [
+        "ZEPHYR"
+      ],
+      "surfaces": [
+        "75",
+        "75.00"
+      ],
+      "value": 75.0
+    },
+    {
+      "attribute": "PCT_SPENT",
+      "derived": true,
+      "fact_id": "AURORA.PCT_SPENT",
+      "match": "numeric",
+      "subject": "AURORA",
+      "subjects": [
+        "AURORA"
+      ],
+      "surfaces": [
+        "81.8",
+        "81.80"
+      ],
+      "value": 81.8
+    },
+    {
+      "attribute": "PCT_SPENT",
+      "derived": true,
+      "fact_id": "KESTREL.PCT_SPENT",
+      "match": "numeric",
+      "subject": "KESTREL",
+      "subjects": [
+        "KESTREL"
+      ],
+      "surfaces": [
+        "113.9",
+        "113.90"
+      ],
+      "value": 113.9
+    },
+    {
+      "attribute": "UNITS_SHORT",
+      "derived": false,
+      "fact_id": "VENDOR.UNITS_SHORT",
+      "match": "numeric",
+      "subject": "VENDOR",
+      "subjects": [
+        "VENDOR",
+        "AURORA"
+      ],
+      "surfaces": [
+        "340",
+        "340.00"
+      ],
+      "value": 340
+    },
+    {
+      "attribute": "REVENUE_FALL_PCT",
+      "derived": false,
+      "fact_id": "ZEPHYR.REVENUE_FALL_PCT",
+      "match": "surface",
+      "narrative": true,
+      "subject": "ZEPHYR",
+      "subjects": [
+        "ZEPHYR"
+      ],
+      "surfaces": [
+        "twelve percent",
+        "12 per cent",
+        "12 percent",
+        "12%"
+      ],
+      "value": "12 percent"
+    }
+  ],
+  "generated_by": "scripts/make_smoke_corpus.py",
+  "mask_patterns": [
+    "NB-\\d{4}-\\d{4}",
+    "\\d{4}-\\d{2}-\\d{2}(?:[T ][\\d:]+)?",
+    "\\b\\d{1,2}\\s+(?:January|February|March|April|May|June|July|August|September|October|November|December)\\s+\\d{4}\\b",
+    "\\b(?:January|February|March|April|May|June|July|August|September|October|November|December)\\s+\\d{4}\\b",
+    "\\bQ[1-4]\\b",
+    "\\b\\d{1,2}\\s*(?:[-\\u2013\\u2014]|to)\\s*\\d{1,2}\\s+(?:January|February|March|April|May|June|July|August|September|October|November|December)\\b",
+    "\\b\\d{1,2}(?:st|nd|rd|th)?\\s+(?:January|February|March|April|May|June|July|August|September|October|November|December)\\b",
+    "\\(\\d{1,2}\\)"
+  ],
+  "referents": {
+    "AURORA": [
+      "Project Aurora",
+      "Aurora"
+    ],
+    "KESTREL": [
+      "Pilot Kestrel",
+      "Kestrel"
+    ],
+    "ORG": [
+      "Northbridge Analytics",
+      "Northbridge"
+    ],
+    "VENDOR": [
+      "Calder Logistics",
+      "Calder"
+    ],
+    "ZEPHYR": [
+      "Project Zephyr",
+      "Zephyr"
+    ]
+  },
+  "scenario": "smoke-q3",
+  "string_facts": [
+    {
+      "attribute": "OWNER",
+      "fact_id": "ZEPHYR.OWNER",
+      "subject": "ZEPHYR",
+      "value": "Sarah Whitfield"
+    },
+    {
+      "attribute": "SITE",
+      "fact_id": "ZEPHYR.SITE",
+      "subject": "ZEPHYR",
+      "value": "Manchester"
+    },
+    {
+      "attribute": "CONTRACT",
+      "fact_id": "ZEPHYR.CONTRACT",
+      "subject": "ZEPHYR",
+      "value": "NB-2026-0917"
+    },
+    {
+      "attribute": "OWNER",
+      "fact_id": "AURORA.OWNER",
+      "subject": "AURORA",
+      "value": "Daniel Okoye"
+    },
+    {
+      "attribute": "SITE",
+      "fact_id": "AURORA.SITE",
+      "subject": "AURORA",
+      "value": "Leeds"
+    },
+    {
+      "attribute": "CONTRACT",
+      "fact_id": "AURORA.CONTRACT",
+      "subject": "AURORA",
+      "value": "NB-2026-1044"
+    },
+    {
+      "attribute": "OWNER",
+      "fact_id": "KESTREL.OWNER",
+      "subject": "KESTREL",
+      "value": "Priya Ramanathan"
+    },
+    {
+      "attribute": "SITE",
+      "fact_id": "KESTREL.SITE",
+      "subject": "KESTREL",
+      "value": "Bristol"
+    },
+    {
+      "attribute": "CONTRACT",
+      "fact_id": "KESTREL.CONTRACT",
+      "subject": "KESTREL",
+      "value": "NB-2026-1187"
+    }
+  ]
+}

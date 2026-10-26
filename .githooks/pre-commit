@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+# The project's continuous integration. There is no remote, so there is no
+# server to run it on and no pre-push hook would ever fire; pre-commit is the
+# only point at which anything runs automatically.
+#
+# Why it exists: `make typecheck` went red and stayed red without anyone
+# noticing, because nothing ran it. Lint and the suite take about eleven
+# seconds together, which is cheap enough to pay per commit.
+#
+# Typecheck is NOT in here yet: mypy reports 23 errors in backend/src and
+# shared, so adding it today would block every commit. It joins this hook in
+# the same change that clears them — the gap is left visible here rather than
+# recorded as a TODO that rots.
+#
+# Escape hatch for a deliberate work-in-progress commit:  PRIVDEEP_SKIP_HOOK=1 git commit ...
+set -euo pipefail
+[ "${PRIVDEEP_SKIP_HOOK:-0}" = "1" ] && { echo "pre-commit: skipped (PRIVDEEP_SKIP_HOOK=1)"; exit 0; }
+cd "$(git rev-parse --show-toplevel)"
+PY="${PRIVDEEP_PY:-.venv/bin/python}"
+[ -x "$PY" ] || { echo "pre-commit: no interpreter at $PY; set PRIVDEEP_PY"; exit 1; }
+echo "pre-commit: ruff"
+"$PY" -m ruff check gateway/ backend/ shared/ scripts/
+echo "pre-commit: pytest"
+"$PY" -m pytest -q

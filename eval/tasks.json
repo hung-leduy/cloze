@@ -1,0 +1,22 @@
+[
+  {
+    "id": "smoke-q3",
+    "corpus": "eval/corpora/smoke-q3",
+    "goal": "Assess the Q3 budget position and the risks to the delivery schedule."
+  },
+  {
+    "id": "portfolio-b",
+    "corpus": "eval/corpora/portfolio-b",
+    "goal": "Assess the portfolio's budget position and the main risks to delivery."
+  },
+  {
+    "id": "prose-c",
+    "corpus": "eval/corpora/prose-c",
+    "goal": "Summarise the quarter's financial position and the risks to the programme."
+  },
+  {
+    "id": "offlex-d",
+    "corpus": "eval/corpora/offlex-d",
+    "goal": "Review the programme's spending against its budget and the risks to delivery."
+  }
+]

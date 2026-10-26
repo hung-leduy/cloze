@@ -1,0 +1,512 @@
+{
+  "attributes": {
+    "AUTHORISED": {
+      "label": "authorised budget",
+      "lexicon": [
+        "authorised budget",
+        "authorized budget",
+        "authorised spend",
+        "authorized spend",
+        "budget authority",
+        "an authority of",
+        "authority of",
+        "allocation",
+        "authorised",
+        "authorized",
+        "allocated",
+        "authority",
+        "approved",
+        "budget"
+      ]
+    },
+    "OVERRUN": {
+      "label": "overspend against authority",
+      "lexicon": [
+        "exceeds the budget by",
+        "exceeds budget by",
+        "over budget by",
+        "an overrun of",
+        "in excess of",
+        "overspend",
+        "exceeds",
+        "overrun"
+      ]
+    },
+    "PCT_SPENT": {
+      "label": "share of authority spent",
+      "lexicon": [
+        "share of authority utilised",
+        "share of authority spent",
+        "percentage of authority",
+        "share of authority used",
+        "share of authority",
+        "percentage spent",
+        "percent spent",
+        "spend share",
+        "utilised"
+      ]
+    },
+    "REVENUE_FALL_PCT": {
+      "label": "revenue decline",
+      "lexicon": [
+        "revenue for the quarter fell",
+        "revenue declined",
+        "revenue fell",
+        "declined",
+        "decline",
+        "fell"
+      ]
+    },
+    "SPENT": {
+      "label": "amount spent",
+      "lexicon": [
+        "had been spent",
+        "has been spent",
+        "were committed",
+        "was committed",
+        "expenditure",
+        "have spent",
+        "committed",
+        "disbursed",
+        "has spent",
+        "outlay",
+        "spend",
+        "spent"
+      ]
+    },
+    "UNITS_SHORT": {
+      "label": "units short of the commitment",
+      "lexicon": [
+        "units fewer than",
+        "units short of",
+        "units against",
+        "units fewer",
+        "units short",
+        "units"
+      ]
+    },
+    "UNSPENT": {
+      "label": "unspent balance",
+      "lexicon": [
+        "remaining balance",
+        "unspent balance",
+        "held against",
+        "uncommitted",
+        "is unspent",
+        "remaining",
+        "undrawn",
+        "unspent",
+        "unused"
+      ]
+    }
+  },
+  "facts": [
+    {
+      "attribute": "AUTHORISED",
+      "derived": false,
+      "fact_id": "HALCYON.AUTHORISED",
+      "match": "numeric",
+      "subject": "HALCYON",
+      "subjects": [
+        "HALCYON"
+      ],
+      "surfaces": [
+        "380,000",
+        "380,000.00",
+        "380000",
+        "380000.00"
+      ],
+      "value": 380000.0
+    },
+    {
+      "attribute": "SPENT",
+      "derived": false,
+      "fact_id": "HALCYON.SPENT",
+      "match": "numeric",
+      "subject": "HALCYON",
+      "subjects": [
+        "HALCYON"
+      ],
+      "surfaces": [
+        "296,418.2",
+        "296,418.20",
+        "296418.2",
+        "296418.20"
+      ],
+      "value": 296418.2
+    },
+    {
+      "attribute": "UNSPENT",
+      "derived": false,
+      "fact_id": "HALCYON.UNSPENT",
+      "match": "numeric",
+      "subject": "HALCYON",
+      "subjects": [
+        "HALCYON"
+      ],
+      "surfaces": [
+        "83,581.8",
+        "83,581.80",
+        "83581.8",
+        "83581.80"
+      ],
+      "value": 83581.8
+    },
+    {
+      "attribute": "AUTHORISED",
+      "derived": false,
+      "fact_id": "MERIDIAN.AUTHORISED",
+      "match": "numeric",
+      "subject": "MERIDIAN",
+      "subjects": [
+        "MERIDIAN"
+      ],
+      "surfaces": [
+        "150,000",
+        "150,000.00",
+        "150000",
+        "150000.00"
+      ],
+      "value": 150000.0
+    },
+    {
+      "attribute": "SPENT",
+      "derived": false,
+      "fact_id": "MERIDIAN.SPENT",
+      "match": "numeric",
+      "subject": "MERIDIAN",
+      "subjects": [
+        "MERIDIAN"
+      ],
+      "surfaces": [
+        "62,310.4",
+        "62,310.40",
+        "62310.4",
+        "62310.40"
+      ],
+      "value": 62310.4
+    },
+    {
+      "attribute": "UNSPENT",
+      "derived": false,
+      "fact_id": "MERIDIAN.UNSPENT",
+      "match": "numeric",
+      "subject": "MERIDIAN",
+      "subjects": [
+        "MERIDIAN"
+      ],
+      "surfaces": [
+        "87,689.6",
+        "87,689.60",
+        "87689.6",
+        "87689.60"
+      ],
+      "value": 87689.6
+    },
+    {
+      "attribute": "AUTHORISED",
+      "derived": false,
+      "fact_id": "TAMARIND.AUTHORISED",
+      "match": "numeric",
+      "subject": "TAMARIND",
+      "subjects": [
+        "TAMARIND"
+      ],
+      "surfaces": [
+        "210,000",
+        "210,000.00",
+        "210000",
+        "210000.00"
+      ],
+      "value": 210000.0
+    },
+    {
+      "attribute": "SPENT",
+      "derived": false,
+      "fact_id": "TAMARIND.SPENT",
+      "match": "numeric",
+      "subject": "TAMARIND",
+      "subjects": [
+        "TAMARIND"
+      ],
+      "surfaces": [
+        "203,118.9",
+        "203,118.90",
+        "203118.9",
+        "203118.90"
+      ],
+      "value": 203118.9
+    },
+    {
+      "attribute": "UNSPENT",
+      "derived": false,
+      "fact_id": "TAMARIND.UNSPENT",
+      "match": "numeric",
+      "subject": "TAMARIND",
+      "subjects": [
+        "TAMARIND"
+      ],
+      "surfaces": [
+        "6,881.1",
+        "6,881.10",
+        "6881.1",
+        "6881.10"
+      ],
+      "value": 6881.1
+    },
+    {
+      "attribute": "AUTHORISED",
+      "derived": false,
+      "fact_id": "OSPREY.AUTHORISED",
+      "match": "numeric",
+      "subject": "OSPREY",
+      "subjects": [
+        "OSPREY"
+      ],
+      "surfaces": [
+        "72,500",
+        "72,500.00",
+        "72500",
+        "72500.00"
+      ],
+      "value": 72500.0
+    },
+    {
+      "attribute": "SPENT",
+      "derived": false,
+      "fact_id": "OSPREY.SPENT",
+      "match": "numeric",
+      "subject": "OSPREY",
+      "subjects": [
+        "OSPREY"
+      ],
+      "surfaces": [
+        "80,944.35",
+        "80944.35"
+      ],
+      "value": 80944.35
+    },
+    {
+      "attribute": "OVERRUN",
+      "derived": false,
+      "fact_id": "OSPREY.OVERRUN",
+      "match": "numeric",
+      "subject": "OSPREY",
+      "subjects": [
+        "OSPREY"
+      ],
+      "surfaces": [
+        "8,444.35",
+        "8444.35"
+      ],
+      "value": 8444.35
+    },
+    {
+      "attribute": "PCT_SPENT",
+      "derived": true,
+      "fact_id": "HALCYON.PCT_SPENT",
+      "match": "numeric",
+      "subject": "HALCYON",
+      "subjects": [
+        "HALCYON"
+      ],
+      "surfaces": [
+        "78",
+        "78.00"
+      ],
+      "value": 78.0
+    },
+    {
+      "attribute": "PCT_SPENT",
+      "derived": true,
+      "fact_id": "MERIDIAN.PCT_SPENT",
+      "match": "numeric",
+      "subject": "MERIDIAN",
+      "subjects": [
+        "MERIDIAN"
+      ],
+      "surfaces": [
+        "41.5",
+        "41.50"
+      ],
+      "value": 41.5
+    },
+    {
+      "attribute": "PCT_SPENT",
+      "derived": true,
+      "fact_id": "TAMARIND.PCT_SPENT",
+      "match": "numeric",
+      "subject": "TAMARIND",
+      "subjects": [
+        "TAMARIND"
+      ],
+      "surfaces": [
+        "96.7",
+        "96.70"
+      ],
+      "value": 96.7
+    },
+    {
+      "attribute": "PCT_SPENT",
+      "derived": true,
+      "fact_id": "OSPREY.PCT_SPENT",
+      "match": "numeric",
+      "subject": "OSPREY",
+      "subjects": [
+        "OSPREY"
+      ],
+      "surfaces": [
+        "111.6",
+        "111.60"
+      ],
+      "value": 111.6
+    },
+    {
+      "attribute": "UNITS_SHORT",
+      "derived": false,
+      "fact_id": "VENDOR.UNITS_SHORT",
+      "match": "numeric",
+      "subject": "VENDOR",
+      "subjects": [
+        "VENDOR",
+        "TAMARIND"
+      ],
+      "surfaces": [
+        "215",
+        "215.00"
+      ],
+      "value": 215
+    },
+    {
+      "attribute": "REVENUE_FALL_PCT",
+      "derived": false,
+      "fact_id": "HALCYON.REVENUE_FALL_PCT",
+      "match": "surface",
+      "narrative": true,
+      "subject": "HALCYON",
+      "subjects": [
+        "HALCYON"
+      ],
+      "surfaces": [
+        "nine percent",
+        "9 per cent",
+        "9 percent",
+        "9%"
+      ],
+      "value": "9 percent"
+    }
+  ],
+  "generated_by": "scripts/corpora/portfolio_b.py",
+  "mask_patterns": [
+    "VC-\\d{4}-\\d{4}",
+    "\\d{4}-\\d{2}-\\d{2}(?:[T ][\\d:]+)?",
+    "\\b\\d{1,2}\\s+(?:January|February|March|April|May|June|July|August|September|October|November|December)\\s+\\d{4}\\b",
+    "\\b(?:January|February|March|April|May|June|July|August|September|October|November|December)\\s+\\d{4}\\b",
+    "\\bQ[1-4]\\b",
+    "\\b\\d{1,2}\\s*(?:[-\\u2013\\u2014]|to)\\s*\\d{1,2}\\s+(?:January|February|March|April|May|June|July|August|September|October|November|December)\\b",
+    "\\b\\d{1,2}(?:st|nd|rd|th)?\\s+(?:January|February|March|April|May|June|July|August|September|October|November|December)\\b",
+    "\\(\\d{1,2}\\)"
+  ],
+  "provisional": "not yet audited; see eval/corpora/KEY_AUDIT.md",
+  "referents": {
+    "HALCYON": [
+      "Project Halcyon",
+      "Halcyon"
+    ],
+    "MERIDIAN": [
+      "Project Meridian",
+      "Meridian"
+    ],
+    "ORG": [
+      "Veltmoor Civic Works",
+      "Veltmoor"
+    ],
+    "OSPREY": [
+      "Trial Osprey",
+      "Osprey"
+    ],
+    "TAMARIND": [
+      "Project Tamarind",
+      "Tamarind"
+    ],
+    "VENDOR": [
+      "Brantley Fabrication",
+      "Brantley"
+    ]
+  },
+  "scenario": "portfolio-b",
+  "string_facts": [
+    {
+      "attribute": "OWNER",
+      "fact_id": "HALCYON.OWNER",
+      "subject": "HALCYON",
+      "value": "Imogen Castellane"
+    },
+    {
+      "attribute": "SITE",
+      "fact_id": "HALCYON.SITE",
+      "subject": "HALCYON",
+      "value": "Carlisle"
+    },
+    {
+      "attribute": "CONTRACT",
+      "fact_id": "HALCYON.CONTRACT",
+      "subject": "HALCYON",
+      "value": "VC-2026-0311"
+    },
+    {
+      "attribute": "OWNER",
+      "fact_id": "MERIDIAN.OWNER",
+      "subject": "MERIDIAN",
+      "value": "Tobias Fairweather"
+    },
+    {
+      "attribute": "SITE",
+      "fact_id": "MERIDIAN.SITE",
+      "subject": "MERIDIAN",
+      "value": "Exeter"
+    },
+    {
+      "attribute": "CONTRACT",
+      "fact_id": "MERIDIAN.CONTRACT",
+      "subject": "MERIDIAN",
+      "value": "VC-2026-0486"
+    },
+    {
+      "attribute": "OWNER",
+      "fact_id": "TAMARIND.OWNER",
+      "subject": "TAMARIND",
+      "value": "Nadia Brennock"
+    },
+    {
+      "attribute": "SITE",
+      "fact_id": "TAMARIND.SITE",
+      "subject": "TAMARIND",
+      "value": "Norwich"
+    },
+    {
+      "attribute": "CONTRACT",
+      "fact_id": "TAMARIND.CONTRACT",
+      "subject": "TAMARIND",
+      "value": "VC-2026-0529"
+    },
+    {
+      "attribute": "OWNER",
+      "fact_id": "OSPREY.OWNER",
+      "subject": "OSPREY",
+      "value": "Rhys Pemberton"
+    },
+    {
+      "attribute": "SITE",
+      "fact_id": "OSPREY.SITE",
+      "subject": "OSPREY",
+      "value": "Swindon"
+    },
+    {
+      "attribute": "CONTRACT",
+      "fact_id": "OSPREY.CONTRACT",
+      "subject": "OSPREY",
+      "value": "VC-2026-0774"
+    }
+  ]
+}

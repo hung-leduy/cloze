@@ -1,0 +1,2313 @@
+{
+  "instrument": "scripts/tier1_probe.py",
+  "mode": "analyse",
+  "provenance": {
+    "git_commit": "0d5e86b47447bdabe83bba2d2f83df1760d2dddb",
+    "tree_sha256": "31d56060e0e1e72da54d2d1620d51e4f2a80cee19462bc285a63554251f76b31",
+    "tree_dirty": false
+  },
+  "corpus": {
+    "id": "smoke-q3",
+    "path": "eval/corpora/smoke-q3",
+    "gold_key": true,
+    "surfaces": true,
+    "documents": [
+      {
+        "doc_id": "3ce9713b72f4225d",
+        "kind": "docx",
+        "chars": 896,
+        "text_sha256": "66a72e052db9e70192bb259f3e9f5d13f64cc35bad7b6d2e21e73e9551983b75"
+      },
+      {
+        "doc_id": "ea67494b39c02d45",
+        "kind": "xlsx",
+        "chars": 700,
+        "text_sha256": "07ffdf1516c44237bb454aa83ee6074f393c563979b49f1440d282ebd08eb6bd"
+      },
+      {
+        "doc_id": "08dcf85ad1218a0e",
+        "kind": "pdf",
+        "chars": 962,
+        "text_sha256": "df2e199f5be5bcc0451476aad58d637550a0c3a8859ea314021f42feb1246948"
+      },
+      {
+        "doc_id": "cfcbe635c6f3becf",
+        "kind": "md",
+        "chars": 921,
+        "text_sha256": "cfcbe635c6f3becfba660e36dbff3c030a80b55d6be51bc814c7b3ec2997b342"
+      }
+    ]
+  },
+  "extraction_files": 4,
+  "extractions": [
+    {
+      "index": 0,
+      "sha256": "a1ded48d7a7c4e5aa78451f2465d3ee781070fbf2389c326161981afebdcac3a",
+      "files": [
+        "eval/runs/smoke-q3__r5/extractions.json"
+      ]
+    },
+    {
+      "index": 1,
+      "sha256": "90babe2ecf1c96ff5968053b1e892bfb1f8f7e964fc288ada622c2ee006f8cf4",
+      "files": [
+        "eval/probe/extractions/smoke-q3/extraction_1.json"
+      ]
+    },
+    {
+      "index": 2,
+      "sha256": "a8f61cde40fde4e3b2fd2d928e08a94ed30793fdde6f4ab319537e1e037f4fb9",
+      "files": [
+        "eval/probe/extractions/smoke-q3/extraction_2.json"
+      ]
+    },
+    {
+      "index": 3,
+      "sha256": "ffd74bc3c4232e3ed62634f573a458b261831f9728dadc8772d6777b22502025",
+      "files": [
+        "eval/probe/extractions/smoke-q3/extraction_3.json"
+      ]
+    }
+  ],
+  "refused_files": [],
+  "variance": {
+    "distinct_extractions": 4,
+    "pairs": [
+      {
+        "a": 0,
+        "b": 1,
+        "entity_jaccard": 1.0,
+        "relation_jaccard": 0.2535211267605634,
+        "per_document_entity_jaccard_mean": 0.98
+      },
+      {
+        "a": 0,
+        "b": 2,
+        "entity_jaccard": 0.9180327868852459,
+        "relation_jaccard": 0.2638888888888889,
+        "per_document_entity_jaccard_mean": 0.8415384615384616
+      },
+      {
+        "a": 0,
+        "b": 3,
+        "entity_jaccard": 0.9508196721311475,
+        "relation_jaccard": 0.3,
+        "per_document_entity_jaccard_mean": 0.88
+      },
+      {
+        "a": 1,
+        "b": 2,
+        "entity_jaccard": 0.9180327868852459,
+        "relation_jaccard": 0.5789473684210527,
+        "per_document_entity_jaccard_mean": 0.8615384615384616
+      },
+      {
+        "a": 1,
+        "b": 3,
+        "entity_jaccard": 0.9508196721311475,
+        "relation_jaccard": 0.7307692307692307,
+        "per_document_entity_jaccard_mean": 0.9
+      },
+      {
+        "a": 2,
+        "b": 3,
+        "entity_jaccard": 0.9672131147540983,
+        "relation_jaccard": 0.7037037037037037,
+        "per_document_entity_jaccard_mean": 0.9615384615384616
+      }
+    ],
+    "entity_jaccard": {
+      "min": 0.9180327868852459,
+      "mean": 0.9508196721311476,
+      "max": 1.0
+    },
+    "relation_jaccard": {
+      "min": 0.2535211267605634,
+      "mean": 0.47180505309057325,
+      "max": 0.7307692307692307
+    },
+    "note": null
+  },
+  "per_extraction": [
+    {
+      "index": 0,
+      "entities": 91,
+      "relations": 45,
+      "recall": {
+        "referents": {
+          "n": 5,
+          "exact": 5,
+          "covered": 5,
+          "missed": [],
+          "items": [
+            {
+              "item": "AURORA",
+              "surfaces_in_corpus": [
+                "Project Aurora",
+                "Aurora"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Project Aurora",
+                "Aurora"
+              ]
+            },
+            {
+              "item": "KESTREL",
+              "surfaces_in_corpus": [
+                "Pilot Kestrel",
+                "Kestrel"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Pilot Kestrel",
+                "Kestrel"
+              ]
+            },
+            {
+              "item": "ORG",
+              "surfaces_in_corpus": [
+                "Northbridge Analytics",
+                "Northbridge"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Northbridge Analytics",
+                "Northbridge"
+              ]
+            },
+            {
+              "item": "VENDOR",
+              "surfaces_in_corpus": [
+                "Calder Logistics",
+                "Calder"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Calder Logistics",
+                "Calder"
+              ]
+            },
+            {
+              "item": "ZEPHYR",
+              "surfaces_in_corpus": [
+                "Project Zephyr",
+                "Zephyr"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Project Zephyr",
+                "Zephyr"
+              ]
+            }
+          ]
+        },
+        "string_facts": {
+          "n": 9,
+          "exact": 9,
+          "covered": 9,
+          "missed": [],
+          "items": [
+            {
+              "item": "ZEPHYR.OWNER",
+              "surfaces_in_corpus": [
+                "Sarah Whitfield"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Sarah Whitfield"
+              ]
+            },
+            {
+              "item": "ZEPHYR.SITE",
+              "surfaces_in_corpus": [
+                "Manchester"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Manchester"
+              ]
+            },
+            {
+              "item": "ZEPHYR.CONTRACT",
+              "surfaces_in_corpus": [
+                "NB-2026-0917"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "NB-2026-0917"
+              ]
+            },
+            {
+              "item": "AURORA.OWNER",
+              "surfaces_in_corpus": [
+                "Daniel Okoye"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Daniel Okoye"
+              ]
+            },
+            {
+              "item": "AURORA.SITE",
+              "surfaces_in_corpus": [
+                "Leeds"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Leeds"
+              ]
+            },
+            {
+              "item": "AURORA.CONTRACT",
+              "surfaces_in_corpus": [
+                "NB-2026-1044"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "NB-2026-1044"
+              ]
+            },
+            {
+              "item": "KESTREL.OWNER",
+              "surfaces_in_corpus": [
+                "Priya Ramanathan"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Priya Ramanathan"
+              ]
+            },
+            {
+              "item": "KESTREL.SITE",
+              "surfaces_in_corpus": [
+                "Bristol"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Bristol"
+              ]
+            },
+            {
+              "item": "KESTREL.CONTRACT",
+              "surfaces_in_corpus": [
+                "NB-2026-1187"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "NB-2026-1187"
+              ]
+            }
+          ]
+        },
+        "generator_surfaces": {
+          "n": 58,
+          "covered": 57,
+          "by_group": {
+            "amounts": {
+              "n": 18,
+              "covered": 18
+            },
+            "dates": {
+              "n": 13,
+              "covered": 12
+            },
+            "identifiers": {
+              "n": 3,
+              "covered": 3
+            },
+            "labels": {
+              "n": 2,
+              "covered": 2
+            },
+            "people": {
+              "n": 3,
+              "covered": 3
+            },
+            "percentages": {
+              "n": 1,
+              "covered": 1
+            },
+            "quantities": {
+              "n": 2,
+              "covered": 2
+            },
+            "referents": {
+              "n": 10,
+              "covered": 10
+            },
+            "risk_text": {
+              "n": 3,
+              "covered": 3
+            },
+            "sites": {
+              "n": 3,
+              "covered": 3
+            }
+          },
+          "missed": [
+            "22 August 2026"
+          ]
+        },
+        "surfaces_in_relations": {
+          "hits": [],
+          "labels_group_hits": []
+        }
+      },
+      "predicates": {
+        "n_predicates": 45,
+        "echo_2_4gram": 18,
+        "echo_share": 0.4,
+        "whole_match": 19,
+        "whole_match_share": 0.4222222222222222,
+        "echoing": [
+          "has_spent",
+          "raised_by",
+          "prepared by",
+          "cancelled in",
+          "slipped past",
+          "has authorised spend",
+          "committed by",
+          "has unspent balance",
+          "held against",
+          "review on",
+          "delivered fewer than",
+          "carries contract",
+          "unaffected by",
+          "has spent",
+          "has asked for",
+          "holds contract",
+          "recommended deferring",
+          "requested revised plan"
+        ],
+        "whole_matches": [
+          "confirmed",
+          "moved",
+          "deferred",
+          "tabled",
+          "has_spent",
+          "raised_by",
+          "prepared by",
+          "cancelled in",
+          "slipped past",
+          "covers",
+          "committed by",
+          "held against",
+          "review on",
+          "carries contract",
+          "unaffected by",
+          "has spent",
+          "has asked for",
+          "holds contract",
+          "recommended deferring"
+        ],
+        "length_tokens": {
+          "1": 6,
+          "2": 32,
+          "3": 7
+        },
+        "length_whitespace_words": {
+          "1": 16,
+          "2": 22,
+          "3": 7
+        },
+        "max_tokens": 3
+      },
+      "r5_residue": {
+        "referents_total": 44,
+        "referents_with_residue": 5,
+        "by_category": {
+          "DATE": 1,
+          "IDENTIFIER": 2,
+          "QUANTITY": 2
+        },
+        "pairs": {
+          "DATE": [
+            [
+              "2026-08",
+              "2026-08-03"
+            ],
+            [
+              "2026-08",
+              "2026-08-04"
+            ],
+            [
+              "2026-08",
+              "2026-08-20"
+            ],
+            [
+              "2026-08",
+              "2026-08-25"
+            ],
+            [
+              "2026-08",
+              "2026-08-28"
+            ]
+          ],
+          "IDENTIFIER": [
+            [
+              "nb20260917",
+              "contractnb20260917"
+            ],
+            [
+              "nb20261044",
+              "contractnb20261044"
+            ]
+          ],
+          "QUANTITY": [
+            [
+              "340 units",
+              "calder logistics missed 340 units against the july commitment"
+            ],
+            [
+              "twelve percent",
+              "leeds pilot cancelled; revenue fell twelve percent"
+            ]
+          ]
+        }
+      },
+      "masked_exposure": {
+        "filter": {
+          "n_min": 5,
+          "n_max": 8,
+          "hit_threshold": 1,
+          "salt": "fixed analysis salt",
+          "fp_est": 8.074839388991533e-08,
+          "keying": "r5"
+        },
+        "refused_any": true,
+        "refused_documents": 4,
+        "masked_5gram_hit_share": 0.183739837398374,
+        "corpus_5grams_distinct": 540,
+        "corpus_5grams_surviving_share": 0.19814814814814816,
+        "documents": [
+          {
+            "doc_id": "3ce9713b72f4225d",
+            "refused": true,
+            "shingle_hits_5_8": 1,
+            "masked_5grams": 163,
+            "masked_5grams_hit": 22,
+            "placeholders": 29,
+            "unmatched_entities": 0,
+            "surfaces_surviving": 0
+          },
+          {
+            "doc_id": "ea67494b39c02d45",
+            "refused": true,
+            "shingle_hits_5_8": 1,
+            "masked_5grams": 122,
+            "masked_5grams_hit": 10,
+            "placeholders": 36,
+            "unmatched_entities": 0,
+            "surfaces_surviving": 0
+          },
+          {
+            "doc_id": "08dcf85ad1218a0e",
+            "refused": true,
+            "shingle_hits_5_8": 1,
+            "masked_5grams": 170,
+            "masked_5grams_hit": 28,
+            "placeholders": 24,
+            "unmatched_entities": 0,
+            "surfaces_surviving": 2
+          },
+          {
+            "doc_id": "cfcbe635c6f3becf",
+            "refused": true,
+            "shingle_hits_5_8": 1,
+            "masked_5grams": 160,
+            "masked_5grams_hit": 53,
+            "placeholders": 17,
+            "unmatched_entities": 0,
+            "surfaces_surviving": 4
+          }
+        ],
+        "generator_surfaces_surviving": {
+          "distinct": 5,
+          "occurrences": 6,
+          "surfaces": [
+            {
+              "surface": "340 units",
+              "group": "quantities",
+              "occurrences": 2,
+              "extractor_miss": false
+            },
+            {
+              "surface": "62,567.45",
+              "group": "amounts",
+              "occurrences": 1,
+              "extractor_miss": false
+            },
+            {
+              "surface": "NB-2026-0917",
+              "group": "identifiers",
+              "occurrences": 1,
+              "extractor_miss": false
+            },
+            {
+              "surface": "NB-2026-1044",
+              "group": "identifiers",
+              "occurrences": 1,
+              "extractor_miss": false
+            },
+            {
+              "surface": "twelve percent",
+              "group": "percentages",
+              "occurrences": 1,
+              "extractor_miss": false
+            }
+          ],
+          "extractor_misses": [],
+          "extracted_elsewhere": [
+            "340 units",
+            "62,567.45",
+            "NB-2026-0917",
+            "NB-2026-1044",
+            "twelve percent"
+          ],
+          "labels_group": []
+        }
+      }
+    },
+    {
+      "index": 1,
+      "entities": 93,
+      "relations": 47,
+      "recall": {
+        "referents": {
+          "n": 5,
+          "exact": 5,
+          "covered": 5,
+          "missed": [],
+          "items": [
+            {
+              "item": "AURORA",
+              "surfaces_in_corpus": [
+                "Project Aurora",
+                "Aurora"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Project Aurora",
+                "Aurora"
+              ]
+            },
+            {
+              "item": "KESTREL",
+              "surfaces_in_corpus": [
+                "Pilot Kestrel",
+                "Kestrel"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Pilot Kestrel",
+                "Kestrel"
+              ]
+            },
+            {
+              "item": "ORG",
+              "surfaces_in_corpus": [
+                "Northbridge Analytics",
+                "Northbridge"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Northbridge Analytics",
+                "Northbridge"
+              ]
+            },
+            {
+              "item": "VENDOR",
+              "surfaces_in_corpus": [
+                "Calder Logistics",
+                "Calder"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Calder Logistics",
+                "Calder"
+              ]
+            },
+            {
+              "item": "ZEPHYR",
+              "surfaces_in_corpus": [
+                "Project Zephyr",
+                "Zephyr"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Project Zephyr",
+                "Zephyr"
+              ]
+            }
+          ]
+        },
+        "string_facts": {
+          "n": 9,
+          "exact": 9,
+          "covered": 9,
+          "missed": [],
+          "items": [
+            {
+              "item": "ZEPHYR.OWNER",
+              "surfaces_in_corpus": [
+                "Sarah Whitfield"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Sarah Whitfield"
+              ]
+            },
+            {
+              "item": "ZEPHYR.SITE",
+              "surfaces_in_corpus": [
+                "Manchester"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Manchester"
+              ]
+            },
+            {
+              "item": "ZEPHYR.CONTRACT",
+              "surfaces_in_corpus": [
+                "NB-2026-0917"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "NB-2026-0917"
+              ]
+            },
+            {
+              "item": "AURORA.OWNER",
+              "surfaces_in_corpus": [
+                "Daniel Okoye"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Daniel Okoye"
+              ]
+            },
+            {
+              "item": "AURORA.SITE",
+              "surfaces_in_corpus": [
+                "Leeds"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Leeds"
+              ]
+            },
+            {
+              "item": "AURORA.CONTRACT",
+              "surfaces_in_corpus": [
+                "NB-2026-1044"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "NB-2026-1044"
+              ]
+            },
+            {
+              "item": "KESTREL.OWNER",
+              "surfaces_in_corpus": [
+                "Priya Ramanathan"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Priya Ramanathan"
+              ]
+            },
+            {
+              "item": "KESTREL.SITE",
+              "surfaces_in_corpus": [
+                "Bristol"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Bristol"
+              ]
+            },
+            {
+              "item": "KESTREL.CONTRACT",
+              "surfaces_in_corpus": [
+                "NB-2026-1187"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "NB-2026-1187"
+              ]
+            }
+          ]
+        },
+        "generator_surfaces": {
+          "n": 58,
+          "covered": 57,
+          "by_group": {
+            "amounts": {
+              "n": 18,
+              "covered": 18
+            },
+            "dates": {
+              "n": 13,
+              "covered": 12
+            },
+            "identifiers": {
+              "n": 3,
+              "covered": 3
+            },
+            "labels": {
+              "n": 2,
+              "covered": 2
+            },
+            "people": {
+              "n": 3,
+              "covered": 3
+            },
+            "percentages": {
+              "n": 1,
+              "covered": 1
+            },
+            "quantities": {
+              "n": 2,
+              "covered": 2
+            },
+            "referents": {
+              "n": 10,
+              "covered": 10
+            },
+            "risk_text": {
+              "n": 3,
+              "covered": 3
+            },
+            "sites": {
+              "n": 3,
+              "covered": 3
+            }
+          },
+          "missed": [
+            "22 August 2026"
+          ]
+        },
+        "surfaces_in_relations": {
+          "hits": [],
+          "labels_group_hits": []
+        }
+      },
+      "predicates": {
+        "n_predicates": 47,
+        "echo_2_4gram": 21,
+        "echo_share": 0.44680851063829785,
+        "whole_match": 21,
+        "whole_match_share": 0.44680851063829785,
+        "echoing": [
+          "spend against authority",
+          "spend against authority",
+          "spend against authority",
+          "has_spent",
+          "raised_by",
+          "fell against plan",
+          "was cancelled",
+          "slipped past",
+          "has authorised spend",
+          "has unspent balance",
+          "is held against",
+          "is not released before",
+          "delivered fewer than",
+          "recorded the shortfall against",
+          "carries contract",
+          "is unaffected by",
+          "has spent",
+          "has asked for",
+          "holds contract",
+          "recommended deferring",
+          "requested revised plan"
+        ],
+        "whole_matches": [
+          "confirmed",
+          "moved",
+          "reviewed",
+          "spend against authority",
+          "spend against authority",
+          "spend against authority",
+          "has_spent",
+          "raised_by",
+          "was cancelled",
+          "slipped past",
+          "covers",
+          "is held against",
+          "is not released before",
+          "recorded the shortfall against",
+          "carries contract",
+          "is unaffected by",
+          "has spent",
+          "has asked for",
+          "holds contract",
+          "spent",
+          "recommended deferring"
+        ],
+        "length_tokens": {
+          "1": 5,
+          "2": 27,
+          "3": 13,
+          "4": 2
+        },
+        "length_whitespace_words": {
+          "1": 15,
+          "2": 17,
+          "3": 13,
+          "4": 2
+        },
+        "max_tokens": 4
+      },
+      "r5_residue": {
+        "referents_total": 44,
+        "referents_with_residue": 5,
+        "by_category": {
+          "DATE": 1,
+          "IDENTIFIER": 2,
+          "QUANTITY": 2
+        },
+        "pairs": {
+          "DATE": [
+            [
+              "2026-08",
+              "2026-08-03"
+            ],
+            [
+              "2026-08",
+              "2026-08-04"
+            ],
+            [
+              "2026-08",
+              "2026-08-20"
+            ],
+            [
+              "2026-08",
+              "2026-08-25"
+            ],
+            [
+              "2026-08",
+              "2026-08-28"
+            ]
+          ],
+          "IDENTIFIER": [
+            [
+              "nb20260917",
+              "contractnb20260917"
+            ],
+            [
+              "nb20261044",
+              "contractnb20261044"
+            ]
+          ],
+          "QUANTITY": [
+            [
+              "340 units",
+              "calder logistics missed 340 units against the july commitment"
+            ],
+            [
+              "twelve percent",
+              "leeds pilot cancelled; revenue fell twelve percent"
+            ]
+          ]
+        }
+      },
+      "masked_exposure": {
+        "filter": {
+          "n_min": 5,
+          "n_max": 8,
+          "hit_threshold": 1,
+          "salt": "fixed analysis salt",
+          "fp_est": 8.074839388991533e-08,
+          "keying": "r5"
+        },
+        "refused_any": true,
+        "refused_documents": 4,
+        "masked_5gram_hit_share": 0.17637540453074432,
+        "corpus_5grams_distinct": 540,
+        "corpus_5grams_surviving_share": 0.19814814814814816,
+        "documents": [
+          {
+            "doc_id": "3ce9713b72f4225d",
+            "refused": true,
+            "shingle_hits_5_8": 1,
+            "masked_5grams": 163,
+            "masked_5grams_hit": 22,
+            "placeholders": 29,
+            "unmatched_entities": 0,
+            "surfaces_surviving": 0
+          },
+          {
+            "doc_id": "ea67494b39c02d45",
+            "refused": true,
+            "shingle_hits_5_8": 1,
+            "masked_5grams": 122,
+            "masked_5grams_hit": 10,
+            "placeholders": 36,
+            "unmatched_entities": 0,
+            "surfaces_surviving": 0
+          },
+          {
+            "doc_id": "08dcf85ad1218a0e",
+            "refused": true,
+            "shingle_hits_5_8": 1,
+            "masked_5grams": 173,
+            "masked_5grams_hit": 24,
+            "placeholders": 26,
+            "unmatched_entities": 0,
+            "surfaces_surviving": 1
+          },
+          {
+            "doc_id": "cfcbe635c6f3becf",
+            "refused": true,
+            "shingle_hits_5_8": 1,
+            "masked_5grams": 160,
+            "masked_5grams_hit": 53,
+            "placeholders": 17,
+            "unmatched_entities": 0,
+            "surfaces_surviving": 4
+          }
+        ],
+        "generator_surfaces_surviving": {
+          "distinct": 5,
+          "occurrences": 5,
+          "surfaces": [
+            {
+              "surface": "340 units",
+              "group": "quantities",
+              "occurrences": 1,
+              "extractor_miss": false
+            },
+            {
+              "surface": "62,567.45",
+              "group": "amounts",
+              "occurrences": 1,
+              "extractor_miss": false
+            },
+            {
+              "surface": "NB-2026-0917",
+              "group": "identifiers",
+              "occurrences": 1,
+              "extractor_miss": false
+            },
+            {
+              "surface": "NB-2026-1044",
+              "group": "identifiers",
+              "occurrences": 1,
+              "extractor_miss": false
+            },
+            {
+              "surface": "twelve percent",
+              "group": "percentages",
+              "occurrences": 1,
+              "extractor_miss": false
+            }
+          ],
+          "extractor_misses": [],
+          "extracted_elsewhere": [
+            "340 units",
+            "62,567.45",
+            "NB-2026-0917",
+            "NB-2026-1044",
+            "twelve percent"
+          ],
+          "labels_group": []
+        }
+      }
+    },
+    {
+      "index": 2,
+      "entities": 95,
+      "relations": 46,
+      "recall": {
+        "referents": {
+          "n": 5,
+          "exact": 5,
+          "covered": 5,
+          "missed": [],
+          "items": [
+            {
+              "item": "AURORA",
+              "surfaces_in_corpus": [
+                "Project Aurora",
+                "Aurora"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Project Aurora",
+                "Aurora"
+              ]
+            },
+            {
+              "item": "KESTREL",
+              "surfaces_in_corpus": [
+                "Pilot Kestrel",
+                "Kestrel"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Pilot Kestrel",
+                "Kestrel"
+              ]
+            },
+            {
+              "item": "ORG",
+              "surfaces_in_corpus": [
+                "Northbridge Analytics",
+                "Northbridge"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Northbridge Analytics",
+                "Northbridge"
+              ]
+            },
+            {
+              "item": "VENDOR",
+              "surfaces_in_corpus": [
+                "Calder Logistics",
+                "Calder"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Calder Logistics",
+                "Calder"
+              ]
+            },
+            {
+              "item": "ZEPHYR",
+              "surfaces_in_corpus": [
+                "Project Zephyr",
+                "Zephyr"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Project Zephyr",
+                "Zephyr"
+              ]
+            }
+          ]
+        },
+        "string_facts": {
+          "n": 9,
+          "exact": 9,
+          "covered": 9,
+          "missed": [],
+          "items": [
+            {
+              "item": "ZEPHYR.OWNER",
+              "surfaces_in_corpus": [
+                "Sarah Whitfield"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Sarah Whitfield"
+              ]
+            },
+            {
+              "item": "ZEPHYR.SITE",
+              "surfaces_in_corpus": [
+                "Manchester"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Manchester"
+              ]
+            },
+            {
+              "item": "ZEPHYR.CONTRACT",
+              "surfaces_in_corpus": [
+                "NB-2026-0917"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "NB-2026-0917"
+              ]
+            },
+            {
+              "item": "AURORA.OWNER",
+              "surfaces_in_corpus": [
+                "Daniel Okoye"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Daniel Okoye"
+              ]
+            },
+            {
+              "item": "AURORA.SITE",
+              "surfaces_in_corpus": [
+                "Leeds"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Leeds"
+              ]
+            },
+            {
+              "item": "AURORA.CONTRACT",
+              "surfaces_in_corpus": [
+                "NB-2026-1044"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "NB-2026-1044"
+              ]
+            },
+            {
+              "item": "KESTREL.OWNER",
+              "surfaces_in_corpus": [
+                "Priya Ramanathan"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Priya Ramanathan"
+              ]
+            },
+            {
+              "item": "KESTREL.SITE",
+              "surfaces_in_corpus": [
+                "Bristol"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Bristol"
+              ]
+            },
+            {
+              "item": "KESTREL.CONTRACT",
+              "surfaces_in_corpus": [
+                "NB-2026-1187"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "NB-2026-1187"
+              ]
+            }
+          ]
+        },
+        "generator_surfaces": {
+          "n": 58,
+          "covered": 57,
+          "by_group": {
+            "amounts": {
+              "n": 18,
+              "covered": 18
+            },
+            "dates": {
+              "n": 13,
+              "covered": 12
+            },
+            "identifiers": {
+              "n": 3,
+              "covered": 3
+            },
+            "labels": {
+              "n": 2,
+              "covered": 2
+            },
+            "people": {
+              "n": 3,
+              "covered": 3
+            },
+            "percentages": {
+              "n": 1,
+              "covered": 1
+            },
+            "quantities": {
+              "n": 2,
+              "covered": 2
+            },
+            "referents": {
+              "n": 10,
+              "covered": 10
+            },
+            "risk_text": {
+              "n": 3,
+              "covered": 3
+            },
+            "sites": {
+              "n": 3,
+              "covered": 3
+            }
+          },
+          "missed": [
+            "22 August 2026"
+          ]
+        },
+        "surfaces_in_relations": {
+          "hits": [],
+          "labels_group_hits": []
+        }
+      },
+      "predicates": {
+        "n_predicates": 46,
+        "echo_2_4gram": 17,
+        "echo_share": 0.3695652173913043,
+        "whole_match": 22,
+        "whole_match_share": 0.4782608695652174,
+        "echoing": [
+          "has_spent",
+          "raised_by",
+          "fell against plan",
+          "was cancelled",
+          "slipped past",
+          "has authorised spend",
+          "has unspent balance",
+          "is held against",
+          "is not released before",
+          "delivered fewer than",
+          "recorded the shortfall against",
+          "is unaffected by",
+          "has spent",
+          "has asked for",
+          "holds contract",
+          "recommended deferring",
+          "requested revised plan"
+        ],
+        "whole_matches": [
+          "held",
+          "reviewed",
+          "confirmed",
+          "reported",
+          "missed",
+          "absorb",
+          "moved",
+          "table",
+          "has_spent",
+          "raised_by",
+          "was cancelled",
+          "slipped past",
+          "covers",
+          "is held against",
+          "is not released before",
+          "recorded the shortfall against",
+          "carries",
+          "is unaffected by",
+          "has spent",
+          "has asked for",
+          "holds contract",
+          "recommended deferring"
+        ],
+        "length_tokens": {
+          "1": 13,
+          "2": 21,
+          "3": 10,
+          "4": 2
+        },
+        "length_whitespace_words": {
+          "1": 23,
+          "2": 11,
+          "3": 10,
+          "4": 2
+        },
+        "max_tokens": 4
+      },
+      "r5_residue": {
+        "referents_total": 46,
+        "referents_with_residue": 6,
+        "by_category": {
+          "DATE": 1,
+          "IDENTIFIER": 1,
+          "LOCATION": 2,
+          "QUANTITY": 2
+        },
+        "pairs": {
+          "DATE": [
+            [
+              "2026-08",
+              "2026-08-03"
+            ],
+            [
+              "2026-08",
+              "2026-08-04"
+            ],
+            [
+              "2026-08",
+              "2026-08-20"
+            ],
+            [
+              "2026-08",
+              "2026-08-25"
+            ],
+            [
+              "2026-08",
+              "2026-08-28"
+            ]
+          ],
+          "IDENTIFIER": [
+            [
+              "nb20260917",
+              "contractnb20260917"
+            ]
+          ],
+          "LOCATION": [
+            [
+              "bristol",
+              "bristol fulfilment centre"
+            ],
+            [
+              "manchester",
+              "manchester site"
+            ]
+          ],
+          "QUANTITY": [
+            [
+              "340 units",
+              "calder logistics missed 340 units against the july commitment"
+            ],
+            [
+              "twelve percent",
+              "leeds pilot cancelled; revenue fell twelve percent"
+            ]
+          ]
+        }
+      },
+      "masked_exposure": {
+        "filter": {
+          "n_min": 5,
+          "n_max": 8,
+          "hit_threshold": 1,
+          "salt": "fixed analysis salt",
+          "fp_est": 8.074839388991533e-08,
+          "keying": "r5"
+        },
+        "refused_any": true,
+        "refused_documents": 4,
+        "masked_5gram_hit_share": 0.16639741518578352,
+        "corpus_5grams_distinct": 540,
+        "corpus_5grams_surviving_share": 0.18703703703703703,
+        "documents": [
+          {
+            "doc_id": "3ce9713b72f4225d",
+            "refused": true,
+            "shingle_hits_5_8": 1,
+            "masked_5grams": 165,
+            "masked_5grams_hit": 23,
+            "placeholders": 29,
+            "unmatched_entities": 0,
+            "surfaces_surviving": 0
+          },
+          {
+            "doc_id": "ea67494b39c02d45",
+            "refused": true,
+            "shingle_hits_5_8": 1,
+            "masked_5grams": 122,
+            "masked_5grams_hit": 10,
+            "placeholders": 36,
+            "unmatched_entities": 0,
+            "surfaces_surviving": 0
+          },
+          {
+            "doc_id": "08dcf85ad1218a0e",
+            "refused": true,
+            "shingle_hits_5_8": 1,
+            "masked_5grams": 173,
+            "masked_5grams_hit": 24,
+            "placeholders": 26,
+            "unmatched_entities": 0,
+            "surfaces_surviving": 1
+          },
+          {
+            "doc_id": "cfcbe635c6f3becf",
+            "refused": true,
+            "shingle_hits_5_8": 1,
+            "masked_5grams": 159,
+            "masked_5grams_hit": 46,
+            "placeholders": 19,
+            "unmatched_entities": 0,
+            "surfaces_surviving": 3
+          }
+        ],
+        "generator_surfaces_surviving": {
+          "distinct": 4,
+          "occurrences": 4,
+          "surfaces": [
+            {
+              "surface": "62,567.45",
+              "group": "amounts",
+              "occurrences": 1,
+              "extractor_miss": false
+            },
+            {
+              "surface": "NB-2026-0917",
+              "group": "identifiers",
+              "occurrences": 1,
+              "extractor_miss": false
+            },
+            {
+              "surface": "NB-2026-1044",
+              "group": "identifiers",
+              "occurrences": 1,
+              "extractor_miss": false
+            },
+            {
+              "surface": "twelve percent",
+              "group": "percentages",
+              "occurrences": 1,
+              "extractor_miss": false
+            }
+          ],
+          "extractor_misses": [],
+          "extracted_elsewhere": [
+            "62,567.45",
+            "NB-2026-0917",
+            "NB-2026-1044",
+            "twelve percent"
+          ],
+          "labels_group": []
+        }
+      }
+    },
+    {
+      "index": 3,
+      "entities": 95,
+      "relations": 46,
+      "recall": {
+        "referents": {
+          "n": 5,
+          "exact": 5,
+          "covered": 5,
+          "missed": [],
+          "items": [
+            {
+              "item": "AURORA",
+              "surfaces_in_corpus": [
+                "Project Aurora",
+                "Aurora"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Project Aurora",
+                "Aurora"
+              ]
+            },
+            {
+              "item": "KESTREL",
+              "surfaces_in_corpus": [
+                "Pilot Kestrel",
+                "Kestrel"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Pilot Kestrel",
+                "Kestrel"
+              ]
+            },
+            {
+              "item": "ORG",
+              "surfaces_in_corpus": [
+                "Northbridge Analytics",
+                "Northbridge"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Northbridge Analytics",
+                "Northbridge"
+              ]
+            },
+            {
+              "item": "VENDOR",
+              "surfaces_in_corpus": [
+                "Calder Logistics",
+                "Calder"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Calder Logistics",
+                "Calder"
+              ]
+            },
+            {
+              "item": "ZEPHYR",
+              "surfaces_in_corpus": [
+                "Project Zephyr",
+                "Zephyr"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Project Zephyr",
+                "Zephyr"
+              ]
+            }
+          ]
+        },
+        "string_facts": {
+          "n": 9,
+          "exact": 9,
+          "covered": 9,
+          "missed": [],
+          "items": [
+            {
+              "item": "ZEPHYR.OWNER",
+              "surfaces_in_corpus": [
+                "Sarah Whitfield"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Sarah Whitfield"
+              ]
+            },
+            {
+              "item": "ZEPHYR.SITE",
+              "surfaces_in_corpus": [
+                "Manchester"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Manchester"
+              ]
+            },
+            {
+              "item": "ZEPHYR.CONTRACT",
+              "surfaces_in_corpus": [
+                "NB-2026-0917"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "NB-2026-0917"
+              ]
+            },
+            {
+              "item": "AURORA.OWNER",
+              "surfaces_in_corpus": [
+                "Daniel Okoye"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Daniel Okoye"
+              ]
+            },
+            {
+              "item": "AURORA.SITE",
+              "surfaces_in_corpus": [
+                "Leeds"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Leeds"
+              ]
+            },
+            {
+              "item": "AURORA.CONTRACT",
+              "surfaces_in_corpus": [
+                "NB-2026-1044"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "NB-2026-1044"
+              ]
+            },
+            {
+              "item": "KESTREL.OWNER",
+              "surfaces_in_corpus": [
+                "Priya Ramanathan"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Priya Ramanathan"
+              ]
+            },
+            {
+              "item": "KESTREL.SITE",
+              "surfaces_in_corpus": [
+                "Bristol"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "Bristol"
+              ]
+            },
+            {
+              "item": "KESTREL.CONTRACT",
+              "surfaces_in_corpus": [
+                "NB-2026-1187"
+              ],
+              "exact": true,
+              "covered": true,
+              "surfaces_covered": [
+                "NB-2026-1187"
+              ]
+            }
+          ]
+        },
+        "generator_surfaces": {
+          "n": 58,
+          "covered": 57,
+          "by_group": {
+            "amounts": {
+              "n": 18,
+              "covered": 18
+            },
+            "dates": {
+              "n": 13,
+              "covered": 12
+            },
+            "identifiers": {
+              "n": 3,
+              "covered": 3
+            },
+            "labels": {
+              "n": 2,
+              "covered": 2
+            },
+            "people": {
+              "n": 3,
+              "covered": 3
+            },
+            "percentages": {
+              "n": 1,
+              "covered": 1
+            },
+            "quantities": {
+              "n": 2,
+              "covered": 2
+            },
+            "referents": {
+              "n": 10,
+              "covered": 10
+            },
+            "risk_text": {
+              "n": 3,
+              "covered": 3
+            },
+            "sites": {
+              "n": 3,
+              "covered": 3
+            }
+          },
+          "missed": [
+            "22 August 2026"
+          ]
+        },
+        "surfaces_in_relations": {
+          "hits": [],
+          "labels_group_hits": []
+        }
+      },
+      "predicates": {
+        "n_predicates": 46,
+        "echo_2_4gram": 19,
+        "echo_share": 0.41304347826086957,
+        "whole_match": 18,
+        "whole_match_share": 0.391304347826087,
+        "echoing": [
+          "spend against authority",
+          "revised plan tabled",
+          "has_spent",
+          "raised_by",
+          "fell against plan",
+          "was cancelled",
+          "slipped past",
+          "has authorised spend",
+          "has unspent balance",
+          "is held against",
+          "is not released before",
+          "delivered fewer than",
+          "recorded the shortfall against",
+          "is unaffected by",
+          "has spent",
+          "has asked for",
+          "holds contract",
+          "recommended deferring",
+          "requested revised plan"
+        ],
+        "whole_matches": [
+          "confirmed",
+          "moved",
+          "reviewed",
+          "spend against authority",
+          "has_spent",
+          "raised_by",
+          "was cancelled",
+          "slipped past",
+          "covers",
+          "is held against",
+          "is not released before",
+          "recorded the shortfall against",
+          "carries",
+          "is unaffected by",
+          "has spent",
+          "has asked for",
+          "holds contract",
+          "recommended deferring"
+        ],
+        "length_tokens": {
+          "1": 6,
+          "2": 26,
+          "3": 12,
+          "4": 2
+        },
+        "length_whitespace_words": {
+          "1": 16,
+          "2": 16,
+          "3": 12,
+          "4": 2
+        },
+        "max_tokens": 4
+      },
+      "r5_residue": {
+        "referents_total": 47,
+        "referents_with_residue": 7,
+        "by_category": {
+          "DATE": 1,
+          "IDENTIFIER": 2,
+          "LOCATION": 2,
+          "QUANTITY": 2
+        },
+        "pairs": {
+          "DATE": [
+            [
+              "2026-08",
+              "2026-08-03"
+            ],
+            [
+              "2026-08",
+              "2026-08-04"
+            ],
+            [
+              "2026-08",
+              "2026-08-20"
+            ],
+            [
+              "2026-08",
+              "2026-08-25"
+            ],
+            [
+              "2026-08",
+              "2026-08-28"
+            ]
+          ],
+          "IDENTIFIER": [
+            [
+              "nb20260917",
+              "contractnb20260917"
+            ],
+            [
+              "nb20261044",
+              "contractnb20261044"
+            ]
+          ],
+          "LOCATION": [
+            [
+              "bristol",
+              "bristol fulfilment centre"
+            ],
+            [
+              "manchester",
+              "manchester site"
+            ]
+          ],
+          "QUANTITY": [
+            [
+              "340 units",
+              "calder logistics missed 340 units against the july commitment"
+            ],
+            [
+              "twelve percent",
+              "leeds pilot cancelled; revenue fell twelve percent"
+            ]
+          ]
+        }
+      },
+      "masked_exposure": {
+        "filter": {
+          "n_min": 5,
+          "n_max": 8,
+          "hit_threshold": 1,
+          "salt": "fixed analysis salt",
+          "fp_est": 8.074839388991533e-08,
+          "keying": "r5"
+        },
+        "refused_any": true,
+        "refused_documents": 4,
+        "masked_5gram_hit_share": 0.16531604538087522,
+        "corpus_5grams_distinct": 540,
+        "corpus_5grams_surviving_share": 0.18518518518518517,
+        "documents": [
+          {
+            "doc_id": "3ce9713b72f4225d",
+            "refused": true,
+            "shingle_hits_5_8": 1,
+            "masked_5grams": 163,
+            "masked_5grams_hit": 22,
+            "placeholders": 29,
+            "unmatched_entities": 0,
+            "surfaces_surviving": 0
+          },
+          {
+            "doc_id": "ea67494b39c02d45",
+            "refused": true,
+            "shingle_hits_5_8": 1,
+            "masked_5grams": 122,
+            "masked_5grams_hit": 10,
+            "placeholders": 36,
+            "unmatched_entities": 0,
+            "surfaces_surviving": 0
+          },
+          {
+            "doc_id": "08dcf85ad1218a0e",
+            "refused": true,
+            "shingle_hits_5_8": 1,
+            "masked_5grams": 173,
+            "masked_5grams_hit": 24,
+            "placeholders": 26,
+            "unmatched_entities": 0,
+            "surfaces_surviving": 1
+          },
+          {
+            "doc_id": "cfcbe635c6f3becf",
+            "refused": true,
+            "shingle_hits_5_8": 1,
+            "masked_5grams": 159,
+            "masked_5grams_hit": 46,
+            "placeholders": 19,
+            "unmatched_entities": 0,
+            "surfaces_surviving": 3
+          }
+        ],
+        "generator_surfaces_surviving": {
+          "distinct": 4,
+          "occurrences": 4,
+          "surfaces": [
+            {
+              "surface": "62,567.45",
+              "group": "amounts",
+              "occurrences": 1,
+              "extractor_miss": false
+            },
+            {
+              "surface": "NB-2026-0917",
+              "group": "identifiers",
+              "occurrences": 1,
+              "extractor_miss": false
+            },
+            {
+              "surface": "NB-2026-1044",
+              "group": "identifiers",
+              "occurrences": 1,
+              "extractor_miss": false
+            },
+            {
+              "surface": "twelve percent",
+              "group": "percentages",
+              "occurrences": 1,
+              "extractor_miss": false
+            }
+          ],
+          "extractor_misses": [],
+          "extracted_elsewhere": [
+            "62,567.45",
+            "NB-2026-0917",
+            "NB-2026-1044",
+            "twelve percent"
+          ],
+          "labels_group": []
+        }
+      }
+    }
+  ],
+  "predicate_control": {
+    "stratum": "english_prose",
+    "seed": 20260906,
+    "payloads": 100,
+    "per_length": {
+      "1": {
+        "windows": 6431,
+        "echo_share": 0.0,
+        "whole_share": 0.36199657907012905
+      },
+      "2": {
+        "windows": 6331,
+        "echo_share": 0.04217343231716948,
+        "whole_share": 0.04217343231716948
+      },
+      "3": {
+        "windows": 6231,
+        "echo_share": 0.080725405231905,
+        "whole_share": 0.0
+      },
+      "4": {
+        "windows": 6131,
+        "echo_share": 0.11825150872614582,
+        "whole_share": 0.0
+      }
+    },
+    "expected_echo_share": 0.046578042922374184,
+    "expected_whole_share": 0.08331674563980346,
+    "note": "windows of the stratum's text at each predicate length; the expected shares average the per-length shares over the predicates' own lengths"
+  },
+  "g1": {
+    "where_disclosed": {
+      "document_stats": "planner prompt",
+      "slot_counts": "planner prompt and drafter prompts",
+      "relation_multiset": "planner prompt and drafter prompts",
+      "attribute_schema": "planner and drafter prompts (r1 only)",
+      "documents": "payload JSON only"
+    },
+    "corpora": [
+      {
+        "label": "smoke-q3:saved",
+        "corpus": "smoke-q3",
+        "extraction": "saved",
+        "source": "eval/runs/smoke-q3__r5/extractions.json",
+        "arms": {
+          "r5": {
+            "document_stats": "DOCUMENT STATS: 60 cells, 15 blocks, about 3000 characters (to the nearest 1000).",
+            "slot_counts": {
+              "DATE": 13,
+              "IDENTIFIER": 5,
+              "LOCATION": 3,
+              "MONEY": 8,
+              "ORG": 2,
+              "PERSON": 3,
+              "PROJECT": 3,
+              "QUANTITY": 7
+            },
+            "relation_multiset": {
+              "n": 45,
+              "distinct": 45,
+              "sha256": "33188b239b940bdda5716224a4ed555621956d8eb926c9fc8a6c1745db58d028"
+            },
+            "attribute_schema": null,
+            "documents": 4
+          },
+          "baseline": {
+            "document_stats": "DOCUMENT STATS: 60 cells, 15 blocks, about 3000 characters (to the nearest 1000).",
+            "slot_counts": {
+              "DATE": 15,
+              "IDENTIFIER": 6,
+              "LOCATION": 3,
+              "MONEY": 19,
+              "ORG": 2,
+              "PERSON": 3,
+              "PROJECT": 3,
+              "QUANTITY": 7
+            },
+            "relation_multiset": {
+              "n": 45,
+              "distinct": 45,
+              "sha256": "33188b239b940bdda5716224a4ed555621956d8eb926c9fc8a6c1745db58d028"
+            },
+            "attribute_schema": null,
+            "documents": 4
+          },
+          "r1": {
+            "document_stats": "DOCUMENT STATS: 60 cells, 15 blocks, about 3000 characters (to the nearest 1000).",
+            "slot_counts": {
+              "LOCATION": 3,
+              "ORG": 2,
+              "PERSON": 3,
+              "PROJECT": 3
+            },
+            "relation_multiset": {
+              "n": 45,
+              "distinct": 45,
+              "sha256": "33188b239b940bdda5716224a4ed555621956d8eb926c9fc8a6c1745db58d028"
+            },
+            "attribute_schema": "3b8aa1fca935cffc22bb1ded177571c984b7e9e18eca62bb41f9068b0773b7ed",
+            "documents": 4
+          }
+        }
+      },
+      {
+        "label": "portfolio-b:saved",
+        "corpus": "portfolio-b",
+        "extraction": "saved",
+        "source": "eval/runs/portfolio-b__r5/extractions.json",
+        "arms": {
+          "r5": {
+            "document_stats": "DOCUMENT STATS: 75 cells, 15 blocks, about 4000 characters (to the nearest 1000).",
+            "slot_counts": {
+              "DATE": 13,
+              "IDENTIFIER": 6,
+              "LOCATION": 5,
+              "MONEY": 12,
+              "ORG": 2,
+              "PERSON": 4,
+              "PROJECT": 5,
+              "QUANTITY": 9
+            },
+            "relation_multiset": {
+              "n": 32,
+              "distinct": 32,
+              "sha256": "dbbf61b1eb6ff42ec45d9d566d31a478136c23d08b5fa0df89269fdc5e65e956"
+            },
+            "attribute_schema": null,
+            "documents": 4
+          },
+          "baseline": {
+            "document_stats": "DOCUMENT STATS: 75 cells, 15 blocks, about 4000 characters (to the nearest 1000).",
+            "slot_counts": {
+              "DATE": 14,
+              "IDENTIFIER": 6,
+              "LOCATION": 5,
+              "MONEY": 28,
+              "ORG": 2,
+              "PERSON": 4,
+              "PROJECT": 5,
+              "QUANTITY": 9
+            },
+            "relation_multiset": {
+              "n": 32,
+              "distinct": 32,
+              "sha256": "dbbf61b1eb6ff42ec45d9d566d31a478136c23d08b5fa0df89269fdc5e65e956"
+            },
+            "attribute_schema": null,
+            "documents": 4
+          },
+          "r1": {
+            "document_stats": "DOCUMENT STATS: 75 cells, 15 blocks, about 4000 characters (to the nearest 1000).",
+            "slot_counts": {
+              "LOCATION": 5,
+              "ORG": 2,
+              "PERSON": 4,
+              "PROJECT": 5
+            },
+            "relation_multiset": {
+              "n": 32,
+              "distinct": 32,
+              "sha256": "dbbf61b1eb6ff42ec45d9d566d31a478136c23d08b5fa0df89269fdc5e65e956"
+            },
+            "attribute_schema": "3b8aa1fca935cffc22bb1ded177571c984b7e9e18eca62bb41f9068b0773b7ed",
+            "documents": 4
+          }
+        }
+      },
+      {
+        "label": "prose-c:saved",
+        "corpus": "prose-c",
+        "extraction": "saved",
+        "source": "eval/runs/prose-c__r5/extractions.json",
+        "arms": {
+          "r5": {
+            "document_stats": "DOCUMENT STATS: 20 cells, 15 blocks, about 3000 characters (to the nearest 1000).",
+            "slot_counts": {
+              "DATE": 8,
+              "IDENTIFIER": 3,
+              "LOCATION": 3,
+              "MONEY": 10,
+              "ORG": 3,
+              "PERSON": 3,
+              "PROJECT": 4,
+              "QUANTITY": 4
+            },
+            "relation_multiset": {
+              "n": 22,
+              "distinct": 22,
+              "sha256": "3284ddcd25121d206e7c088b64568be9a44f64a3d99f2aa138643d141fc55a26"
+            },
+            "attribute_schema": null,
+            "documents": 4
+          },
+          "baseline": {
+            "document_stats": "DOCUMENT STATS: 20 cells, 15 blocks, about 3000 characters (to the nearest 1000).",
+            "slot_counts": {
+              "DATE": 8,
+              "IDENTIFIER": 3,
+              "LOCATION": 3,
+              "MONEY": 11,
+              "ORG": 3,
+              "PERSON": 3,
+              "PROJECT": 4,
+              "QUANTITY": 4
+            },
+            "relation_multiset": {
+              "n": 22,
+              "distinct": 22,
+              "sha256": "3284ddcd25121d206e7c088b64568be9a44f64a3d99f2aa138643d141fc55a26"
+            },
+            "attribute_schema": null,
+            "documents": 4
+          },
+          "r1": {
+            "document_stats": "DOCUMENT STATS: 20 cells, 15 blocks, about 3000 characters (to the nearest 1000).",
+            "slot_counts": {
+              "LOCATION": 3,
+              "ORG": 3,
+              "PERSON": 3,
+              "PROJECT": 4
+            },
+            "relation_multiset": {
+              "n": 22,
+              "distinct": 22,
+              "sha256": "3284ddcd25121d206e7c088b64568be9a44f64a3d99f2aa138643d141fc55a26"
+            },
+            "attribute_schema": "3b8aa1fca935cffc22bb1ded177571c984b7e9e18eca62bb41f9068b0773b7ed",
+            "documents": 4
+          }
+        }
+      },
+      {
+        "label": "offlex-d:saved",
+        "corpus": "offlex-d",
+        "extraction": "saved",
+        "source": "eval/runs/offlex-d__r5/extractions.json",
+        "arms": {
+          "r5": {
+            "document_stats": "DOCUMENT STATS: 82 cells, 15 blocks, about 4000 characters (to the nearest 1000).",
+            "slot_counts": {
+              "DATE": 13,
+              "IDENTIFIER": 5,
+              "LOCATION": 5,
+              "MONEY": 12,
+              "ORG": 2,
+              "PERSON": 4,
+              "PROJECT": 6,
+              "QUANTITY": 6
+            },
+            "relation_multiset": {
+              "n": 47,
+              "distinct": 47,
+              "sha256": "edf934328f2b108e0dae8c363bc61a56330c4a42d8a279bad9a3708915cdd824"
+            },
+            "attribute_schema": null,
+            "documents": 4
+          },
+          "baseline": {
+            "document_stats": "DOCUMENT STATS: 82 cells, 15 blocks, about 4000 characters (to the nearest 1000).",
+            "slot_counts": {
+              "DATE": 13,
+              "IDENTIFIER": 5,
+              "LOCATION": 5,
+              "MONEY": 32,
+              "ORG": 2,
+              "PERSON": 4,
+              "PROJECT": 6,
+              "QUANTITY": 6
+            },
+            "relation_multiset": {
+              "n": 47,
+              "distinct": 47,
+              "sha256": "edf934328f2b108e0dae8c363bc61a56330c4a42d8a279bad9a3708915cdd824"
+            },
+            "attribute_schema": null,
+            "documents": 4
+          },
+          "r1": {
+            "document_stats": "DOCUMENT STATS: 82 cells, 15 blocks, about 4000 characters (to the nearest 1000).",
+            "slot_counts": {
+              "LOCATION": 5,
+              "ORG": 2,
+              "PERSON": 4,
+              "PROJECT": 6
+            },
+            "relation_multiset": {
+              "n": 47,
+              "distinct": 47,
+              "sha256": "edf934328f2b108e0dae8c363bc61a56330c4a42d8a279bad9a3708915cdd824"
+            },
+            "attribute_schema": "3b8aa1fca935cffc22bb1ded177571c984b7e9e18eca62bb41f9068b0773b7ed",
+            "documents": 4
+          }
+        }
+      }
+    ],
+    "comparisons": [
+      {
+        "name": "all corpora under their saved extractions",
+        "extraction": "saved",
+        "stub_corpora": [],
+        "corpora": [
+          "smoke-q3:saved",
+          "portfolio-b:saved",
+          "prose-c:saved",
+          "offlex-d:saved"
+        ],
+        "by_arm": {
+          "r5": {
+            "differs": [
+              "document_stats",
+              "slot_counts",
+              "relation_multiset"
+            ],
+            "same": [
+              "attribute_schema",
+              "documents"
+            ]
+          },
+          "baseline": {
+            "differs": [
+              "document_stats",
+              "slot_counts",
+              "relation_multiset"
+            ],
+            "same": [
+              "attribute_schema",
+              "documents"
+            ]
+          },
+          "r1": {
+            "differs": [
+              "document_stats",
+              "slot_counts",
+              "relation_multiset"
+            ],
+            "same": [
+              "attribute_schema",
+              "documents"
+            ]
+          }
+        }
+      }
+    ],
+    "stub_corpora": [],
+    "note": "A row marked 'saved' is built from an extraction file read through load_extractions (its 'source'), as the pipeline builds the payload from it. A row marked 'stub' uses a deterministic stub extraction built from the corpus's surfaces.json, not an extractor run: its slot counts are the generator's and its relation multiset is empty. Stub rows exist only under --g1-stub; a comparison that includes one names it in 'stub_corpora'."
+  }
+}

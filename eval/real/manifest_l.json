@@ -1,0 +1,178 @@
+{
+  "collections": {
+    "tab-L0": {
+      "collection": "tab-L0",
+      "doc_ids": [
+        "001-106448",
+        "001-114244",
+        "001-57819",
+        "001-58744"
+      ],
+      "files": {
+        "doc1.md": "cfe7c44b573b153ce344e0e43d05fa181d88e2ee075247254393f07d677074ac",
+        "doc2.md": "cb9a5dd21fde5315dc16d416ef8ceed74f8caf4bd02931ce07eda79a9c56be33",
+        "doc3.md": "cb6daee3bf4ffdb0d316bc0ab2a7708e705719f30fce804752098195d0c0984e",
+        "doc4.md": "0988291412c46e9bce1ace37bdf8da6b5ae6b4686e2113168aa195568a0d10c1",
+        "identifiers.json": "91a000d6e3fae3678e72b5af200f45507b16251db9e2071ec38f1aebf9f70550",
+        "smoke_fact_key.json": "b4f88a2d924cc634aa42b316345e9d80a04273aca416c01769b9e1edcc5f095c",
+        "surfaces.json": "fb790b7d26c24c9ba45e4ba91d9ac1c4512ad9aeb76922c3679f6d2098535d39"
+      },
+      "source_sha256": "8c3c7306f46b8d54debeb38ae11d8b0b8bcf4bdccbc3b6f13c12ad7be16893ec",
+      "split": "dev"
+    },
+    "tab-L1": {
+      "collection": "tab-L1",
+      "doc_ids": [
+        "001-119229",
+        "001-147679",
+        "001-150778",
+        "001-170347"
+      ],
+      "files": {
+        "doc1.md": "fa3aca45b1238a17039dc34f1d521c63536ed845dc93f6d43445cfa2a585d58d",
+        "doc2.md": "1d34a38fff38631ea1fb654ca0630d0dc244b4dc41876ff8e99c9ebab817fed7",
+        "doc3.md": "d36395341aba863cd32ed4e938abcf50ec4f27ee2cdf4b8a9408e5dfc81f0a62",
+        "doc4.md": "01e30ac6efc327499285b562096064c6138e82fcdc2ecf26ccc0ad02fbb3323e",
+        "identifiers.json": "80a10bea6c0ebcc4220f563125f7b64219c4ff276372e591c9b7ed9bc270bf6e",
+        "smoke_fact_key.json": "ed84ebe37ad9fb3156d56a4b771f25a12a898d1cd1a78911952979d52420e2c2",
+        "surfaces.json": "926f5228c89511f5bf8ebce7bd30e8658922f9f63e148864f5e5b32fc43d7a1a"
+      },
+      "source_sha256": "cd0f0f15f84a8739654c7cf30c6be8ce27b051ef73974d39d792a0cb8c846379",
+      "split": "test"
+    },
+    "tab-L2": {
+      "collection": "tab-L2",
+      "doc_ids": [
+        "001-57886",
+        "001-58409",
+        "001-58410",
+        "001-58458"
+      ],
+      "files": {
+        "doc1.md": "d9f6cc0ad6d0379cfb33e1ab38c4c0d06c8b85b1f9a675c572c1f6437d00630e",
+        "doc2.md": "fa0967774726762932d6fce7e5b68fea2ceebae0e65b257a3731233f1edc2fd3",
+        "doc3.md": "e9efcba6c2e0c58480385f425fa7ad3e5db6fc0b794c446c4ff20ac0a8c48956",
+        "doc4.md": "62b0039dd0946549d957365e28f40fc35a2c08fc1ce336af4bdfdd247c868067",
+        "identifiers.json": "863672813620fb6cddbca9e058ed7ca79dbbfdf498dc8333f2fb87e19c9e5dde",
+        "smoke_fact_key.json": "fd782eb4286bf49ac34f682743d41407f3e93b865f8e7636076da95cefeb762e",
+        "surfaces.json": "bb90d2269661b708a783feadba601e54d89b1a99e3d8d421b1db643a8432164a"
+      },
+      "source_sha256": "cd0f0f15f84a8739654c7cf30c6be8ce27b051ef73974d39d792a0cb8c846379",
+      "split": "test"
+    },
+    "tab-L3": {
+      "collection": "tab-L3",
+      "doc_ids": [
+        "001-59853",
+        "001-60649",
+        "001-61080",
+        "001-61227"
+      ],
+      "files": {
+        "doc1.md": "a464a1360cdd87fa7f8fae4ba30364396466adb426cce1af9b34d8741e8d564e",
+        "doc2.md": "2e1c128283ab555ee95611da969dad88dd1d6c4bda2c77496975563b5a220c18",
+        "doc3.md": "ec992f96e78cbc84357e4c7ea75b1bd66a671709608ed11d031fbe86164d273e",
+        "doc4.md": "3121f4a58cf471097a574595a8f28cdd302e83a7ef390494b23580086022a244",
+        "identifiers.json": "d0324e7cc288a13312028f539fe3ef2a2ab31d83564e2ed2409a836c3c4467db",
+        "smoke_fact_key.json": "265f23988f5ae94713f1847dda79ff57b8e37cc1f98be88109367b677bf7ac5a",
+        "surfaces.json": "1782c374b593167ff1bd0adcf7bb3e11fd75579f2e8a8d5a0761a5e8586b1b70"
+      },
+      "source_sha256": "cd0f0f15f84a8739654c7cf30c6be8ce27b051ef73974d39d792a0cb8c846379",
+      "split": "test"
+    },
+    "tab-L4": {
+      "collection": "tab-L4",
+      "doc_ids": [
+        "001-61253",
+        "001-61332",
+        "001-61454",
+        "001-61744"
+      ],
+      "files": {
+        "doc1.md": "d7a803dc7d1df11cc2830582b537c7a37d834601d6f588d7ecad9e3f1c935b77",
+        "doc2.md": "d66d1d72e2c028701f4bc660472710e133fd5866590d0e1ca4c88273bfbedc5a",
+        "doc3.md": "334b76add8f484b19812e1b623c5d5b95f1e9e8ee5c1ae428bd5612a6626db00",
+        "doc4.md": "f141614c5bbd962c06a022b47d15442e713152561509bc415d7758a98e31e6d5",
+        "identifiers.json": "542d7c458277830d19878712c4f990f2a11f3e4d366b6ebffdd4ac5adacbbc1c",
+        "smoke_fact_key.json": "e3d38f93e3eb76c3b24f608ee77d5fa3e474fa31c49b687358770b1a85095e36",
+        "surfaces.json": "166bb91d27898f125c79be8fe0a7205591e76704ff6f34274c393c2b9642b837"
+      },
+      "source_sha256": "cd0f0f15f84a8739654c7cf30c6be8ce27b051ef73974d39d792a0cb8c846379",
+      "split": "test"
+    },
+    "tab-L5": {
+      "collection": "tab-L5",
+      "doc_ids": [
+        "001-67200",
+        "001-72664",
+        "001-75894",
+        "001-76303"
+      ],
+      "files": {
+        "doc1.md": "83c6039ed87f7e9b09da628e25bb0019ed28e9dbba7ed6a1d2b34ca4a35f9676",
+        "doc2.md": "c9bb96c64e808ac6f52d0368ca44d6596ff082b618daa6ef20f031dc9c82ff46",
+        "doc3.md": "fa2fd339e4c182e85e6043af463d7cfb1940307b78d885a3d8bd52d3e498d713",
+        "doc4.md": "b728efebf3d665b0802cb849ba59521f6bafb072205713296f5f59f9b5f7e520",
+        "identifiers.json": "80ac90a158a19bcadb13111464d49f234af99178a36ccf9a648348dcb97c7374",
+        "smoke_fact_key.json": "249f62021b280d98b5b8f0f2a52041dd0c00b1445947fe26af36d57917924c1a",
+        "surfaces.json": "e3130e9b055ed998ab8179f1c13d18500eb5baad8f1723d4f0627a2352d5db34"
+      },
+      "source_sha256": "cd0f0f15f84a8739654c7cf30c6be8ce27b051ef73974d39d792a0cb8c846379",
+      "split": "test"
+    },
+    "tab-L6": {
+      "collection": "tab-L6",
+      "doc_ids": [
+        "001-76746",
+        "001-76766",
+        "001-78427",
+        "001-79030"
+      ],
+      "files": {
+        "doc1.md": "8f00fd53f7ed59ad3ac454a7d58319d59c5cfb5e2e119b25ad85d9f13925335b",
+        "doc2.md": "8a255857402040c802602c64079811a0311ce0e43501350de104f8104aba512d",
+        "doc3.md": "f445562db8193aebf406cd1628015dba535e37e6ce7a9f567b55043659f73160",
+        "doc4.md": "5ddb292db659892423066dccd8847ab54bd471ef434114dbafc0eb89e23d9881",
+        "identifiers.json": "bcfead32d735a7062aed50e53b5b49530ee17579c1ef0f0fe5daee7aa3adb785",
+        "smoke_fact_key.json": "7c621f09bbe1712db6f629b24d278e3ee497cec2cde23bc36b898a76778a6e63",
+        "surfaces.json": "3b57e9e9d0582e8ce2f30d88bbe84b8b7a54e228232f35253d092fe76a9a0c82"
+      },
+      "source_sha256": "cd0f0f15f84a8739654c7cf30c6be8ce27b051ef73974d39d792a0cb8c846379",
+      "split": "test"
+    }
+  },
+  "generated_by": "scripts/real_corpora/tab.py",
+  "rule": {
+    "dev_collections": [
+      "tab-L0"
+    ],
+    "docs_per_collection": 4,
+    "function_words_sha256": "1cff6c911f3ba3f1db14aff3c15f6848eb7debb101d0a1622bda4e2a4ec806ab",
+    "goal": "Compare the applicants' situations, their complaints and the domestic proceedings described in these case files.",
+    "goal_ngram_checked": 5,
+    "label_max_chars": 2,
+    "label_rule": "label when the tokens joined by one separator hold at most label_max_chars characters, or every token is a goal token or a function word",
+    "max_text_chars": 8000,
+    "min_annotators": 4,
+    "order": "ascending doc_id, compared as strings",
+    "respondent_state": "GBR",
+    "test_collections": [
+      "tab-L1",
+      "tab-L2",
+      "tab-L3",
+      "tab-L4",
+      "tab-L5",
+      "tab-L6"
+    ]
+  },
+  "sources": {
+    "dev": {
+      "file": "echr_dev.json",
+      "sha256": "8c3c7306f46b8d54debeb38ae11d8b0b8bcf4bdccbc3b6f13c12ad7be16893ec"
+    },
+    "test": {
+      "file": "echr_test.json",
+      "sha256": "cd0f0f15f84a8739654c7cf30c6be8ce27b051ef73974d39d792a0cb8c846379"
+    }
+  }
+}

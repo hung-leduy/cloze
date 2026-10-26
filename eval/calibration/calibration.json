@@ -1,0 +1,20 @@
+{
+  "_note": "EXP8, written by the AI assistant on 2026-10-09 from the attribute-axis, gold-valued blocks that scripts/calibrate_faithfulness.py printed at the frozen RBA attribute lexicon (paper-freeze): exp2_insample_frozen.txt, exp2_dev_frozen.txt and exp8_heldout_frozen.txt. The development rows are the labels EXP2's one-time fix drew on (eval/calibration/EXP2.md gives them before the fix too); the held-out row is a report that fix never saw. The fifth row, heldout_B_baseline, was added on 2026-10-14, after the batch, as an exploratory row (not registered; make_paper_tables.py CAL_EXPLORATORY): corpus B's first baseline report, labelled blind by the author, from exp8_heldout_baseline_frozen.txt.",
+  "rows": [
+    {"id": "insample_A_baseline", "labeller": "assistant", "blind": false, "in_sample": true,
+     "label": "baseline report on A (eval/runs/smoke-q3/report.md, pilot), eval/calibration/smoke-q3_hand_labels.json",
+     "occurrences": 24, "agreement": {"k": 19, "n": 22}, "kappa": 0.784},
+    {"id": "dev_A_r1", "labeller": "author", "blind": true, "in_sample": false,
+     "label": "development r1 report on A, eval/calibration/blind/smoke-q3__r1.report.csv",
+     "occurrences": 21, "agreement": {"k": 20, "n": 21}, "kappa": 0.644},
+    {"id": "dev_A_oracle", "labeller": "author", "blind": true, "in_sample": false,
+     "label": "its oracle report, eval/calibration/blind/smoke-q3__r1.oracle_report.csv",
+     "occurrences": 42, "agreement": {"k": 34, "n": 40}, "kappa": 0.091},
+    {"id": "heldout_B_r1", "labeller": "author", "blind": true, "in_sample": false,
+     "label": "held-out r1 report on B (frozen batch, portfolio-b__r1), eval/calibration/heldout/portfolio-b__r1.report.csv",
+     "occurrences": 27, "agreement": {"k": 11, "n": 27}, "kappa": -0.007},
+    {"id": "heldout_B_baseline", "labeller": "author", "blind": true, "in_sample": false,
+     "label": "held-out baseline report on B (frozen batch, portfolio-b__baseline, repeat 1; exploratory, after the batch), eval/calibration/heldout/portfolio-b__baseline.report.csv",
+     "occurrences": 34, "agreement": {"k": 26, "n": 34}, "kappa": 0.541}
+  ]
+}

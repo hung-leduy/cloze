@@ -1,0 +1,12 @@
+[
+  {
+    "id": "vgu-budget-q3",
+    "corpus": "./corpus/vgu-budget-q3",
+    "goal": "Assess the Q3 budget position and the risks to the delivery schedule."
+  },
+  {
+    "id": "pilot-cancellation",
+    "corpus": "./corpus/pilot-cancellation",
+    "goal": "Explain why the pilot was cancelled and what it implies for next year."
+  }
+]
