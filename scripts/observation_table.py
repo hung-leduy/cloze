@@ -36,12 +36,16 @@ directory name. Per run:
   answers (``NO_API_KEY``, ``AUDIT_UNAVAILABLE``, ``UPSTREAM_UNREACHABLE``)
   reach the core as ``GatewayError``, leave no trace line, and so are
   transport failures here, not monitor refusals. A transport failure on the
-  *plan* call is not counted at all, although since 2026-10-27 its attempt is
-  a row: no section record exists, and of the files read here only the
-  manifest's note names it ("planning failed: CloudError" or "...: GatewayError";
-  the message is in the pipeline's stderr, which an archived attempt keeps as
-  ``attempt_output.txt``, not read here). Before that date such a run wrote no
-  run file, so it is no row.
+  *plan* call has no section record. Since 2026-10-27 its run writes a
+  manifest whose note names it ("planning failed: CloudError" or "...:
+  GatewayError"; the message is in the pipeline's stderr, which an archived
+  attempt keeps as ``attempt_output.txt``, not read here), and it is counted
+  from that note, its reason keeping the stage (``plan: GatewayError``). Before
+  that date such a run wrote no run file, so it is no row and is not counted.
+  What separates it from an unusable plan (``planning failed: PlannerError``)
+  is the trace, not whether the request crossed (after a ``CloudError`` it
+  always did): the unusable plan's exchange is a trace line the manifest counts
+  as allowed, so it is an allowed egress attempt and no transport failure.
 * ``measurement.json`` and ``reconstruction.json`` (phase two): oracle, judge
   and adversary token usage, for the full per-run cost.
 * The monitor's audit log, if one was archived beside the run as
@@ -177,6 +181,8 @@ _RELATION_LINE = re.compile(r"^- \((?P<s>[^)]*)\) --(?P<p>.+?)--> \((?P<o>[^)]*)
 # same traceback must not count as a second abort.
 _ONTOLOGY_LEAK = re.compile(r"OntologyLeak: [^\n]*?(?:\((?P<cat>[A-Z_]+)\))?[ \t]*$", re.M)
 _TRANSPORT_FAILURE = re.compile(r"^draft: (CloudError|GatewayError)\b")
+# The pipeline's note for a failed plan call (pipeline.py), written since 2026-10-27.
+_PLAN_TRANSPORT_FAILURE = re.compile(r"^planning failed: (CloudError|GatewayError)$")
 _ARM_IN_NAME = re.compile(r"__(" + "|".join(ARMS) + r")(?=__|$)")
 
 
@@ -356,8 +362,10 @@ def observe_run(run_dir: Path, *, attempt: bool = False) -> dict[str, Any]:
     monitor = [str(e["refused"]) for e in trace if e.get("refused")]
     reintegrator = [str(s["refused"])[len("reintegrate:"):].strip() for s in sections
                     if str(s.get("refused") or "").startswith("reintegrate:")]
-    transport = [str(s["refused"]) for s in sections
+    transport = [_rule(str(s["refused"])[len("draft:"):]) for s in sections
                  if _TRANSPORT_FAILURE.match(str(s.get("refused") or ""))]
+    transport += [f"plan: {m.group(1)}" for n in (manifest or {}).get("notes") or []
+                  if (m := _PLAN_TRANSPORT_FAILURE.match(str(n)))]
     aborts = _leak_gate_aborts(run_dir, manifest)
 
     discrepancies: list[str] = []
@@ -403,7 +411,7 @@ def observe_run(run_dir: Path, *, attempt: bool = False) -> dict[str, Any]:
         "egress_attempts": len(trace),
         "monitor_refusals": [_rule(r) for r in monitor],
         "reintegrator_refusals": [_rule(r) for r in reintegrator],
-        "transport_failures": [_rule(r[len("draft:"):]) for r in transport],
+        "transport_failures": transport,
         "leak_gate_aborts": aborts,
         "relations_dropped_leak": ((manifest or {}).get("extraction") or {}).get(
             "relations_dropped_leak"),
@@ -452,13 +460,18 @@ def aggregate(rows: list[dict[str, Any]]) -> dict[str, Any]:
     rei = Counter(x for r in rows for x in r["reintegrator_refusals"])
     abo = Counter(x for r in rows for x in r["leak_gate_aborts"])
     tra = Counter(x for r in rows for x in r["transport_failures"])
+    # The note names the plan call only when one of its failures is counted, so an
+    # output with none, the frozen eval/observation.json among them, reads as before.
+    tra_note = ("CloudError/GatewayError on a draft, or on the plan call where the reason "
+                "says 'plan:'; not a refusal" if any(k.startswith("plan: ") for k in tra)
+                else "CloudError/GatewayError on a draft; not a refusal")
     drops = [r for r in rows if r["relations_dropped_leak"] is not None]
     refusals = {
         "monitor": {"count": sum(mon.values()), "reasons": dict(mon)},
         "reintegrator": {"count": sum(rei.values()), "reasons": dict(rei)},
         "leak_gate_aborts": {"count": sum(abo.values()), "reasons": dict(abo)},
         "transport_failures": {"count": sum(tra.values()), "reasons": dict(tra),
-                               "note": "CloudError/GatewayError on a draft; not a refusal"},
+                               "note": tra_note},
     }
     frozen = [r for r in rows if not r["attempt"]]
     archived = [r for r in rows if r["attempt"]]

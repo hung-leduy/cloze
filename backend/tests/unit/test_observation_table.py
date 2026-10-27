@@ -171,6 +171,32 @@ class TestRefusals:
         assert r["transport_failures"]["count"] == 1
         assert r["transport_failures"]["reasons"] == {"CloudError": 1}
 
+    @pytest.mark.parametrize("error", ["CloudError", "GatewayError"])
+    def test_a_failed_plan_call_is_a_transport_failure_of_the_plan(self, tree, error):
+        """Since 2026-10-27 a failed plan call writes its run, which only the
+        manifest's note names; it is counted from the note, its reason keeping the
+        stage, apart from a draft's. An unusable plan (PlannerError) has its exchange
+        in the trace, counted as allowed: an allowed egress attempt and no transport
+        failure. A failed call leaves no trace line, whether or not it crossed."""
+        _run(tree["attempts"], "t__r5__attempt2", arm="r5", measurement=False, trace=[],
+             notes=[f"planning failed: {error}"])
+        _run(tree["attempts"], "t__r5__attempt3", arm="r5", measurement=False,
+             trace=[_plan()], notes=["planning failed: PlannerError"])
+        rows = {r["run"]: r for r in _rows(tree)}
+        failed, unusable = rows["t__r5__attempt2"], rows["t__r5__attempt3"]
+        assert failed["transport_failures"] == [f"plan: {error}"]
+        assert not failed["refused_any"] and failed["egress_attempts"] == 0
+        assert unusable["transport_failures"] == [] and unusable["egress_attempts"] == 1
+        assert not failed["discrepancies"] and not unusable["discrepancies"]
+        t = ot.aggregate(list(rows.values()))["refusals"]["transport_failures"]
+        assert t["count"] == 2 and t["reasons"] == {"CloudError": 1, f"plan: {error}": 1}
+        assert "plan call" in t["note"]
+
+    def test_without_a_plan_failure_the_note_reads_as_before(self, tree):
+        """So the frozen eval/observation.json, which has none, regenerates as is."""
+        t = ot.aggregate(_rows(tree))["refusals"]["transport_failures"]
+        assert t["note"] == "CloudError/GatewayError on a draft; not a refusal"
+
     def test_run_level_k_of_n_counts_runs_not_refusals(self, tree):
         s = ot.aggregate(_rows(tree))
         # r1 (reintegrator), r1 rep2 (monitor), the aborted attempt; not the
