@@ -1,13 +1,14 @@
 <!--
-src comments give the file and lines, at commit 166718c unless the comment names a later commit,
-that back each factual statement about the code. backend/tests/security/test_threat_model_claims.py
-pins the load-bearing ones.
+src comments give the file and lines, in this repository's code as of 2026-10-27, that back each
+factual statement about the code. backend/tests/security/test_threat_model_claims.py pins the
+load-bearing ones.
 -->
 # PrivDeep Threat Model
 
-**Status:** scope-doc Fix 3. The harness specification asserts four invariants across 410 lines
-without once stating who the adversary is, what they observe, or what they are assumed unable to
-do. This document supplies that, and is the section a security reviewer reads first.
+**Status:** scope-doc Fix 3. The harness specification (`PRIVDEEP_ENGINEERING_HARNESS.md`, which the
+public release does not include) asserts four invariants across 409 lines without once stating who
+the adversary is, what they observe, or what they are assumed unable to do. This document supplies
+that, and is the section a security reviewer reads first.
 
 **Revised for R1 (plan task REC2, 2026-09-27).** The first version described the baseline and R5
 arms only. The R1 arm, which the paper headlines, puts a fixed attribute schema and per-referent
@@ -18,9 +19,13 @@ P7 and P8 are regraded to what the code does, P9 is added, and §3.1 states the 
 forwards and refuses to forward when it cannot; P8 states what that guarantees and what it does not.
 
 **Revised for the public release (2026-10-27, written by the AI assistant at the author's
-request).** P2's measured figures cite the frozen `eval/fp_report.json` and
-`eval/observation.json` instead of script docstrings and the pilot runs; G1, §3 item 2 and §5 state
-what the probe measured at the freeze (`eval/probe/*.json`) instead of deferring it.
+request).** P2's measured figures cite the frozen `eval/fp_report.json` and `eval/observation.json`
+instead of script docstrings and the pilot runs; G1, §3 item 2 and §5 state what the probe measured
+at the freeze (`eval/probe/*.json`) instead of deferring it, and §3 no longer rests the masked
+document's locality on a live refusal but states what the probe's filter did with it. The W2 gate's
+cost and the evaluation-only egress (§5), and the harness spec's acceptance criterion (§7), state
+what the frozen A-D batch and track L measured, P8 and §5 say that a refused planner request leaves
+the run's egress trace empty, and every src comment cites the code as of that day.
 
 Everything here is either enforced by code in this repository, with the enforcing module named, or
 explicitly listed as out of scope. Where a claim is weaker than the harness spec's wording, the
@@ -32,7 +37,7 @@ weaker claim is the true one and the spec is wrong.
 
 | Party | Trust | Holds |
 |---|---|---|
-| **Local tier T** | Trusted | The corpus $C_{user}$, the on-prem SLM (`qwen3:14b` via Ollama), the `LocalMappingTable`, the egress trace, the run manifest. Runs on `privdeep-internal`, which Docker gives no default route. Also the per-session slot salt, which is drawn fresh for every run and never persisted, and under R1 the `LocalFactStore`, which has no serialisation method. T's run directories (`report.md`, `entities.json`, the extractions) are on the named volume `privdeep-data`, which only T mounts <!-- src: backend/src/privdeep/pipeline.py:208, :347-349; backend/src/privdeep/tier1_local/fact_store.py:3-5; docker-compose.yml:29-40, :79-80 --> |
+| **Local tier T** | Trusted | The corpus $C_{user}$, the on-prem SLM (`qwen3:14b` via Ollama), the `LocalMappingTable`, the egress trace, the run manifest. Runs on `privdeep-internal`, which Docker gives no default route. Also the per-session slot salt, which is drawn fresh for every run and never persisted, and under R1 the `LocalFactStore`, which has no serialisation method. T's run directories (`report.md`, `entities.json`, the extractions) are on the named volume `privdeep-data`, which only T mounts <!-- src: backend/src/privdeep/pipeline.py:208, :351-353; backend/src/privdeep/tier1_local/fact_store.py:3-5; docker-compose.yml:29-40, :79-80 --> |
 | **Reference monitor M** | Trusted to enforce, but treated as the exposed surface | The sealed containment filter (salted-HMAC Bloom bits), **the shingle salt `SHINGLE_HMAC_SALT`**, the active canary set, the audit log. The **only** dual-homed service. Because M holds both the bits and the salt, a compromised M is a membership oracle over guessed shingles: it cannot enumerate the corpus from the filter, but it can confirm any five-to-eight-word run an attacker guesses. M writes its audit log to its own named volume, `privdeep-audit`, and mounts none of T's data; `backend/tests/security/test_volume_partition.py` fails if the two sides share a named volume <!-- src: gateway/main.py:115, :121, :502-511; docker-compose.yml:101-116, :128, :130; shared/shingle_filter.py:40-53; backend/tests/security/test_volume_partition.py:102-138 --> |
 | **Cloud provider C** | Honest-but-curious | Every prompt PrivDeep sends and every reply it returns |
 | **Reader R** | Trusted by assumption | The finished report, which carries real values and is meant to |
@@ -52,7 +57,7 @@ frontier model prompted to reconstruct the corpus from the egress trace
 (`privdeep.eval.reconstruction`). That adversary is zero-shot and is reached directly, with the
 evaluation's own client, not through the monitor; scope decision D3 asked for a few-shot
 adversary, and the deviation is recorded in the scope amendment (`PRIVDEEP_ICCIT_SCOPE.md` §8.2).
-<!-- src: backend/src/privdeep/eval/reconstruction.py:3-14, :61-69; scripts/run_evaluation.py:879, :2486-2487 -->
+<!-- src: backend/src/privdeep/eval/reconstruction.py:3-14, :61-69; scripts/run_evaluation.py:880, :2503-2504 -->
 
 **A second threat source, which the evaluated system does not have.** An injected or active
 drafter: C, or content C has been induced to follow, writing Markdown built to carry a private
@@ -66,7 +71,7 @@ attribute is recorded and must get the same verdict; and drafts that are written
 text must put no value in a URL and fetch no image. It exercises P5 and P9 against this source, and
 `backend/tests/security/test_threat_model_claims.py` pins P6 through the same scripted pipeline.
 MX6 is defence in depth, not a claim about the evaluated runs.
-<!-- src: backend/src/privdeep/pipeline.py:25-29, :161, :347-349; backend/tests/security/test_pipeline_exfil.py:88-95, :218-275 -->
+<!-- src: backend/src/privdeep/pipeline.py:25-29, :161, :351-353; backend/tests/security/test_pipeline_exfil.py:88-95, :218-275 -->
 
 **Goals, increasing in strength.**
 
@@ -86,7 +91,7 @@ MX6 is defence in depth, not a claim about the evaluated runs.
   corpora had the same DOCUMENT STATS line, matching slot counts in all categories or the same
   relation set, while the document count (four, on no request), and under r1 the attribute schema,
   were the same for all four.
-  <!-- src: backend/src/privdeep/pipeline.py:103-121; backend/src/privdeep/tier2_cloud/macro_planner.py:170-192; backend/src/privdeep/tier2_cloud/section_drafter.py:176-183; scripts/tier1_probe.py:604-752 (at 0d5e86b); eval/probe/*.json (provenance, g1; A smoke-q3, B portfolio-b, C prose-c, D offlex-d) -->
+  <!-- src: backend/src/privdeep/pipeline.py:103-121; backend/src/privdeep/tier2_cloud/macro_planner.py:170-192; backend/src/privdeep/tier2_cloud/section_drafter.py:176-183; scripts/tier1_probe.py:604-752; eval/probe/*.json (provenance, g1; A smoke-q3, B portfolio-b, C prose-c, D offlex-d) -->
 - **G2 attribute inference** — the value behind a given slot id; under R1, also which referent
   holds which attribute value. Given a fixed local extraction and fixed salts, the planner and
   drafter requests the core builds are equal under the tested permutations of values and of which
@@ -121,7 +126,7 @@ block of those requests, and every field of the payload they are rendered from, 
 and §3.1 gives each request's user message as a template.
 `backend/tests/security/test_threat_model_claims.py` renders the templates in-process for every
 arm and requires the requests the pipeline actually builds to equal them byte for byte (§3.1
-says over what). <!-- src: backend/src/privdeep/pipeline.py:252-259, :282-326; backend/src/privdeep/tier2_cloud/cloud_client.py:39, :92, :160-195; gateway/main.py:577-581 -->
+says over what). <!-- src: backend/src/privdeep/pipeline.py:252-263, :286-330; backend/src/privdeep/tier2_cloud/cloud_client.py:39, :92, :160-195; gateway/main.py:577-581 -->
 
 1. **The research goal**, user-authored, crossing in the clear: `GOAL` in the planner prompt and
    `REPORT GOAL` in every drafter prompt. It is not protected and is not claimed to be.
@@ -170,7 +175,7 @@ says over what). <!-- src: backend/src/privdeep/pipeline.py:252-259, :282-326; b
    share ran from 10.6% to 47.7%, and no predicate of five words occurred whole in a corpus
    document. A relation field that reproduces five or more corpus words verbatim falls under P2; a
    shorter echo is the gap named in §5.
-   <!-- src: backend/src/privdeep/tier1_local/ontology_extractor.py:166-183, :220-286, :289-358, :383-429; backend/src/privdeep/tier1_local/extraction_io.py:125-142; backend/src/privdeep/pipeline.py:103-121, :187-203, :225-230; backend/tests/security/test_leak_gate_drop.py:135-160; backend/tests/security/test_leak_gate_corpus.py:113-165; backend/src/privdeep/tier2_cloud/macro_planner.py:170-172; backend/src/privdeep/tier2_cloud/section_drafter.py:182-183; scripts/tier1_probe.py:47-57, :198, :433-483 (at 0d5e86b); eval/probe/*.json (per_extraction[*].predicates, predicate_control.per_length weighted by per_extraction[0].predicates.length_tokens) -->
+   <!-- src: backend/src/privdeep/tier1_local/ontology_extractor.py:166-183, :220-286, :289-358, :383-429; backend/src/privdeep/tier1_local/extraction_io.py:125-142; backend/src/privdeep/pipeline.py:103-121, :187-203, :225-230; backend/tests/security/test_leak_gate_drop.py:135-160; backend/tests/security/test_leak_gate_corpus.py:113-165; backend/src/privdeep/tier2_cloud/macro_planner.py:170-172; backend/src/privdeep/tier2_cloud/section_drafter.py:182-183; scripts/tier1_probe.py:47-57, :198, :433-483; eval/probe/*.json (per_extraction[*].predicates, predicate_control.per_length weighted by per_extraction[0].predicates.length_tokens) -->
 
    **Under R1** (`--arm r1`) the payload changes in two ways.
    - It advertises no MONEY, QUANTITY, DATE or IDENTIFIER slot. Only PERSON, ORG, PROJECT and
@@ -204,24 +209,36 @@ says over what). <!-- src: backend/src/privdeep/pipeline.py:252-259, :282-326; b
      core can send: a fact reference, or any other text, that C wrote into a section title or
      objective is sent back to C in the drafter prompts, and so is anything in the user's goal.
 
-   <!-- src: backend/src/privdeep/tier2_cloud/cloud_client.py:48, :145-158; backend/src/privdeep/tier2_cloud/macro_planner.py:55-89, :157-166, :206-229; backend/src/privdeep/tier2_cloud/section_drafter.py:47-79, :107-121, :138-149, :184-198; backend/src/privdeep/pipeline.py:161, :279 -->
+   <!-- src: backend/src/privdeep/tier2_cloud/cloud_client.py:48, :145-158; backend/src/privdeep/tier2_cloud/macro_planner.py:55-89, :157-166, :206-229; backend/src/privdeep/tier2_cloud/section_drafter.py:47-79, :107-121, :138-149, :184-198; backend/src/privdeep/pipeline.py:161, :283 -->
 4. **Every reply** C itself produced. Under R1 a drafter reply may carry fact references
    `⟦FACT:<hex8>.<ATTR>⟧` where a value would stand. **Nothing about their resolution flows back
    to C**: which references resolved, which rendered `not recorded`, and which sentences the core
    pruned stay local, because each drafter prompt is built from the goal, the outline, the
    section's objective, the payload and the evidence, never from an earlier section's reintegrated
-   text. <!-- src: backend/src/privdeep/tier2_cloud/section_drafter.py:131-143, :167-199; backend/src/privdeep/pipeline.py:282-326 -->
+   text. <!-- src: backend/src/privdeep/tier2_cloud/section_drafter.py:131-143, :167-199; backend/src/privdeep/pipeline.py:286-330 -->
 5. **Message counts, byte lengths and wall-clock spacing.** Disclosed below, not modelled.
 6. **The refusal indicator**: whether a section is present in the final report at all. Visible to
    anyone holding two reports over the same corpus.
 
-A does **not** observe: raw document text, the masked document (it is a local artifact and the
-containment filter refuses it, verified live), the mapping table, the egress trace, the run
-manifest, local SLM traffic, the reintegrated report, or the exact character count. Nor, under R1,
-the fact store or any value in it. The evaluation-only egress of §5 is the exception, and it never
-runs in a deployment: there C is also sent the raw documents (the oracle), the reintegrated report
-(the judge) and the rendered egress trace, in which a request the monitor refused appears only
-as a marker naming its stage and refusal rule (the adversary).
+A does **not** observe: raw document text, the masked document (it is a local artifact, which no
+request carries), the mapping table, the egress trace, the run manifest, local SLM traffic, the
+reintegrated report, or the exact character count. Nor, under R1, the fact store or any value in
+it. The evaluation-only egress of §5 is the exception, and it never runs in a deployment: there C
+is also sent the raw documents (the oracle), the reintegrated report (the judge) and the rendered
+egress trace, in which a request the monitor refused appears only as a marker naming its stage and
+refusal rule (the adversary).
+
+The masked document is kept local by construction, not by the containment filter. (The design note
+of `abstract_payload.py` records that the filter refused the masked document in an earlier live run,
+which is why it was made a local artifact.) At the freeze commit (plan task EXP7),
+`scripts/tier1_probe.py` masked each corpus's documents as R5 masks them, with each of four
+extractions per corpus (the one each corpus's runs shared and three of the probe's own), and ran a
+filter with the monitor's deployed shingle lengths and hit threshold over them. It refused 63 of the
+64 masked documents, among them a corpus C document in which nothing is masked, because the
+extraction its runs shared lost that document to an unparsable reply. The one it passed, a corpus D
+document masked with the extraction its runs shared, kept no run of five corpus words after masking,
+so passing it is what P2 specifies (`eval/probe/<corpus>.json`,
+`per_extraction[*].masked_exposure`). <!-- src: backend/src/privdeep/tier2_cloud/abstract_payload.py:1-18, :155-165; backend/src/privdeep/pipeline.py:223-229; scripts/tier1_probe.py:194-197, :525-573; docker-compose.yml:125-127; gateway/main.py:110-112, :489-494, :505-511; eval/probe/*.json (per_extraction[*].masked_exposure: refused_documents, documents[*].shingle_hits_5_8) -->
 
 **Collusion.** A may collude with a web-search provider, since search queries are egress. A may
 collude with readers of *other* reports, so aggregates released for other tasks are auxiliary
@@ -343,10 +360,10 @@ none    | (no public evidence supplied; make no numeric claims)
 | P3 | A request carrying a planted canary is refused and not forwarded | `linters.canary_matcher`, Aho-Corasick with a straddle buffer | **Deterministic**, for the exact token <!-- src: gateway/tests/test_canary_matcher.py:42-171, :228-240; gateway/tests/test_proxy.py:94-100 --> |
 | P4 | Egress is refused until the containment filter is sealed | `gateway/main.py`: with no sealed filter the chain refuses (`CONTAINMENT_FILTER_UNSEALED`) while `STRICT_FAIL_CLOSED` is true, which is its default and the compose setting | **Fail-closed default, pinned by test.** It is a runtime flag, not a structure: with `STRICT_FAIL_CLOSED=false` an unsealed monitor admits egress <!-- src: gateway/main.py:109, :403-406; docker-compose.yml:129; gateway/tests/test_proxy.py:114-118 --> |
 | P5 | No private value is reconstituted into a position from which the viewer would fetch or navigate | `tier3_reconcile.slot_reintegrator`: a source-level position check, then a render of the output with an inert sentinel in each slot; a sentinel reaching any attribute outside a short safe list, or a script or style body, refuses the section. Values are Markdown-escaped for the inline-active characters (backslash, backtick, `*`, `_`, square brackets, parentheses, angle brackets); the escape set is deliberately narrow, so a value that begins a line with `.`, `-`, `+` or `#` can still change block layout (a list item, a heading), which is layout and not a transport position. Both checks run on the draft as the cloud wrote it, before R1's sentence pruning, with a sentinel for every fact reference whether or not its attribute is recorded, so whether a section is refused, and why, does not depend on which attributes the store holds | **Structural for what the renderer produces.** The renderer is the decision procedure, not merely the test oracle. Asking about the sentinel rather than the value is what makes it exact: markdown-it percent-encodes destinations and escapes entities, so comparing the value itself both missed real leaks and refused legitimate sections <!-- src: backend/src/privdeep/tier3_reconcile/slot_reintegrator.py:68-84, :156-160, :423-466, :506-557; backend/tests/unit/test_slot_reintegrator.py:135-207; backend/tests/security/test_pipeline_exfil.py:218-228 --> |
-| P6 | A placeholder or fact reference the core never issued is never resolved | `tier2_cloud.section_drafter` replaces every well-formed slot id outside the payload's slots, and every fact reference that names a referent the payload does not list or a code outside the vocabulary, with the fixed literal `[unresolved reference]`, and counts it (`invented_slots` in the manifest). A malformed token, not in the issued shape, is neither replaced nor counted, and is never resolved (pre-submission check of 2026-10-26). `tier3_reconcile.slot_reintegrator` then refuses the section (`INVENTED_SLOT`, `INVENTED_FACT`) on any that reach it; that refusal is defence in depth. Inclusion is checked against the set issued for the session, not per section and not per outline node | **Deterministic: scrub and count.** The section is not refused when `invented_slots` > 0; the pipeline scrubs, counts and continues <!-- src: backend/src/privdeep/tier2_cloud/section_drafter.py:11-16, :45, :144-149, :201-234; backend/src/privdeep/tier3_reconcile/slot_reintegrator.py:328-333, :397-421; backend/src/privdeep/pipeline.py:303, :309; backend/tests/security/test_threat_model_claims.py:520-574 --> |
-| P7 | Every citation resolves to hashed evidence | `tier3_reconcile.citation_grounder` over a content-addressed bank | **Built, not exercised in any reported run.** The pipeline runs the grounder with `strict=False`, and the evidence bank is empty in every run because nothing retrieves (§6). The evidence path is cut from this submission (scope §8.6), so P7 stays in this grade for the paper <!-- src: backend/src/privdeep/pipeline.py:161, :278, :347-349; backend/src/privdeep/tier3_reconcile/citation_grounder.py:61-64, :102-103; backend/tests/unit/test_citation_grounder.py:44-76 --> |
-| P8 | No request reaches the upstream unless its audit record was written first; every request the monitor answers leaves an audit line, with the exceptions named here | `gateway/main.py`: a refused request is audited before the refusal is returned and is never forwarded. A request that passes the chain gets a content-free pre-forward record (`verdict: "forwarding"`, the existing fields plus a random `request_id`) before the upstream is called; if that write fails the core gets 503 `AUDIT_UNAVAILABLE` and the upstream is not called. After the reply, or a transport error or exception, an outcome record under the same `request_id` gives the upstream status, bytes and duration (`allowed`) or the exception's type name (`upstream_error`, `proxy_error`); if the `allowed` record cannot be written the reply is withheld (503 `AUDIT_UNAVAILABLE`). An exception before forwarding is recorded as a refusal (`PROXY_ERROR: <type>`) | **Deterministic for "no audit line, no delivery"**, pinned by `gateway/tests/test_proxy.py` with a stubbed upstream asserted never called when the pre-forward write fails. "Written" means the append was closed without an `OSError`; it is not fsynced and the log is not tamper-evident (§6). Not every forwarded request has an outcome record: if the outcome write fails, or the process dies or the call is cancelled in flight, the pre-forward record stands alone, and it shows that C may hold the request, not that C does. A withheld reply's 503 is a gateway error to `CloudClient`, which sends again, so C can receive the request again, each time under a new pre-forward record. An exception after the upstream call is audited as `proxy_error`, but the core still gets 403 `PROXY_ERROR` and raises it as `EgressRefused`: the trace records a delivered request as refused, and `observation_table.py`, which reads refusals from the trace, counts it as a monitor refusal; the audit log, where archived, shows the `proxy_error`. An `upstream_error` outcome does not show that nothing was delivered. A refused request whose record cannot be written leaves no line, and was not forwarded. No other property rests on P8 <!-- src: gateway/main.py:54-79, :428-440, :544-637; gateway/tests/test_proxy.py:203-307; backend/src/privdeep/tier2_cloud/cloud_client.py:162-195; backend/src/privdeep/tier2_cloud/tracing.py:69-85; scripts/observation_table.py:301-319, :344 --> |
-| P9 | Under R1 a fact reference is resolved only locally, only to a value the core holds, and an absent value is written and counted, never guessed | `tier1_local.fact_store` builds facts from table cells only, through the fixed English header lexicon; no model reads a cell or a header, but a row binds only if its key is a surface of a referent the SLM extracted, so which facts exist depends on extractor recall; the derived codes come from a fixed rule table the cloud cannot parameterise. `tier3_reconcile.slot_reintegrator`: a known reference to an advertised but absent attribute renders the fixed plain words `not recorded` (`facts_unavailable`), which open no Markdown structure, and the module refuses to import if they ever could; a sentence in which every fact reference is absent is deleted (`sentences_pruned`). Both counts go to the manifest; neither goes to C. In strict mode a pruning that would itself move a token into a transport position is not applied, and the unpruned draft, which passed both checks, is written | **Deterministic** given the extraction: resolution and the header binding are model-free, the set of referents is not <!-- src: backend/src/privdeep/tier1_local/fact_store.py:7-21, :33-42, :165-255; backend/src/privdeep/models/facts.py:70-73, :96-107; backend/src/privdeep/tier3_reconcile/slot_reintegrator.py:169-173, :338-395, :435-466, :591-593; backend/src/privdeep/pipeline.py:318-319; backend/tests/unit/test_fact_store.py:82-189; backend/tests/unit/test_r1_facts.py:71-156, :246-389 --> |
+| P6 | A placeholder or fact reference the core never issued is never resolved | `tier2_cloud.section_drafter` replaces every well-formed slot id outside the payload's slots, and every fact reference that names a referent the payload does not list or a code outside the vocabulary, with the fixed literal `[unresolved reference]`, and counts it (`invented_slots` in the manifest). A malformed token, not in the issued shape, is neither replaced nor counted, and is never resolved (pre-submission check of 2026-10-26). `tier3_reconcile.slot_reintegrator` then refuses the section (`INVENTED_SLOT`, `INVENTED_FACT`) on any that reach it; that refusal is defence in depth. Inclusion is checked against the set issued for the session, not per section and not per outline node | **Deterministic: scrub and count.** The section is not refused when `invented_slots` > 0; the pipeline scrubs, counts and continues <!-- src: backend/src/privdeep/tier2_cloud/section_drafter.py:11-16, :45, :144-149, :201-234; backend/src/privdeep/tier3_reconcile/slot_reintegrator.py:328-333, :397-421; backend/src/privdeep/pipeline.py:307, :313; backend/tests/security/test_threat_model_claims.py:520-574 --> |
+| P7 | Every citation resolves to hashed evidence | `tier3_reconcile.citation_grounder` over a content-addressed bank | **Built, not exercised in any reported run.** The pipeline runs the grounder with `strict=False`, and the evidence bank is empty in every run because nothing retrieves (§6). The evidence path is cut from this submission (scope §8.6), so P7 stays in this grade for the paper <!-- src: backend/src/privdeep/pipeline.py:161, :282, :351-353; backend/src/privdeep/tier3_reconcile/citation_grounder.py:61-64, :102-103; backend/tests/unit/test_citation_grounder.py:44-76 --> |
+| P8 | No request reaches the upstream unless its audit record was written first; every request the monitor answers leaves an audit line, with the exceptions named here | `gateway/main.py`: a refused request is audited before the refusal is returned and is never forwarded. A request that passes the chain gets a content-free pre-forward record (`verdict: "forwarding"`, the existing fields plus a random `request_id`) before the upstream is called; if that write fails the core gets 503 `AUDIT_UNAVAILABLE` and the upstream is not called. After the reply, or a transport error or exception, an outcome record under the same `request_id` gives the upstream status, bytes and duration (`allowed`) or the exception's type name (`upstream_error`, `proxy_error`); if the `allowed` record cannot be written the reply is withheld (503 `AUDIT_UNAVAILABLE`). An exception before forwarding is recorded as a refusal (`PROXY_ERROR: <type>`) | **Deterministic for "no audit line, no delivery"**, pinned by `gateway/tests/test_proxy.py` with a stubbed upstream asserted never called when the pre-forward write fails. "Written" means the append was closed without an `OSError`; it is not fsynced and the log is not tamper-evident (§6). Not every forwarded request has an outcome record: if the outcome write fails, or the process dies or the call is cancelled in flight, the pre-forward record stands alone, and it shows that C may hold the request, not that C does. A withheld reply's 503 is a gateway error to `CloudClient`, which sends again, so C can receive the request again, each time under a new pre-forward record. An exception after the upstream call is audited as `proxy_error`, but the core still gets 403 `PROXY_ERROR` and raises it as `EgressRefused`: for a drafter request the trace records a delivered request as refused, and `observation_table.py`, which reads refusals from the trace, counts it as a monitor refusal; a planner request so delivered leaves the run's trace empty and is recorded as refused only in the manifest (§5); the audit log, where archived, shows the `proxy_error`. An `upstream_error` outcome does not show that nothing was delivered. A refused request whose record cannot be written leaves no line, and was not forwarded. No other property rests on P8 <!-- src: gateway/main.py:54-79, :428-440, :544-637; gateway/tests/test_proxy.py:203-307; backend/src/privdeep/tier2_cloud/cloud_client.py:162-195; backend/src/privdeep/tier2_cloud/tracing.py:69-85; scripts/observation_table.py:305-323, :348; backend/src/privdeep/pipeline.py:252-263 --> |
+| P9 | Under R1 a fact reference is resolved only locally, only to a value the core holds, and an absent value is written and counted, never guessed | `tier1_local.fact_store` builds facts from table cells only, through the fixed English header lexicon; no model reads a cell or a header, but a row binds only if its key is a surface of a referent the SLM extracted, so which facts exist depends on extractor recall; the derived codes come from a fixed rule table the cloud cannot parameterise. `tier3_reconcile.slot_reintegrator`: a known reference to an advertised but absent attribute renders the fixed plain words `not recorded` (`facts_unavailable`), which open no Markdown structure, and the module refuses to import if they ever could; a sentence in which every fact reference is absent is deleted (`sentences_pruned`). Both counts go to the manifest; neither goes to C. In strict mode a pruning that would itself move a token into a transport position is not applied, and the unpruned draft, which passed both checks, is written | **Deterministic** given the extraction: resolution and the header binding are model-free, the set of referents is not <!-- src: backend/src/privdeep/tier1_local/fact_store.py:7-21, :33-42, :165-255; backend/src/privdeep/models/facts.py:70-73, :96-107; backend/src/privdeep/tier3_reconcile/slot_reintegrator.py:169-173, :338-395, :435-466, :591-593; backend/src/privdeep/pipeline.py:322-323; backend/tests/unit/test_fact_store.py:82-189; backend/tests/unit/test_r1_facts.py:71-156, :246-389 --> |
 
 Unicode escaping is not an evasion: the monitor decodes JSON and inspects string leaves. Measured
 before the fix, a private string escaped as `\uXXXX` passed a filter reading raw bytes.
@@ -441,17 +458,19 @@ Every item here is a real gap, named so a referee does not have to find it.
   untouched window still refuses; the gap is therefore narrower than the table's coverage
   suggests, but it is a gap.
 - **Private text shorter than five words.** P2 cannot see it. Entity strings the extractor listed
-  are masked, and the W2 gate keeps every document's entities out of every document's relation
-  fields; an entity string the extractor listed for no document, or any other short private
-  phrase, is protected by nothing but extractor recall. At the freeze commit (plan task EXP7)
-  `scripts/tier1_probe.py` measured that recall over four extractions per corpus, the one each
-  corpus's evaluation runs shared among them (corpus C's without one of its four documents, §3
-  item 2; `eval/probe/<corpus>.json`, `per_extraction[*].recall`). In all 16, every
+  are masked, and the W2 gate keeps every document's entity strings of two or more characters out of
+  every document's relation fields, though a listed string that also occurs in a constant the core
+  sends, such as R1's attribute meanings, still crosses in that constant (see "Short Vietnamese
+  given names cost relations" below); an entity string the extractor listed for no document, or any
+  other short private phrase, is protected by nothing but extractor recall. At the freeze commit
+  (plan task EXP7) `scripts/tier1_probe.py` measured that recall over four extractions per corpus,
+  the one each corpus's evaluation runs shared among them (corpus C's without one of its four
+  documents, §3 item 2; `eval/probe/<corpus>.json`, `per_extraction[*].recall`). In all 16, every
   gold-key referent (5 or 6 per corpus, by one of its surfaces) and every string fact (9 to 12) was
-  the whole text of an entity extracted from some document of the corpus, while 0 to 8 of the
-  49 to 71 generator surface strings that occur in each corpus lay inside no entity's text
-  (`generator_surfaces.missed`). The corpora are synthetic and their keys generator-written,
-  so these figures do not carry to other text. <!-- src: backend/src/privdeep/tier1_local/ontology_extractor.py:220-262, :299-329, :426-428; backend/src/privdeep/tier1_local/extraction_io.py:142; scripts/tier1_probe.py:40-46, :372-427 (at 0d5e86b); eval/probe/*.json (per_extraction[*].recall) -->
+  the whole text of an entity extracted from some document of the corpus, while 0 to 8 of the 49 to
+  71 generator surface strings that occur in each corpus lay inside no entity's text
+  (`generator_surfaces.missed`). The corpora are synthetic and their keys generator-written, so
+  these figures do not carry to other text. <!-- src: backend/src/privdeep/tier1_local/ontology_extractor.py:220-262, :299-329, :426-428; backend/src/privdeep/tier1_local/extraction_io.py:142; scripts/tier1_probe.py:40-46, :372-427; eval/probe/*.json (per_extraction[*].recall) -->
 - **The relation channel.** Relation fields are open-vocabulary text written by the local SLM with
   no length or vocabulary control in code (§3 item 2). A field that echoes fewer than five corpus
   words is not caught. At the freeze commit, predicates in each of the four evaluation corpora
@@ -472,7 +491,7 @@ Every item here is a real gap, named so a referee does not have to find it.
   never pruned. It is counted per section in the manifest, and it changes the report R reads,
   not what C sees. When strict mode declines a pruning because it would move a token into a
   transport position (P9), the reintegrator counts it (`prune_reverted`), but the pipeline does not
-  copy that count into the manifest. <!-- src: backend/src/privdeep/tier3_reconcile/slot_reintegrator.py:293-305, :338-383, :459-465; backend/src/privdeep/pipeline.py:316-319; backend/src/privdeep/audit/manifest.py:73-97 -->
+  copy that count into the manifest. <!-- src: backend/src/privdeep/tier3_reconcile/slot_reintegrator.py:293-305, :338-383, :459-465; backend/src/privdeep/pipeline.py:320-323; backend/src/privdeep/audit/manifest.py:73-97 -->
 - **A refusal lever.** The render check substitutes a fixed-format sentinel, `PDXSENTINELX0000X`
   and upward, for each token in order of first appearance. C can write that literal string into a
   URL anywhere in a section that also carries a live token, and the section is then refused
@@ -488,7 +507,7 @@ Every item here is a real gap, named so a referee does not have to find it.
 - **Per-section slot binding.** Slot ids and fact references are checked against the set issued
   for the session, not against the outline node they were assigned to, so a slot the planner gave
   to one section may legally appear in another. Per-outline-node binding is cut (scope §8.6); P6
-  is scrub-and-count against the session set. <!-- src: backend/src/privdeep/pipeline.py:307-309; backend/src/privdeep/tier2_cloud/section_drafter.py:144-149; backend/src/privdeep/tier3_reconcile/slot_reintegrator.py:410-413 -->
+  is scrub-and-count against the session set. <!-- src: backend/src/privdeep/pipeline.py:311-313; backend/src/privdeep/tier2_cloud/section_drafter.py:144-149; backend/src/privdeep/tier3_reconcile/slot_reintegrator.py:410-413 -->
 - **A compromised monitor.** M holds the salt as well as the filter (§1), so it can confirm any
   guessed run of five to eight words. A keyed design that denies M that ability is not built.
 - **Timing, message count, byte length.** Data-dependent observables, not modelled.
@@ -515,32 +534,56 @@ Every item here is a real gap, named so a referee does not have to find it.
 - **Short Vietnamese given names cost relations.** The W2 gate matches any entity of two or more
   characters extracted from any document of the corpus as a case-insensitive substring of every
   field of every document's relations, and drops each relation it matches, counted as
-  `relations_dropped_leak`. A two- or three-letter given name such as "An" or "Lan" is a
-  substring of common English words ("plan", "language", "organisation"), so on a Vietnamese
-  corpus the gate drops every relation of every document that contains such a word, not only of
-  the document that names the person; the gate has been corpus-wide since 2026-09-27. The run
-  completes, but the observation set (§3) loses those relations: the planner and the drafters
-  see less of the documents' shape, and a document can be left with none
-  (`documents_all_relations_dropped`). The same bluntness applies on English corpora when the
-  extractor types a common word or phrase as an entity: in the EXP3 pilot it typed "recovery
-  plan" as a PROJECT on corpus D, and "authority" as an ORG in one document of corpus C, which
-  now drops the relation "has authority" of another. Until 2026-09-27 the gate aborted the run
-  instead. The Vietnamese corpus is cut (scope §8.6); the number of relations lost is not
-  measured. <!-- src: backend/src/privdeep/tier1_local/ontology_extractor.py:220-262, :299-329, :426-428; backend/src/privdeep/pipeline.py:196-203; backend/tests/unit/test_ontology_extractor.py:190-197, :338-344 -->
+  `relations_dropped_leak`. A two- or three-letter given name such as "An" or "Lan" is a substring
+  of common English words ("plan", "language", "organisation"), so on a Vietnamese corpus the gate
+  drops every relation of every document that contains such a word, not only of the document that
+  names the person; the gate has been corpus-wide since 2026-09-27. The run completes, but the
+  observation set (§3) loses those relations: the planner and the drafters see less of the
+  documents' shape, and a document can be left with none (`documents_all_relations_dropped`). The
+  same bluntness applies on English corpora when the extractor types a common word or phrase as an
+  entity, as in the two cases of the EXP3 pilot that the unit tests pin: "recovery plan" typed as a
+  PROJECT on corpus D, and "authority" typed as an ORG in one document of corpus C, which drops the
+  relation "has authority" of another. In the extraction that corpus C's frozen runs shared,
+  "authority" was again typed as an ORG. The word is also in R1's fixed attribute meanings, so that
+  extracted-entity string crossed in core-sent content in each r1 run on corpus C
+  (`crossings.b_extracted_entities` in the aggregate `eval/evaluation.json`): the core sends it
+  inside a module constant, which neither the masker nor the W2 gate touches. The gate dropped one
+  relation on corpus C (which entity string it matched is not recorded) and none on A, B or D, and
+  it emptied no document of its relations (each corpus's r5 repeat-1 manifest,
+  `extraction.relations_dropped_leak` and `documents_all_relations_dropped`, and
+  `eval/runs/prose-c__r5/extractions.json`; the aggregate and the runs are not in the repository).
+  Until 2026-09-27 the gate aborted the run instead. The Vietnamese corpus is cut (scope §8.6), so
+  what the gate would cost it is not measured. <!-- src: backend/src/privdeep/tier1_local/ontology_extractor.py:160-162, :220-262, :299-329, :426-428; backend/src/privdeep/pipeline.py:196-203; backend/src/privdeep/models/facts.py:83-88; backend/tests/unit/test_ontology_extractor.py:182-188, :190-197, :303-336, :338-344 -->
 - **Evaluation-only egress.** The oracle arm sends raw documents to C by definition, and a frontier
   judge reached directly sees the private arm's reintegrated report. Both are evaluation
   instruments, run outside the partition, and are disclosed as leaks rather than counted as system
   behaviour. Neither runs in a deployment. The reconstruction adversary is also reached directly,
-  with the same client, and is sent the rendered egress trace. None of the three passes through
-  the monitor. The tracer records an exchange the monitor refused together with its request, as
-  the local record, but the rendering the adversary is sent replaces that exchange with one line
-  naming its stage and the refusal rule, with no request content and no reply, so a request the
-  monitor blocked (a verbatim corpus run, a canary, or whatever else it caught) does not reach C
-  through the adversary call. This matters because the health gate counts a monitor refusal as an
-  outcome, not a failure, so a run with one is measured. The crossing scans of the same driver
-  treat that request content as not sent, by the same test. Because the oracle and the judge send
-  real values to C, the evaluation can only ever run on synthetic corpora; no real or Vietnamese
-  corpus can be measured this way. <!-- src: scripts/run_evaluation.py:34-43, :851-861, :879, :1015-1021, :1216-1254, :1353-1355, :2486-2487; backend/src/privdeep/tier2_cloud/tracing.py:69-85; backend/src/privdeep/eval/reconstruction.py:188-222, :233-257; backend/src/privdeep/eval/oracle.py:9-13 -->
+  with the same client, and is sent the rendered egress trace. None of the three passes through the
+  monitor. The egress trace keeps a drafter exchange the monitor refused together with its request,
+  as the local record (a refused planner request is not kept; see below), but the rendering the
+  adversary is sent replaces that exchange with one line naming its stage and the refusal rule, with
+  no request content and no reply, so a request the monitor blocked (a verbatim corpus run, a
+  canary, or whatever else it caught) does not reach C through the adversary call; the crossing
+  scans of the same driver treat that request content as not sent, by the same test. This matters
+  because a run in which the monitor refused drafter requests but which still delivers a section
+  exits zero and is attacked by the adversary like any other run; the health gate counts a monitor
+  refusal as an outcome, not a failure, so the refusal does not keep the run out of the pooled
+  figures. A run that delivers no section, as when the monitor refuses the planner request, exits
+  non-zero and is kept only as an attempt (a run directory archived under `eval/attempts/` or
+  `eval/real/attempts/`, not a result), which no adversary is shown. A planner refusal leaves the
+  attempt's egress trace empty, because the pipeline's refusal path returns without the tracer's
+  entries: the refused request is then recorded only in the manifest's egress count, in its note
+  "planning refused by monitor: <reason>" and in M's audit log. Of track L's six test collections
+  (scope §12; public court judgments standing in for private documents), four had their first run,
+  r5 repeat 1, refused at the planner request. Each is kept as an attempt, its trace empty, and no
+  further run was made on those collections: every other run, r5's repeat 2 included, reuses the
+  repeat-1 run's extraction, and the batch finds none to reuse where that run is only an attempt
+  (scope §12.13); none of this is in the repository. Because the oracle and the judge send real
+  values to C, they can run only on corpora that are not private, and they ran only on A-D, which
+  are synthetic; track L, whose judgments are public, runs neither by design (scope §12.5), so there
+  only the system's own egress, the adversary's rendering of it and the adversary's no-trace
+  control, which holds the goal alone, reach C. No private corpus, the deployment corpus among them,
+  can be measured with the oracle and the judge. <!-- src: scripts/run_evaluation.py:34-43, :689-691, :759-782, :852-862, :880, :996-1006, :1016-1022, :1217-1255, :1354-1356, :2503-2517; backend/src/privdeep/pipeline.py:89-91, :252-263, :357-359, :372; scripts/real_l.py:12-13, :1035-1043, :1071-1093, :1288-1313; backend/src/privdeep/tier2_cloud/tracing.py:69-85; backend/src/privdeep/eval/reconstruction.py:188-222, :233-257; backend/src/privdeep/eval/oracle.py:9-13 -->
 
 ## 6. Explicitly out of scope
 
@@ -563,24 +606,41 @@ Every item here is a real gap, named so a referee does not have to find it.
 by a frontier adversary over the egress trace, scored locally against the true documents.
 
 **One adversary yields a lower bound on what is recoverable, never a worst case.** The reported
-number is "at least this much leaks", not "at most". The harness spec's framing of Task 4.2 as a
-"worst-case" measurement with an "Empirical Mutual Information Bound" is inverted, and its
-acceptance criterion of <1.5% entity recovery is close to guaranteed by construction, because the
-chosen metrics measure surface-string recovery, which pseudonymisation suppresses by design.
-The adversary evaluated is zero-shot and reads the trace directly, which makes the bound weaker
-still. The rendered trace is capped at 120,000 characters, and each result records the rendered
-length before the cap (`trace_chars`) and whether it was cut (`trace_truncated`). The adversary
-reads the system prompt, messages and reply of each exchange the trace records as crossed, and of
-an exchange the monitor refused only a marker line naming its stage and refusal rule (§5); each
-result records how many exchanges were rendered so (`refused_exchanges`). It is therefore shown
+number is "at least this much leaks", not "at most", once matches that a guess would make are set
+aside. The harness spec's framing of Task 4.2 as a "worst-case" measurement with an "Empirical
+Mutual Information Bound" is inverted. Its acceptance criterion, under 1.5% entity recovery against
+over 78% for "Baseline A (Raw transmission)", was taken here to be close to guaranteed by
+construction, because the chosen metrics measure surface-string recovery, which pseudonymisation
+suppresses by design (Baseline A is raw transmission, not this evaluation's baseline arm, which
+pseudonymises too). The frozen A-D batch did not bear that out for every arm. Each run is scored
+against the distinct entities of the extraction its corpus's runs shared (58, 73, 39 and 73 on
+corpora A-D), so an arm's twelve runs give 729 scorings, and an entity matched in several repeats
+counts once per repeat. The adversary matched 5, 10 and 13 of the 729 under the baseline, R1 and R5
+arms respectively (0.7%, 1.4% and 1.8%), so R5's pooled rate is over the criterion; in every arm at
+least one run was over it, the highest at 2.7%, 2.7% and 8.6% (the aggregate `eval/evaluation.json`,
+`reconstruction.by_arm`; it and the runs are not in the repository). Recomputed from each run's
+adversary output with the scorer's own whole-token test (the output stays in the run directory), the
+28 matches are rating words the extractor typed as QUANTITY ("High", "Medium" and "Low", 18, ten of
+them R5's), month names ("July" and "August", 4), "authority" (3, one in each R1 run on corpus C),
+"Project Meridian" (2) and "Manchester" (1). Rating words and month names are the "severity labels"
+and "bare month names" that the scorer's docstring names as inflating recovery, and "authority" is
+in R1's fixed attribute meanings, which the core itself sends (§5). A-D ran no no-trace control, so
+on A-D a match is not separated from a guess, and the reported number is not shown to be that lower
+bound. The adversary evaluated is zero-shot and reads the trace directly, which makes the bound
+weaker still. The rendered trace is capped at 120,000 characters, and each result records the
+rendered length before the cap (`trace_chars`) and whether it was cut (`trace_truncated`). The
+adversary reads the system prompt, messages and reply of each exchange the trace records as crossed,
+and of an exchange the monitor refused only a marker line naming its stage and refusal rule (§5);
+each result records how many exchanges were rendered so (`refused_exchanges`). It is therefore shown
 no request or reply content that C did not receive, in a run with a refusal or without one; the
-marker adds only that an exchange was refused and under which rule, where C observes at most that
-a request it would have received did not arrive (§3, items 5 and 6). It can be shown less content
-than C received: a request `CloudClient` sent more than once is rendered once, the planner's
-constant tool schema is not rendered, a forwarded request whose upstream call then failed is not
-traced, and a request delivered before a later monitor exception is traced, and rendered, as
-refused (P8). Showing less keeps the recovery a lower bound on what the crossing disclosed.
-<!-- src: backend/src/privdeep/eval/reconstruction.py:35-37, :85-94, :179-185, :188-222, :233-261; backend/src/privdeep/tier2_cloud/tracing.py:69-85; backend/src/privdeep/tier2_cloud/cloud_client.py:162-195 -->
+marker adds only that an exchange was refused and under which rule, where C observes at most that a
+request it would have received did not arrive (§3, items 5 and 6). It can be shown less content than
+C received: a request `CloudClient` sent more than once is rendered once, the planner's constant
+tool schema is not rendered, a forwarded request whose upstream call then failed is not traced, and
+a drafter request delivered before a later monitor exception is traced, and rendered, as refused
+(P8; a planner request so refused ends the run with an empty trace, which no adversary is shown,
+§5). Showing less keeps the recovery a lower bound on what the crossing disclosed.
+<!-- src: backend/src/privdeep/eval/reconstruction.py:35-37, :85-94, :147-162, :179-185, :188-222, :233-261; backend/src/privdeep/tier2_cloud/tracing.py:69-85; backend/src/privdeep/tier2_cloud/cloud_client.py:162-195 -->
 
 No epsilon is claimed. No differential-privacy guarantee is claimed. The chaffing mechanism that
 the harness spec labels a "DP budget parameter K" is cut from this build (its anonymity set
