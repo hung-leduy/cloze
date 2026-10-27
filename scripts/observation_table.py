@@ -104,8 +104,11 @@ Definitions that move a number
   refusal in a run that was then re-run still happened. The per-arm
   observation and cost columns (``by_arm``, which feed Table 3) are over the
   frozen runs only, so they describe the runs Table 1 reports; an archived
-  attempt that aborted at the plan call or the leak gate (0 bytes, 0 slots)
-  or was superseded by its re-run would otherwise move the means. The
+  attempt that aborted at the leak gate (0 bytes, 0 slots), was refused at the
+  plan call (0 bytes before 2026-10-27; since then its trace holds the request
+  M refused, counted as a refused drafter request is), aborted there on an
+  unusable reply or a failed call (0 bytes, no trace), or was superseded by its
+  re-run would otherwise move the means. The
   attempts' spend is reported beside them, under ``attempts``.
 
 Measured, the nine pilot runs (smoke-q3, baseline/r5/r1 x 3)

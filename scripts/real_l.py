@@ -211,7 +211,8 @@ DEFINITIONS = {
         "Phase-one attempts archived under the attempts directory (attempt.json "
         "egress_trace_is_copy false): a run --force replaced, or a pipeline that exited "
         "non-zero. Their traces are scanned with the crossing rule and count for HL1; an "
-        "attempt with no trace is listed as not scanned. Adversary copies are skipped: their "
+        "attempt with no trace, or whose every traced exchange the monitor refused (a planner "
+        "refusal), is listed as not scanned. Adversary copies are skipped: their "
         "trace is still in the runs directory."),
     "rule_of_three": ("3/n when k = 0: the 95% upper bound on a proportion; descriptive only, "
                       "and given for HL1's two DIRECT blocks only (§12.7)."),
@@ -802,7 +803,10 @@ def scan(tasks: Sequence[R.Task], runs: Path, *, reference_runs: Path | None = N
         att_here: list[str] = []
         for _arm, _rep, d in phase_one_attempts(runs, task.id):
             trace = R._read_trace(d)
-            if not trace:
+            # A trace whose every exchange the monitor refused records nothing as
+            # crossed: since 2026-10-27 a planner refusal leaves such a trace, where
+            # the frozen batch's left an empty one, and it adds no string to n.
+            if not trace or all(e.get("refused") for e in trace):
                 attempts_without_trace.append(d.name)
                 continue
             crossed, _one, _excluded = _crossings(trace, task.goal, idents, groups)
@@ -1003,7 +1007,7 @@ def scan_summary(rep: dict[str, Any]) -> str:
                          f"{r['stage']} {r['field']}: {r['strings']} string-attempt(s), "
                          f"{r['occurrences']} occurrence(s)")
     if h["attempts_not_scanned"]:
-        lines.append(f"  archived attempts without a trace, not scanned: "
+        lines.append(f"  archived attempts with no trace or only refused exchanges, not scanned: "
                      f"{h['attempts_not_scanned']}")
     lines.append("  §12.8 digest check: " + (
         "not run (--reference-runs)" if h["integrity"] is None

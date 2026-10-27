@@ -175,3 +175,30 @@ def test_planning_refusal_ends_the_run_cleanly(env):
     # No plan came back, which is not a plan with zero references.
     assert res.manifest.planner_refs_returned is None
     assert res.manifest.planner_refs_dropped is None
+
+
+def test_planning_refusal_keeps_the_local_record(env):
+    """The refusal path returns what the completed path returns: the extractions
+    (scope §12.13), and the trace and masked entities, which it dropped until
+    2026-10-27: a refused run's egress_trace.jsonl was empty, and its attempt kept
+    no copy of the request the monitor refused, only the manifest's egress count
+    and refusal note (THREAT_MODEL.md P8, §5)."""
+    doc = Document("d1", DocumentKind.MARKDOWN, Path("d1.md"), TEXT)
+
+    def gw(req: httpx.Request) -> httpx.Response:
+        if req.url.path == "/canaries":
+            return httpx.Response(200, json={"registered": 5, "active": 5})
+        if req.url.path == "/containment/seal":
+            return seal_reply(req)
+        return httpx.Response(403, json={"allowed": False, "reason": "CANARY_TRIPPED: 1"})
+
+    slm = AsyncSLMClient("http://local-slm:11434", transport=httpx.MockTransport(slm_handler))
+    cloud = CloudClient("http://reference-monitor:5050", transport=httpx.MockTransport(gw))
+    res = asyncio.run(run_pipeline(
+        [doc], "goal", slm=slm, cloud=cloud, gateway_url="http://reference-monitor:5050",
+        gw_client=httpx.Client(transport=httpx.MockTransport(gw)), session_salt=SALT))
+    assert res.sections_ok == 0 and len(res.extractions) == 1
+    [entry] = res.trace
+    assert entry["stage"] == "plan" and entry["refused"] == "CANARY_TRIPPED: 1"
+    assert entry["response_text"] is None and entry["messages"]
+    assert {e.text for e in res.entities} == {e.text for e in ENTS}

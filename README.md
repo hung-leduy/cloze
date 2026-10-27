@@ -91,8 +91,8 @@ ad7f13ceb0acda75efb2825342ae290ab964a929c659d94870d93412227dbbe0  backend/src/pr
 4d36b9cecd46e9cbfd68d8097ad90a9b65d8a28449e7b501cd189612db7ed9a5  eval/tasks.json
 ```
 
-This release is the code at the paper's submission. It differs from the batch's code in two
-runtime changes, neither of which changes a verdict of M:
+This release is the code at the paper's submission. It differs from the batch's code in three
+runtime changes, none of which changes a verdict of M:
 
 1. `backend/src/privdeep/pipeline.py`: when M refuses the planner request, the pipeline keeps the
    extractions so they are saved. Track L (2026-10-15) ran with this patch, signed by the first
@@ -100,6 +100,13 @@ runtime changes, neither of which changes a verdict of M:
 2. `gateway/main.py`: the audit record names the request's model only when it is the model id the
    client sends, so a refused request's record cannot carry its text. This came on 2026-10-18,
    after both the A-D batch and track L.
+3. `backend/src/privdeep/pipeline.py`: when M refuses the planner request, the pipeline also keeps
+   the egress trace and the masked entities, so the refused request stays in the run's local
+   record (`egress_trace.jsonl`), as a refused drafter request already did. This came on
+   2026-10-27, after both batches, so the track L attempts refused at the planner (the r5 repeat-1
+   runs of four collections, each kept as an attempt) have empty traces. `scripts/real_l.py` lists
+   an attempt whose every traced exchange was refused as not scanned, as it did those empty
+   traces.
 
 The runs (`eval/runs/`, with their manifests) and track L's outputs are not in this repository;
 the runs will be released upon acceptance. The exceptions are the reports the calibration labels

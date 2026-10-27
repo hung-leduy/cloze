@@ -258,8 +258,12 @@ async def run_pipeline(
         # The extractions stay with the result so that _main can write
         # extractions.json and another arm can reuse them (scope §12.13, after the
         # track-L pilot, whose planner request the monitor refused: nothing that
-        # crosses changes).
-        return PipelineResult("", manifest, 0, 0, extractions=extractions)
+        # crosses changes). So do the trace, which holds the refused request as
+        # the local record, and the masked entities: until 2026-10-27 this path
+        # dropped both, and a refused run's egress_trace.jsonl was empty.
+        return PipelineResult("", manifest, 0, 0,
+                              trace=[e.to_dict() for e in tracer.entries],
+                              entities=all_entities, extractions=extractions)
     manifest.record_egress(allowed=True)
     manifest.note_resolved_model(plan.resolved_model)
     # Structured, not only in the note below: the health gate divides one by
