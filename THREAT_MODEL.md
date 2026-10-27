@@ -19,7 +19,8 @@ forwards and refuses to forward when it cannot; P8 states what that guarantees a
 
 **Revised for the public release (2026-10-27, written by the AI assistant at the author's
 request).** P2's measured figures cite the frozen `eval/fp_report.json` and
-`eval/observation.json` instead of script docstrings and the pilot runs.
+`eval/observation.json` instead of script docstrings and the pilot runs; G1, §3 item 2 and §5 state
+what the probe measured at the freeze (`eval/probe/*.json`) instead of deferring it.
 
 Everything here is either enforced by code in this repository, with the enforcing module named, or
 explicitly listed as out of scope. Where a claim is weaker than the harness spec's wording, the
@@ -79,8 +80,13 @@ MX6 is defence in depth, not a claim about the evaluated runs.
   How often a relation recurs is therefore not sent, but the order of first appearance, which
   follows document and extraction order, is. `scripts/tier1_probe.py` lists, per arm, which of
   these fields differ between corpora (its G1 inventory; its `relation_multiset` field hashes the
-  sorted distinct relations, so it compares the set and not the order); the inventory over the
-  frozen corpora is measured at the freeze (plan task EXP7/REC4). <!-- src: backend/src/privdeep/pipeline.py:103-121; backend/src/privdeep/tier2_cloud/macro_planner.py:170-192; backend/src/privdeep/tier2_cloud/section_drafter.py:176-183; scripts/tier1_probe.py:608-749 -->
+  sorted distinct relations, so it compares the set and not the order). At the freeze commit (plan
+  task EXP7) the probe built the inventory from the extraction each corpus's runs shared, with no
+  stub (the `g1` block of `eval/probe/<corpus>.json`): in every arm, no two of the four evaluation
+  corpora had the same DOCUMENT STATS line, matching slot counts in all categories or the same
+  relation set, while the document count (four, on no request), and under r1 the attribute schema,
+  were the same for all four.
+  <!-- src: backend/src/privdeep/pipeline.py:103-121; backend/src/privdeep/tier2_cloud/macro_planner.py:170-192; backend/src/privdeep/tier2_cloud/section_drafter.py:176-183; scripts/tier1_probe.py:604-752 (at 0d5e86b); eval/probe/*.json (provenance, g1; A smoke-q3, B portfolio-b, C prose-c, D offlex-d) -->
 - **G2 attribute inference** — the value behind a given slot id; under R1, also which referent
   holds which attribute value. Given a fixed local extraction and fixed salts, the planner and
   drafter requests the core builds are equal under the tested permutations of values and of which
@@ -151,11 +157,20 @@ says over what). <!-- src: backend/src/privdeep/pipeline.py:252-259, :282-326; b
    relation in it means an older or altered file, and the run is refused with `OntologyLeak`.
    Until 2026-09-27 the gate ran per document only, and an entity extracted only from document B,
    written into a relation of document A, crossed in the merged payload. Relations are sent in
-   the planner prompt and in every drafter prompt. The observed predicate length distribution and the share of predicates echoing a corpus
-   2-4-gram, per corpus, are measured at the freeze (plan task EXP7/REC4) by
-   `scripts/tier1_probe.py`. A relation field that reproduces five or more corpus words verbatim
-   falls under P2; a shorter echo is the gap named in §5.
-   <!-- src: backend/src/privdeep/tier1_local/ontology_extractor.py:166-183, :220-286, :289-358, :383-429; backend/src/privdeep/tier1_local/extraction_io.py:125-142; backend/src/privdeep/pipeline.py:103-121, :187-203, :225-230; backend/tests/security/test_leak_gate_drop.py:135-160; backend/tests/security/test_leak_gate_corpus.py:113-165; backend/src/privdeep/tier2_cloud/macro_planner.py:170-172; backend/src/privdeep/tier2_cloud/section_drafter.py:182-183; scripts/tier1_probe.py:47-57 -->
+   the planner prompt and in every drafter prompt. At the freeze commit (plan task EXP7),
+   `scripts/tier1_probe.py` measured the predicate field, not the two type fields, in the
+   extraction each corpus's runs shared (corpus C's lacks one of its four documents, lost to an
+   unparsable extractor reply) and in three further extractions the probe made
+   (`eval/probe/<corpus>.json`, `per_extraction[*].predicates`). A predicate echoes when it holds a
+   run of two to four words, as the filter tokenises them (§4.1), that occurs within a single
+   corpus document. The 168 predicates of the four shared extractions (one per relation the
+   extraction holds, repeats included) were one to five words long; the share that echoed ran from
+   17.6% (6/34, corpus C) to 41.5% (17/41, corpus B), against 1.3% to 4.8% for windows of the same
+   lengths cut from the false-positive harness's clean English prose. Over all 16 extractions the
+   share ran from 10.6% to 47.7%, and no predicate of five words occurred whole in a corpus
+   document. A relation field that reproduces five or more corpus words verbatim falls under P2; a
+   shorter echo is the gap named in §5.
+   <!-- src: backend/src/privdeep/tier1_local/ontology_extractor.py:166-183, :220-286, :289-358, :383-429; backend/src/privdeep/tier1_local/extraction_io.py:125-142; backend/src/privdeep/pipeline.py:103-121, :187-203, :225-230; backend/tests/security/test_leak_gate_drop.py:135-160; backend/tests/security/test_leak_gate_corpus.py:113-165; backend/src/privdeep/tier2_cloud/macro_planner.py:170-172; backend/src/privdeep/tier2_cloud/section_drafter.py:182-183; scripts/tier1_probe.py:47-57, :198, :433-483 (at 0d5e86b); eval/probe/*.json (per_extraction[*].predicates, predicate_control.per_length weighted by per_extraction[0].predicates.length_tokens) -->
 
    **Under R1** (`--arm r1`) the payload changes in two ways.
    - It advertises no MONEY, QUANTITY, DATE or IDENTIFIER slot. Only PERSON, ORG, PROJECT and
@@ -428,13 +443,20 @@ Every item here is a real gap, named so a referee does not have to find it.
 - **Private text shorter than five words.** P2 cannot see it. Entity strings the extractor listed
   are masked, and the W2 gate keeps every document's entities out of every document's relation
   fields; an entity string the extractor listed for no document, or any other short private
-  phrase, is protected by nothing but extractor recall. The recall of
-  the gold-key referents and string facts is measured at the freeze (plan task EXP7/REC4) by
-  `scripts/tier1_probe.py`. <!-- src: backend/src/privdeep/tier1_local/ontology_extractor.py:220-262, :299-329, :426-428; backend/src/privdeep/tier1_local/extraction_io.py:142; scripts/tier1_probe.py:40-46 -->
+  phrase, is protected by nothing but extractor recall. At the freeze commit (plan task EXP7)
+  `scripts/tier1_probe.py` measured that recall over four extractions per corpus, the one each
+  corpus's evaluation runs shared among them (corpus C's without one of its four documents, §3
+  item 2; `eval/probe/<corpus>.json`, `per_extraction[*].recall`). In all 16, every
+  gold-key referent (5 or 6 per corpus, by one of its surfaces) and every string fact (9 to 12) was
+  the whole text of an entity extracted from some document of the corpus, while 0 to 8 of the
+  49 to 71 generator surface strings that occur in each corpus lay inside no entity's text
+  (`generator_surfaces.missed`). The corpora are synthetic and their keys generator-written,
+  so these figures do not carry to other text. <!-- src: backend/src/privdeep/tier1_local/ontology_extractor.py:220-262, :299-329, :426-428; backend/src/privdeep/tier1_local/extraction_io.py:142; scripts/tier1_probe.py:40-46, :372-427 (at 0d5e86b); eval/probe/*.json (per_extraction[*].recall) -->
 - **The relation channel.** Relation fields are open-vocabulary text written by the local SLM with
   no length or vocabulary control in code (§3 item 2). A field that echoes fewer than five corpus
-  words is not caught. The echo share and the length distribution per corpus are measured at the
-  freeze (plan task EXP7/REC4).
+  words is not caught. At the freeze commit, predicates in each of the four evaluation corpora
+  echoed runs of two to four corpus words, more often than clean prose of the same lengths (§3
+  item 2); the two type fields were not measured for echo.
 - **The abstract payload itself.** The relational skeleton and the slot ids preserve entity
   cardinality, co-occurrence and document shape by construction. This is **pseudonymisation, not
   anonymisation**, and "non-invertible" in the harness spec is an overclaim. It also makes corpora

@@ -39,7 +39,7 @@ ci:  ## What the pre-commit hook runs: lint + the suite. Add typecheck when mypy
 	$(RUFF) check gateway/ backend/ shared/ scripts/
 	$(PY) -m pytest -q
 
-hooks:  ## Install the local hooks (no remote exists, so this IS the CI)
+hooks:  ## Install the local hooks (no hosted CI is configured, so this IS the CI)
 	git config core.hooksPath .githooks
 	@echo "installed: .githooks/pre-commit  (remove with: git config --unset core.hooksPath)"
 

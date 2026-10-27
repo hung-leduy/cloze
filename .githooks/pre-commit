@@ -1,16 +1,17 @@
 #!/usr/bin/env bash
-# The project's continuous integration. There is no remote, so there is no
-# server to run it on and no pre-push hook would ever fire; pre-commit is the
-# only point at which anything runs automatically.
+# The project's continuous integration. No hosted CI is configured (there is
+# no .github/workflows), so no server runs it; pre-commit is the only point at
+# which anything runs automatically, when git is set to run it (`make hooks`
+# points core.hooksPath at .githooks).
 #
 # Why it exists: `make typecheck` went red and stayed red without anyone
-# noticing, because nothing ran it. Lint and the suite take about eleven
-# seconds together, which is cheap enough to pay per commit.
+# noticing, because nothing ran it. Lint and the suite took about half a
+# minute together on 2026-10-27, which is cheap enough to pay per commit.
 #
-# Typecheck is NOT in here yet: mypy reports 23 errors in backend/src and
-# shared, so adding it today would block every commit. It joins this hook in
-# the same change that clears them — the gap is left visible here rather than
-# recorded as a TODO that rots.
+# Typecheck is NOT in here yet: mypy (`make typecheck`, over backend/src and
+# gateway) reported 316 errors in 22 files on 2026-10-27, so adding it today
+# would block every commit. It joins this hook in the same change that clears
+# them — the gap is left visible here rather than recorded as a TODO that rots.
 #
 # Escape hatch for a deliberate work-in-progress commit:  PRIVDEEP_SKIP_HOOK=1 git commit ...
 set -euo pipefail
