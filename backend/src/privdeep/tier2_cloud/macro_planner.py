@@ -214,18 +214,27 @@ class MacroPlanner:
                 continue
             try:
                 budget = int(item.get("word_budget", 0))
-            except (TypeError, ValueError):
+            except (TypeError, ValueError, OverflowError):  # OverflowError: 1e400 is inf
                 budget = 0
             b = min(max(budget, self.min_budget), self.max_budget)
             if b != budget:
                 clamped += 1
             raw_slots = item.get("slot_ids") or []
-            slots = tuple(str(s) for s in raw_slots if isinstance(s, str))
-            slots_seen.extend(slots[:1])
+            if isinstance(raw_slots, (int, float)):
+                raw_slots = [raw_slots]          # a number (or true) for the array
+            slots = tuple(s for s in raw_slots if isinstance(s, str))
+            # An element that is not a string names no issued id and is never
+            # resolved. Until 2026-10-27 it was dropped uncounted, so a plan made
+            # only of such elements was drafted with no placeholders, and a
+            # number given for the whole array raised a TypeError after the
+            # request had crossed. Both now count as dropped references, so the
+            # share of drops can only rise and such a plan fails closed below.
+            other = [s for s in raw_slots if not isinstance(s, str)]
+            slots_seen.extend((slots or tuple(str(s) for s in other))[:1])
             resolved = tuple(_canonical_slot(s, known) for s in slots)
             keep = tuple(s for s in resolved if s is not None)
-            unknown += len(slots) - len(keep)
-            returned += len(slots)
+            unknown += len(slots) - len(keep) + len(other)
+            returned += len(slots) + len(other)
             sections.append(Section(f"s{len(sections) + 1}", title, objective, b, keep))
             if len(sections) >= self.max_sections:
                 dropped_sections += max(0, len(reply.structured["sections"]) - i - 1)

@@ -143,6 +143,50 @@ class TestUpstreamErrors:
         assert ei.value.status == 503 and len(g.calls) == 3
 
 
+class TestAnUnparseableReply:
+    """A 200 that is not a Messages reply raised an untyped error until 2026-10-27,
+    so a drafter's ended the run instead of its section. It is a CloudError now,
+    not retried, whose message names the error class and quotes nothing."""
+
+    @pytest.mark.parametrize("resp", [
+        httpx.Response(200, content=b"<html>upstream proxy page for Project Zephyr</html>"),
+        httpx.Response(200, json=dict(ok_body("Project Zephyr"), usage=None)),
+        httpx.Response(200, json=["Project Zephyr"]),
+        httpx.Response(200, content=json.dumps(ok_body("Project Zephyr")).replace(
+            '"input_tokens": 12', '"input_tokens": 1e400').encode()),
+        httpx.Response(200, content=b"[" * 100_000 + b"]" * 100_000),
+        httpx.Response(200, json=dict(ok_body("Project Zephyr"), content=None)),
+    ], ids=["not JSON", "usage null", "not an object", "a count of 1e400", "nested too deep",
+            "content null"])
+    def test_is_a_cloud_error_that_quotes_nothing(self, resp):
+        c, g = client([resp], max_retries=3)
+        with pytest.raises(CloudError) as ei:
+            run(c.messages([{"role": "user", "content": "x"}]))
+        assert ei.value.status == 200 and ei.value.message.startswith("unparseable reply (")
+        assert "Zephyr" not in str(ei.value) and len(g.calls) == 1
+
+
+class TestAMalformedErrorAnswer:
+    """An upstream error whose "error" field is not an object, or whose body is
+    nested too deep to decode, raised an untyped error until 2026-10-27 (a body
+    that was not JSON, or not an object, was already a CloudError); it is a
+    CloudError of its status, retried when the status is transient."""
+
+    @pytest.mark.parametrize("error", ["overloaded", None, ["x"]])
+    def test_an_error_field_that_is_not_an_object(self, error):
+        c, g = client([httpx.Response(401, json={"type": "error", "error": error})])
+        with pytest.raises(CloudError) as ei:
+            run(c.messages([{"role": "user", "content": "x"}]))
+        assert ei.value.status == 401 and len(g.calls) == 1
+
+    def test_a_body_nested_too_deep_is_still_a_typed_error(self):
+        deep = b"[" * 100_000 + b"]" * 100_000
+        c, g = client([httpx.Response(503, content=deep)] * 2, max_retries=2)
+        with pytest.raises(CloudError) as ei:
+            run(c.messages([{"role": "user", "content": "x"}]))
+        assert ei.value.status == 503 and len(g.calls) == 2
+
+
 class TestGatewayFailures:
     def test_monitor_503_is_gateway_error(self):
         c, _ = client([httpx.Response(503, json={"allowed": False,

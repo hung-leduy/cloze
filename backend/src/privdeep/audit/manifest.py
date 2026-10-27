@@ -135,8 +135,9 @@ class RunManifest:
     containment: dict[str, Any] = field(default_factory=dict)
     canaries_registered: int = 0
     # Slot references the planner returned, and how many of them named no
-    # issued slot and were dropped. None when no plan came back (the planning
-    # call was refused), which is not the same as a plan with zero references.
+    # issued slot and were dropped. None when no usable plan came back (the
+    # planning call was refused or failed, or its reply was unusable; the note
+    # says which), which is not the same as a plan with zero references.
     planner_refs_returned: int | None = None
     planner_refs_dropped: int | None = None
     # What the host saw around the run and the container cannot: the Ollama

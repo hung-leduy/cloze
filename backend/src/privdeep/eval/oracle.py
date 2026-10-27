@@ -159,7 +159,7 @@ async def run_oracle(docs: list[Document], goal: str, cloud: CloudClient, *,
             continue
         try:
             b = int(item.get("word_budget", 0))
-        except (TypeError, ValueError):
+        except (TypeError, ValueError, OverflowError):  # as in MacroPlanner._to_result
             b = 0
         sections.append(Section(f"s{len(sections) + 1}", title, obj,
                                 min(max(b, min_budget), max_budget)))

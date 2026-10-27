@@ -54,6 +54,24 @@ def test_direct_client_sends_credential_and_monitored_client_does_not():
     assert "x-api-key" not in seen[1]
 
 
+def test_an_infinite_budget_is_clamped_as_in_the_private_arm():
+    """JSON's 1e400 is inf, and int(inf) raised an OverflowError the oracle did
+    not catch until 2026-10-27, after its plan call had been paid for."""
+    d = Direct()
+
+    def handler(req: httpx.Request) -> httpx.Response:
+        r = d(req)
+        if json.loads(req.content).get("tool_choice"):
+            body = json.dumps(json.loads(r.content)).replace('"word_budget": 200',
+                                                             '"word_budget": 1e400', 1)
+            return httpx.Response(200, content=body.encode())
+        return r
+    cloud = CloudClient("https://api.anthropic.invalid", api_key="sk-ant-test",
+                        transport=httpx.MockTransport(handler))
+    res = run(run_oracle([DOC], "Assess Q3.", cloud, min_budget=150))
+    assert res.sections[0]["word_budget"] == 150
+
+
 def test_oracle_refuses_a_monitored_client():
     with pytest.raises(ValueError, match="direct"):
         run(run_oracle([DOC], "goal", CloudClient("http://reference-monitor:5050")))

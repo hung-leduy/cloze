@@ -144,6 +144,16 @@ class TestPlannerValidation:
         assert r.outline.sections[1].word_budget == 1500
         assert r.clamped_budgets == 2 and r.dropped_sections == 9
 
+    def test_an_infinite_budget_is_clamped(self):
+        """JSON's 1e400 parses to inf, and int(inf) raised an OverflowError the
+        planner did not catch until 2026-10-27."""
+        body = json.dumps(tool_reply(GOOD)).replace('"word_budget": 400', '"word_budget": 1e400')
+        p, _ = planner(httpx.Response(200, content=body.encode(),
+                                      headers={"content-type": "application/json"}),
+                       min_budget=150, max_budget=1500)
+        r = run(p.plan(PAYLOAD, "goal"))
+        assert r.outline.sections[0].word_budget == 150 and r.clamped_budgets == 1
+
     def test_empty_or_malformed_sections_are_dropped(self):
         junk = [{"title": "", "objective": "x", "word_budget": 300, "slot_ids": []},
                 "not a dict", GOOD[1]]
@@ -264,6 +274,62 @@ class TestAPlanThatDropsEveryReferenceIsRefused:
              "slot_ids": ["SLOT-PROJECT-a1b2c3d4", "PROJECT/a1b2c3d4"]},
             {"title": "B", "objective": "o", "word_budget": 300, "slot_ids": ["nope"]}])))
         with pytest.raises(PlannerError, match="none matched an issued id"):
+            run(p.plan(PAYLOAD, "goal"))
+
+    def test_numeric_references_are_counted_and_fail_closed(self):
+        """A number where the schema asks for an array raised a TypeError, after the
+        request had crossed, until 2026-10-27; it is one reference naming no issued id."""
+        p, _g = planner(httpx.Response(200, json=tool_reply([
+            {"title": "A", "objective": "o", "word_budget": 300, "slot_ids": 3},
+            {"title": "B", "objective": "o", "word_budget": 300, "slot_ids": True}])))
+        with pytest.raises(PlannerError, match="returned 2 slot reference.*none matched"):
+            run(p.plan(PAYLOAD, "goal"))
+
+    def test_a_numeric_reference_beside_issued_ones_is_dropped_and_counted(self):
+        p, _g = planner(httpx.Response(200, json=tool_reply([GOOD[0], dict(GOOD[1], slot_ids=7)])))
+        res = run(p.plan(PAYLOAD, "goal"))
+        assert (res.refs_returned, res.dropped_unknown_slots) == (3, 1)
+        assert res.outline.sections[1].slot_ids == ()
+
+    def test_elements_that_are_not_strings_are_counted_and_fail_closed(self):
+        """Until 2026-10-27 a non-string element was dropped before it was counted,
+        so a plan made only of such elements was drafted with no placeholders. A
+        nested array whose text is an issued id is not resolved either."""
+        p, _g = planner(httpx.Response(200, json=tool_reply([
+            {"title": "A", "objective": "o", "word_budget": 300, "slot_ids": [1, 2]},
+            {"title": "B", "objective": "o", "word_budget": 300, "slot_ids": [{"id": "x"}]},
+            {"title": "C", "objective": "o", "word_budget": 300,
+             "slot_ids": [["⟦SLOT:PROJECT_a1b2c3d4⟧"]]}])))
+        with pytest.raises(PlannerError, match="returned 4 slot reference.*none matched"):
+            run(p.plan(PAYLOAD, "goal"))
+
+    def test_a_non_string_element_beside_an_issued_id_is_counted(self):
+        bad = dict(GOOD[1], slot_ids=["⟦SLOT:PROJECT_a1b2c3d4⟧", 5])
+        p, _g = planner(httpx.Response(200, json=tool_reply([GOOD[0], bad])))
+        res = run(p.plan(PAYLOAD, "goal"))
+        assert (res.refs_returned, res.dropped_unknown_slots) == (4, 1)
+        assert res.outline.sections[1].slot_ids == ("⟦SLOT:PROJECT_a1b2c3d4⟧",)
+
+    @pytest.mark.parametrize("refs", [None, [], 0, False, "", {}, "absent"])
+    def test_an_empty_or_absent_array_is_no_reference(self, refs):
+        """As before 2026-10-27: these give no reference, and a plan of them is the
+        reference-free plan that is accepted, not one that fails closed."""
+        sec = {"title": "A", "objective": "o", "word_budget": 300}
+        if refs != "absent":
+            sec["slot_ids"] = refs
+        p, _g = planner(httpx.Response(200, json=tool_reply([GOOD[0], sec])))
+        res = run(p.plan(PAYLOAD, "goal"))
+        assert (res.refs_returned, res.dropped_unknown_slots) == (2, 0)
+        assert res.outline.sections[1].slot_ids == ()
+
+    def test_sections_too_deeply_nested_to_decode_are_no_plan(self):
+        """A JSON-encoded field nested past the decoder's depth raised a
+        RecursionError from the client until 2026-10-27; it stays a string, and a
+        string is not a plan."""
+        body = tool_reply(GOOD)
+        body["content"][0]["input"] = {"sections": "[" * 100_000 + "]" * 100_000}
+        p, _g = planner(httpx.Response(200, json=body))
+        with pytest.raises(PlannerError, match="no structured plan"):
             run(p.plan(PAYLOAD, "goal"))
 
     def test_partial_drops_are_counted_not_refused(self):

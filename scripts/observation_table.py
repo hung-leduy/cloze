@@ -36,8 +36,12 @@ directory name. Per run:
   answers (``NO_API_KEY``, ``AUDIT_UNAVAILABLE``, ``UPSTREAM_UNREACHABLE``)
   reach the core as ``GatewayError``, leave no trace line, and so are
   transport failures here, not monitor refusals. A transport failure on the
-  *plan* call is not counted at all: the run stops before any section record
-  exists, so nothing in the directory names it.
+  *plan* call is not counted at all, although since 2026-10-27 its attempt is
+  a row: no section record exists, and of the files read here only the
+  manifest's note names it ("planning failed: CloudError" or "...: GatewayError";
+  the message is in the pipeline's stderr, which an archived attempt keeps as
+  ``attempt_output.txt``, not read here). Before that date such a run wrote no
+  run file, so it is no row.
 * ``measurement.json`` and ``reconstruction.json`` (phase two): oracle, judge
   and adversary token usage, for the full per-run cost.
 * The monitor's audit log, if one was archived beside the run as
@@ -106,9 +110,10 @@ Definitions that move a number
   frozen runs only, so they describe the runs Table 1 reports; an archived
   attempt that aborted at the leak gate (0 bytes, 0 slots), was refused at the
   plan call (0 bytes before 2026-10-27; since then its trace holds the request
-  M refused, counted as a refused drafter request is), aborted there on an
-  unusable reply or a failed call (0 bytes, no trace), or was superseded by its
-  re-run would otherwise move the means. The
+  M refused, counted as a refused drafter request is), ended there on an
+  unusable reply (its trace holds the exchange, counted as an allowed one) or a
+  failed call (no trace line), both rows only since that day, or was superseded
+  by its re-run would otherwise move the means. The
   attempts' spend is reported beside them, under ``attempts``.
 
 Measured, the nine pilot runs (smoke-q3, baseline/r5/r1 x 3)

@@ -9,11 +9,11 @@ failure modes are the gateway's, and they are typed:
 * `EgressRefused`  the monitor said no (403, or 400 for a streaming request).
   This is the signal the pipeline must handle, and it is NEVER retried:
   retrying a refusal is how a block becomes a probe.
-* `CloudError`     the upstream answered with an error (401, 429, 529, ...).
-  Retried with backoff only for the transient class (429, 5xx), honouring
-  Retry-After when present.
-* `GatewayError`   the monitor itself failed (502/503, transport). Retried
-  once, because a restart mid-request is the common cause.
+* `CloudError`     the upstream answered with an error (401, 429, 529, ...) or
+  a 200 whose body the client cannot parse. Retried with backoff only for 429,
+  500, 502, 503 and 529, honouring Retry-After, up to `max_retries` attempts.
+* `GatewayError`   the monitor itself failed (502/503, transport). Retried up
+  to `max_retries` attempts too, a restart mid-request being the common cause.
 
 Two facts recorded for the audit manifest (D4): every reply carries the
 model id the upstream actually resolved, and every call is non-streaming,
@@ -170,7 +170,18 @@ class CloudClient:
                 raise last from exc
 
             if r.status_code == 200:
-                return self._parse(r.json())
+                try:
+                    return self._parse(r.json())
+                except (ValueError, TypeError, AttributeError, OverflowError,
+                        RecursionError) as exc:
+                    # Not JSON, not an object, a field of the wrong type, a
+                    # count of 1e400 (inf) or nesting too deep to decode; an
+                    # object with no content still parses, as an empty reply.
+                    # It raised from here untyped until 2026-10-27, so a
+                    # drafter's ended the run; the message names the class
+                    # only, since the body is the upstream's and can quote the
+                    # request.
+                    raise CloudError(200, f"unparseable reply ({type(exc).__name__})") from exc
 
             payload = self._json(r)
             # The monitor's own refusals carry {"allowed": false, "reason": ...}.
@@ -180,8 +191,12 @@ class CloudClient:
                     raise EgressRefused(reason)               # never retried
                 last = GatewayError(reason)                   # 502/503 from the monitor
             else:
-                # Upstream error passed through: Anthropic's error envelope.
-                msg = str(payload.get("error", {}).get("message", r.text[:200]))
+                # Upstream error passed through: Anthropic's error envelope, whose
+                # "error" a malformed answer may give as something other than an
+                # object (an untyped AttributeError until 2026-10-27).
+                err = payload.get("error")
+                msg = str(err.get("message", r.text[:200]) if isinstance(err, dict)
+                          else r.text[:200])
                 if r.status_code not in _TRANSIENT:
                     raise CloudError(r.status_code, msg)
                 last = CloudError(r.status_code, msg)
@@ -199,7 +214,7 @@ class CloudClient:
         try:
             j = r.json()
             return j if isinstance(j, dict) else {}
-        except ValueError:
+        except (ValueError, RecursionError):
             return {}
 
     @staticmethod
@@ -241,7 +256,7 @@ class CloudClient:
             if isinstance(value, str) and value.lstrip()[:1] in ("[", "{"):
                 try:
                     decoded = json.loads(value)
-                except ValueError:
+                except (ValueError, RecursionError):  # too deep is not parsed either
                     out[key] = value
                     continue
                 if isinstance(decoded, dict) and set(decoded) == {key}:

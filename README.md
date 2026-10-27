@@ -91,7 +91,7 @@ ad7f13ceb0acda75efb2825342ae290ab964a929c659d94870d93412227dbbe0  backend/src/pr
 4d36b9cecd46e9cbfd68d8097ad90a9b65d8a28449e7b501cd189612db7ed9a5  eval/tasks.json
 ```
 
-This release is the code at the paper's submission. It differs from the batch's code in three
+This release is the code at the paper's submission. It differs from the batch's code in four
 runtime changes, none of which changes a verdict of M:
 
 1. `backend/src/privdeep/pipeline.py`: when M refuses the planner request, the pipeline keeps the
@@ -107,6 +107,23 @@ runtime changes, none of which changes a verdict of M:
    runs of four collections, each kept as an attempt) have empty traces. `scripts/real_l.py` lists
    an attempt whose every traced exchange was refused as not scanned, as it did those empty
    traces.
+4. `backend/src/privdeep/pipeline.py`: a planner reply the pipeline cannot use (`PlannerError`)
+   or a planner call that fails upstream or at the monitor (`CloudError`, `GatewayError`) now
+   ends the run as a refusal does, with the manifest, the masked entities and the extractions
+   written and the error's class in the manifest's note; until 2026-10-27 the error ended the
+   run before anything was written. The egress trace keeps an unusable reply's exchange, request
+   and reply, which the manifest counts as allowed; a failed call leaves no trace line, at the
+   planner as at a drafter. With it, `tier2_cloud/macro_planner.py` counts a non-zero number (or
+   true) given for a section's slot references, and each element of the array that is not a
+   string, as a reference it did not issue and never resolves them, so a plan of only such
+   references fails closed; it treats a word budget that parses as infinity (`1e400`) as
+   missing, so it is clamped to the minimum, and `eval/oracle.py` reads that budget the same
+   way; and `tier2_cloud/cloud_client.py` raises a 200 reply it cannot parse, or an upstream
+   error whose "error" field is not an object or whose body is nested too deep to decode, as a
+   `CloudError`, which at a drafter fails that section rather than the run. Before, the element
+   was dropped uncounted and each of the others raised an untyped error. No run of either batch
+   ended in any of these ways, and no plan reply in them gave a reference other than a string in
+   an array.
 
 The runs (`eval/runs/`, with their manifests) and track L's outputs are not in this repository;
 the runs will be released upon acceptance. The exceptions are the reports the calibration labels

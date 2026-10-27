@@ -67,7 +67,7 @@ from privdeep.tier1_local.slot_masker import (
 )
 from privdeep.tier2_cloud.abstract_payload import AbstractPayload, build_abstract_payload
 from privdeep.tier2_cloud.cloud_client import CloudClient, CloudError, EgressRefused, GatewayError
-from privdeep.tier2_cloud.macro_planner import MacroPlanner
+from privdeep.tier2_cloud.macro_planner import MacroPlanner, PlannerError
 from privdeep.tier2_cloud.section_drafter import Evidence, SectionDrafter
 from privdeep.tier2_cloud.tracing import TracingCloudClient
 from privdeep.tier3_reconcile.citation_grounder import _NUM_RE, CitationGrounder
@@ -251,15 +251,29 @@ async def run_pipeline(
     planner = MacroPlanner(tracer)
     try:
         plan = await planner.plan(payload, goal)
-    except EgressRefused as exc:
-        manifest.record_egress(allowed=False)
-        manifest.notes.append(f"planning refused by monitor: {exc.reason}")
+    except (EgressRefused, PlannerError, CloudError, GatewayError) as exc:
+        if isinstance(exc, EgressRefused):
+            manifest.record_egress(allowed=False)
+            manifest.notes.append(f"planning refused by monitor: {exc.reason}")
+        else:
+            # A reply the core cannot use (PlannerError), after the request
+            # crossed, or a call that failed upstream or at the monitor, after
+            # which it may have crossed (THREAT_MODEL.md P8). Until 2026-10-27
+            # these propagated and the run wrote nothing. The note names the
+            # class only, since a PlannerError's message can quote the reply;
+            # the log, which stays local, has the message.
+            if isinstance(exc, PlannerError):
+                manifest.record_egress(allowed=True)
+                manifest.note_resolved_model(tracer.entries[-1].resolved_model or "")
+            manifest.notes.append(f"planning failed: {type(exc).__name__}")
+            log.warning("planning failed: %s", exc)
         manifest.finish()
         # The extractions stay with the result so that _main can write
         # extractions.json and another arm can reuse them (scope §12.13, after the
         # track-L pilot, whose planner request the monitor refused: nothing that
-        # crosses changes). So do the trace, which holds the refused request as
-        # the local record, and the masked entities: until 2026-10-27 this path
+        # crosses changes). So do the trace, which holds the request as the local
+        # record (a PlannerError's with its reply; a failed call writes no line,
+        # tracing.py), and the masked entities: until 2026-10-27 this path
         # dropped both, and a refused run's egress_trace.jsonl was empty.
         return PipelineResult("", manifest, 0, 0,
                               trace=[e.to_dict() for e in tracer.entries],

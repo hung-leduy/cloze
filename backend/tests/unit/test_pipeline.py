@@ -154,6 +154,28 @@ def test_full_chain_offline(env, tmp_path):
     assert m.evidence[0]["tag"] == "W1"
 
 
+def test_an_unparseable_draft_reply_fails_its_section_only(env):
+    """A 200 a drafter's client cannot parse raised an untyped error that ended the
+    whole run until 2026-10-27; as a CloudError it fails that section, as a
+    transport failure, and the run goes on."""
+    doc = Document("d1", DocumentKind.MARKDOWN, Path("d1.md"), TEXT)
+    script = GatewayScript()
+
+    def gw(req: httpx.Request) -> httpx.Response:
+        if req.url.path == "/v1/messages" and b"THIS SECTION: Findings" in req.content:
+            return httpx.Response(200, content=b"<html>upstream proxy page</html>")
+        return script(req)
+
+    slm = AsyncSLMClient("http://local-slm:11434", transport=httpx.MockTransport(slm_handler))
+    cloud = CloudClient("http://reference-monitor:5050", transport=httpx.MockTransport(gw))
+    res = asyncio.run(run_pipeline(
+        [doc], "goal", slm=slm, cloud=cloud, gateway_url="http://reference-monitor:5050",
+        gw_client=httpx.Client(transport=httpx.MockTransport(gw)), session_salt=SALT))
+    assert res.sections_ok == 1 and res.sections_refused == 2
+    recs = {s.section_id: s for s in res.manifest.sections}
+    assert recs["s3"].refused == "draft: CloudError: HTTP 200: unparseable reply (JSONDecodeError)"
+
+
 def test_planning_refusal_ends_the_run_cleanly(env):
     doc = Document("d1", DocumentKind.MARKDOWN, Path("d1.md"), TEXT)
 
@@ -202,3 +224,85 @@ def test_planning_refusal_keeps_the_local_record(env):
     assert entry["stage"] == "plan" and entry["refused"] == "CANARY_TRIPPED: 1"
     assert entry["response_text"] is None and entry["messages"]
     assert {e.text for e in res.entities} == {e.text for e in ENTS}
+
+
+def _planner_reply(content: list[dict], stop_reason: str) -> httpx.Response:
+    return httpx.Response(200, json={
+        "id": "m", "type": "message", "role": "assistant", "model": "claude-sonnet-5-x",
+        "content": content, "stop_reason": stop_reason,
+        "usage": {"input_tokens": 1, "output_tokens": 1}})
+
+
+def _run_with_planner(reply, *, max_retries: int = 3):
+    doc = Document("d1", DocumentKind.MARKDOWN, Path("d1.md"), TEXT)
+
+    def gw(req: httpx.Request) -> httpx.Response:
+        if req.url.path == "/canaries":
+            return httpx.Response(200, json={"registered": 5, "active": 5})
+        if req.url.path == "/containment/seal":
+            return seal_reply(req)
+        return reply(req)
+
+    slm = AsyncSLMClient("http://local-slm:11434", transport=httpx.MockTransport(slm_handler))
+    cloud = CloudClient("http://reference-monitor:5050", transport=httpx.MockTransport(gw),
+                        max_retries=max_retries)
+    return asyncio.run(run_pipeline(
+        [doc], "goal", slm=slm, cloud=cloud, gateway_url="http://reference-monitor:5050",
+        gw_client=httpx.Client(transport=httpx.MockTransport(gw)), session_salt=SALT))
+
+
+@pytest.mark.parametrize("content, stop_reason", [
+    ([{"type": "text", "text": "Here is a plan: first the context."}], "end_turn"),
+    ([{"type": "tool_use", "id": "t", "name": "plan_outline", "input": {"sections": [
+        {"title": "A", "objective": "o", "word_budget": 300,
+         "slot_ids": ["SLOT-PROJECT-deadbeef"]}]}}], "tool_use"),
+    ([{"type": "tool_use", "id": "t", "name": "plan_outline", "input": {"sections": [
+        {"title": "A", "objective": "o", "word_budget": 300, "slot_ids": 3}]}}], "tool_use"),
+], ids=["no structured plan", "no reference matched", "a number for the references"])
+def test_an_unusable_plan_ends_the_run_with_the_local_record(env, content, stop_reason):
+    """A planner reply the core cannot use (PlannerError) ends the run as a
+    refusal does, where until 2026-10-27 it propagated and the run wrote nothing,
+    although the request had crossed. The trace holds that exchange, the manifest
+    counts it as allowed, and its note names the error's class but not its
+    message, which can quote the reply (here the invented slot reference)."""
+    res = _run_with_planner(lambda req: _planner_reply(content, stop_reason))
+    assert res.report_markdown == "" and res.sections_ok == 0 and len(res.extractions) == 1
+    [entry] = res.trace
+    assert entry["stage"] == "plan" and entry["refused"] is None and entry["messages"]
+    assert entry["resolved_model"] == "claude-sonnet-5-x"
+    assert {e.text for e in res.entities} == {e.text for e in ENTS}
+    m = res.manifest
+    assert m.egress == {"attempts": 1, "allowed": 1, "refused": 0, "bytes_out": 0, "bytes_in": 0}
+    assert m.cloud_models_resolved == ["claude-sonnet-5-x"]
+    assert "planning failed: PlannerError" in m.notes
+    assert m.planner_refs_returned is None and m.planner_refs_dropped is None
+    blob = m.to_json()
+    assert "deadbeef" not in blob and "end_turn" not in blob
+
+
+def _unreachable(req: httpx.Request) -> httpx.Response:
+    raise httpx.ConnectError("no route", request=req)
+
+
+@pytest.mark.parametrize("reply, error", [
+    (lambda req: httpx.Response(401, json={"type": "error", "error": {
+        "type": "authentication_error", "message": "invalid x-api-key"}}), "CloudError"),
+    (lambda req: httpx.Response(200, content=b"<html>upstream proxy page</html>"), "CloudError"),
+    (_unreachable, "GatewayError"),
+], ids=["upstream error", "unparseable reply", "monitor unreachable"])
+def test_a_failed_planner_call_ends_the_run_with_the_local_record(env, reply, error):
+    """A planner call that fails upstream (CloudError, a 200 the client cannot
+    parse among them) or at the monitor (GatewayError) ends the run with the
+    manifest, the masked entities and the extractions written, where until
+    2026-10-27 it wrote nothing. The tracer
+    writes no line for a failed call, so the trace is empty and the manifest
+    counts no egress, as for a failed drafter call; the note names the class."""
+    res = _run_with_planner(reply, max_retries=1)
+    assert res.report_markdown == "" and res.sections_ok == 0 and len(res.extractions) == 1
+    assert res.trace == []
+    assert {e.text for e in res.entities} == {e.text for e in ENTS}
+    m = res.manifest
+    assert m.egress["attempts"] == 0
+    assert f"planning failed: {error}" in m.notes
+    blob = m.to_json()
+    assert "x-api-key" not in blob and "proxy page" not in blob and "no route" not in blob
