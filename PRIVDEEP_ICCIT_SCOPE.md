@@ -1,14 +1,14 @@
-# Pre-registration and its amendments (sections 8-13 of the authors' scope document)
+# Pre-registration and its amendments (sections 8-14 of the authors' scope document)
 
-This file holds sections 8 to 13 of the authors' scope document for the ICCIT 2026 paper:
+This file holds sections 8 to 14 of the authors' scope document for the ICCIT 2026 paper:
 the pre-registration of 2026-09-27 (section 8: hypotheses H1-H3 and H4-D in 8.7, H4-D′ and the
 H2 floor rule in 8.7a, the freeze rules in 8.8, the claim restriction in 8.10) and its dated
-amendments (sections 9-13: corpus C, the H4-D count, the key audit, track L with HL1 in 12.7,
-and the post-hoc analyses of 2026-10-26). Sections 1-7, the project's earlier planning, are not
+amendments (sections 9-14: corpus C, the H4-D count, the key audit, track L with HL1 in 12.7,
+and the post-hoc analyses of 2026-10-26 and 2026-10-27). Sections 1-7, the project's earlier planning, are not
 included. File and commit references inside point to the authors' repository, whose history is
 not public; the tests in backend/tests pin the code's hypothesis wording to this text.
-The text is verbatim, except that two paths on the authors' machine are written as
-`~/CLAUDE.md` and `.venv-presidio`.
+The text is verbatim, except that three paths on the authors' machine are written as
+`~/CLAUDE.md`, `.venv-presidio` and `.venv/bin/python`.
 
 ---
 
@@ -674,3 +674,194 @@ names them as future work.
 
 Signed by the author on 2026-10-26, in the working session with the assistant, as drafted (recorded
 by the AI assistant at the author's instruction).
+
+## 14. Amendment of 2026-10-27: three offline track-L analyses after the numbers freeze
+
+*Drafted by the AI assistant on 2026-10-27 from the author's choice of the same day in the working
+session ("Soạn câu chữ nhóm A và bản nháp amendment cho B1 (Presidio L1+L2), B2 (giải thích 1/340)
+và B5 (đo trên L3–L6, ký trước khi tính)"), after the read-only results review of 2026-10-27, and
+revised the same day after an adversarial review of the draft. **Status: signed by the author on 2026-10-27** (recorded by the AI assistant at the author's instruction, in the working session: "Tôi ký §14 như bản nháp, chọn tiêu đề 1. Hãy áp nhóm A và B vào bài, tính B5 sau khi ghi chữ ký."). Unlike
+§13, the values of 14.2(a) and 14.2(b) were computed before this draft, during that review. 14.2(c)
+is fixed here before any of its values is computed; 14.5 lists what was seen, including partial
+information about it.*
+
+**14.1 Why.** Track L's crossing figures (`l_direct_crossed_kn`, `l_quasi_crossed_kn`) hold on the
+two collections M admitted. The frozen Presidio keys (§12.6) pool all six collections, so they do not
+share those figures' denominator. The single QUASI crossing's field is named (`l_cross_route_summary`)
+but not what that field holds. What the four refused planner requests held is not measured. §12.6
+registers extractor recall and predicate echo, which §12.11 reads as reported "once per extraction",
+but the frozen scan read extractions only from run directories, and the refused collections have
+none. This section adds the refused attempts' extractions as new post-hoc numbers; it does not rescore
+`l_recall_*` or `l_echo_*`, whose denominators stay those of L1–L2. All three analyses use frozen
+artifacts only, with no run, no label and no rescore. §8.9 provides for a changed number only through
+a scripted rescore for a found bug; as in §13, this section adds new numbers explicitly.
+
+**14.2 What is computed.** One deterministic script, `scripts/posthoc_2026_10_27.py`, writes
+`eval/paper/posthoc_l.json`; `scripts/make_paper_tables.py` reads that file into `numbers.json`, with
+sources, like every other input. The script refuses to run if an input's sha256 differs from the value
+pinned below or recorded in the frozen outputs named.
+
+*Code version.* `scripts/real_l.py` and `backend/src/privdeep/pipeline.py` were modified on 2026-10-27,
+after the frozen outputs. Every measurement function of 14.2(c) is therefore imported from a clean
+checkout of commit `26de996ff464a5e3d10bffc79ec91996bcd174e1`, the commit that
+`eval/real/out/real_l_scan.json` and `eval/real/out/refusal_sim.json` record: `scripts/real_l.py`,
+`scripts/run_evaluation.py`, `scripts/real_l_refusal_sim.py`, `shared/`, `gateway/` and the backend
+package. That checkout reads the git-ignored `eval/real/corpora/` of the paper's worktree through a
+symlink, checked by the identifier hashes below. The script runs under
+`.venv/bin/python` and records the commit and the sha256 of each imported file.
+
+- (a) *Presidio on the admitted collections.* From `eval/real/out/presidio_tab-L1.json` and
+  `presidio_tab-L2.json`, the sums over the two files of `by_type.DIRECT.total`,
+  `by_type.QUASI.total`, `by_type.DIRECT.CODE` and `by_type.DIRECT.PERSON` (the per-string rule of
+  §12.11, k/n). Each file's `identifiers_sha256` must equal the collection's in `real_l_scan.json`, so
+  the strings are those of `l_direct_crossed_kn` and `l_quasi_crossed_kn`. Keys
+  `l_presidio_admitted_direct_kn`, `l_presidio_admitted_quasi_kn`,
+  `l_presidio_admitted_direct_type_CODE_kn`, `l_presidio_admitted_direct_type_PERSON_kn`.
+- (b) *The field of the QUASI crossing.* For every r1 drafter request in the egress traces of
+  `eval/real/runs/tab-L1__r1`, `tab-L1__r1__rep2`, `tab-L2__r1` and `tab-L2__r1__rep2`: is its system
+  field byte-identical to the system field of the r1 drafter requests of corpus A's frozen r1 runs
+  (`eval/runs/smoke-q3__r1`, `__rep2`, `__rep3`), which hold no judgment text? Key
+  `l_r1_sysfield_same_as_A_kn` (k/n requests). The script also asserts that every crossing occurrence
+  behind `l_cross_route_summary` lies in such a field, and stops if one does not.
+- (c) *The refused collections.* Inputs: the extractions the refused r5 attempts saved under §12.13,
+  equal by sha256 to those `refusal_sim.json` records,
+
+  | File | sha256 |
+  |---|---|
+  | `eval/real/attempts/tab-L3__r5__attempt1/extractions.json` | `21e095606e8cb8362c2792f8afe5c8c42f5f150c1f62246461a7a0efe1ff73be` |
+  | `eval/real/attempts/tab-L4__r5__attempt1/extractions.json` | `ed2b5ed6cf8a53915731b8f3413e74214694e31b612d5cb0870648039aec08b5` |
+  | `eval/real/attempts/tab-L5__r5__attempt1/extractions.json` | `95d1afb33926607409a9e199e76ac1ef16332d135e5f64257d456c2602ee889a` |
+  | `eval/real/attempts/tab-L6__r5__attempt1/extractions.json` | `927a0a5e084976fffad9e3135423f7b7b34665b198cdb7501516d93c1ae97e32` |
+
+  and each collection's identifiers, equal by sha256 to those `real_l_scan.json` records,
+
+  | File | sha256 |
+  |---|---|
+  | `eval/real/corpora/tab-L3/identifiers.json` | `d0324e7cc288a13312028f539fe3ef2a2ab31d83564e2ed2409a836c3c4467db` |
+  | `eval/real/corpora/tab-L4/identifiers.json` | `542d7c458277830d19878712c4f990f2a11f3e4d366b6ebffdd4ac5adacbbc1c` |
+  | `eval/real/corpora/tab-L5/identifiers.json` | `80ac90a158a19bcadb13111464d49f234af99178a36ccf9a648348dcb97c7374` |
+  | `eval/real/corpora/tab-L6/identifiers.json` | `bcfead32d735a7062aed50e53b5b49530ee17579c1ef0f0fe5daee7aa3adb785` |
+
+  Non-label strings only, as §12.11 reads them. Each measure is reported pooled over L3–L6 and per
+  collection, by identifier type, as k/n.
+  - (c1) Extractor recall, exact and covered, and (c2) predicate echo: `extraction_measures`, run as
+    `real_l.py extraction --tasks eval/real/tasks_l.json --extractions
+    eval/real/out/posthoc_refused_extractions --out eval/real/out/posthoc_refused_extraction.json`.
+    The directory is new and git-ignored. It is not `sim_extractions/`, which also holds tab-L1 and
+    tab-L2. It holds exactly `tab-L3/extractions.json` to `tab-L6/extractions.json`, copied from the
+    four attempts and checked by sha256. The script checks that tab-L1 and tab-L2 list no extraction
+    in that output and takes its pooled blocks as L3–L6. Recall is read from each extraction's own
+    entities, never from the attempts' `entities.json`. Like the frozen L1–L2 keys, (c1) and (c2)
+    read the saved extraction, which the pipeline wrote after the corpus-wide leak gate (§4.1 of
+    the paper); on load the gate drops nothing from these four files (`refusal_sim.json`,
+    `corpus_gate_drops_on_load`).
+  - (c3) Would-be crossing. Each extraction is loaded with `load_extraction(path, load_docs(corpus))`
+    of `real_l_refusal_sim.py`, which applies the corpus-wide leak gate as the pipeline does. Then
+    `build_planner_request(docs, extractions, "r5", goal)`, with the instrument's fixed salts, rebuilds
+    the request: r5 is the arm of the refused attempts. Slot ids therefore differ from the live
+    request's, while relations, template, statistics and goal do not.
+    - Before scanning, the script checks each rebuilt request against the r5 entry of
+      `refusal_sim.json`, through `monitor_session` and `inspect_request`, with the filter
+      `build_filter(docs, salt=FILTER_SALT, n_min=N_MIN, n_max=N_MAX, hit_threshold=HIT_THRESHOLD)`
+      that `simulate_collection` builds. Verdict, reason, `relations.distinct`, `slots.advertised`,
+      `prompt.hits` and `hits.whole_stream` must all be equal. `request_bytes` depends on the
+      interpreter's httpx serialisation, so it is recorded for both rebuilds but not required to be
+      equal.
+    - With `b = json.loads(req.raw)`, the request is scanned as the one-exchange trace
+      `[{"stage": "plan", "system": b.get("system"), "messages": b["messages"], "tools": b.get("tools")}]`.
+      The record has no `refused`, `response_text` or `structured` key, so its content is read on
+      the side `core-sent`. §12.6's exclusion of refused requests is lifted for this measure only;
+      no other exclusion is lifted.
+    - The scan is `_crossings(trace, goal, idents, groups)` of `real_l.py`, with the goal of
+      `eval/real/tasks_l.json` and `groups = needle_groups` of the collection's strings: each string
+      read on its own, whole-token, the goal excluded as in H3, the single-call reading beside it
+      (descriptive). Routes are `_route_rows(_routes(...))`.
+
+  Keys `l_refused_recall_exact_direct_kn`, `l_refused_recall_exact_quasi_kn`,
+  `l_refused_recall_covered_direct_kn`, `l_refused_recall_covered_quasi_kn`, `l_refused_echo_kn`,
+  `l_refused_echo_direct_kn`, `l_refused_echo_quasi_kn`, `l_refused_would_cross_direct_kn`,
+  `l_refused_would_cross_quasi_kn` (all for r5), and `l_refused_would_cross_route_summary` (for the
+  artifact; "none" when empty).
+
+**14.3 Readings fixed before 14.2(c) is computed.**
+- 14.2(c) is reported in §6.3 beside the refusals. It is never pooled with track L's crossing figures
+  or with L1–L2's recall and echo, and it does not test, decide or de-bias HL1, which stays not
+  testable (§12.7, §12.13).
+- For any value, the paper states three things.
+  - (c3) counts matches anywhere in the rebuilt request, including any match in the planner's
+    template.
+  - M's containment check, which tests runs of corpus words and not identifiers (P2, §3), refused
+    these requests.
+  - Had M admitted them, any string they carry would have crossed.
+- (c1) is reported in §6.3 as what the extractor masked on the refused collections. It is never
+  pooled with `l_recall_*` (§6.1), and no reading of (c3) is drawn from it.
+- (c2) counts the relation fields the leak gate kept. Each reaches the rebuilt request,
+  deduplicated, so every string (c2) counts is also counted by (c3). If one is not, the script stops
+  and the fallback below applies.
+- The paper reports counts only, never strings (§12.7). Types and routes (stage and field: system,
+  messages or tools) go to the artifact.
+- Whatever the counts, the paper does not call the refusals false positives or the refused text
+  non-private: TAB labels personal identifiers only, and P2 treats all corpus text as private. The
+  §7 sentence drafted with this section says so, and it holds in both branches below.
+- If the rebuild check fails for any collection, (c3) is reported for no collection. The paper then
+  uses the fallback text drafted with this section, which reports (c1) and (c2) and says that a
+  second offline rebuild did not match the earlier one (`refusal_sim.json`). The rebuild is not
+  changed afterwards.
+- The paper's wording for 14.2(c) is the text drafted with this section, together with its fallback.
+  No reading is added after the values are seen.
+
+**14.4 Status and use.** As §13.3: every number of 14.2 is post hoc and exploratory, and is called so
+wherever the paper quotes it. None tests, replaces or reinterprets a registered hypothesis or outcome
+(§8.7, §8.7a, §12), and no frozen number changes. The script and its keys are committed together; an
+error found later is corrected by rerunning the script, with a changelog entry, as §8.9 asks of a
+rescore.
+
+**14.5 Values seen before signature.** On 2026-10-27, during the read-only results review and its
+follow-up, the AI assistant and its review agents computed or saw the following.
+- *For 14.2(a):* DIRECT 9/22 (CODE 9/10, PERSON 0/11) and QUASI 98/340 on L1–L2. Also Presidio's
+  residual on L3–L6, DIRECT 19/43 and QUASI 239/661, which this section does not add.
+- *For 14.2(b):* one r1 drafter system field, sha256 prefix `b7ce350c55`, in all 127 r1 drafter
+  requests of A–D and L (31 on L1–L2), holding all 15 crossing occurrences.
+- *About the refused collections:*
+  - the counts already frozen in `refusal_sim.json`;
+  - relations and entities per saved extraction, L3–L6: 85, 111, 73 and 79 relations; 88, 137, 54
+    and 120 entities;
+  - the matching-window comparison, below.
+
+  *The matching-window comparison.* Review scripts (data-scout a5 and a5b; verify-2 v1_windows) read
+  the entity texts of the four extractions, to approximate the corpus-wide leak gate. They then
+  compared each of the 31 windows M matched in the rebuilt requests with the collections' non-label
+  identifier strings:
+  - 0/31 windows contain a whole DIRECT or QUASI string;
+  - 0/31 overlap an occurrence of one in the documents;
+  - 0/71 non-stopword window tokens lie inside such an occurrence;
+  - 24/31 windows share at least one token with some identifier string.
+
+  These windows lie in or straddle the relation fields of (c2), and lie in the requests of (c3). The
+  counts therefore constrain part of both, though none is a value of 14.2(c).
+- *A print to tool output.* While checking a file's layout, one review agent printed a few entity
+  strings of the tab-L4 extraction (`eval/real/out/sim_extractions/tab-L4/extractions.json`,
+  byte-identical to the attempt's) to its tool output. They were not compared with identifiers,
+  written to a file or repeated.
+
+No one has computed extractor recall, predicate echo or a scan of the rebuilt requests on L3–L6:
+`real_l_scan.json` holds no extraction block for those collections. A later review agent that tried to
+print the L3 attempt's `entities.json` and manifest fields was refused by the session's permission
+classifier and stopped. The AI assistant does not compute 14.2(c) before the signature below is
+recorded.
+
+**14.6 Schedule.** The content hard stop of §8.9 moves from Wed 28 Oct to Thu 29 Oct, 18:00, so 29 Oct
+is no longer kept free. The deadline, Fri 30 Oct, is unchanged, and 30 Oct stays free. 14.2(c) is
+computed only after this section is signed.
+
+**14.7 Not added.** These stay in the artifact and the review record of 2026-10-27:
+- the judge's signed order effect;
+- the count of matching windows that overlap a labelled identifier;
+- the r1 adversary's recovery on L;
+- G3 on L;
+- the utility proxy.
+
+Signed by the author on 2026-10-27, in the working session with the assistant, as drafted (recorded
+by the AI assistant at the author's instruction).
+
+*Record (AI assistant, 2026-10-27, written after the runs).* The signature above was recorded at 22:45 (+07:00). 14.2(a)-(c) were first computed at 22:50 by `scripts/posthoc_2026_10_27.py` from a clean tree of commit 26de996 (`git archive`, `eval/real/corpora` linked). After a read-only review of the applied changes, the instrument was hardened without changing what it measures: it now checks every file of that tree against the commit's blobs, records every module it loaded and its interpreter, binds its inputs by sha256, reports (c3) for no collection when a rebuild fails, and adds the per-collection (c1) and (c2) blocks. Rerun at 23:19 with the same measured values (every rebuilt request matched `refusal_sim.json`): instrument sha256 2500b2ddc1a8a4ff8a1d788ee10c2a22a28e57531eeb90d4c084ac1ca2f9ef02, `eval/paper/posthoc_l.json` sha256 5e7f6d1940084593b84574cbad8b2d81af15ae3da5a2ea5d504b973535984b4a. In the paper, the signed sentence 'Those extractions masked ...' is joined to the one before by a semicolon so that 'Post hoc and exploratory' governs it (punctuation only, no reading added).

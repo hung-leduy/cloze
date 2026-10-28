@@ -1,15 +1,16 @@
 # Cloze
 
-Code and data for the paper **"Cloze: A Reference Monitor and Local Role Binding for Private
-Deep Research"** (Hung Le Duy and Tam Tran Huu, ICCIT 2026).
+Code and data for the paper **"Cloze: A Reference Monitor and the Role-Binding Problem in
+Private Deep Research"** (Hung Le Duy and Tam Tran Huu, ICCIT 2026).
 
 Cloze is a deep-research agent over private documents. A trusted local tier holds the corpus, a
 local small language model (SLM) and the core that builds every request. The system's own
 requests reach the cloud model only through the reference monitor **M** (`gateway/`), which
-refuses a request that holds a run of 5 or more corpus words within one inspected stream. R1, the
-local fact store, binds the values the cloud's drafts refer to back to their roles locally. The
-evaluation's oracle, judge and adversary are not part of the system: they call the cloud from the
-host and do not pass through M (`THREAT_MODEL.md` §5).
+refuses a request that holds a run of 5 or more corpus words within one inspected stream. R1, a
+local fact store whose entries the cloud's drafts cite by fact references, is the candidate repair
+for the role binding a type-level payload loses; the paper reports its registered gain as not
+testable. The evaluation's oracle, judge and adversary are not part of the system: they call the
+cloud from the host and do not pass through M (`THREAT_MODEL.md` §5).
 
 The working name of the system was PrivDeep, so the Python package (`privdeep`), the container
 names and the networks (`privdeep-*`) keep it.
@@ -31,6 +32,7 @@ names and the networks (`privdeep-*`) keep it.
 | `eval/probe/`, `eval/fp_report.json`, `eval/observation.json`, `eval/BATCH_A-D.md` | The extraction probes, the false-positive report, the observation-set test and the record of the frozen batch |
 | `scripts/run_evaluation.py` | The evaluation driver: `private` and `measure` call the cloud (billable), `aggregate` and `rescore` are offline |
 | `scripts/make_paper_tables.py` | Computes the paper's numbers, tables and figures from the runs (see below for what it needs) |
+| `scripts/posthoc_2026_10_26.py`, `scripts/posthoc_2026_10_27.py` | The offline post-hoc analyses of the scope's sections 13 and 14, as they ran (see below) |
 
 ## Running
 
@@ -131,6 +133,14 @@ refer to (`eval/calibration/`, including two reports of a pilot run of 2026-09-1
 extraction kept as a test fixture (`backend/tests/security/fixtures/`), all on synthetic
 corpora. The SLM is unseeded, the cloud model an undated alias and its sampling cannot be set,
 so the runs reproduce the analysis, not the outputs.
+
+The two post-hoc scripts are the record of what ran under the scope's sections 13 and 14: they
+read the runs and track L's outputs, which are not here, and `posthoc_2026_10_27.py` imports its
+measurement code from a clean tree of a commit of the authors' repository. It keeps the authors'
+interpreter path, so that its sha256 is the one section 14 records
+(`2500b2ddc1a8a4ff8a1d788ee10c2a22a28e57531eeb90d4c084ac1ca2f9ef02`). Its output,
+`eval/paper/posthoc_l.json`, is read by a later version of `scripts/make_paper_tables.py`
+(`--posthoc-l`) than the one in this release.
 
 The manuscript's build (the Word skeleton, the drafts and the figure sources) is not included,
 and its tests are deselected in `pyproject.toml`. `scripts/make_paper_tables.py` writes its
