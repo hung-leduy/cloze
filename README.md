@@ -1,15 +1,18 @@
 # Cloze
 
-Code and data for the paper **"Cloze: A Reference Monitor and the Role-Binding Problem in
-Private Deep Research"** (Hung Le Duy and Tam Tran Huu, ICCIT 2026).
+Code and data for the paper **"Cloze: An Egress Monitor and the Role-Binding Problem in
+Cloud-Assisted Report Drafting"** (Hung Le Duy and Tam Tran Huu, ICCIT 2026).
 
-Cloze is a deep-research agent over private documents. A trusted local tier holds the corpus, a
-local small language model (SLM) and the core that builds every request. The system's own
-requests reach the cloud model only through the reference monitor **M** (`gateway/`), which
-refuses a request that holds a run of 5 or more corpus words within one inspected stream. R1, a
-local fact store whose entries the cloud's drafts cite by fact references, is the candidate repair
-for the role binding a type-level payload loses; the paper reports its registered gain as not
-testable. The evaluation's oracle, judge and adversary are not part of the system: they call the
+Cloze is a cloud-assisted report-drafting pipeline over private documents: it covers the planning
+and drafting stages of a deep-research agent, with no search or retrieval. A trusted local tier
+holds the corpus, a local small language model (SLM) and the core that builds every request. The
+cloud model drafts over typed relations, placeholders and statistics, never document prose, and
+the local tier fills the placeholders. The system's own requests reach the cloud model only
+through the egress monitor **M** (`gateway/`), which follows the reference-monitor pattern (only
+complete mediation is claimed) and refuses a request that holds a run of 5 or more corpus words
+within one inspected stream. R1, a local fact store whose entries the cloud's drafts cite by fact
+references, is the candidate repair for the role binding a type-level payload omits; the paper
+reports its registered gain as not testable. The evaluation's oracle, judge and adversary are not part of the system: they call the
 cloud from the host and do not pass through M (`THREAT_MODEL.md` §5).
 
 The working name of the system was PrivDeep, so the Python package (`privdeep`), the container
@@ -19,12 +22,12 @@ names and the networks (`privdeep-*`) keep it.
 
 | Path | What it holds |
 |---|---|
-| `gateway/` | The reference monitor M: the egress proxy, its containment filter and audit log |
+| `gateway/` | The egress monitor M: the proxy, its containment filter and audit log |
 | `backend/src/privdeep/` | The local tier: extraction with the SLM, masking, R1, the core, drafting and restoration; under `eval/`, the evaluation's oracle, judge and adversary clients, which bypass M |
 | `shared/` | Code both tiers use |
 | `backend/tests/`, `gateway/tests/` | The test suite; `-m security` runs the invariant tests that pin the threat model's properties |
 | `THREAT_MODEL.md` | Parties, adversary, observation set, and what is and is not protected (properties P1-P9) |
-| `PRIVDEEP_ICCIT_SCOPE.md` | The pre-registration of 2026-09-27 (hypotheses H1-H3, H4-D, H4-D′, the H2 floor rule) and its dated amendments, including track L's HL1 |
+| `PRIVDEEP_ICCIT_SCOPE.md` | The registration of 2026-09-27, self-recorded rather than with a third-party registry (hypotheses H1-H3, H4-D, H4-D′, the H2 floor rule), and its dated amendments, including track L's HL1 |
 | `scripts/corpora/` | The generator of the synthetic corpora A-D (byte-deterministic) and the RBA attribute lexicon |
 | `eval/corpora/` | Corpora A-D (`smoke-q3`, `portfolio-b`, `prose-c`, `offlex-d`), their gold keys and the key audit |
 | `eval/calibration/` | The reports the RBA rule was calibrated and checked on, and their labels |
@@ -139,8 +142,7 @@ read the runs and track L's outputs, which are not here, and `posthoc_2026_10_27
 measurement code from a clean tree of a commit of the authors' repository. It keeps the authors'
 interpreter path, so that its sha256 is the one section 14 records
 (`2500b2ddc1a8a4ff8a1d788ee10c2a22a28e57531eeb90d4c084ac1ca2f9ef02`). Its output,
-`eval/paper/posthoc_l.json`, is read by a later version of `scripts/make_paper_tables.py`
-(`--posthoc-l`) than the one in this release.
+`eval/paper/posthoc_l.json`, is read by `scripts/make_paper_tables.py` (`--posthoc-l`).
 
 The manuscript's build (the Word skeleton, the drafts and the figure sources) is not included,
 and its tests are deselected in `pyproject.toml`. `scripts/make_paper_tables.py` writes its

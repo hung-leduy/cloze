@@ -82,6 +82,16 @@ Inputs, each a file another instrument wrote:
   (by sha256), for other corpora, or when a frozen key it reproduced differs
   from this build's. numbers_from_posthoc lists the keys; none replaces an
   existing one, and without the option the build is unchanged;
+* ``--posthoc-l`` (optional): ``scripts/posthoc_2026_10_27.py`` output
+  (``eval/paper/posthoc_l.json``), the three offline track-L analyses of scope
+  §14 (signed 2026-10-27), every figure post hoc and exploratory: Presidio's
+  residual on the two admitted collections, the r1 drafter system field that
+  holds the QUASI crossing, and, on the four refused collections, extractor
+  recall, predicate echo and what the rebuilt r5 planner requests carry.
+  Refused when the file is another instrument's, §14 was not signed when it
+  ran, or a frozen key it reproduced differs from this build's.
+  numbers_from_posthoc_l lists the keys; none replaces an existing one, and
+  without the option the build is unchanged;
 * ``--meta``: the author's non-numeric keys (names, affiliation, keywords,
   artifact URL, commits, AI-use declaration, formatted references), a flat
   JSON map. They are copied into numbers.json with ``meta`` as their source.
@@ -695,7 +705,8 @@ def numbers_from_evaluation(nb: Numbers, ev: Src, runs_dir: Path | None = None) 
                 fmt = "mean [min–max], 1 dp; (k of N runs) when k < N"
                 if pk == "facts_structural" and runs_dir is not None:
                     stat, s, fmt = _facts_structural(stat, s, fmt, info["runs"], runs_dir)
-                nb.put(f"t4_{L}_{arm}_{short}", _fmt_cell(stat, n_runs, 1), s, stat, fmt)
+                cell = _fmt_count_cell if pk == "sentences_pruned" else _fmt_cell
+                nb.put(f"t4_{L}_{arm}_{short}", cell(stat, n_runs, 1), s, stat, fmt)
         orc, s = ev.get("by_task", tid, "oracle")
         if orc and orc.get("faithfulness"):
             n_runs = orc["runs"]
@@ -739,6 +750,18 @@ def numbers_from_evaluation(nb: Numbers, ev: Src, runs_dir: Path | None = None) 
     v = (st or {}).get("mean")
     nb.put("judge_mean_exgr_oracle_r1pairs", fmt_num(v), s + "/mean", v,
            "mean, 2 dp; the oracle side of r1's own judgements")
+    # The private reports' judged quality by presentation order, shown first or after the
+    # oracle: the mean of the per-criterion means without groundedness (scope §8.6 reports
+    # the judge per criterion and order; 2026-10-28, critical review ANA2). Not quoted in
+    # the text: a number new after the numbers freeze needs a signed amendment (§8.9, §13.1).
+    for order, key in (("private_first", "first"), ("oracle_first", "second")):
+        means = [(ev.get("utility", "by_order", order, "private", c)[0] or {}).get("mean")
+                 for c in JUDGED_QUALITY_CRITERIA]
+        v = None if None in means else sum(means) / len(means)
+        src = (f"{ev.label}#{_p('utility', 'by_order', order, 'private')}"
+               f"/{{{','.join(JUDGED_QUALITY_CRITERIA)}}}/mean")
+        nb.put(f"judge_exgr_private_shown_{key}", fmt_num(v), src, v,
+               "mean of the per-criterion means without groundedness, 2 dp")
     st, s = ev.get("utility", "position_bias")
     nb.put("judge_position_bias", fmt_stat_sd(st), s, st,
            "mean ± SD [min–max], 2 dp (the one key that keeps the SD: §6 quotes it so)")
@@ -984,6 +1007,19 @@ def _fmt_cell(stat: dict[str, Any] | None, n_runs: int, dp: int = 2) -> str:
     return s
 
 
+def _fmt_count_cell(stat: dict[str, Any] | None, n_runs: int, dp: int = 1) -> str:
+    """_fmt_cell for a per-report count: a whole minimum and maximum print without
+    decimals, as _fmt_obs prints them ('28.7 [20–37]', not '[20.0–37.0]'; 2026-10-28,
+    critical review PRE10)."""
+    s = _fmt_cell(stat, n_runs, dp)
+    lo, hi = (stat or {}).get("min"), (stat or {}).get("max")
+    if s == NA or lo is None or hi is None or not (float(lo).is_integer()
+                                                   and float(hi).is_integer()):
+        return s
+    return s.replace(f"[{fmt_fixed(lo, dp)}–{fmt_fixed(hi, dp)}]",
+                     f"[{fmt_fixed(lo, 0)}–{fmt_fixed(hi, 0)}]", 1)
+
+
 def _put_mean(nb: Numbers, key: str, stat: dict[str, Any] | None, n_runs: int,
               src: str) -> None:
     """A bare mean for running text, and its companion ``<key>_n`` = k/N."""
@@ -1015,6 +1051,11 @@ def _arm_of(ev: Src):
     return arm
 
 
+# The criteria judged quality keeps: groundedness is left out, since no reported run
+# retrieves evidence (§5.2).
+JUDGED_QUALITY_CRITERIA = ("goal_coverage", "coherence", "specificity")
+
+
 def numbers_from_crossings(nb: Numbers, ev: Src) -> None:
     """The three crossing measurements, each apart. A count is n/a for an arm
     the block has no entry for, and every per-arm count comes with how many of
@@ -1036,6 +1077,20 @@ def numbers_from_crossings(nb: Numbers, ev: Src) -> None:
            len(a.get("label_hits") or []), "count of hit records (run, stage, field, surface)")
     nb.put("cross_a_occurrences", str(sum(h.get("count", 0) for h in a.get("hits") or [])),
            s + "/hits/*/count", None, "occurrences summed over the hit records")
+    # The spans H3's scan excluded, goal and cloud-reply repeats apart, and how many of the
+    # repeats are label words (2026-10-28, critical review ANA6); n/a without the block.
+    excl = a.get("excluded")
+    goal = None if excl is None else excl.get("user-goal") or []
+    echo = None if excl is None else excl.get("cloud-echo") or []
+    nb.put("h3_excluded_goal", NA if goal is None else str(len(goal)), s + "/excluded/user-goal",
+           None if goal is None else len(goal), "count of excluded span records")
+    nb.put("h3_excluded_cloud_echo", NA if echo is None else str(len(echo)),
+           s + "/excluded/cloud-echo", None if echo is None else len(echo),
+           "count of excluded span records")
+    lab = None if echo is None else sum(1 for e in echo if e.get("label_group"))
+    nb.put("h3_excluded_cloud_echo_label", NA if lab is None else str(lab),
+           s + "/excluded/cloud-echo/*/label_group", lab,
+           "count of the excluded cloud-reply repeats in the label-word group")
     nb.put("cross_b_hits", str(len(b.get("hits") or [])), sb + "/hits",
            len(b.get("hits") or []), "count of (run, entity) records")
     nb.put("cross_c_hits", str(len(c.get("hits") or [])), sc + "/hits",
@@ -1520,7 +1575,7 @@ G1_COMPARISONS = (G1_SAVED_COMPARISON, G1_STUB_COMPARISON)
 # its identifier with spaces (review 2026-10-09, follow-up F11).
 G1_FIELD_NAMES = {"document_stats": "document statistics",   # the DOCUMENT STATS line
                   "slot_counts": "slot counts",               # per category
-                  "relation_multiset": "relation multiset",
+                  "relation_multiset": "relation set",
                   "attribute_schema": "attribute schema",
                   "documents": "document count"}              # content-hash ids in doc_id
 
@@ -2144,8 +2199,9 @@ def numbers_from_review(nb: Numbers, ra: Src) -> None:
       readers' label counts ``cal_<id>_{human,rule}_<cat>`` (k/N), the confusion
       counts ``cal_<id>_cm_<human>_<rule>``, ``_kappa_pe``, ``_pabak``, ``_ac1``
       (2 dp), ``_kappa_ci`` ([lo, hi], 2 dp) and ``_kappa_ci_undefined`` (k/N
-      resamples left out); ``cal_bootstrap_resamples``. A row whose sheet is not
-      fully labelled gives no key.
+      resamples left out, a thousands separator from five digits on, as the
+      text's other counts); ``cal_bootstrap_resamples``. A row whose sheet is not fully labelled
+      gives no key.
     * MR9a ``corpus_*_<L>`` and the ranges over corpora ``corpus_*``: documents,
       characters, words, referents, table data cells, facts by kind.
     * MR9b ``maskdoc_*_nolost_<L>`` (per extraction, a range when they differ),
@@ -2382,7 +2438,7 @@ def _review_calibration(nb: Numbers, ra: Src) -> None:
         bs = r["bootstrap"]
         nb.put(f"cal_{rid}_kappa_ci", fmt_ci(bs.get("ci95"), 2), f"{b}/bootstrap/ci95",
                bs.get("ci95"), "percentile bootstrap 95% interval, 2 dp")
-        nb.put(f"cal_{rid}_kappa_ci_undefined", fmt_kn(bs["undefined"], bs["resamples"]),
+        nb.put(f"cal_{rid}_kappa_ci_undefined", f"{bs['undefined']}/{bs['resamples']:,}",
                f"{b}/bootstrap/undefined", bs["undefined"],
                "k/N: resamples on which kappa is undefined, left out")
 
@@ -2699,6 +2755,105 @@ def numbers_from_posthoc(nb: Numbers, ph: Src, corpora: dict[str, str]) -> None:
            "with a delta (one count when they agree)")
 
 
+# PRIVDEEP_ICCIT_SCOPE.md §14 (signed by the author on 2026-10-27): three offline
+# track-L analyses after the numbers freeze, computed by
+# scripts/posthoc_2026_10_27.py into eval/paper/posthoc_l.json. Read here by the
+# AI assistant's change of 2026-10-27. Every key is post hoc and exploratory
+# (§14.4) and is called so wherever the paper quotes it; none replaces an
+# existing key, and none is a string (§12.7).
+POSTHOC_L_INSTRUMENT = "scripts/posthoc_2026_10_27.py"
+POSTHOC_L_CODE_COMMIT = "26de996ff464a5e3d10bffc79ec91996bcd174e1"   # §14.2's code version
+
+
+def numbers_from_posthoc_l(nb: Numbers, ph: Src) -> None:
+    """The keys of scope §14 (posthoc_l.json), each post hoc and exploratory.
+
+    * §14.2(a): ``l_presidio_admitted_direct_kn``, ``l_presidio_admitted_quasi_kn``,
+      ``l_presidio_admitted_direct_type_CODE_kn``,
+      ``l_presidio_admitted_direct_type_PERSON_kn``: Presidio's residual on the
+      admitted collections, the strings of ``l_direct_crossed_kn`` and
+      ``l_quasi_crossed_kn``.
+    * §14.2(b): ``l_r1_sysfield_same_as_A_kn``, the r1 drafter requests on the
+      admitted collections whose system field is corpus A's, byte for byte.
+    * §14.2(c), on the refused collections: ``l_refused_recall_{exact,covered}_
+      {direct,quasi}_kn``, ``l_refused_echo_kn`` with ``_direct_kn`` and
+      ``_quasi_kn``, and, when every rebuilt request matched refusal_sim.json
+      (``l_refused_rebuild_ok``), ``l_refused_would_cross_{direct,quasi}_kn`` and
+      ``l_refused_would_cross_route_summary`` ("none" when empty), else n/a."""
+    if ph.data.get("instrument") != POSTHOC_L_INSTRUMENT:
+        raise SystemExit(f"{ph.label}: not {POSTHOC_L_INSTRUMENT} output")
+    if ph.data.get("section_14_signed") is not True:
+        raise SystemExit(f"{ph.label}: computed before scope §14 was signed")
+    if (ph.data.get("refused") or {}).get("code_commit") != POSTHOC_L_CODE_COMMIT:
+        raise SystemExit(f"{ph.label}: 14.2(c) was not computed with commit "
+                         f"{POSTHOC_L_CODE_COMMIT}'s code")
+    rep, _ = ph.get("reproduced")
+    if not rep:
+        raise SystemExit(f"{ph.label}: no reproduced frozen keys")
+    differ = [f"{k} ({ph.label} {v!r}, this build {nb.values.get(k)!r})"
+              for k, v in sorted(rep.items()) if nb.values.get(k) != v]
+    if differ:
+        raise SystemExit(f"{ph.label} reproduced frozen keys whose value this build does not "
+                         f"give (or the --real-l input is missing): {'; '.join(differ)}")
+    tag = "; post hoc (scope §14)"
+
+    pa, s = ph.get("presidio_admitted")
+    for key, part, what in (
+            ("l_presidio_admitted_direct_kn", "direct", "DIRECT"),
+            ("l_presidio_admitted_quasi_kn", "quasi", "QUASI"),
+            ("l_presidio_admitted_direct_type_CODE_kn", "direct_CODE", "DIRECT CODE"),
+            ("l_presidio_admitted_direct_type_PERSON_kn", "direct_PERSON", "DIRECT PERSON")):
+        _l_block(nb, key, pa.get(part), f"{s}/{part}",
+                 f"{what} strings of the admitted collections surviving whole-token in "
+                 f"Presidio's anonymised text (the per-string rule){tag}")
+
+    sf, s = ph.get("r1_drafter_system_field")
+    _l_block(nb, "l_r1_sysfield_same_as_A_kn", sf.get("same_as_A"), f"{s}/same_as_A",
+             "r1 drafter requests on the admitted collections whose system field is "
+             f"byte-identical to corpus A's r1 drafter system field{tag}")
+
+    rf, s = ph.get("refused")
+    if not isinstance(rf, dict):
+        raise SystemExit(f"{ph.label}: no refused block (§14.2(c))")
+    for b in ("recall", "echo"):
+        if not isinstance(rf.get(b), dict):
+            raise SystemExit(f"{ph.label}: no refused/{b} block")
+    if not isinstance(rf["recall"].get("covered"), dict):
+        raise SystemExit(f"{ph.label}: no refused/recall/covered block")
+    for it in ("DIRECT", "QUASI"):
+        low = it.lower()
+        _l_block(nb, f"l_refused_recall_exact_{low}_kn", rf["recall"].get(it),
+                 f"{s}/recall/{it}", f"{it} strings of the refused collections the saved "
+                 f"extractions masked (exact){tag}")
+        _l_block(nb, f"l_refused_recall_covered_{low}_kn", rf["recall"]["covered"].get(it),
+                 f"{s}/recall/covered/{it}", f"{it} strings of the refused collections inside "
+                 f"one masked entity (covered){tag}")
+        _l_block(nb, f"l_refused_echo_{low}_kn", rf["echo"].get(it), f"{s}/echo/{it}",
+                 f"{it} strings of the refused collections in a relation field of the saved "
+                 f"extractions{tag}")
+    _l_block(nb, "l_refused_echo_kn", rf["echo"].get("all"), f"{s}/echo/all",
+             f"labelled identifier strings of the refused collections in a relation field of "
+             f"the saved extractions{tag}")
+    ok = rf.get("rebuild_ok") is True
+    nb.put("l_refused_rebuild_ok", "yes" if ok else "no", f"{s}/rebuild_ok", rf.get("rebuild_ok"),
+           "every rebuilt r5 planner request matched refusal_sim.json's r5 entry and carried "
+           f"every string the echo counts{tag}")
+    wc = rf.get("would_cross") if ok else None
+    for it in ("DIRECT", "QUASI"):
+        _l_block(nb, f"l_refused_would_cross_{it.lower()}_kn", (wc or {}).get(it),
+                 f"{s}/would_cross/{it}", f"{it} strings with a whole-token hit in the rebuilt "
+                 f"r5 planner requests of the refused collections, goal excluded{tag}")
+    routes = rf.get("would_cross_routes")
+    # One rebuilt r5 planner request per refused collection: the pairs are string by
+    # collection, not string by run. Absent routes are no claim, so n/a, not none.
+    words = (NA if not ok or routes is None
+             else _l_route_words(routes, " of a rebuilt r5 planner request",
+                                 pair="string-collection pair") or "none")
+    nb.put("l_refused_would_cross_route_summary", words, f"{s}/would_cross_routes", routes,
+           "routes of those hits in words; none when empty; n/a when a rebuild did not match "
+           f"or no routes were recorded{tag}")
+
+
 def numbers_from_meta(nb: Numbers, meta: Src) -> None:
     if not isinstance(meta.data, dict):
         raise SystemExit(f"{meta.label}: expected a flat JSON object of key -> string")
@@ -2756,7 +2911,7 @@ def _l_sum_blocks(blocks: list[dict[str, Any] | None]) -> dict[str, Any] | None:
     return {"k": k, "n": n, "rate": k / n if n else None}
 
 
-def _l_route_words(rows: list[dict[str, Any]], where: str) -> str:
+def _l_route_words(rows: list[dict[str, Any]], where: str, pair: str = "string-run pair") -> str:
     """Routes in words (§12.7: entity types, counts and routes, never the strings):
     identifier type, entity type, stage, field, with the string-run pairs and
     occurrences each carried."""
@@ -2767,7 +2922,7 @@ def _l_route_words(rows: list[dict[str, Any]], where: str) -> str:
     # review of 2026-10-18).
     return "; ".join(
         f"{r['identifier_type']} {r['entity_type']} at the {r['stage']} stage in the "
-        f"{r['field']} field{where}: {count(r['strings'], 'string-run pair')}, "
+        f"{r['field']} field{where}: {count(r['strings'], pair)}, "
         f"{count(r['occurrences'], 'occurrence')}" for r in rows)
 
 
@@ -3934,7 +4089,7 @@ def _insert_listing(d, placeholder_p, out_dir: Path, values: dict[str, str],
     short = all(t[:FIG2_LABEL_W] in labels for k, t in lines if k)
     from docx.enum.text import WD_ALIGN_PARAGRAPH  # noqa: PLC0415
     paras: list[tuple[Any, str]] = []
-    for i, (key, _) in enumerate(lines):
+    for key, _ in lines:
         para = d.add_paragraph(style=_style(d, "Body Text"))
         para.alignment = WD_ALIGN_PARAGRAPH.LEFT     # a listing is never justified
         pf = para.paragraph_format
@@ -3949,7 +4104,9 @@ def _insert_listing(d, placeholder_p, out_dir: Path, values: dict[str, str],
             pf.left_indent = Pt(FIG2_BAND_PAD_PT + label_w)
             pf.first_line_indent = Pt(-label_w)
             pf.right_indent = Pt(FIG2_BAND_PAD_PT)
-        pf.keep_with_next = i < len(lines) - 1
+        # Every line keeps with the next, the last with the caption below it, as Fig. 1's
+        # picture does (2026-10-28: the caption opened page 5 alone after §4 shortened).
+        pf.keep_with_next = True
         if key:
             r = para.add_run(f"«{key}»")
             r.font.name = FIG2_FONT
@@ -4270,6 +4427,10 @@ def _lead_segments(text: str, *, tag: bool = False, bold_key: bool = False
                 return [(t, False, True), (text[len(t):], False, False)]
     if bold_key and (m := re.match(r"«[^»]+»", text)):
         return [(m.group(0), True, False), (text[m.end():], False, False)]
+    # Table 1's rows that are not registered hypotheses lead with a verdict word and a colon
+    # (2026-10-29), set bold like an outcome key.
+    if bold_key and (m := re.match(r"[A-Z][a-z]+(?: [a-z]+){0,2}:", text)):
+        return [(m.group(0), True, False), (text[m.end():], False, False)]
     return [(text, False, False)]
 
 
@@ -4440,8 +4601,14 @@ def write_tables_docx(skeleton: Path, specs: list[TableSpec], out: Path,
                                  strict=False):
                     gc.set(_qn("w:w"), str(int(w * 1440)))      # twentieths of a point
                 for row in tb.rows:
-                    for c, w in zip(row.cells, widths, strict=False):
-                        c.width = Inches(w)
+                    # A merged cell's width is the sum of the grid columns it spans;
+                    # setting row.cells one by one left the last column's width on a
+                    # spanning cell, which Word draws narrower than the table
+                    # (final format check, 2026-10-28).
+                    col = 0
+                    for tc in row._tr.tc_lst:
+                        tc.width = Inches(sum(widths[col:col + tc.grid_span]))
+                        col += tc.grid_span
         # Every table is shorter than a page: each row is kept with the next, so a
         # table and its second part move to a page together instead of breaking
         # over two (2026-10-19; the hypotheses table had split before its last row).
@@ -5163,25 +5330,39 @@ def _t4_reason_h4d(v: dict[str, str]) -> str:
 # reason in a few words; rows grouped under §6's questions; no tints, which the
 # outcome words repeat and which grey scale cannot tell apart; a note saying what "not
 # testable" and "post-pilot" mean. The artifact's table (reasons=True) is unchanged.
-T1_HEADER = ["Hypothesis", "What it checks", "Holds when (registered rule, Section V-C)",
-             "Outcome"]
-T1_WIDTHS = [0.70, 1.86, 2.46, 1.48]
-T1_GROUPS = (("Does private text cross? (Sections VI-A, VI-C)", ("H3 (A–D)", "HL1 (L)")),
+# Since 2026-10-29 (the author's "quá nhiều thông số trong phần Hypothesis, Evaluation", choosing
+# a results-at-a-glance table; written by the AI assistant): Table 1 gives every result that
+# answers §6's three questions, the registered hypotheses among them under their labels, in
+# plain words, with its outcome first; the registered rules are the repository's.
+T1_HEADER = ["Label", "What was tested", "Result"]
+T1_WIDTHS = [0.62, 3.00, 2.88]
+T1_GROUPS = (("Does private text cross? (Section VI-A)", ("H3 (A–D)", "HL1 (L)")),
              ("Does the cloud bind values to roles? (Section VI-B)",
-              ("H1 (A, B)", "H4-D (D)", "H4-D′ (D)", "H2 (C)")))
+              ("chance", "H1 (A, B)", "H4-D (D)", "H4-D′ (D)", "H2 (C)")),
+             ("What does Cloze cost? (Section VI-C)", ("judge", "refusals")))
+# The label column: a registered hypothesis's label, or what the row is when it is not one.
+T1_LABELS = {"H3 (A–D)": "H3", "HL1 (L)": "HL1", "H1 (A, B)": "H1", "H4-D (D)": "H4-D",
+             "H4-D′ (D)": "H4-D′", "H2 (C)": "H2", "chance": "post hoc", "judge": "measured",
+             "refusals": "measured"}
 # The tags lead their cells in italic (TableSpec.tag_col).
-T1_TAGS = ("Design check:", "Test of R1:", "Not a test:")
+T1_TAGS = ("Not a test:",)
 T1_CHECKS = {
-    "H3 (A–D)": "Design check: does the core keep out of its requests each value, name and "
-                "date the corpus generator wrote?",
-    "HL1 (L)": "On public court judgments, is every string identifying a person on its own "
-               "(DIRECT) kept from the cloud?",
-    "H1 (A, B)": "Test of R1: does r1 exceed baseline on RBA and attribute accuracy?",
-    "H4-D (D)": "Test of R1: is r1's RBA gain smaller on D? The header lexicon lacks about "
-                "half its budget-column headers",
-    "H4-D′ (D)": "Not a test: does r1 cover less on D than on A and B?",
-    "H2 (C)": "Design check: with no prose route in R1, does r1 cover less than baseline on "
-              "C, whose figures are in prose?",
+    "H3 (A–D)": "Synthetic corpora A–D: does Cloze's local code keep every value, name and "
+                "date the corpus generator wrote out of its requests (the goal and "
+                "cloud-reply repeats excluded)?",
+    "HL1 (L)": "Court judgments (track L): does every direct identifier stay out, with a "
+               "valid run on every collection?",
+    "chance": "Do the baseline's drafts bind money values to the attribute their sentence "
+              "names more often than chance (RBA rule, not validated)?",
+    "H1 (A, B)": "Does the fact store raise RBA and attribute accuracy above baseline on "
+                 "corpora A and B?",
+    "H4-D (D)": "Is the fact store's gain smaller on corpus D, whose headers its lexicon "
+                "mostly lacks?",
+    "H4-D′ (D)": "Not a test: does the fact store cover less on corpus D than on A and B?",
+    "H2 (C)": "Does the fact store state fewer facts on corpus C, whose figures are in prose?",
+    "judge": "Judged quality (1–5 scale) of the private arms' reports, by the model that "
+             "also writes the oracle's",
+    "refusals": "Clean payloads that the deployed chain refuses",
 }
 # H3's registered exclusions (scope §8.7: the goal and spans repeating a cloud reply)
 # and H2's floor rule (scope §8.7a), so that the cell is the rule that decided.
@@ -5189,13 +5370,12 @@ T1_RULE_TAILS = {
     "H3 (A–D)": " (goal and spans repeating a cloud reply excluded)",
     "H2 (C)": "; post-pilot, a half at the floor is not testable and the other half decides",
 }
-T1_NOTE = ("Not testable (neither holds nor fails): a value or run the rule needs is missing "
+T1_NOTE = ("H1 to H4-D′ and HL1 are the registered hypotheses, whose rules are in the "
+           "repository's registration (Section VIII); post hoc and measured rows are not tests. "
+           "Not testable (neither holds nor fails): a value or run the rule needs is missing "
            "and none available violates it (a run with fewer than «min_rba_pool» scored "
-           "occurrences has no RBA). At H2's floor, r1's highest and baseline's lowest value "
-           "are both zero. Post-pilot: registered after the pilot, before the batch; HL1 was "
-           "registered before the L batch, the rest before the pilot. Arm r1 runs R1, the "
-           "local fact store; baseline does not. In parentheses: the corpora (A–D synthetic; "
-           "L, court judgments).")
+           "occurrences has no RBA). Post-pilot: registered after the pilot, before the batch; "
+           "HL1 was registered before the L batch, the rest before the pilot.")
 
 
 def _t1_outcomes(v: dict[str, str]) -> dict[str, str]:
@@ -5206,7 +5386,7 @@ def _t1_outcomes(v: dict[str, str]) -> dict[str, str]:
                            "«n_corpora_measured» extractions, one per corpus"
                            if v.get("h3_outcome") == "holds" else "")
     hl1 = "«hl1_outcome»" + (": no valid run on «l_collections_planner_refused_kn» "
-                             "collections, whose planner request M refused"
+                             "collections, whose planner request the monitor refused"
                              if v.get("hl1_outcome") == nt
                              and "l_collections_planner_refused_kn" in v else "")
     h1 = ("«h1_A_outcome»" if v.get("h1_A_outcome") == v.get("h1_B_outcome")
@@ -5222,11 +5402,15 @@ def _t1_outcomes(v: dict[str, str]) -> dict[str, str]:
             and all(v.get(f"h4d_rba_gain_vs_{L}_outcome") == nt for L in "AB")):
         parts.append("baseline has an RBA in «rba_baseline_D_n» runs on D")
     if all(v.get(f"h4d_structural_share_vs_{L}_outcome") == "holds" for L in "AB"):
-        parts.append("share half (not a test) holds")
+        parts.append("the store holds a smaller share of D's table facts than of A's and B's "
+                     "(not a test)")
     else:
         parts.append("share half: «h4d_structural_share_vs_A_outcome» against A, "
                      "«h4d_structural_share_vs_B_outcome» against B")
-    h2 = "«h2_outcome»" + (" on coverage_stated alone (post-pilot floor rule)"
+    # The cell also says the pre-pilot reading would not give "holds" (§6.2; 2026-10-28,
+    # critical review MET6, DIS7).
+    h2 = "«h2_outcome»" + (" on coverage_stated alone (post-pilot floor rule; fails under "
+                           "the pre-pilot reading)"
                            if v.get("h2_coverage_correct_floor") == "yes"
                            and v.get("h2_outcome") == "holds" else "")
     return {"H3 (A–D)": h3, "HL1 (L)": hl1, "H1 (A, B)": h1,
@@ -5235,27 +5419,58 @@ def _t1_outcomes(v: dict[str, str]) -> dict[str, str]:
             "H2 (C)": h2}
 
 
+def _upper(cell: str) -> float | None:
+    """The largest number in a value or ``lo–hi`` range; None for n/a."""
+    nums = re.findall(r"\d+(?:\.\d+)?", cell or "")
+    return max(float(n) for n in nums) if nums else None
+
+
+def _t1_extra_results(v: dict[str, str]) -> dict[str, str]:
+    """The rows that are not registered hypotheses (Table 1 since 2026-10-29), each verdict
+    written only when the values bear it out."""
+    out: dict[str, str] = {}
+    if {"chance_baseline_attr_obs", "chance_baseline_attr"} <= set(v):
+        lead = ("At chance: " if v["chance_baseline_attr_obs"] == v["chance_baseline_attr"]
+                else "")
+        out["chance"] = lead + "«chance_baseline_attr_obs» against a chance level of " \
+                               "«chance_baseline_attr»"
+    if {"judge_private_range", "judge_mean_exgr_oracle"} <= set(v):
+        hi, oracle = _upper(v["judge_private_range"]), _num(v, "judge_mean_exgr_oracle")
+        lead = "Below the oracle: " if hi is not None and oracle is not None and hi < oracle \
+            else ""
+        out["judge"] = (lead + "«judge_private_range» against «judge_mean_exgr_oracle»; not a "
+                        "usability measure")
+    if {"fp_deployed_reset", "fp_standalone_shingle"} <= set(v):
+        out["refusals"] = ("Measured: «fp_deployed_reset» by the entropy and regex screens, all "
+                           "compact JSON or code; «fp_standalone_shingle» by containment alone")
+    return out
+
+
 def _table_hypotheses_manuscript(nb: Numbers) -> TableSpec:
-    """The manuscript's Table 1 (T1_HEADER): what each hypothesis checks, its
-    registered rule, and its outcome with the reason."""
+    """The manuscript's Table 1 (T1_HEADER), results at a glance since 2026-10-29: each row
+    a label, what was tested in plain words, and its result with the outcome first; the
+    registered hypotheses' outcomes and reasons are _t1_outcomes', HL1's with its admitted
+    runs' crossings."""
     v = nb.values
 
     def keyed(text: str) -> str:
         return re.sub(r"«([^»]+)»", lambda m: _k(v, m.group(1)), text)
 
-    rules = {h: rule + T1_RULE_TAILS.get(h, "") for h, _reg, rule in T4_RULES}
-    outcome = _t1_outcomes(v)
-    if "hl1_outcome" in v:
-        rules[T4_HL1[0]] = T4_HL1[2]
+    result = {h: o for h, o in _t1_outcomes(v).items()
+              if h != T4_HL1[0] or "hl1_outcome" in v}
+    if T4_HL1[0] in result and {"l_runs", "l_direct_crossed_kn", "l_quasi_crossed_kn"} <= set(v):
+        result[T4_HL1[0]] += ("; in «l_runs» admitted runs, «l_direct_crossed_kn» direct and "
+                              "«l_quasi_crossed_kn» quasi-identifier strings crossed")
+    result |= _t1_extra_results(v)
     rows: list[Any] = []
-    for group, hyps in T1_GROUPS:
-        present = [h for h in hyps if h in rules]
+    for group, items in T1_GROUPS:
+        present = [h for h in items if h in result]
         if present:
             rows.append(("panel", group))
-            rows += [[h, T1_CHECKS[h], rules[h], keyed(outcome[h])] for h in present]
-    return TableSpec("t1", "Table 1", "Registered hypotheses and outcomes.", list(T1_HEADER),
+            rows += [[T1_LABELS[h], T1_CHECKS[h], keyed(result[h])] for h in present]
+    return TableSpec("t1", "Table 1", "Results at a glance.", list(T1_HEADER),
                      rows, notes=[keyed(T1_NOTE)], widths=list(T1_WIDTHS), tag_col=1,
-                     lead_bold_col=3, row_rules=True)
+                     lead_bold_col=2, row_rules=True)
 
 
 def table_hypotheses(nb: Numbers, reasons: bool = False) -> TableSpec:
@@ -6101,8 +6316,10 @@ FIG_RESULTS_WIDTH_IN = 6.5
 # fill matches marker plus description and removes both, and test_assemble_manuscript.py:558
 # and test_make_paper_tables.py:1417-1425 bind the three to the committed skeleton, which this
 # revision does not rebuild.
-FIG_RESULTS_CAPTION_TEXT = ("Fig. 3. What crosses, attribute accuracy under the unvalidated RBA "
-                            "rule, and what it costs.")
+# Since 2026-10-29 (the author's choice, with Table 1 as results at a glance): what reaches
+# the cloud, Cloze against masking and redaction; attribute accuracy and judged quality are
+# Table 1's and §6's, no longer drawn.
+FIG_RESULTS_CAPTION_TEXT = "Fig. 3. What reaches the cloud: Cloze against masking and redaction."
 FIG_RESULTS_SHADES = {"baseline": "#c9c9c9", "r5": "#8a8a8a", "r1": "#1f4e79",
                       "oracle": "white", "masking": "#6b6b6b"}
 
@@ -6117,14 +6334,32 @@ def _num(v: dict[str, str], key: str) -> float | None:
 # Every text in the figure is 7 pt or more and panel (b) says its bars are means
 # (pre-submission audit of 2026-10-25), and since 2026-10-26 (R3(g)) that its rule is not
 # validated.
+def _cell_range(cell: str) -> tuple[float | None, float | None]:
+    """The min and max of a ``mean [min–max]`` cell; (None, None) for a single value
+    or n/a."""
+    m = re.search(r"\[(\d+(?:\.\d+)?)–(\d+(?:\.\d+)?)\]", cell or "")
+    return (float(m.group(1)), float(m.group(2))) if m else (None, None)
+
+
+def _fraction(v: dict[str, str], key: str) -> tuple[int, int]:
+    """A ``k/n`` count value as (k, n); refused unless it is one."""
+    m = re.fullmatch(r"(\d+)/(\d+)", v.get(key, NA))
+    if not m or int(m.group(2)) == 0:
+        raise ValueError(f"Fig. 3(b) needs {key} as k/n, got {v.get(key, NA)!r}")
+    return int(m.group(1)), int(m.group(2))
+
+
 def make_fig_results(v: dict[str, str], out_dir: Path) -> tuple[Path, Path]:
-    """(a) generator-written constants a masked document keeps per corpus (the
-    shared extraction, parsed documents) against Cloze's core-sent content, where
-    H3 found none; (b) mean attribute accuracy per corpus and arm, the oracle's
-    mean with its min-max; (c) judged quality per arm and the oracle's."""
+    """Since 2026-10-29: (a) generator-written constants a masked document keeps per corpus
+    (the shared extraction, parsed documents) against Cloze's core-sent content, where the
+    synthetic leak test (H3) found none; (b) on the court judgments, the labelled identifier
+    strings Presidio's redaction leaves in its text (all collections) against those that
+    crossed in Cloze's admitted runs, with the collections whose planner request the monitor
+    refused. Different collection sets, side by side, unranked."""
     import matplotlib  # noqa: PLC0415
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt  # noqa: PLC0415
+    from matplotlib.lines import Line2D  # noqa: PLC0415
     from matplotlib.patches import Patch  # noqa: PLC0415
     plt.rcParams.update({
         "font.family": "serif",
@@ -6140,9 +6375,16 @@ def make_fig_results(v: dict[str, str], out_dir: Path) -> tuple[Path, Path]:
             for a in ARM_ORDER):
         raise ValueError("Fig. 3(a) draws Cloze's constants as zero only where H3 holds "
                          "and every arm's count is 0")
-    fig, axes = plt.subplots(1, 3, figsize=(FIG_RESULTS_WIDTH_IN, 1.7),
-                             gridspec_kw={"width_ratios": [1.0, 1.55, 0.9]})
-    shade = FIG_RESULTS_SHADES
+    pres = {"DIRECT": _fraction(v, "l_presidio_direct_kn"),
+            "QUASI": _fraction(v, "l_presidio_quasi_kn")}
+    cloze = {"DIRECT": _fraction(v, "l_direct_crossed_kn"),
+             "QUASI": _fraction(v, "l_quasi_crossed_kn")}
+    refused = v.get("l_collections_planner_refused_kn", NA)
+    n_pres, n_adm = v.get("l_presidio_collections", NA), v.get("l_collections_admitted", NA)
+    if not re.fullmatch(r"\d+/\d+", refused) or not n_pres.isdigit() or not n_adm.isdigit():
+        raise ValueError("Fig. 3(b) needs the refused, Presidio and admitted collection counts")
+    fig, axes = plt.subplots(1, 2, figsize=(FIG_RESULTS_WIDTH_IN, 1.7),
+                             gridspec_kw={"width_ratios": [1.0, 1.75]})
     # (a)
     ax = axes[0]
     xs = range(len(letters))
@@ -6161,74 +6403,52 @@ def make_fig_results(v: dict[str, str], out_dir: Path) -> tuple[Path, Path]:
     ax.set_ylim(0, max(kept) * 1.8)
     ax.set_yticks([0, 2, 4, 6])
     ax.set_ylabel("distinct constants")
-    ax.set_title("(a) Generator-written constants", fontsize=7.5, loc="left")
-    from matplotlib.lines import Line2D  # noqa: PLC0415
+    ax.set_title("(a) Synthetic corpora: generator-written constants", fontsize=7.5,
+                 loc="left")
     ax.legend(handles=[Patch(facecolor="white", edgecolor="#333333", hatch="////", lw=0.5,
                              label="left by entity masking (offline)"),
                        Line2D([], [], marker="D", ls="none", color="#111111", markersize=3,
-                              label="core-sent content (H3)")],
+                              label="in Cloze's requests")],
               fontsize=7, frameon=False, loc="upper left", handlelength=1.0,
               borderaxespad=0.1, labelspacing=0.25, handletextpad=0.4)
     # (b)
     ax = axes[1]
-    arms = [*ARM_ORDER, "oracle"]
-    w = 0.2
-    for i, arm in enumerate(arms):
-        for gi, L in enumerate(letters):
-            x = gi + (i - 1.5) * w
-            val = _num(v, f"attr_{arm}_{L}")
-            if val is None:
-                ax.text(x, 0.02, "n/a", rotation=90, ha="center", va="bottom", fontsize=7,
-                        color="#555555")
-                continue
-            ax.bar(x, val, width=w * 0.92, color=shade[arm], edgecolor="#333333",
-                   lw=0.5 if arm == "oracle" else 0)
-            if arm == "oracle":
-                lo = _num(v, f"attr_oracle_{L}_min")
-                hi = _num(v, f"attr_oracle_{L}_max")
-                if lo is not None and hi is not None:
-                    ax.plot([x, x], [lo, hi], color="#333333", lw=0.6)
-    ax.set_xticks(range(len(letters)))
-    ax.set_xticklabels([L + ("*" if L == "A" else "") for L in letters])
-    # Two lines above the bars since the 6.5 in width of 2026-10-25: on one line the note
-    # was wider than the panel and ran into panel (a)'s legend.
-    # R3(g) of the simulated review of 2026-10-26 (the AI assistant, at the author's request
-    # "đồng ý với đề xuất, chỉnh sửa toàn bộ theo yêu cầu"): the title says the rule is not
-    # validated and a third note line gives its held-out κ on r1, a numbers.json value; the
-    # y-limit makes room for the third line above the tallest bar and whisker.
-    ax.set_ylim(0, 1.5)
-    ax.set_yticks([0, 0.5, 1.0])
-    ax.spines["left"].set_bounds(0, 1.0)
-    ax.set_ylabel("mean attribute accuracy")
-    ax.set_title("(b) Attribute accuracy (RBA rule, not validated)", fontsize=7.5, loc="left")
-    kappa = presented(v.get("cal_heldout_B_r1_kappa", NA))  # U+2212, as the fill prints the text
-    ax.text(len(letters) - 0.5, 1.49,
-            f"private-arm bars: means of {v.get('n_registered_repeats', NA)} runs;\noracle: mean "
-            f"and min–max; *in-sample;\nrule's held-out κ on r1: {kappa}", ha="right", va="top",
-            fontsize=7, color="#333333", linespacing=1.1)
-    # (c)
-    ax = axes[2]
-    vals = [_num(v, f"judge_mean_exgr_{a}") for a in arms]
-    ax.bar(range(len(arms)), [x - 1 for x in vals], bottom=1, width=0.62,
-           color=[shade[a] for a in arms], edgecolor="#333333",
-           linewidth=[0.5 if a == "oracle" else 0 for a in arms])
-    for i, x in enumerate(vals):
-        ax.text(i, x + 0.08, f"{x:.2f}", ha="center", va="bottom", fontsize=7)
-    ax.set_xticks(range(len(arms)))
-    ax.set_xticklabels(arms, fontsize=7)
-    ax.set_ylim(1, 5.6)
-    ax.set_yticks([1, 2, 3, 4, 5])
-    ax.set_ylabel("judged quality (1–5)")
-    ax.set_title("(c) Judged quality", fontsize=7.5, loc="left")
+    ys, labels = [], []
+    y = 0.0
+    for kind in ("DIRECT", "QUASI"):
+        for who, (k, n), style in (("Presidio redaction", pres[kind], "pres"),
+                                   ("Cloze", cloze[kind], "cloze")):
+            share = k / n
+            if style == "pres":
+                ax.barh(y, share, height=0.62, color="white", edgecolor="#333333",
+                        hatch="////", lw=0.5)
+            else:
+                ax.barh(y, share, height=0.62, color=FIG_RESULTS_SHADES["r1"], lw=0)
+                ax.scatter([share], [y], marker="D", s=10, color="#111111", zorder=3,
+                           clip_on=False)
+            ax.text(share + 0.012, y, f"{k}/{n}", va="center", ha="left", fontsize=7)
+            ys.append(y)
+            labels.append(f"{kind}: {who}")
+            y += 1.0
+        y += 0.5
+    ax.set_yticks(ys)
+    ax.set_yticklabels(labels, fontsize=7)
+    ax.invert_yaxis()
+    ax.set_xlim(0, 0.62)
+    ax.set_xticks([0, 0.2, 0.4, 0.6])
+    ax.set_xlabel("share of labelled identifier strings", labelpad=1.5)
+    ax.set_title("(b) Court judgments: identifier strings left or crossed", fontsize=7.5,
+                 loc="left")
+    # The note sits in the empty right of the DIRECT: Cloze row, clear of every bar label.
+    ax.text(0.61, ys[1],
+            f"Presidio: all {n_pres} collections; Cloze: the {n_adm} admitted ones.\n"
+            f"Planner request refused on {refused} collections (no report).",
+            ha="right", va="center", fontsize=7, color="#333333", linespacing=1.1)
     for ax in axes:
         for sp in ("top", "right"):
             ax.spines[sp].set_visible(False)
         ax.tick_params(length=2, pad=1.5)
-    fig.legend(handles=[Patch(facecolor=shade[a], edgecolor="#333333",
-                              linewidth=0.5 if a == "oracle" else 0, label=a) for a in arms],
-               loc="upper center", ncol=4, frameon=False, fontsize=7,
-               bbox_to_anchor=(0.66, 1.0), handlelength=1.0, columnspacing=1.2)
-    fig.tight_layout(rect=(0, 0, 1, 0.9), w_pad=1.2)
+    fig.tight_layout(w_pad=1.6)
     png, svg = out_dir / FIG_RESULTS_PNG, out_dir / "fig3_results.svg"
     fig.savefig(png, dpi=FIG_DPI, metadata={"Software": None})
     fig.savefig(svg, metadata={"Date": None, "Creator": None})
@@ -6510,14 +6730,17 @@ def wire_excerpt(run_dir: Path, surfaces: list[str], entities: list[str],
 # The caption names the run's corpus, not its run directory and exchange, which are
 # the artifact's identifiers (change set of 2026-10-10, FIG-2; review MR10); the
 # fig2_run and fig2_exchange keys stay in numbers.json for the artifact.
-FIG2_CAPTION_HEAD = "Fig. 2. r1 egress excerpt from a frozen run on corpus «fig2_corpus»: "
+# "a registered run", not "a frozen run", which the text never defines (2026-10-28,
+# critical review PRE7).
+FIG2_CAPTION_HEAD = "Fig. 2. r1 egress excerpt from a registered run on corpus «fig2_corpus»: "
 FIG2_CAPTION_TAIL = (
     "SENT and RECEIVED hold none of the «fig2_surfaces_checked» rendered forms of the "
     "corpus's generator-written constants and none of the run's «fig2_entities_checked» "
     "extracted entity strings.")
 FIG2_CAPTION_LOCAL = ("the cloud's sentence with fact references (RECEIVED); and its local "
                       "resolution (LOCAL), which C never observes. ")
-FIG2_CAPTION_SHORT = "Fig. 2. Wire excerpt of arm r1 from a frozen run on corpus «fig2_corpus»."
+FIG2_CAPTION_SHORT = ("Fig. 2. Wire excerpt of arm r1 from a registered run on corpus "
+                      "«fig2_corpus».")
 # The full listing's caption (--fig2-full).
 FIG2_CAPTION_FULL = (
     FIG2_CAPTION_HEAD
@@ -6747,6 +6970,16 @@ def build(args: argparse.Namespace) -> Numbers:
         ph = _load(posthoc, "posthoc.json")
         check_review_inputs(ph, {"evaluation.json": args.evaluation}, POSTHOC_INSTRUMENT)
         numbers_from_posthoc(nb, ph, corpora)
+    # Scope §14 (2026-10-27): optional, read after the track-L keys it cross-checks.
+    posthoc_l = getattr(args, "posthoc_l", None)
+    if posthoc_l:
+        phl = _load(posthoc_l, "posthoc_l.json")
+        presidio = {p.name: p for p in (getattr(args, "presidio", None) or [])
+                    if p.name in ("presidio_tab-L1.json", "presidio_tab-L2.json")}
+        check_review_inputs(phl, {"real_l_scan.json": getattr(args, "real_l", None),
+                                  "refusal_sim.json": getattr(args, "refusal_sim", None),
+                                  **presidio}, POSTHOC_L_INSTRUMENT)
+        numbers_from_posthoc_l(nb, phl)
     check_commit_binding(ev, meta, getattr(args, "allow_commit_mismatch", False))
     check_meta_dates(meta, ev, runs_dir)
 
@@ -6913,6 +7146,11 @@ def main(argv: list[str] | None = None) -> int:
                          "the post-hoc and exploratory analyses of scope §13 (S6's short "
                          "n-grams, S13's judged-quality spread and interval and Cliff's delta); "
                          "keys s6_*, judge_sd_*, judge_minmax_*, judge_ci_* and cliff_*")
+    ap.add_argument("--posthoc-l", type=Path, default=None, metavar="POSTHOC_L_JSON",
+                    help="build: scripts/posthoc_2026_10_27.py output (eval/paper/posthoc_l.json), "
+                         "the post-hoc and exploratory track-L analyses of scope §14 (Presidio "
+                         "on the admitted collections, the r1 drafter system field, the refused "
+                         "collections); keys l_presidio_admitted_*, l_r1_sysfield_*, l_refused_*")
     ap.add_argument("--skeleton", type=Path, default=DEFAULT_SKELETON)
     ap.add_argument("--threat-model", type=Path, default=_REPO / "THREAT_MODEL.md")
     ap.add_argument("--fig2-run", type=Path, default=None)

@@ -74,7 +74,7 @@ from typing import Any
 TEMPLATE_PDF = "paper/IEEE_conference_template.pdf"
 # The running head (ICCIT: "not exceeding 50-character spaces"); the assembler and the
 # skeleton keep their own copy, and a test pins the three.
-RUNNING_HEAD = "Cloze: Reference Monitor and Role Binding"
+RUNNING_HEAD = "Cloze: Egress Monitor and Role-Binding Problem"
 
 # Twentieths of a point (twips), as Word stores them.
 PAGE_W, PAGE_H = 12240, 15840
@@ -410,14 +410,18 @@ def paginate(doc, running_head: str) -> None:
 # The author block in the form the author gave on 2026-10-26 (a Springer-style block:
 # the names with the corresponding author's mark, the affiliation, then the e-mail
 # addresses, "{hung.ld2, tam.th}@vgu.edu.vn"). The corresponding author is named last,
-# so the mark follows the names. The e-mail line is in the affiliation's face, Times
-# New Roman, since the author's report of the same day ("lỗi font email tác giả")
-# that its monospaced face (Courier New) was wrong; the ICCIT instruction names no
-# face for it.
+# so the mark follows the last name. Since 2026-10-28 the ORCID iDs stand on a line of
+# their own after the e-mail line (the author's choice "ORCID đứng riêng 1 dòng", which
+# replaced the same day's superscript iDs after the names), each followed by its author's
+# name; the line is the assistant's form (paper/VENUE_FACTS.md). The e-mail line is in the
+# affiliation's face, Times New Roman, since the author's report of 2026-10-26 ("lỗi
+# font email tác giả") that its monospaced face (Courier New) was wrong; the ICCIT
+# instruction names no face for it.
 # U+FE0E asks for the plain (text) glyph. DejaVu Sans has a plain U+2709; a face that is
 # not installed (Segoe UI Symbol under LibreOffice) fell back to a colour emoji face.
 # Word without DejaVu Sans substitutes, and its symbol fallback draws the plain glyph.
 CORRESPONDING_MARK = "(\u2709\ufe0e)"
+ORCID_LABEL = "ORCID: "
 MARK_FONT = "DejaVu Sans"
 
 
@@ -426,16 +430,26 @@ def _run_font(run, name: str) -> None:
     _set_fonts(run._r.get_or_add_rPr(), name)
 
 
-def author_block(doc, names: str, affiliation: str, email: str):
-    """The names (AUTHOR style) with the corresponding author's mark in superscript,
-    the affiliation and the e-mail line (AFFILIATION style, both in its face);
+def author_block(doc, authors, affiliation: str, email: str):
+    """The names (AUTHOR style), `authors` being (name, ORCID iD) pairs in order:
+    "A and B", or "A, B and C", the last name, the corresponding author's, followed
+    by the mark in superscript. Then the affiliation, the e-mail line and the ORCID
+    line, "ORCID: iD (name); iD (name)" (AFFILIATION style, all in its face);
     returns the last paragraph, which the title block's section ends at."""
-    p = doc.add_paragraph(names, style=AUTHOR)
+    p = doc.add_paragraph(style=AUTHOR)
+    last = len(authors) - 1
+    for i, (name, _orcid) in enumerate(authors):
+        if i:
+            p.add_run(" and " if i == last else ", ")
+        p.add_run(name)
     mark = p.add_run(CORRESPONDING_MARK)
     mark.font.superscript = True
     _run_font(mark, MARK_FONT)
     doc.add_paragraph(affiliation, style=AFFILIATION)
-    return doc.add_paragraph(email, style=AFFILIATION)
+    doc.add_paragraph(email, style=AFFILIATION)
+    return doc.add_paragraph(ORCID_LABEL + "; ".join(f"{orcid} ({name})"
+                                                     for name, orcid in authors),
+                             style=AFFILIATION)
 
 
 def _body_sect(doc):

@@ -157,6 +157,30 @@ def _crossings() -> dict:
         "per_task": [], "reconstruction": {"by_arm": {}}}
 
 
+def test_a_count_cell_prints_whole_minimum_and_maximum_without_decimals():
+    # 2026-10-28 (critical review PRE10): '28.7 [20.0–37.0]' beside '17.2 [6–37]'.
+    stat = {"n": 3, "mean": 28.7, "stdev": 8.5, "min": 20.0, "max": 37.0}
+    assert M._fmt_count_cell(stat, 3) == "28.7 [20–37]"
+    assert M._fmt_count_cell({**stat, "min": 20.5}, 3) == "28.7 [20.5–37.0]"
+    assert M._fmt_count_cell({**stat, "n": 2}, 3) == "28.7 [20–37] (2 of 3 runs)"
+    assert M._fmt_count_cell(None, 3) == "n/a"
+
+
+def test_h3s_exclusions_are_counted_by_kind_and_n_a_when_the_block_has_none():
+    # 2026-10-28 (critical review ANA6): the spans H3's scan excluded are counted, goal
+    # and cloud-reply repeats apart, and how many of the latter are label words.
+    ev = _crossings()
+    ev["crossings"]["a_generator_surfaces"]["excluded"] = {
+        "user-goal": [], "cloud-echo": [{"label_group": True}, {"label_group": False}]}
+    nb = M.Numbers()
+    M.numbers_from_crossings(nb, M.Src("evaluation.json", ev))
+    assert (nb["h3_excluded_goal"], nb["h3_excluded_cloud_echo"],
+            nb["h3_excluded_cloud_echo_label"]) == ("0", "2", "1")
+    nb = M.Numbers()
+    M.numbers_from_crossings(nb, M.Src("evaluation.json", _crossings()))
+    assert nb["h3_excluded_goal"] == nb["h3_excluded_cloud_echo"] == "n/a"
+
+
 def test_a_crossing_count_is_na_for_a_missing_arm_and_carries_its_scanned_runs():
     nb = M.Numbers()
     M.numbers_from_crossings(nb, M.Src("evaluation.json", _crossings()))
@@ -531,7 +555,7 @@ def test_the_g1_fields_are_also_named_in_words_for_running_text():
     nb = M.Numbers()
     M.numbers_from_probes(nb, [M.Src("probe/a.json", pr)], corpora, ["A", "C"])
     assert nb["g1_differs_r1"] == "document_stats, slot_counts, relation_multiset"
-    assert nb["g1_differs_r1_text"] == "document statistics, slot counts and relation multiset"
+    assert nb["g1_differs_r1_text"] == "document statistics, slot counts and relation set"
     assert nb["g1_same_r1_text"] == "attribute schema and document count"
     assert nb["g1_same_baseline"] == "none" and nb["g1_same_baseline_text"] == "none"
     assert nb["g1_same_r5_text"] == "new field"
@@ -753,61 +777,33 @@ def test_the_in_sample_row_must_be_the_assistants_non_blind_row():
 
 
 def test_the_setup_draft_states_each_calibration_row_as_cal_rows_does():
-    """05_setup.md's calibration sentence quotes every row's occurrences,
-    agreement and kappa by key, and says of each row what CAL_ROWS says: whose
-    labels, blind or not, in-sample or not. There is no table marker left."""
+    """Since 2026-10-29 (the author's "quá nhiều thông số trong phần Hypothesis, Evaluation",
+    choosing to keep only the numbers that answer §6's questions): 05_setup.md quotes the
+    planned out-of-sample row (the held-out r1 report) by its agreement and kappa keys, says
+    whose labels they are and what they were blind to, and names every other row of CAL_ROWS
+    as the repository's, saying of each what CAL_ROWS says (in-sample, whose labels, blind
+    or not). No other calibration key is in the prose. There is no table marker left."""
     text = (_REPO / "paper" / "sections" / "05_setup.md").read_text(encoding="utf-8")
     prose = re.sub(r"<!--.*?-->", "", text, flags=re.S)
     assert "[TABLE (inline) PLACEHOLDER]" not in text
-    paragraph = next(s for s in prose.split("\n") if "«cal_" in s)
-    sentence = next(s for s in re.split(r"(?<=\.)\s+(?=[A-Z])", paragraph) if "«cal_" in s)
-    keys = set(M.PLACEHOLDER_RE.findall(sentence))
-    # The registered rows; an exploratory row (CAL_EXPLORATORY) may be stated
-    # once its labels exist, and is not required.
-    stated = {rid: v for rid, v in M.CAL_ROWS.items() if rid not in M.CAL_EXPLORATORY}
-    fields = ("occurrences", "agreement", "kappa")
-    assert {f"cal_{rid}_{f}" for rid in stated for f in fields} <= keys
-    assert keys <= {f"cal_{rid}_{f}" for rid in M.CAL_ROWS for f in fields}
-    # One sentence states the registered rows; the sentences after it (the
-    # change set of 2026-10-10, SET-5) may quote the review's agreement statistics
-    # of any row (numbers_from_review) and the exploratory row's own figures.
-    # Since 2026-10-26 (SET-8 of the revision after the simulated review, R3(b); the AI
-    # assistant, at the author's request "đồng ý với đề xuất, chỉnh sửa toàn bộ theo yêu
-    # cầu"), a later sentence may also quote a row's confusion counts
-    # (cal_<id>_cm_<human>_<rule>), which make_paper_tables.py produces from the same review.
-    stats = (*M.CAL_FIELDS, "pabak", "ac1", "kappa_pe", "kappa_ci", "kappa_ci_undefined",
-             *(f"{w}_{c}" for w in ("human", "rule") for c in M._CAT_SHORT.values()),
-             *(f"cm_{h}_{q}" for h in M._CAT_SHORT.values() for q in M._CAT_SHORT.values()))
-    rest = {k for k in M.PLACEHOLDER_RE.findall(prose) if k.startswith("cal_")} - keys
-    assert rest <= {f"cal_{rid}_{f}" for rid in M.CAL_ROWS for f in stats}, rest
-    assert not rest & {f"cal_{rid}_{f}" for rid in stated for f in fields}, rest
-
-    # Blind rows first, the author's, stated as not in-sample by X5 (4)'s reason
-    # for the mark (labels written with the rule), since "not in-sample" would read
-    # against Hypotheses' "A is in-sample for the fix"; then, apart, the
-    # assistant's in-sample row. Since the review of 2026-10-09 the sentence may
-    # say that the development rows are in-sample for the one-time lexicon fix
-    # (made on their labels), and only in that sense, before the held-out row.
-    head, _, rest = sentence.partition("with the AI coding assistant")
-    blind, apart = head, "with the AI coding assistant" + rest
-    assert rest, "the assistant's row is stated apart from the blind rows"
-    assert "author's blind labels, none written with the rule," in blind.split("«cal_")[0]
-    assert all(not ins for _, b, ins in M.CAL_ROWS.values() if b)
-    assert all(f"«cal_{rid}_" in blind for rid, (_, b, _) in stated.items() if b)
-    assert all(f"«cal_{rid}_" in apart for rid, (_, b, _) in stated.items() if not b)
-    assert "assistant" in apart and "non-blind" in apart and "in-sample" in apart
-    fix = "in-sample for the one-time lexicon fix"
-    assert "in-sample" not in blind.replace(fix, "") and "non-blind" not in blind
-    assert fix not in blind.split("«cal_heldout_B_r1_")[1]
-    # Each blind row names its report.
-    for rid, report in (("dev_A_r1", "development r1 report on corpus A"),
-                        ("dev_A_oracle", "its oracle report"),
-                        ("heldout_B_r1", "held-out r1 report on corpus B")):
-        after = blind.split(f"«cal_{rid}_agreement»")[1]
-        assert after.split("«")[0].strip().endswith(report + " ("), (rid, after[:60])
-    assert "baseline report on corpus A" in apart
-    assert "gold-valued occurrences" in sentence and "Cohen's κ" in sentence
-    assert "attribute axis" in sentence
+    keys = {k for k in M.PLACEHOLDER_RE.findall(prose) if k.startswith("cal_")}
+    assert keys == {"cal_heldout_B_r1_agreement", "cal_heldout_B_r1_kappa"}
+    paragraph = next(s for s in prose.split("\n") if "«cal_heldout_B_r1_kappa»" in s)
+    sentence = next(s for s in re.split(r"(?<=\.)\s+(?=[A-Z])", paragraph)
+                    if "«cal_heldout_B_r1_kappa»" in s)
+    assert M.CAL_ROWS["heldout_B_r1"] == ("author", True, False)
+    assert "first author's labels" in sentence and "blind to its output but not to the arm" \
+        in sentence
+    assert "held-out r1 report" in sentence and "at chance" in sentence
+    assert "Cohen's κ" in sentence and "gold-valued occurrences" in sentence
+    assert "attribute axis" in sentence and "not validated" in sentence
+    # The other rows are named as the repository's, each as CAL_ROWS describes it.
+    rest = paragraph[paragraph.index(sentence) + len(sentence):]
+    assert "repository" in rest
+    assert "development r1 and oracle reports" in rest and "in-sample for the one-time" in rest
+    assert M.CAL_ROWS["insample_A_baseline"][1] is False
+    assert "baseline report on corpus A" in rest and "non-blind" in rest and "AI assistant" in rest
+    assert "heldout_B_baseline" in M.CAL_EXPLORATORY and "exploratory" in rest
 
 
 def test_the_exploratory_baseline_row_is_the_authors_blind_held_out_row():
@@ -2032,9 +2028,13 @@ def test_fill_pastes_the_listing_as_a_tagged_monospaced_block(tmp_path):
     assert texts[1:1 + len(listing)] == listing
     # The caption names the run's corpus, not its run directory (change set
     # 2026-10-10, FIG-2); without a corpus map, the task id stands for it.
-    assert texts[1 + len(listing)].startswith("Fig. 2. Wire excerpt of arm r1 from a frozen "
+    assert texts[1 + len(listing)].startswith("Fig. 2. Wire excerpt of arm r1 from a registered "
                                               "run on corpus task-a.")
     assert texts[-1] == "After." and not any("PLACEHOLDER" in t for t in texts)
+    # Every listing line keeps with the next, the last with the caption below it, so a
+    # page break cannot part the listing from its caption (2026-10-28: the caption
+    # opened a page alone after the text above it shortened).
+    assert all(p.paragraph_format.keep_with_next for p in f.paragraphs[1:1 + len(listing)])
     local = next(p for p in f.paragraphs if p.text == "LOCAL    " + RESOLVED)
     assert {run.font.name for run in local.runs} == {M.FIG2_FONT}
     # A wrapped line continues under the text, not under the label column; the
@@ -3052,7 +3052,7 @@ def test_the_fig2_caption_is_the_change_sets_and_names_the_corpus():
     cap = M.fig2_caption(ex)
     # "Wire excerpt of arm r1" since 2026-10-25: no caption starts in lower case, and
     # the caption is a title (§4 says the LOCAL line never leaves T).
-    assert cap == "Fig. 2. Wire excerpt of arm r1 from a frozen run on corpus «fig2_corpus»."
+    assert cap == "Fig. 2. Wire excerpt of arm r1 from a registered run on corpus «fig2_corpus»."
     assert "fig2_run" not in cap and "fig2_exchange" not in cap
     assert "the same request lists" not in cap
     full = M.fig2_caption(_excerpt(SENT, RESOLVED))
@@ -3330,7 +3330,7 @@ def test_table3_states_each_hypothesis_with_its_rule_outcome_and_reason():
     # The manuscript's table has its own columns since 2026-10-27 (test below).
     short = M.table_hypotheses(nb)
     assert short.header == M.T1_HEADER and all(
-        len(r) == 4 for r in short.rows if isinstance(r, list))
+        len(r) == 3 for r in short.rows if isinstance(r, list))
     assert spec.caption == "Registered hypotheses and outcomes."
     assert [r[1] for r in spec.rows if isinstance(r, tuple)] == [
         "Design checks", "Hypotheses on R1"]
@@ -3388,47 +3388,66 @@ def _t1(**over) -> M.TableSpec:
     return M.table_hypotheses(nb)
 
 
-def test_the_manuscripts_table1_says_what_each_hypothesis_checks_and_why_its_outcome():
-    """Since 2026-10-27 (the author's "Table I không rõ nghĩa là gì? nên thay đổi"): what
-    each hypothesis checks, its registered rule, its outcome with the reason, grouped by
-    §6's questions, no tints; each reason only for the outcomes it is true of."""
+def test_the_manuscripts_table1_gives_every_result_at_a_glance():
+    """Since 2026-10-29 (the author's "quá nhiều thông số trong phần Hypothesis, Evaluation"):
+    results at a glance, grouped by §6's three questions; each row a label (a registered
+    hypothesis's, or post hoc / measured), what was tested in plain words, and the result
+    with its outcome first, set bold; each reason and verdict only where it is true."""
     spec = _t1(n_corpora_measured="4", hl1_outcome="not testable",
-               l_collections_planner_refused_kn="4/6")
-    assert spec.header == M.T1_HEADER and spec.widths == M.T1_WIDTHS
-    assert spec.shade_col is None and (spec.tag_col, spec.lead_bold_col) == (1, 3)
+               l_collections_planner_refused_kn="4/6", l_runs="12", l_direct_crossed_kn="0/22",
+               l_quasi_crossed_kn="1/340", chance_baseline_attr_obs="0.35",
+               chance_baseline_attr="0.35", judge_private_range="2.18–2.24",
+               judge_mean_exgr_oracle="5.00", fp_deployed_reset="122/500",
+               fp_standalone_shingle="0/500")
+    assert spec.caption == "Results at a glance."
+    assert spec.header == M.T1_HEADER == ["Label", "What was tested", "Result"]
+    assert spec.widths == M.T1_WIDTHS and abs(sum(M.T1_WIDTHS) - 6.5) < 1e-9
+    assert spec.shade_col is None and (spec.tag_col, spec.lead_bold_col) == (1, 2)
     assert [r[1] for r in spec.rows if isinstance(r, tuple)] == [g for g, _ in M.T1_GROUPS]
-    rows = {r[0]: r for r in spec.rows if isinstance(r, list)}
-    assert list(rows) == ["H3 (A–D)", "HL1 (L)", "H1 (A, B)", "H4-D (D)", "H4-D′ (D)",
-                          "H2 (C)"]
-    registered = {h: rule for h, _reg, rule in M.T4_RULES} | {M.T4_HL1[0]: M.T4_HL1[2]}
-    for h, r in rows.items():
-        assert r[1] == M.T1_CHECKS[h]
-        assert r[2].startswith(registered[h])          # the registered rule, verbatim
-        assert r[3].startswith("«")                    # the outcome key leads, set bold
-    assert rows["H3 (A–D)"][3] == ("«h3_outcome»: «h3_hits» hits in «h3_runs_scanned» "
-                                   "private-arm traces, over «n_corpora_measured» "
-                                   "extractions, one per corpus")
-    assert rows["HL1 (L)"][3].endswith("whose planner request M refused")
-    assert rows["H1 (A, B)"][3] == ("«h1_A_outcome»: baseline has an RBA in "
-                                    "«rba_baseline_A_n» runs per corpus")
-    assert rows["H4-D (D)"][3] == ("«h4d_outcome»: baseline has an RBA in «rba_baseline_D_n» "
-                                   "runs on D; share half (not a test) holds")
-    assert rows["H2 (C)"][3] == "«h2_outcome» on coverage_stated alone (post-pilot floor rule)"
-    assert spec.notes[0].startswith("Not testable (neither holds nor fails)")
-    # A reason holds only for its outcome: none when the outcome differs.
-    other = {r[0]: r for r in _t1(h1_A_outcome="holds", h1_B_outcome="holds",
-                                  h1_A_rba_outcome="holds", h1_B_rba_outcome="holds",
-                                  h3_outcome="fails", h2_coverage_correct_floor="no").rows
-             if isinstance(r, list)}
-    assert other["H1 (A, B)"][3] == "«h1_A_outcome»"
-    assert other["H3 (A–D)"][3] == "«h3_outcome»"
-    assert other["H2 (C)"][3] == "«h2_outcome»"
-    assert "HL1 (L)" not in other                      # no track-L keys, no row
-    # The tag is italic and only the outcome key is bold.
-    assert M._lead_segments(M.T1_CHECKS["H1 (A, B)"], tag=True)[0] == ("Test of R1:", False,
+    rows = [r for r in spec.rows if isinstance(r, list)]
+    assert [r[0] for r in rows] == ["H3", "HL1", "post hoc", "H1", "H4-D", "H4-D′", "H2",
+                                    "measured", "measured"]
+    by = {r[0]: r for r in rows}
+    for key, label in M.T1_LABELS.items():
+        if label in by and label != "measured":
+            assert by[label][1] == M.T1_CHECKS[key]
+    assert by["H3"][2] == ("«h3_outcome»: «h3_hits» hits in «h3_runs_scanned» private-arm "
+                           "traces, over «n_corpora_measured» extractions, one per corpus")
+    assert by["HL1"][2] == ("«hl1_outcome»: no valid run on «l_collections_planner_refused_kn» "
+                            "collections, whose planner request the monitor refused; in "
+                            "«l_runs» admitted runs, «l_direct_crossed_kn» direct and "
+                            "«l_quasi_crossed_kn» quasi-identifier strings crossed")
+    assert by["H1"][2] == ("«h1_A_outcome»: baseline has an RBA in «rba_baseline_A_n» runs per "
+                           "corpus")
+    assert by["H4-D"][2] == ("«h4d_outcome»: baseline has an RBA in «rba_baseline_D_n» runs on D; "
+                             "the store holds a smaller share of D's table facts than of A's "
+                             "and B's (not a test)")
+    assert by["H2"][2] == ("«h2_outcome» on coverage_stated alone (post-pilot floor rule; "
+                           "fails under the pre-pilot reading)")
+    assert by["post hoc"][2] == ("At chance: «chance_baseline_attr_obs» against a chance level "
+                                 "of «chance_baseline_attr»")
+    assert rows[-2][2] == ("Below the oracle: «judge_private_range» against "
+                           "«judge_mean_exgr_oracle»; not a usability measure")
+    assert rows[-1][2].startswith("Measured: «fp_deployed_reset» by the entropy and regex")
+    assert spec.notes[0].startswith("H1 to H4-D′ and HL1 are the registered hypotheses")
+    assert "Not testable (neither holds nor fails)" in spec.notes[0]
+    # A verdict holds only where the values bear it out.
+    other = _t1(h1_A_outcome="holds", h1_B_outcome="holds", h1_A_rba_outcome="holds",
+                h1_B_rba_outcome="holds", h3_outcome="fails", h2_coverage_correct_floor="no",
+                chance_baseline_attr_obs="0.50", chance_baseline_attr="0.35",
+                judge_private_range="2.18–5.20", judge_mean_exgr_oracle="5.00")
+    o = {r[0]: r for r in other.rows if isinstance(r, list)}
+    assert o["H1"][2] == "«h1_A_outcome»" and o["H3"][2] == "«h3_outcome»"
+    assert o["H2"][2] == "«h2_outcome»" and "HL1" not in o
+    assert not o["post hoc"][2].startswith("At chance")
+    assert not [r for r in other.rows if isinstance(r, list) and r[2].startswith("Below")]
+    # The tag is italic; a leading outcome key, or a leading verdict and colon, is bold.
+    assert M._lead_segments(M.T1_CHECKS["H4-D′ (D)"], tag=True)[0] == ("Not a test:", False,
                                                                         True)
     assert M._lead_segments("«h3_outcome»: x", bold_key=True) == [
         ("«h3_outcome»", True, False), (": x", False, False)]
+    assert M._lead_segments("Below the oracle: x", bold_key=True)[0] == (
+        "Below the oracle:", True, False)
     paras = [C.Para(M.PLACEHOLDER_RE.sub("", c), "Table Paragraph", "t1", in_table=True)
              for r in spec.rows for c in (r[1:] if isinstance(r, tuple) else r)]
     assert not [f for f in C.check_paragraphs(paras, {}).fails if f.kind == "numeral"]
@@ -3540,6 +3559,25 @@ def _ranges_evaluation() -> dict:
     ev["utility"] = {"position_bias": _spr(0.51, 0.24, 0.0, 1.0, n=84), "judgements": 84,
                      "mean_excluding_groundedness": {"oracle": {"mean": 5.0}}}
     return ev
+
+
+def test_judged_quality_by_presentation_order_is_keyed_for_the_private_reports():
+    # Scope §8.10 registers the judge per criterion and per order; judged quality leaves
+    # groundedness out (2026-10-28, critical review ANA2).
+    ev = _ranges_evaluation()
+    crit = lambda g, c, s, gr: {"goal_coverage": {"mean": g}, "coherence": {"mean": c},  # noqa: E731
+                                "specificity": {"mean": s}, "groundedness": {"mean": gr}}
+    ev["utility"]["by_order"] = {"private_first": {"private": crit(3.0, 3.0, 2.0, 1.0)},
+                                 "oracle_first": {"private": crit(2.0, 2.0, 1.0, 5.0)}}
+    nb = M.Numbers()
+    M.numbers_from_evaluation(nb, M.Src("evaluation.json", ev))
+    assert nb["judge_exgr_private_shown_first"] == "2.67"
+    assert nb["judge_exgr_private_shown_second"] == "1.67"
+    src = nb.sources["judge_exgr_private_shown_second"]["source"]
+    assert "by_order/oracle_first/private" in src
+    nb = M.Numbers()
+    M.numbers_from_evaluation(nb, M.Src("evaluation.json", _ranges_evaluation()))
+    assert nb["judge_exgr_private_shown_first"] == "n/a"
 
 
 def test_the_range_keys_span_the_corpora_with_a_value_and_the_private_arms():
@@ -4081,18 +4119,16 @@ def test_the_artifact_result_figures_are_drawn_at_600_dpi_and_7_in(tmp_path):
 
 
 def test_the_results_figure_is_drawn_from_the_build_values_and_refuses_a_crossing(tmp_path):
-    """Fig. 3 since later on 2026-10-21: three panels, 600 dpi at the text width;
-    panel (a) draws Cloze's constants as zero only where H3 holds and every arm's
-    count is 0."""
+    """Fig. 3 since 2026-10-29: what reaches the cloud, two panels, 600 dpi at the text
+    width; (a) draws Cloze's constants as zero only where H3 holds and every arm's count is
+    0; (b) needs every count as k/n and names the collection sets and the refusals."""
     pytest.importorskip("matplotlib")
-    v = dict(RESULT_VALUES, h3_outcome="holds")
+    v = dict(RESULT_VALUES, h3_outcome="holds", l_presidio_direct_kn="28/65",
+             l_presidio_quasi_kn="337/1001", l_direct_crossed_kn="0/22",
+             l_quasi_crossed_kn="1/340", l_collections_planner_refused_kn="4/6",
+             l_presidio_collections="6", l_collections_admitted="2")
     for L, kept in (("A", "5"), ("B", "6")):
         v[f"maskdoc_surfaces_surviving_shared_nolost_{L}"] = kept
-        for arm in (*M.ARM_ORDER, "oracle"):
-            v[f"attr_{arm}_{L}"] = "0.50"
-        v[f"attr_oracle_{L}_min"], v[f"attr_oracle_{L}_max"] = "0.40", "0.60"
-    v["attr_r1_B"] = "n/a"
-    v["judge_mean_exgr_oracle"] = "5.00"
     png, _ = M.make_fig_results(v, tmp_path)
     # At the text width (6.5 in since 2026-10-25), 600 dpi.
     from scripts import paper_format
@@ -4100,14 +4136,19 @@ def test_the_results_figure_is_drawn_from_the_build_values_and_refuses_a_crossin
     assert int.from_bytes(png.read_bytes()[16:20], "big") == int(
         M.FIG_RESULTS_WIDTH_IN * M.FIG_DPI)
     assert (tmp_path / M.FIG_RESULTS_CAPTION).read_text(encoding="utf-8").strip() == \
-        M.FIG_RESULTS_CAPTION_TEXT
-    # Since 2026-10-26 (simulated review R3(g)): panel (b) says its rule is not validated
-    # (the SVG keeps text as text, svg.fonttype none).
-    assert "not validated" in (tmp_path / "fig3_results.svg").read_text(encoding="utf-8")
+        M.FIG_RESULTS_CAPTION_TEXT == ("Fig. 3. What reaches the cloud: Cloze against masking "
+                                       "and redaction.")
+    svg = (tmp_path / "fig3_results.svg").read_text(encoding="utf-8")
+    assert "28/65" in svg and "0/22" in svg and "1/340" in svg and "337/1001" in svg
+    assert "all 6 collections" in svg and "the 2 admitted ones" in svg and "4/6" in svg
+    # Attribute accuracy and judged quality are no longer drawn.
+    assert "attribute accuracy" not in svg and "judged quality" not in svg
     with pytest.raises(ValueError, match="H3 holds"):
         M.make_fig_results(dict(v, cross_a_r1="1"), tmp_path)
     with pytest.raises(ValueError, match="H3 holds"):
         M.make_fig_results(dict(v, h3_outcome="fails"), tmp_path)
+    with pytest.raises(ValueError, match="k/n"):
+        M.make_fig_results(dict(v, l_presidio_direct_kn="n/a"), tmp_path)
 
 
 @needs_docx
@@ -4132,6 +4173,32 @@ def test_outcome_cells_are_shaded_by_their_least_favourable_outcome(tmp_path):
     assert cell.text == "holds" and all(r.bold for r in cell.paragraphs[0].runs if r.text)
 
 
+@needs_docx
+def test_a_merged_table_cell_is_as_wide_as_the_grid_columns_it_spans(tmp_path):
+    """Final format check of 2026-10-28: a group-label or wide cell took the last
+    column's width, which Word draws narrower than the table."""
+    from docx.oxml.ns import qn
+    from docx.shared import Inches
+    src = tmp_path / "src.docx"
+    docx.Document().save(str(src))
+    spec = M.TableSpec("t2", "Table 2", "Cap.", ["A", "B", "C"],
+                       [("group", "Label"), ["a", "b", "c"], ("wide", "x", "y")],
+                       widths=[1.0, 2.0, 0.5])
+    M.write_tables_docx(src, [spec], tmp_path / "t.docx", {})
+    tbl = docx.Document(str(tmp_path / "t.docx")).tables[0]._tbl
+    grid = [int(g.get(qn("w:w"))) for g in tbl.tblGrid.iter(qn("w:gridCol"))]
+    spans = []
+    for tr in tbl.tr_lst:
+        col, row = 0, []
+        for tc in tr.tc_lst:
+            assert abs(tc.width.twips - sum(grid[col:col + tc.grid_span])) <= tc.grid_span
+            row.append(tc.grid_span)
+            col += tc.grid_span
+        spans.append(row)
+    assert spans[1:] == [[3], [1, 1, 1], [1, 2]]
+    assert abs(tbl.tr_lst[1].tc_lst[0].width - Inches(sum(grid) / 1440)) < Inches(0.01)
+
+
 def test_table1_is_the_extraction_and_r1s_store_per_corpus():
     """Table 1 since 2026-10-21: the per-corpus part of the old Table 2 without its
     echo column (Fig. 4(b)); it puts r1_store_cells_<L> as table3 does."""
@@ -4146,3 +4213,104 @@ def test_table1_is_the_extraction_and_r1s_store_per_corpus():
     assert spec.rows == [["A*", "«table_cells_A»", "«r1_store_cells_A»", "«t4_A_r1_pruned»",
                           "n/a", "n/a", "n/a"]]
     assert spec.notes[0].startswith("*Corpus A is in-sample") and "n/a: no probe" in spec.notes[0]
+
+
+# Added by the AI assistant on 2026-10-27 with the --posthoc-l reader (scope §14,
+# signed by the author that day: Presidio on the admitted collections, the r1
+# drafter system field, the refused collections).
+
+def _kn_block(k: int, n: int) -> dict:
+    return {"k": k, "n": n, "rate": k / n if n else None}
+
+
+def _tally_block(k_all, n_all, kd, nd, kq, nq) -> dict:
+    return {"all": _kn_block(k_all, n_all), "DIRECT": {**_kn_block(kd, nd), "by_entity_type": {}},
+            "QUASI": {**_kn_block(kq, nq), "by_entity_type": {}}}
+
+
+def _posthoc_l(**over) -> dict:
+    """A small synthetic posthoc_l.json in the shape scripts/posthoc_2026_10_27.py writes."""
+    recall = _tally_block(4, 12, 1, 2, 3, 10)
+    recall["covered"] = _tally_block(5, 12, 1, 2, 4, 10)
+    ph = {
+        "instrument": "scripts/posthoc_2026_10_27.py",
+        "section_14_signed": True,
+        "reproduced": {"l_direct_strings": "3", "l_quasi_strings": "20"},
+        "inputs": {"real_l_scan.json": "0" * 64},
+        "presidio_admitted": {"direct": _kn_block(1, 3), "quasi": _kn_block(6, 20),
+                              "direct_CODE": _kn_block(1, 1), "direct_PERSON": _kn_block(0, 2)},
+        "r1_drafter_system_field": {"same_as_A": _kn_block(7, 7)},
+        "refused": {
+            "code_commit": "26de996ff464a5e3d10bffc79ec91996bcd174e1",
+            "recall": recall, "echo": _tally_block(0, 12, 0, 2, 0, 10), "rebuild_ok": True,
+            "would_cross": _tally_block(1, 12, 0, 2, 1, 10),
+            "would_cross_routes": [{"identifier_type": "QUASI", "entity_type": "DEM",
+                                    "stage": "plan", "field": "system", "strings": 1,
+                                    "occurrences": 1}]},
+    }
+    ph.update(over)
+    return ph
+
+
+def _posthoc_l_numbers(ph: dict, nb: M.Numbers | None = None) -> M.Numbers:
+    if nb is None:
+        nb = M.Numbers()
+        nb.put("l_direct_strings", "3", "real_l_scan.json#/HL1/direct/n")
+        nb.put("l_quasi_strings", "20", "real_l_scan.json#/HL1/quasi_descriptive/n")
+    M.numbers_from_posthoc_l(nb, M.Src("posthoc_l.json", ph))
+    return nb
+
+
+def test_posthoc_l_analyses_become_keys_with_the_paper_formats():
+    nb = _posthoc_l_numbers(_posthoc_l())
+    assert nb["l_direct_strings"] == "3"
+    assert nb["l_presidio_admitted_direct_kn"] == "1/3"
+    assert nb["l_presidio_admitted_quasi_kn"] == "6/20"
+    assert nb["l_presidio_admitted_direct_type_CODE_kn"] == "1/1"
+    assert nb["l_presidio_admitted_direct_type_PERSON_kn"] == "0/2"
+    assert nb["l_r1_sysfield_same_as_A_kn"] == "7/7"
+    assert nb["l_refused_recall_exact_direct_kn"] == "1/2"
+    assert nb["l_refused_recall_covered_quasi_kn"] == "4/10"
+    assert nb["l_refused_echo_kn"] == "0/12" and nb["l_refused_echo_quasi_kn"] == "0/10"
+    assert nb["l_refused_rebuild_ok"] == "yes"
+    assert nb["l_refused_would_cross_direct_kn"] == "0/2"
+    assert nb["l_refused_would_cross_quasi_kn"] == "1/10"
+    assert nb["l_refused_would_cross_route_summary"] == (
+        "QUASI DEM at the plan stage in the system field of a rebuilt r5 planner request: "
+        "1 string-collection pair, 1 occurrence")
+    new = [k for k in nb.values if k not in ("l_direct_strings", "l_quasi_strings")]
+    assert all(nb.sources[k]["source"].startswith("posthoc_l.json#/") for k in new)
+
+
+def test_posthoc_l_routes_read_none_when_nothing_would_cross_and_na_when_unrecorded():
+    ph = _posthoc_l()
+    ph["refused"]["would_cross_routes"] = []
+    assert _posthoc_l_numbers(ph)["l_refused_would_cross_route_summary"] == "none"
+    del ph["refused"]["would_cross_routes"]
+    assert _posthoc_l_numbers(ph)["l_refused_would_cross_route_summary"] == "n/a"
+
+
+def test_posthoc_l_a_rebuild_that_did_not_match_reports_no_would_be_crossing():
+    ph = _posthoc_l()
+    ph["refused"]["rebuild_ok"] = False
+    nb = _posthoc_l_numbers(ph)
+    assert nb["l_refused_rebuild_ok"] == "no"
+    assert nb["l_refused_would_cross_direct_kn"] == "n/a"
+    assert nb["l_refused_would_cross_route_summary"] == "n/a"
+    # Recall and echo stay: they do not rest on the rebuild (scope §14.3's fallback).
+    assert nb["l_refused_echo_kn"] == "0/12"
+
+
+@pytest.mark.parametrize(("ph", "match"), [
+    (_posthoc_l(instrument="scripts/posthoc_2026_10_26.py"), "not scripts/posthoc_2026_10_27.py"),
+    (_posthoc_l(section_14_signed=False), "before scope §14 was signed"),
+    (_posthoc_l(reproduced={}), "no reproduced frozen keys"),
+    (_posthoc_l(reproduced={"l_direct_strings": "4"}), "l_direct_strings"),
+    (_posthoc_l(refused=None), "not computed with commit"),
+    (_posthoc_l(refused={"code_commit": "26de996ff464a5e3d10bffc79ec91996bcd174e1"}),
+     "no refused/recall block"),
+    (_posthoc_l(refused={"code_commit": "0" * 40}), "not computed with commit"),
+])
+def test_posthoc_l_analyses_that_misdescribe_themselves_are_refused(ph, match):
+    with pytest.raises(SystemExit, match=match):
+        _posthoc_l_numbers(ph)
